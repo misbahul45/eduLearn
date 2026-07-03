@@ -15,4 +15,5 @@
 | 11 | Flutter pages (all 8 pages) | TBD | ⬜ |
 | 12 | Firecrawl web search | - | ✅ |
 | 13 | Observability & EventSanitizer | - | ✅ |
-| 14 | Integration test + deployment | TBD | ⬜ |
+| 14 | Deployment & Nginx WS config | - | ✅ |
+| 15 | Integration test + deployment | TBD | ⬜ |

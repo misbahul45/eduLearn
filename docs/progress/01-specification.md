@@ -13,7 +13,7 @@ Status per-file dokumen spesifikasi di `docs/specification/`.
 | 06 | `06-ml-prediction.md` | ✅ | ML binary classification |
 | 07 | `07-firecrawl-tool.md` | ✅ | Firecrawl web search |
 | 08 | `08-observability.md` | ✅ | Logging, tracing, monitoring |
-| 09 | `09-deployment.md` | ⬜ | Deployment, Docker, CI/CD |
+| 09 | `09-deployment.md` | ✅ | Deployment, Docker, CI/CD |
 | 10 | `10-security.md` | ⬜ | JWT, rate limit, sanitasi |
 | 11 | `11-file-upload.md` | ⬜ | File upload & knowledge ingestion |
 | 12 | `12-flutter-splash.md` | ⬜ | Halaman splash Flutter |

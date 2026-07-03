@@ -1,3 +1,4 @@
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
@@ -12,13 +13,23 @@ class Settings(BaseSettings):
 
     JWT_SECRET: str = "change-me"
     JWT_ALGORITHM: str = "HS256"
-    JWT_EXPIRY_HOURS: int = 24
+    JWT_ACCESS_EXPIRE_MIN: int = 60
+    JWT_REFRESH_EXPIRE_DAYS: int = 30
+    JWT_EXPIRY_HOURS: int = Field(default=24, deprecated=True)
+
+    WS_HEARTBEAT_INTERVAL: int = 20
+    WS_HEARTBEAT_TIMEOUT: int = 30
+    WS_MAX_ITERATIONS: int = 5
+    WS_AUTH_REQUIRED: bool = True
+    WS_DEBUG_RAW_EVENTS: bool = False
+    WS_CONNECTION_LIMIT_PER_USER: int = 3
+    WS_RATE_MSG_PER_MIN: int = 30
+    WS_RATE_TOOL_PER_CONV: int = 20
+    WS_RATE_TOKENS_PER_CONV: int = 8000
+    WS_MAX_CONNECTIONS_PER_USER: int = Field(default=5, deprecated=True)
 
     FIRECRAWL_API_KEY: str = ""
-
-    WS_HEARTBEAT_INTERVAL: int = 30
-    WS_HEARTBEAT_TIMEOUT: int = 10
-    WS_MAX_CONNECTIONS_PER_USER: int = 5
+    FIRECRAWL_CACHE_TTL: int = 3600
 
     RAG_EMBEDDING_MODEL: str = "text-embedding-3-small"
     RAG_CHUNK_SIZE: int = 1000
@@ -26,17 +37,27 @@ class Settings(BaseSettings):
     RAG_TOP_K: int = 5
     RAG_EMBEDDING_DIMENSION: int = 1536
 
-    UPLOAD_MAX_SIZE_MB: int = 10
-    UPLOAD_ALLOWED_EXTENSIONS: str = ".pdf,.docx,.txt,.md"
-    UPLOAD_DESTINATION: str = "/app/uploads"
+    EMBEDDING_MODEL: str = "text-embedding-3-small"
+    EMBEDDING_DIM: int = 1536
+
+    UPLOAD_MAX_FILE_SIZE_MB: int = 20
+    UPLOAD_ALLOWED_TYPES: str = "pdf,docx,txt,md"
+    UPLOAD_DIR: str = "/app/uploads"
+    UPLOAD_MAX_SIZE_MB: int = Field(default=10, deprecated=True)
+    UPLOAD_ALLOWED_EXTENSIONS: str = Field(default=".pdf,.docx,.txt,.md", deprecated=True)
+    UPLOAD_DESTINATION: str = Field(default="/app/uploads", deprecated=True)
 
     RATE_LIMIT_WINDOW_SECONDS: int = 60
     RATE_LIMIT_MAX_REQUESTS: int = 30
 
     CORS_ORIGINS: str = "http://localhost:80,http://localhost:3000"
 
-    REDIS_CONVERSATION_TTL_SECONDS: int = 3600
+    REDIS_CONVERSATION_TTL: int = 86400
+    REDIS_CONVERSATION_TTL_SECONDS: int = Field(default=3600, deprecated=True)
 
+    PREDICTION_THRESHOLD: float = 0.5
+
+    METRICS_ENABLED: bool = False
     ENVIRONMENT: str = "production"
     LOG_LEVEL: str = "INFO"
     VERSION: str = "1.0.0"

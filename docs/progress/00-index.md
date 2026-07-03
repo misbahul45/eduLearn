@@ -12,7 +12,7 @@ Folder ini berisi status implementasi tiap area proyek EduLearn AI. Dibagi per d
 
 | Area | Progress | Prioritas |
 |------|----------|-----------|
-| Dokumentasi spesifikasi | ✅ 7/18 docs | Selesai |
+| Dokumentasi spesifikasi | ✅ 8/18 docs | Selesai |
 | Kontrak API | ✅ 7/7 docs | Selesai |
 | Backend core | ✅ Done | - |
 | ML Inference | ✅ Done | - |

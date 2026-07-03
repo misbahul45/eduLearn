@@ -34,3 +34,4 @@
 | File Upload | ⬜ Pending | Stub endpoint + contract defined |
 | Firecrawl Tool | ✅ Done | Firecrawl API via httpx, Redis caching, sanitasi, error handling |
 | Observability & EventSanitizer | ✅ Done | agent.trace JSON logger, EventSanitizer dengan 9 aturan sanitasi |
+| Deployment infra (Docker, Nginx WS config, env) | ✅ Done | ws.conf terpisah, healthcheck, uploads_data volume, semua env vars |
