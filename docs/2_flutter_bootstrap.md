@@ -6,6 +6,7 @@
 |----------|------|--------|
 | 1 | `docs/1_setup_requirement.md` | Infrastructure & Docker setup |
 | **2** | **`docs/2_flutter_bootstrap.md`** | **Flutter design system & routing (done)** |
+| 3 | `docs/3_server_backend_setup.md` | Server AI backend architecture |
 
 ---
 
