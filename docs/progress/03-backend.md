@@ -22,7 +22,7 @@
 |-------|----------|---------|
 | `GET /health` | ✅ Done | Full implementation |
 | `POST /api/v1/chat` | ✅ Done | `run_agent()` via LangGraph |
-| `WEBSOCKET /ws/v1/chat` | 🔧 Partial | Accept + ping/pong, masih return dummy response |
+| `WEBSOCKET /ws/v1/chat` | ✅ Done | Full integration dengan real LangGraph reasoning loop & event streaming |
 | `POST /api/v1/auth/register` | ✅ Done | bcrypt + JWT, return access+refresh token |
 | `POST /api/v1/auth/login` | ✅ Done | bcrypt verify + JWT, return access+refresh token |
 | `POST /api/v1/auth/refresh` | ✅ Done | Rotate refresh token, revoke old |
@@ -42,7 +42,6 @@
 
 | Area | Progress | Catatan |
 |------|----------|---------|
-| WS Chat Streaming | 🔧 Partial | Masih dummy — perlu integrasi agent stream ke WS |
 | Auth — Reset password | ⬜ Pending | Belum ada endpoint |
 | Auth — Email verification | ⬜ Pending | Belum ada |
 | Role-based access control | 🔧 Partial | Cek role di knowledge upload saja |

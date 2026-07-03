@@ -24,6 +24,17 @@ AnalysisPage (ConsumerWidget)
         └── PredictionHistoryList (max 30 items, visual threshold 0.5)
 ```
 
+**Sub-widgets** (Modular widgets are extracted under `client/lib/features/analysis/widgets/`):
+- `DistributionCard` -> [distribution_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/distribution_card.dart)
+- `StrengthCard` -> [strength_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/strength_card.dart)
+- `ImprovementCard` -> [improvement_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/improvement_card.dart)
+- `ActionItem` -> [action_item.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/action_item.dart)
+- `ProgressComparisonCard` -> [progress_comparison_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/progress_comparison_card.dart)
+- `HistoryItem` -> [history_item.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/history_item.dart)
+- `EmptyAnalysis` -> [empty_analysis.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/empty_analysis.dart)
+- `ShimmerLoading` -> [shimmer_loading.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/analysis/widgets/shimmer_loading.dart)
+
+
 **Donut chart**: 2 segmen (Lulus success, Tidak Lulus error). Center text stack: "87%" + "Lulus".
 
 **Strength card**: dynamic content based on feature importance (e.g., high video completion rate → "Ritme belajar konsisten...").

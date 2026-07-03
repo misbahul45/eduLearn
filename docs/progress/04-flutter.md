@@ -76,9 +76,16 @@
 - **ChatViewModel** — StateNotifier dengan messages, currentStreamingMessage, traceLog, status, connectionMode, isSending
 - **AgentEvent** — sealed class dengan 9 variants: StateUpdate, ToolCall, ToolResult, Token, PredictionResult, Citation, WebSearchResult, Final, Error
 
+## Refactoring Modular Sub-Widgets
+
+- **Home Feature**: Diekstrak ke `greeting_card.dart`, `prediction_summary_card.dart`, `history_chart.dart`, `quick_actions_row.dart`, `shimmer_card.dart`.
+- **Chat Feature**: Diekstrak ke `web_search_tile.dart`, `prediction_chart_card.dart`, `citation_tile.dart`, `status_badge.dart`, `agent_trace_sheet.dart`, `chat_bubble.dart`, `chat_input_bar.dart`, `empty_state.dart`, `connection_mode_banner.dart`.
+- **Analysis Feature**: Diekstrak ke `distribution_card.dart`, `strength_card.dart`, `improvement_card.dart`, `action_item.dart`, `progress_comparison_card.dart`, `history_item.dart`, `empty_analysis.dart`, `shimmer_loading.dart`.
+- **Profile Feature**: Diekstrak ke `profile_header.dart`, `biodata_card.dart`, `stats_row.dart`, `knowledge_management_section.dart`, `settings_card.dart`, `logout_button.dart`, `profile_shimmers.dart`.
+- **State management**: Refactor `SplashNotifier`, `LoginViewModel`, dan `RegisterViewModel` menjadi standard `Notifier` untuk menghindari error copyWith/AsyncValue.
+
 ## Yang Perlu Dikerjakan Nanti
 
-- **WebSocket Chat** — integrasi WS nyata untuk streaming jawaban AI (infra sudah siap, tinggal server side)
 - **Forgot Password** — halaman lupa password
 - **Knowledge Upload** — form upload file (PDF/DOCX/TXT/MD) untuk pengajar
 - **Google Sign-In** — integrasi OAuth

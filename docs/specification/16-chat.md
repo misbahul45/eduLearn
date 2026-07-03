@@ -26,7 +26,16 @@ ChatPage (ConsumerStatefulWidget)
     └── bottomSheet: AgentTraceSheet (DraggableScrollableSheet 0.15–0.7)
 ```
 
-**Sub-widgets**: ChatBubble (streaming cursor, prediction chart binary, citations collapsible, web results collapsible), StatusBadge (state_update events), AgentTraceSheet (DraggableScrollableSheet with trace log), PredictionChartCard (fl_chart BarChart 2 bar), CitationExpansionTile, WebSearchTile.
+**Sub-widgets** (Modular widgets are extracted under `client/lib/features/chat/widgets/`):
+- `ConnectionModeBanner` -> [connection_mode_banner.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/connection_mode_banner.dart)
+- `StatusBadge` -> [status_badge.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/status_badge.dart)
+- `EmptyState` -> [empty_state.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/empty_state.dart)
+- `ChatBubble` -> [chat_bubble.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/chat_bubble.dart)
+- `PredictionChartCard` -> [prediction_chart_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/prediction_chart_card.dart)
+- `CitationTile` -> [citation_tile.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/citation_tile.dart)
+- `WebSearchTile` -> [web_search_tile.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/web_search_tile.dart)
+- `AgentTraceSheet` -> [agent_trace_sheet.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/agent_trace_sheet.dart)
+- `ChatInputBar` -> [chat_input_bar.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/chat/widgets/chat_input_bar.dart)
 
 **Events**: stateUpdate, toolCall, toolResult, token, predictionResult, citation, webSearchResult, final_, error.
 

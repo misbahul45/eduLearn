@@ -17,7 +17,13 @@ Menjadi landing page setelah login. Memberikan ringkasan status belajar siswa: g
 
 Bottom nav menggunakan `NavigationBar` (Material 3) dengan 4 `NavigationDestination`: Home (`Icons.home_rounded`), Chat (`Icons.chat_bubble_rounded`), Analysis (`Icons.insights_rounded`), Profile (`Icons.person_rounded`). Active state memakai `AppColors.primary`; inactive `AppColors.textSecondary`.
 
-**Widget tree (HomeTab)**:
+**Widget tree (HomeTab)** (Modular widgets are extracted under `client/lib/features/home/widgets/`):
+- `GreetingCard` -> [greeting_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/home/widgets/greeting_card.dart)
+- `PredictionSummaryCard` -> [prediction_summary_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/home/widgets/prediction_summary_card.dart) (includes `InsightCard` and `EmptyPredictionCard`)
+- `HistoryChart` -> [history_chart.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/home/widgets/history_chart.dart)
+- `QuickActionsRow` -> [quick_actions_row.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/home/widgets/quick_actions_row.dart)
+- `ShimmerCard` -> [shimmer_card.dart](file:///home/misbahul45/code/eduLearn/client/lib/features/home/widgets/shimmer_card.dart)
+
 ```
 HomePage (ConsumerWidget)
 └── Scaffold

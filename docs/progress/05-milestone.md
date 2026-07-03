@@ -24,4 +24,4 @@
 - **Auth**: Login (bcrypt + JWT access/refresh), register, refresh, logout, me
 - **Flutter**: Splash, Login, Register, Home (4 tabs: Chat/Analisis/Materi/Profil), Knowledge
 - **RAG**: file upload → parse (PyMuPDF/docx) → chunk (tiktoken 500) → embed (OpenAI) → pgvector (cosine + HNSW)
-- **WebSocket**: endpoint siap, JWT auth + rate limiting + heartbeat, masih dummy response
+- **WebSocket**: Integrasi penuh dengan real LangGraph reasoning loop, streaming tokens & trace events, JWT auth + rate limiting + heartbeat.
