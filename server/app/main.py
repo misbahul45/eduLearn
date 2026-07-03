@@ -2,9 +2,15 @@ import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.health import router as health_router
 from app.api.chat import router as chat_router
+from app.api.chat_ws import router as chat_ws_router
+from app.api.auth import router as auth_router
+from app.api.users import router as users_router
+from app.api.predictions import router as predictions_router
+from app.api.knowledge import router as knowledge_router
 from app.core.config import settings
 from app.core.logging import setup_logging
 from app.machine_learning.predictor import Predictor
@@ -37,5 +43,18 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS.split(","),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(health_router)
-app.include_router(chat_router, prefix="/api/v1")
+app.include_router(chat_router)
+app.include_router(chat_ws_router)
+app.include_router(auth_router)
+app.include_router(users_router)
+app.include_router(predictions_router)
+app.include_router(knowledge_router)
