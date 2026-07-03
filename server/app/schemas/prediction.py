@@ -14,7 +14,7 @@ class PredictionResponse(BaseModel):
 
 
 class PredictionHistoryItem(BaseModel):
-    id: int
+    id: str
     probability: float
     label: str
     created_at: str

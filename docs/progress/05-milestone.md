@@ -16,4 +16,5 @@
 | 12 | Firecrawl web search | - | ✅ |
 | 13 | Observability & EventSanitizer | - | ✅ |
 | 14 | Deployment & Nginx WS config | - | ✅ |
-| 15 | Integration test + deployment | TBD | ⬜ |
+| 15 | DB Models + SQLAlchemy (9 tables) | - | ✅ |
+| 16 | Integration test + deployment | TBD | ⬜ |

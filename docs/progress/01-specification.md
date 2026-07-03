@@ -16,7 +16,7 @@ Status per-file dokumen spesifikasi di `docs/specification/`.
 | 09 | `09-deployment.md` | ✅ | Deployment, Docker, CI/CD |
 | 10 | `10-security.md` | ✅ | JWT, rate limit, sanitasi |
 | 11 | `11-file-upload.md` | ✅ | File upload & knowledge ingestion |
-| 12 | `12-flutter-splash.md` | ⬜ | Halaman splash Flutter |
+| 12 | `12-flutter-splash.md` | ✅ | Halaman splash Flutter |
 | 13 | `13-flutter-login.md` | ⬜ | Halaman login Flutter |
 | 14 | `14-flutter-register.md` | ⬜ | Halaman register Flutter |
 | 15 | `15-flutter-home.md` | ⬜ | Halaman home Flutter |

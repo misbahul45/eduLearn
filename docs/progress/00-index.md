@@ -12,13 +12,16 @@ Folder ini berisi status implementasi tiap area proyek EduLearn AI. Dibagi per d
 
 | Area | Progress | Prioritas |
 |------|----------|-----------|
-| Dokumentasi spesifikasi | ✅ 10/18 docs | Selesai |
+| Dokumentasi spesifikasi | ✅ 11/18 docs | Selesai |
+| Planning DB | ✅ 3/3 docs | docs/planning/ |
+| DB Models (SQLAlchemy) | ✅ 9 tabel | server/app/db/ |
 | Kontrak API | ✅ 7/7 docs | Selesai |
 | Backend core | ✅ Done | - |
 | ML Inference | ✅ Done | - |
 | LangGraph Agent | ✅ Done | - |
 | RAG + pgvector | 🔧 Partial | Tinggi |
 | Flutter App | 🔧 Partial | Tinggi |
+| Flutter Auth (Riverpod + Dio + SecureStorage) | ✅ Done | Login/Register masih setState, tapi infra auth sudah siap |
 | Auth (JWT) | 🔧 Partial | Tinggi |
 | Knowledge Upload | ✅ Done | Tinggi |
 | Firecrawl Tool | ✅ Done | Selesai |

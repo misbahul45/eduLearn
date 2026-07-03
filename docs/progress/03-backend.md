@@ -35,3 +35,5 @@
 | Firecrawl Tool | ✅ Done | Firecrawl API via httpx, Redis caching, sanitasi, error handling |
 | Observability & EventSanitizer | ✅ Done | agent.trace JSON logger, EventSanitizer dengan 9 aturan sanitasi |
 | Deployment infra (Docker, Nginx WS config, env) | ✅ Done | ws.conf terpisah, healthcheck, uploads_data volume, semua env vars |
+| DB Models (SQLAlchemy) | ✅ Done | 9 tabel: User, RefreshToken, Conversation, Message, KnowledgeDocument, KnowledgeChunk, PredictionHistory, AuditConversation, AuditUpload + ForeignKeys + Constraints |
+| Planning Docs | ✅ Done | docs/planning/ (00-index, 01-db-models, 02-service-plan) |
