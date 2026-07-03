@@ -5,7 +5,7 @@
 | Area | Progress | Catatan |
 |------|----------|---------|
 | Infrastructure (Docker, Nginx, PG, Redis) | ✅ Done | Docker Compose, Nginx WS proxy, PostgreSQL, Redis |
-| Backend Core (FastAPI, config, logging, CORS) | ✅ Done | 26 env vars, logging centralized, CORS |
+| Backend Core (FastAPI, config, logging, CORS) | ✅ Done | 26 env vars, logging centralized + agent.trace JSON logger, CORS |
 | ML Layer (Singleton Predictor) | ✅ Done | Load sekali startup, fail-fast, reconstruct dari config.json |
 | LangGraph Agent (ReAct loop) | ✅ Done | supervisor + tools + response_node, bind_tools, @tool decorators |
 | Tool Wrappers (rag, predictive, firecrawl) | ✅ Done | LangChain @tool, dispatch via tools_node |
@@ -32,4 +32,5 @@
 | RAG + pgvector | 🔧 Partial | vectorstore (DDL + HNSW) + retriever (embed + cosine search) implemented. Ingestion masih stub. |
 | Auth JWT | ⬜ Pending | Stub endpoints + contract defined |
 | File Upload | ⬜ Pending | Stub endpoint + contract defined |
-| Firecrawl Tool | ⬜ Pending | Stub function + contract defined |
+| Firecrawl Tool | ✅ Done | Firecrawl API via httpx, Redis caching, sanitasi, error handling |
+| Observability & EventSanitizer | ✅ Done | agent.trace JSON logger, EventSanitizer dengan 9 aturan sanitasi |

@@ -13,5 +13,6 @@
 | 9 | RAG + pgvector search | TBD | ⬜ |
 | 10 | File upload + knowledge ingestion | TBD | ⬜ |
 | 11 | Flutter pages (all 8 pages) | TBD | ⬜ |
-| 12 | Firecrawl web search | TBD | ⬜ |
-| 13 | Integration test + deployment | TBD | ⬜ |
+| 12 | Firecrawl web search | - | ✅ |
+| 13 | Observability & EventSanitizer | - | ✅ |
+| 14 | Integration test + deployment | TBD | ⬜ |

@@ -14,8 +14,15 @@ SYSTEM_PROMPT = (
     "- rag_tool: cari referensi lokal dari knowledge base (materi kuliah, buku). "
     "- predictive_tool: prediksi lulus/tidak lulus berdasarkan data belajar siswa. "
     "- firecrawl_tool: cari informasi terkini dari web. "
+    "\n\n"
+    "Panduan memilih tool:\n"
+    "- Konsep akademis dasar (mis. 'apa itu neural network') -> rag_tool dulu\n"
+    "- Info terkini, berita, topik 2026 -> firecrawl_tool\n"
+    "- Topik yang mungkin tidak ada di lokal -> firecrawl_tool\n"
+    "- Progress/kelulusan siswa -> predictive_tool\n"
+    "- Bisa juga kombinasi: rag_tool + firecrawl_tool untuk jawaban lengkap\n"
+    "\n"
     "Gunakan Bahasa Indonesia. "
-    "Bila pertanyaan konsep -> rag_tool. Info terkini -> firecrawl_tool. Progress/kelulusan -> predictive_tool. "
     "Bila sudah cukup -> susun jawaban."
 )
 
@@ -124,9 +131,13 @@ async def tools_node(state: AgentState) -> dict:
                 for wsr in raw:
                     if isinstance(wsr, dict):
                         new_web_search.append({
+                            "result_id": wsr.get("result_id", f"ws_{len(new_web_search):03d}"),
                             "url": wsr.get("url", ""),
                             "title": wsr.get("title", ""),
                             "snippet": wsr.get("snippet", str(wsr)[:200]),
+                            "markdown_excerpt": wsr.get("markdown_excerpt", ""),
+                            "source": wsr.get("source", "firecrawl"),
+                            "relevance_score": wsr.get("relevance_score", 0.0),
                         })
             elif func_name == "predictive_tool":
                 rdict = result if isinstance(result, dict) else {}

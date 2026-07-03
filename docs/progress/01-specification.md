@@ -11,8 +11,8 @@ Status per-file dokumen spesifikasi di `docs/specification/`.
 | 04 | `04-agent-orchestration.md` | ✅ | LangGraph ReAct loop |
 | 05 | `05-rag-knowledge.md` | ✅ | RAG system + pgvector |
 | 06 | `06-ml-prediction.md` | ✅ | ML binary classification |
-| 07 | `07-firecrawl-tool.md` | ⬜ | Firecrawl web search |
-| 08 | `08-observability.md` | ⬜ | Logging, tracing, monitoring |
+| 07 | `07-firecrawl-tool.md` | ✅ | Firecrawl web search |
+| 08 | `08-observability.md` | ✅ | Logging, tracing, monitoring |
 | 09 | `09-deployment.md` | ⬜ | Deployment, Docker, CI/CD |
 | 10 | `10-security.md` | ⬜ | JWT, rate limit, sanitasi |
 | 11 | `11-file-upload.md` | ⬜ | File upload & knowledge ingestion |

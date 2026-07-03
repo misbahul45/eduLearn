@@ -24,6 +24,9 @@ dependencies = [
     "pydantic[email]",
     "pydantic-settings",
 
+    # HTTP
+    "httpx",
+
     # ML
     "tensorflow",
     "numpy",

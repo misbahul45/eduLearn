@@ -1,13 +1,7 @@
 from pydantic import BaseModel, Field
 
-from app.schemas.knowledge import Citation
+from app.schemas.knowledge import Citation, WebSearchResult
 from app.schemas.prediction import PredictionResult
-
-
-class WebSearchResult(BaseModel):
-    url: str = ""
-    title: str = ""
-    snippet: str = ""
 
 
 class ToolCallRecord(BaseModel):

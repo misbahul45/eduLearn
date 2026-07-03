@@ -27,3 +27,13 @@ class Citation(BaseModel):
     snippet: str
     score: float
     metadata: CitationMeta
+
+
+class WebSearchResult(BaseModel):
+    result_id: str = ""
+    url: str = ""
+    title: str = ""
+    snippet: str = ""
+    markdown_excerpt: str = ""
+    source: str = "firecrawl"
+    relevance_score: float = 0.0
