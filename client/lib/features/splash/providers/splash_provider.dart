@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../core/providers/auth_providers.dart';
 
 enum SplashStage { initial, checking, authenticated, unauthenticated }
@@ -15,7 +14,7 @@ class SplashState {
   }
 }
 
-class SplashNotifier extends AsyncNotifier<SplashState> {
+class SplashNotifier extends Notifier<SplashState> {
   @override
   SplashState build() => const SplashState();
 
@@ -34,6 +33,6 @@ class SplashNotifier extends AsyncNotifier<SplashState> {
   }
 }
 
-final splashProvider = AsyncNotifierProvider<SplashNotifier, SplashState>(
+final splashProvider = NotifierProvider<SplashNotifier, SplashState>(
   SplashNotifier.new,
 );

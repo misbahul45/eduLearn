@@ -31,7 +31,30 @@ SYSTEM_PROMPT = (
 )
 
 
+import inspect
+from typing import Any
+
+async def invoke_callback(state: AgentState, event: dict[str, Any]) -> None:
+    """Invoke the state update callback if it exists in the state."""
+    callback = getattr(state, "state_update_callback", None)
+    if callback:
+        try:
+            if inspect.iscoroutinefunction(callback):
+                await callback(event)
+            else:
+                callback(event)
+        except Exception:
+            pass
+
+
 async def supervisor_node(state: AgentState) -> dict:
+    """Run the supervisor node to determine if tools need to be called or if we can respond."""
+    await invoke_callback(state, {
+        "type": "state_update",
+        "node": "supervisor",
+        "status": "started",
+        "iteration": state.iteration,
+    })
     logger.info("Supervisor reasoning iteration=%d", state.iteration)
     llm = get_llm()
 
@@ -62,6 +85,13 @@ async def supervisor_node(state: AgentState) -> dict:
         "tool_calls": result.tool_calls if result.tool_calls else [],
     })
 
+    await invoke_callback(state, {
+        "type": "state_update",
+        "node": "supervisor",
+        "status": "completed",
+        "iteration": state.iteration + 1,
+    })
+
     return {
         "scratchpad": new_scratchpad,
         "iteration": state.iteration + 1,
@@ -81,6 +111,7 @@ def route_after_supervisor(state: AgentState) -> str:
 
 
 async def tools_node(state: AgentState) -> dict:
+    """Execute the tools requested by the supervisor and emit corresponding WebSocket events."""
     last_sr = state.scratchpad[-1] if state.scratchpad else {}
     tcs = last_sr.get("tool_calls", [])
 
@@ -100,50 +131,87 @@ async def tools_node(state: AgentState) -> dict:
         if isinstance(args, list):
             args = args[0] if args else args
 
+        call_id = tc.get("id", "") or (tc.id if hasattr(tc, "id") else f"call_{func_name}_{id(tc)}")
+
+        await invoke_callback(state, {
+            "type": "tool_call",
+            "tool_name": func_name,
+            "input": args,
+            "call_id": call_id,
+        })
+
+        import time
+        start_time = time.perf_counter()
+        output_summary = ""
+
         try:
             if func_name == "rag_tool":
                 result = await rag_tool.ainvoke(args)
-            elif func_name == "predictive_tool":
-                result = predictive_tool.invoke(args)
-            elif func_name == "firecrawl_tool":
-                result = await firecrawl_tool.ainvoke(args)
-            else:
-                result = {}
-
-            result_str = str(result)
-            new_scratchpad.append({
-                "role": "function",
-                "name": func_name,
-                "content": result_str[:1000],
-            })
-
-            if func_name == "rag_tool":
                 raw = result if isinstance(result, list) else (result.get("results", []) if isinstance(result, dict) else [])
                 for cit in raw:
                     if isinstance(cit, dict):
                         meta = cit.get("metadata", {})
-                        new_citations.append({
-                            "source_id": cit.get("source_id", ""),
-                            "snippet": cit.get("snippet", str(cit)[:200]),
-                            "score": cit.get("score", 0.0),
-                            "document": meta.get("title", meta.get("file_name", "")),
+                        from app.schemas.knowledge import Citation as KnowledgeCitation, CitationMeta
+                        citation_obj = KnowledgeCitation(
+                            source_id=cit.get("source_id", ""),
+                            snippet=cit.get("snippet", str(cit)[:200]),
+                            score=cit.get("score", 0.0),
+                            metadata=CitationMeta(
+                                title=meta.get("title", meta.get("file_name", "")),
+                                author=meta.get("author"),
+                                page=meta.get("page"),
+                                document_id=meta.get("document_id"),
+                                file_name=meta.get("file_name"),
+                            )
+                        )
+                        new_citations.append(citation_obj)
+                        await invoke_callback(state, {
+                            "type": "citation",
+                            "source_id": citation_obj.source_id,
+                            "snippet": citation_obj.snippet,
+                            "score": citation_obj.score,
+                            "metadata": {
+                                "title": citation_obj.metadata.title,
+                                "author": citation_obj.metadata.author,
+                                "page": citation_obj.metadata.page,
+                                "document_id": citation_obj.metadata.document_id,
+                                "file_name": citation_obj.metadata.file_name,
+                            }
                         })
+                output_summary = f"{len(raw)} dokumen relevan ditemukan"
+
             elif func_name == "firecrawl_tool":
+                result = await firecrawl_tool.ainvoke(args)
                 raw = result if isinstance(result, list) else (result.get("results", []) if isinstance(result, dict) and "results" in result else [])
                 if isinstance(result, dict) and "url" in result:
                     raw = [result]
                 for wsr in raw:
                     if isinstance(wsr, dict):
-                        new_web_search.append({
-                            "result_id": wsr.get("result_id", f"ws_{len(new_web_search):03d}"),
-                            "url": wsr.get("url", ""),
-                            "title": wsr.get("title", ""),
-                            "snippet": wsr.get("snippet", str(wsr)[:200]),
-                            "markdown_excerpt": wsr.get("markdown_excerpt", ""),
-                            "source": wsr.get("source", "firecrawl"),
-                            "relevance_score": wsr.get("relevance_score", 0.0),
+                        from app.schemas.knowledge import WebSearchResult as KWebSearchResult
+                        ws_obj = KWebSearchResult(
+                            result_id=wsr.get("result_id", f"ws_{len(new_web_search):03d}"),
+                            url=wsr.get("url", ""),
+                            title=wsr.get("title", ""),
+                            snippet=wsr.get("snippet", str(wsr)[:200]),
+                            markdown_excerpt=wsr.get("markdown_excerpt", ""),
+                            source=wsr.get("source", "firecrawl"),
+                            relevance_score=wsr.get("relevance_score", 0.0),
+                        )
+                        new_web_search.append(ws_obj)
+                        await invoke_callback(state, {
+                            "type": "web_search_result",
+                            "result_id": ws_obj.result_id,
+                            "url": ws_obj.url,
+                            "title": ws_obj.title,
+                            "snippet": ws_obj.snippet,
+                            "markdown_excerpt": ws_obj.markdown_excerpt,
+                            "source": ws_obj.source,
+                            "relevance_score": ws_obj.relevance_score,
                         })
+                output_summary = f"{len(raw)} hasil web ditemukan"
+
             elif func_name == "predictive_tool":
+                result = predictive_tool.invoke(args)
                 rdict = result if isinstance(result, dict) else {}
                 from app.schemas.prediction import PredictionResult as PR
                 new_pred = PR(
@@ -155,14 +223,55 @@ async def tools_node(state: AgentState) -> dict:
                     input_features_used=rdict.get("input_features_used", []),
                     generated_at=rdict.get("generated_at"),
                 )
+                await invoke_callback(state, {
+                    "type": "prediction_result",
+                    "node": "predictive_node",
+                    "data": {
+                        "predicted_label": new_pred.predicted_label,
+                        "confidence": new_pred.confidence,
+                        "class_scores": new_pred.class_scores,
+                        "model_name": new_pred.model_name,
+                        "model_version": new_pred.model_version,
+                        "input_features_used": new_pred.input_features_used,
+                        "generated_at": new_pred.generated_at,
+                    }
+                })
+                output_summary = f"Prediksi kelulusan selesai: {new_pred.predicted_label}"
+            else:
+                result = {}
+                output_summary = "Tool tidak dikenal"
+
+            result_str = str(result)
+            new_scratchpad.append({
+                "role": "function",
+                "name": func_name,
+                "content": result_str[:1000],
+            })
+
         except Exception as e:
             logger.exception("Tool %s failed", func_name)
+            await invoke_callback(state, {
+                "type": "error",
+                "node": func_name,
+                "message": f"Error: {e}",
+                "fatal": False,
+            })
             new_scratchpad.append({
                 "role": "function",
                 "name": func_name,
                 "content": f"Error: {e}",
                 "error": True,
             })
+            output_summary = f"Gagal menjalankan tool: {e}"
+
+        duration_ms = int((time.perf_counter() - start_time) * 1000)
+        await invoke_callback(state, {
+            "type": "tool_result",
+            "tool_name": func_name,
+            "call_id": call_id,
+            "output_summary": output_summary,
+            "duration_ms": duration_ms,
+        })
 
     return {
         "scratchpad": new_scratchpad,
@@ -170,3 +279,4 @@ async def tools_node(state: AgentState) -> dict:
         "web_search_results": new_web_search,
         "prediction": new_pred,
     }
+

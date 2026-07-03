@@ -63,7 +63,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               backgroundColor: AppColors.error,
               behavior: SnackBarBehavior.floating,
               action: next.error == 'Tidak ada koneksi internet'
-                  ? SnackAction(
+                  ? SnackBarAction(
                       label: 'Coba lagi',
                       onPressed: _submit,
                     )

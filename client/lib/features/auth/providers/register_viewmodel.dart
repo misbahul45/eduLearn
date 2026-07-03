@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../core/providers/auth_providers.dart';
 
 enum RegisterStage { idle, loading, success, error }
@@ -11,7 +10,7 @@ class RegisterState {
   const RegisterState({this.stage = RegisterStage.idle, this.error});
 }
 
-class RegisterViewModel extends AsyncNotifier<RegisterState> {
+class RegisterViewModel extends Notifier<RegisterState> {
   @override
   RegisterState build() => const RegisterState();
 
@@ -33,4 +32,4 @@ class RegisterViewModel extends AsyncNotifier<RegisterState> {
 }
 
 final registerViewModelProvider =
-    AsyncNotifierProvider<RegisterViewModel, RegisterState>(RegisterViewModel.new);
+    NotifierProvider<RegisterViewModel, RegisterState>(RegisterViewModel.new);

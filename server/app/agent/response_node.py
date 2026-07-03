@@ -18,6 +18,16 @@ RESPONSE_PROMPT = (
 
 
 async def response_node(state: AgentState) -> dict:
+    """Generate the final tutor response by incorporating knowledge base citations, web results, and ML prediction."""
+    from app.agent.supervisor import invoke_callback
+
+    await invoke_callback(state, {
+        "type": "state_update",
+        "node": "response_node",
+        "status": "started",
+        "iteration": state.iteration,
+    })
+
     logger.info("Response node generating final answer")
 
     context_parts = [f"User question: {state.user_message}"]
@@ -55,8 +65,49 @@ async def response_node(state: AgentState) -> dict:
     ]
 
     try:
-        response = await llm.ainvoke(messages)
-        return {"final_answer": response.content}
+        full_content = []
+        token_index = 0
+        async for chunk in llm.astream(messages):
+            content = chunk.content
+            if isinstance(content, list):
+                text_parts = []
+                for part in content:
+                    if isinstance(part, dict) and part.get("type") == "text":
+                        text_parts.append(part.get("text", ""))
+                    elif isinstance(part, str):
+                        text_parts.append(part)
+                content = "".join(text_parts)
+            if content:
+                full_content.append(content)
+                await invoke_callback(state, {
+                    "type": "token",
+                    "content": content,
+                    "index": token_index,
+                })
+                token_index += 1
+
+        final_answer = "".join(full_content)
+
+        await invoke_callback(state, {
+            "type": "state_update",
+            "node": "response_node",
+            "status": "completed",
+            "iteration": state.iteration,
+        })
+        return {"final_answer": final_answer}
     except Exception as e:
         logger.exception("LLM response failed")
+        await invoke_callback(state, {
+            "type": "error",
+            "node": "response_node",
+            "message": "Maaf, saya tidak dapat menyusun jawaban saat ini.",
+            "fatal": False,
+        })
+        await invoke_callback(state, {
+            "type": "state_update",
+            "node": "response_node",
+            "status": "completed",
+            "iteration": state.iteration,
+        })
         return {"final_answer": "Maaf, saya tidak dapat menyusun jawaban saat ini."}
+

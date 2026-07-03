@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../core/providers/auth_providers.dart';
 
 enum LoginStage { idle, loading, success, error }
@@ -11,7 +10,7 @@ class LoginState {
   const LoginState({this.stage = LoginStage.idle, this.error});
 }
 
-class LoginViewModel extends AsyncNotifier<LoginState> {
+class LoginViewModel extends Notifier<LoginState> {
   @override
   LoginState build() => const LoginState();
 
@@ -33,4 +32,4 @@ class LoginViewModel extends AsyncNotifier<LoginState> {
 }
 
 final loginViewModelProvider =
-    AsyncNotifierProvider<LoginViewModel, LoginState>(LoginViewModel.new);
+    NotifierProvider<LoginViewModel, LoginState>(LoginViewModel.new);

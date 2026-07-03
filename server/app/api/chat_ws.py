@@ -8,6 +8,7 @@ from jose import jwt as jose_jwt, JWTError
 from app.core.config import settings
 from app.schemas.events import EventSanitizer
 from app.core.logging import log_agent_event
+from app.agent.graph import run_agent
 
 logger = logging.getLogger(__name__)
 
@@ -129,27 +130,54 @@ async def chat_websocket(websocket: WebSocket):
 
                     log_agent_event("user_message", user_id=user_id, conversation_id=conv_id)
 
-                    await websocket.send_text(
-                        json.dumps({
-                            "type": "state_update",
-                            "node": "supervisor",
-                            "status": "Menganalisis pertanyaan...",
-                            "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                        })
-                    )
+                    async def send_callback(event: dict) -> None:
+                        if "timestamp" not in event or not event["timestamp"]:
+                            event["timestamp"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+                        sanitized = EventSanitizer.sanitize(event)
+                        await websocket.send_text(json.dumps(sanitized))
 
-                    raw_event = {
-                        "type": "final",
-                        "message": "Endpoint WebSocket masih dalam pengembangan. Gunakan REST fallback.",
-                        "conversation_id": conv_id,
-                        "citations": [],
-                        "web_results": [],
-                        "prediction_present": False,
-                        "prediction_label": "",
-                        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                    }
-                    sanitized = EventSanitizer.sanitize(raw_event)
-                    await websocket.send_text(json.dumps(sanitized))
+                    try:
+                        agent_res = await run_agent(
+                            message=msg,
+                            user_id=user_id,
+                            conversation_id=conv_id,
+                            state_update_callback=send_callback,
+                        )
+
+                        citations_ids = [
+                            c.source_id if hasattr(c, "source_id") else c.get("source_id", "")
+                            for c in agent_res.get("citations", [])
+                        ]
+                        web_ids = [
+                            w.result_id if hasattr(w, "result_id") else w.get("result_id", "")
+                            for w in agent_res.get("web_search_results", [])
+                        ]
+
+                        pred = agent_res.get("prediction")
+                        prediction_present = pred is not None
+                        prediction_label = ""
+                        if prediction_present:
+                            prediction_label = pred.predicted_label if hasattr(pred, "predicted_label") else pred.get("predicted_label", "")
+
+                        final_event = {
+                            "type": "final",
+                            "message": agent_res.get("response", ""),
+                            "conversation_id": agent_res.get("conversation_id", ""),
+                            "citations": citations_ids,
+                            "web_results": web_ids,
+                            "prediction_present": prediction_present,
+                            "prediction_label": prediction_label,
+                        }
+
+                        await send_callback(final_event)
+
+                    except Exception as e:
+                        logger.exception("Agent run failed for user %s", user_id)
+                        await send_callback({
+                            "type": "error",
+                            "message": f"Terjadi kesalahan saat memproses permintaan Anda: {str(e)}",
+                            "fatal": False,
+                        })
 
     except WebSocketDisconnect:
         logger.info("WS client disconnected: user=%s", user_id)

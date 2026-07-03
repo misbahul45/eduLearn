@@ -152,6 +152,92 @@ server/
 
 ---
 
+## DOKUMENTASI STRUKTUR & ATURAN MAIN
+
+### 📁 Struktur Dokumentasi
+
+```
+docs/
+├── specification/    → 18 file (01–18), urut. "APA yang harus dibuat"
+│   └── 00-index.md  → daftar semua spec
+├── contract/        → 7 file (01–07). "BENTUK API/WS"
+├── planning/        → 3 file. Perencanaan DB & arsitektur
+├── progress/        → Status real-time pengerjaan per area
+├── reports/         → Laporan analisis & audit
+└── README.md        → Entry point petunjuk baca docs
+```
+
+### 📐 Aturan Main Per Layer
+
+#### 1. Spec Docs (`docs/specification/`)
+- Baca **urut** dari 01 ke 18 sebelum implementasi.
+- Tiap file definisi **satu halaman/komponen**: widget tree, behavior flow, wireframe, data contract, interaksi.
+
+#### 2. Contract Docs (`docs/contract/`)
+- Definisi API endpoint (path, method, request/response schema) dan WS event (type, fields, arah).
+- Flutter client WAJIB mengikuti contract — path, field name, tipe data harus cocok.
+
+#### 3. Kode Flutter (`client/lib/`)
+- **Theme**: Semua token dari `core/theme/`. Dilarang hardcode warna/spacing/typography.
+- **Routing**: `go_router` + `StatefulShellRoute.indexedStack` untuk bottom nav tab.
+- **State management**: Riverpod (`ConsumerWidget`/`ConsumerStatefulWidget`). ViewModels di `features/*/providers/`.
+- **HTTP**: Dio via `ApiClient`. Base URL dari `core/config/app_config.dart`.
+- **WS**: `AgentSocketService`. Event parse via `core/network/ws_event_parser.dart`. Message builder via `core/network/ws_message_builder.dart`.
+- **Auth interceptor**: `core/network/auth_interceptor.dart` — auto attach token + refresh on 401.
+- **Models**: Manual `fromJson` di `core/models/`. Field name sesuai contract server.
+
+#### 4. Kode Server (`server/app/`)
+- FastAPI async, `lifespan` startup.
+- Config dari env via `pydantic-settings`.
+- ML: Singleton Predictor, fail-fast, load sekali startup.
+- LangGraph: Hanya orchestrator. Node independen.
+- DB: SQLAlchemy 2.0 async + pgvector.
+
+#### 5. Flutter Skills (`client/.agents/skills/`)
+10 skill acuan best practices — baca sebelum mengerjakan area terkait:
+
+| Skill | Wajib dipakai saat... |
+|-------|----------------------|
+| `flutter-apply-architecture-best-practices` | Struktur project / refactor besar |
+| `flutter-use-http-package` | Networking (Dio, error handling) |
+| `flutter-setup-declarative-routing` | go_router, StatefulShellRoute |
+| `flutter-implement-json-serialization` | fromJson/toJson model |
+| `flutter-add-widget-test` | Widget test baru |
+| `flutter-build-responsive-layout` | Layout multi-platform |
+| `flutter-fix-layout-issues` | Overflow / unbounded constraint |
+| `flutter-setup-localization` | i18n / multi-language |
+| `flutter-add-integration-test` | Integration test / MCP |
+| `flutter-add-widget-preview` | @Preview widget testing |
+
+#### 6. AGENTS.md (file ini)
+Root instruction untuk AI agent. Wajib dibaca di setiap sesi.
+
+### 🔄 Workflow Implementasi Fitur
+
+1. Baca spec doc (`docs/specification/N-*.md`)
+2. Baca contract doc (`docs/contract/M-*.md`) jika ada API/WS
+3. Baca aturan ketat di AGENTS.md ini
+4. Cek skill applicable (`client/.agents/skills/*/`)
+5. Cek kode existing untuk pattern konsisten
+6. Implementasi
+7. Verifikasi: `dart analyze` → `flutter test` → `flutter run`
+8. Update `docs/progress/`
+9. Jalankan `graphify update .` jika `graphify-out/` ada
+
+### ⚠️ Constraint Penting
+
+- **Binary classification only**: Lulus/Tidak Lulus. Jangan 3 class.
+- **ML tidak dilatih ulang**: Hanya inference. Model path read-only.
+- **Semua I/O async kecuali ML inference**.
+- **Jangan hardcode** env apapun.
+- **No `global` keyword**.
+- **Widget tidak boleh** mengandung business logic.
+- **SnackBar** untuk error feedback (bukan dialog).
+- **Indonesian** untuk semua UI text & error messages.
+- **Semua warna/spacing/typography** dari token theme — dilarang hardcode.
+
+---
+
 ## OUTPUT REQUIREMENTS
 
 Saat mengimplementasikan fitur:

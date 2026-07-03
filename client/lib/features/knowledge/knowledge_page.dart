@@ -14,7 +14,7 @@ class KnowledgePage extends ConsumerStatefulWidget {
 }
 
 class _KnowledgePageState extends ConsumerState<KnowledgePage> {
-  final List<Map<String, dynamic>> _documents = [];
+  List<Map<String, dynamic>> _documents = [];
   bool _isLoading = true;
 
   @override
@@ -46,13 +46,6 @@ class _KnowledgePageState extends ConsumerState<KnowledgePage> {
       if (mounted) setState(() => _isLoading = false);
     }
   }
-
-  Future<void> _uploadFile() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Upload file akan segera hadir')),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

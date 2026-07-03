@@ -81,12 +81,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               backgroundColor: AppColors.error,
               behavior: SnackBarBehavior.floating,
               action: isDuplicateEmail
-                  ? SnackAction(
+                  ? SnackBarAction(
                       label: 'Ke halaman login',
                       onPressed: () => context.goNamed(AppRoutes.login),
                     )
                   : next.error == 'Tidak ada koneksi internet'
-                      ? SnackAction(
+                      ? SnackBarAction(
                           label: 'Coba lagi',
                           onPressed: _submit,
                         )
