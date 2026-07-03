@@ -42,7 +42,7 @@ async def get_stats(
     passed = await db.scalar(
         select(func.count(PredictionHistory.id)).where(
             PredictionHistory.user_id == current_user.id,
-            PredictionHistory.label == "Lulus",
+            PredictionHistory.predicted_label == "Lulus",
         )
     )
 

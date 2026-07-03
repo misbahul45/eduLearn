@@ -1,6 +1,5 @@
 import logging
 import re
-import uuid
 from pathlib import Path
 from typing import Any
 
@@ -147,69 +146,4 @@ async def embed_batch(chunks: list[str]) -> list[list[float]]:
     return embeddings
 
 
-async def insert_chunks(
-    document_id: str,
-    chunks: list[dict[str, Any]],
-    embeddings: list[list[float]],
-) -> None:
-    import asyncpg
-    from app.core.config import settings
 
-    dsn = settings.DATABASE_URL.replace("postgresql+asyncpg://", "postgresql://")
-    conn = await asyncpg.connect(dsn=dsn, timeout=5)
-    try:
-        for chunk, embedding in zip(chunks, embeddings):
-            chunk_id = uuid.uuid4()
-            await conn.execute(
-                """
-                INSERT INTO knowledge_chunks (id, document_id, chunk_index, content, embedding, metadata)
-                VALUES ($1, $2, $3, $4, $5::vector, $6::jsonb)
-                """,
-                chunk_id,
-                uuid.UUID(document_id),
-                chunk["chunk_index"],
-                chunk["content"],
-                embedding,
-                chunk.get("metadata", {}),
-            )
-    finally:
-        await conn.close()
-
-
-async def update_document_status(
-    document_id: str,
-    status: str,
-    total_chunks: int | None = None,
-    error_message: str | None = None,
-) -> None:
-    import asyncpg
-    from app.core.config import settings
-
-    dsn = settings.DATABASE_URL.replace("postgresql+asyncpg://", "postgresql://")
-    conn = await asyncpg.connect(dsn=dsn, timeout=5)
-    try:
-        if status == "ready" and total_chunks is not None:
-            await conn.execute(
-                """
-                UPDATE knowledge_documents
-                SET status = $1, total_chunks = $2, processed_at = NOW()
-                WHERE id = $3
-                """,
-                status, total_chunks, uuid.UUID(document_id),
-            )
-        elif status == "failed":
-            await conn.execute(
-                """
-                UPDATE knowledge_documents
-                SET status = $1, error_message = $2
-                WHERE id = $3
-                """,
-                status, error_message, uuid.UUID(document_id),
-            )
-        else:
-            await conn.execute(
-                "UPDATE knowledge_documents SET status = $1 WHERE id = $2",
-                status, uuid.UUID(document_id),
-            )
-    finally:
-        await conn.close()

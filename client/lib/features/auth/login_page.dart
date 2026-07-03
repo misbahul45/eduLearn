@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/routing/app_routes.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../core/theme/app_spacing.dart';
-import '../../core/widgets/app_text_field.dart';
-import '../../core/widgets/app_button.dart';
-import '../../core/widgets/social_button.dart';
 
-class LoginPage extends StatefulWidget {
+import '../../core/providers/auth_providers.dart';
+import '../../core/routing/app_routes.dart';
+import '../../core/theme/app_spacing.dart';
+import '../../core/theme/app_text_styles.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
+import '../../core/widgets/social_button.dart';
+import 'providers/auth_notifier.dart';
+
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -27,18 +30,16 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _onLogin() {
-    if (!_formKey.currentState!.validate()) return;
-    setState(() => _isLoading = true);
-    Future.delayed(const Duration(seconds: 1), () {
-      if (!mounted) return;
-      setState(() => _isLoading = false);
-      context.goNamed(AppRoutes.home);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authNotifierProvider);
+
+    ref.listen(authNotifierProvider, (prev, next) {
+      if (next.stage == AuthFormStage.success && next.authStatus?.isAuthenticated == true) {
+        context.goNamed(AppRoutes.home);
+      }
+    });
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -55,6 +56,28 @@ class _LoginPageState extends State<LoginPage> {
                   'Sign in to continue learning',
                   style: AppTextStyles.subtitle,
                 ),
+                if (authState.error != null) ...[
+                  const SizedBox(height: AppSpacing.md),
+                  Container(
+                    padding: const EdgeInsets.all(AppSpacing.sm),
+                    decoration: BoxDecoration(
+                      color: Colors.red.shade50,
+                      borderRadius: BorderRadius.circular(AppSpacing.sm),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.error_outline, color: Colors.red.shade700, size: 20),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: Text(
+                            authState.error!,
+                            style: TextStyle(color: Colors.red.shade700, fontSize: 13),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 const SizedBox(height: AppSpacing.xl),
                 AppTextField(
                   label: 'Email',
@@ -62,8 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   validator: (val) {
-                    if (val == null || val.isEmpty) return 'Email is required';
-                    if (!val.contains('@')) return 'Enter a valid email';
+                    if (val == null || val.isEmpty) return 'Email wajib diisi';
+                    if (!val.contains('@')) return 'Email tidak valid';
                     return null;
                   },
                 ),
@@ -74,16 +97,23 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _passwordController,
                   obscureText: true,
                   validator: (val) {
-                    if (val == null || val.isEmpty) return 'Password is required';
-                    if (val.length < 6) return 'At least 6 characters';
+                    if (val == null || val.isEmpty) return 'Password wajib diisi';
+                    if (val.length < 6) return 'Minimal 6 karakter';
                     return null;
                   },
                 ),
                 const SizedBox(height: AppSpacing.xl),
                 AppButton(
                   text: 'Sign In',
-                  isLoading: _isLoading,
-                  onPressed: _onLogin,
+                  isLoading: authState.stage == AuthFormStage.loading,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ref.read(authNotifierProvider.notifier).login(
+                        _emailController.text.trim(),
+                        _passwordController.text,
+                      );
+                    }
+                  },
                 ),
                 const SizedBox(height: AppSpacing.md),
                 Row(

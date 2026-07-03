@@ -11,7 +11,10 @@
 | Tool Wrappers (rag, predictive, firecrawl) | ✅ Done | LangChain @tool, dispatch via tools_node |
 | Nginx WS Proxy | ✅ Done | WebSocket upgrade header + buffering off |
 | WebSocket Endpoint | ✅ Done | `/ws/v1/chat` + `/ws/v1/health`, event schemas, heartbeat |
-| Schemas (Pydantic v2) | ✅ Done | events, auth, prediction (ClassScore, PredictionResult, StudentSignals), knowledge (CitationMeta, Citation) |
+| Schemas (Pydantic v2) | ✅ Done | events, auth, prediction, knowledge |
+| Auth Service (JWT + bcrypt + SQLAlchemy) | ✅ Done | login, register, refresh, logout, get_current_user |
+| DB Service Layer | ✅ Done | auth_service.py dengan passlib + python-jose |
+| Predictions Service | ✅ Done | latest, history, analysis via SQLAlchemy |
 
 ## API Routes
 
@@ -20,20 +23,27 @@
 | `GET /health` | ✅ Done | Full implementation |
 | `POST /api/v1/chat` | ✅ Done | `run_agent()` via LangGraph |
 | `WEBSOCKET /ws/v1/chat` | 🔧 Partial | Accept + ping/pong, masih return dummy response |
-| `POST /api/v1/auth/*` | ⬜ Pending | Stub — return 501 |
-| `GET /api/v1/users/*` | ⬜ Pending | Stub — return 501 |
-| `GET /api/v1/predictions/*` | ⬜ Pending | Stub — return 501 |
-| `POST /api/v1/knowledge/upload` | ✅ Done | Upload + background ingestion (parse, chunk, embed, pgvector) |
+| `POST /api/v1/auth/register` | ✅ Done | bcrypt + JWT, return access+refresh token |
+| `POST /api/v1/auth/login` | ✅ Done | bcrypt verify + JWT, return access+refresh token |
+| `POST /api/v1/auth/refresh` | ✅ Done | Rotate refresh token, revoke old |
+| `POST /api/v1/auth/logout` | ✅ Done | Revoke all refresh tokens |
+| `GET /api/v1/auth/me` | ✅ Done | Current user from JWT |
+| `GET /api/v1/users/me` | ✅ Done | Current user info |
+| `GET /api/v1/users/stats` | ✅ Done | Conversation count, prediction stats |
+| `GET /api/v1/predictions/latest` | ✅ Done | Latest prediction from DB |
+| `GET /api/v1/predictions/history` | ✅ Done | Paginated history |
+| `GET /api/v1/predictions/analysis` | ✅ Done | Aggregated stats (pass rate, avg prob) |
+| `POST /api/v1/knowledge/upload` | ✅ Done | SQLAlchemy insert + background ingestion (parse, chunk, embed, pgvector) |
+| `GET /api/v1/knowledge/{id}` | ✅ Done | Single document detail |
+| `GET /api/v1/knowledge` | ✅ Done | List with filter (status, search) + pagination |
+| `DELETE /api/v1/knowledge/{id}` | ✅ Done | Delete doc + chunks + upload dir |
 
 ## Komponen Pending
 
 | Area | Progress | Catatan |
 |------|----------|---------|
-| RAG + pgvector | ✅ Done | vectorstore (DDL + HNSW) + retriever (embed + cosine search) + ingestion pipeline |
-| Auth JWT | 🔧 Partial | Stub endpoints + WS JWT auth + rate limiting via Redis token bucket |
-| File Upload | ✅ Done | Full implementation: magic number check, sanitize filename, background ingestion |
-| Firecrawl Tool | ✅ Done | Firecrawl API via httpx, Redis caching, sanitasi, error handling |
-| Observability & EventSanitizer | ✅ Done | agent.trace JSON logger, EventSanitizer dengan 9 aturan sanitasi |
-| Deployment infra (Docker, Nginx WS config, env) | ✅ Done | ws.conf terpisah, healthcheck, uploads_data volume, semua env vars |
-| DB Models (SQLAlchemy) | ✅ Done | 9 tabel: User, RefreshToken, Conversation, Message, KnowledgeDocument, KnowledgeChunk, PredictionHistory, AuditConversation, AuditUpload + ForeignKeys + Constraints |
-| Planning Docs | ✅ Done | docs/planning/ (00-index, 01-db-models, 02-service-plan) |
+| WS Chat Streaming | 🔧 Partial | Masih dummy — perlu integrasi agent stream ke WS |
+| Auth — Reset password | ⬜ Pending | Belum ada endpoint |
+| Auth — Email verification | ⬜ Pending | Belum ada |
+| Role-based access control | 🔧 Partial | Cek role di knowledge upload saja |
+| Background jobs (Celery/ARQ) | ⬜ Pending | Masih pakai BackgroundTasks |

@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/routing/app_routes.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../core/theme/app_spacing.dart';
-import '../../core/widgets/app_text_field.dart';
-import '../../core/widgets/app_button.dart';
-import '../../core/widgets/social_button.dart';
 
-class RegisterPage extends StatefulWidget {
+import '../../core/providers/auth_providers.dart';
+import '../../core/routing/app_routes.dart';
+import '../../core/theme/app_spacing.dart';
+import '../../core/theme/app_text_styles.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
+import '../../core/widgets/social_button.dart';
+import 'providers/auth_notifier.dart';
+
+class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  ConsumerState<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -31,18 +34,16 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  void _onRegister() {
-    if (!_formKey.currentState!.validate()) return;
-    setState(() => _isLoading = true);
-    Future.delayed(const Duration(seconds: 1), () {
-      if (!mounted) return;
-      setState(() => _isLoading = false);
-      context.goNamed(AppRoutes.home);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authNotifierProvider);
+
+    ref.listen(authNotifierProvider, (prev, next) {
+      if (next.stage == AuthFormStage.success && next.authStatus?.isAuthenticated == true) {
+        context.goNamed(AppRoutes.home);
+      }
+    });
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -59,13 +60,35 @@ class _RegisterPageState extends State<RegisterPage> {
                   'Start your learning journey',
                   style: AppTextStyles.subtitle,
                 ),
+                if (authState.error != null) ...[
+                  const SizedBox(height: AppSpacing.md),
+                  Container(
+                    padding: const EdgeInsets.all(AppSpacing.sm),
+                    decoration: BoxDecoration(
+                      color: Colors.red.shade50,
+                      borderRadius: BorderRadius.circular(AppSpacing.sm),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.error_outline, color: Colors.red.shade700, size: 20),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: Text(
+                            authState.error!,
+                            style: TextStyle(color: Colors.red.shade700, fontSize: 13),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 const SizedBox(height: AppSpacing.xl),
                 AppTextField(
                   label: 'Full Name',
                   hint: 'Enter your full name',
                   controller: _nameController,
                   validator: (val) {
-                    if (val == null || val.isEmpty) return 'Name is required';
+                    if (val == null || val.isEmpty) return 'Nama wajib diisi';
                     return null;
                   },
                 ),
@@ -76,8 +99,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   validator: (val) {
-                    if (val == null || val.isEmpty) return 'Email is required';
-                    if (!val.contains('@')) return 'Enter a valid email';
+                    if (val == null || val.isEmpty) return 'Email wajib diisi';
+                    if (!val.contains('@')) return 'Email tidak valid';
                     return null;
                   },
                 ),
@@ -88,8 +111,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _passwordController,
                   obscureText: true,
                   validator: (val) {
-                    if (val == null || val.isEmpty) return 'Password is required';
-                    if (val.length < 6) return 'At least 6 characters';
+                    if (val == null || val.isEmpty) return 'Password wajib diisi';
+                    if (val.length < 6) return 'Minimal 6 karakter';
                     return null;
                   },
                 ),
@@ -100,16 +123,24 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _confirmPasswordController,
                   obscureText: true,
                   validator: (val) {
-                    if (val == null || val.isEmpty) return 'Confirm your password';
-                    if (val != _passwordController.text) return 'Passwords do not match';
+                    if (val == null || val.isEmpty) return 'Konfirmasi password';
+                    if (val != _passwordController.text) return 'Password tidak cocok';
                     return null;
                   },
                 ),
                 const SizedBox(height: AppSpacing.xl),
                 AppButton(
                   text: 'Create Account',
-                  isLoading: _isLoading,
-                  onPressed: _onRegister,
+                  isLoading: authState.stage == AuthFormStage.loading,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ref.read(authNotifierProvider.notifier).register(
+                        _nameController.text.trim(),
+                        _emailController.text.trim(),
+                        _passwordController.text,
+                      );
+                    }
+                  },
                 ),
                 const SizedBox(height: AppSpacing.md),
                 Row(

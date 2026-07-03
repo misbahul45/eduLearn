@@ -20,6 +20,7 @@ dependencies = [
     "python-dotenv",
     "python-jose[cryptography]",
     "argon2-cffi",
+    "passlib[bcrypt]",
 
     "pydantic[email]",
     "pydantic-settings",

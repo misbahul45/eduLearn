@@ -1,6 +1,6 @@
 # Progress Tracking — Index
 
-Folder ini berisi status implementasi tiap area proyek EduLearn AI. Dibagi per domain agar mudah dipantau.
+Folder ini berisi status implementasi tiap area proyek EduLearn AI.
 
 ## Cara Membaca
 
@@ -12,18 +12,19 @@ Folder ini berisi status implementasi tiap area proyek EduLearn AI. Dibagi per d
 
 | Area | Progress | Prioritas |
 |------|----------|-----------|
-| Dokumentasi spesifikasi | ✅ 11/18 docs | Selesai |
+| Dokumentasi spesifikasi | ✅ 12/18 docs | Selesai |
 | Planning DB | ✅ 3/3 docs | docs/planning/ |
 | DB Models (SQLAlchemy) | ✅ 9 tabel | server/app/db/ |
 | Kontrak API | ✅ 7/7 docs | Selesai |
 | Backend core | ✅ Done | - |
 | ML Inference | ✅ Done | - |
 | LangGraph Agent | ✅ Done | - |
-| RAG + pgvector | 🔧 Partial | Tinggi |
-| Flutter App | 🔧 Partial | Tinggi |
-| Flutter Auth (Riverpod + Dio + SecureStorage) | ✅ Done | Login/Register masih setState, tapi infra auth sudah siap |
-| Auth (JWT) | 🔧 Partial | Tinggi |
-| Knowledge Upload | ✅ Done | Tinggi |
+| Auth API (JWT + bcrypt + SQLAlchemy) | ✅ Done | Login, register, refresh, logout, me |
+| Users API | ✅ Done | Profile + stats |
+| Predictions API | ✅ Done | Latest, history, analysis |
+| RAG + pgvector + Knowledge Upload | ✅ Done | Upload + ingestion pipeline |
+| Flutter App — Landing Pages | ✅ Done | Splash, Login, Register dengan Riverpod |
+| Flutter App — Main Pages | ✅ Done | Home (4 tabs), Chat, Analysis, Knowledge, Profile |
 | Firecrawl Tool | ✅ Done | Selesai |
 | Observability & EventSanitizer | ✅ Done | Selesai |
 | Input Tool Validation & Audit DDL | ✅ Done | Selesai |

@@ -75,4 +75,62 @@ class AuthRepository {
     await _storage.delete(key: 'access_token');
     await _storage.delete(key: 'refresh_token');
   }
+
+  Future<AuthStatus> login(String email, String password) async {
+    try {
+      final response = await _api.post('/auth/login', data: {
+        'email': email,
+        'password': password,
+      });
+      final data = response.data as Map<String, dynamic>;
+      await saveTokens(
+        accessToken: data['access_token'] as String,
+        refreshToken: data['refresh_token'] as String?,
+      );
+      final me = await _api.get('/auth/me');
+      if (me.statusCode == 200) {
+        final user = User.fromJson(me.data as Map<String, dynamic>);
+        return AuthStatus(result: AuthResult.authenticated, user: user);
+      }
+    } on DioException catch (e) {
+      final msg = e.response?.data is Map
+          ? (e.response!.data as Map)['detail'] as String? ?? 'Gagal login'
+          : 'Gagal login';
+      throw Exception(msg);
+    }
+    throw Exception('Gagal login');
+  }
+
+  Future<AuthStatus> register(String name, String email, String password) async {
+    try {
+      final response = await _api.post('/auth/register', data: {
+        'name': name,
+        'email': email,
+        'password': password,
+      });
+      final data = response.data as Map<String, dynamic>;
+      await saveTokens(
+        accessToken: data['access_token'] as String,
+        refreshToken: data['refresh_token'] as String?,
+      );
+      final me = await _api.get('/auth/me');
+      if (me.statusCode == 200) {
+        final user = User.fromJson(me.data as Map<String, dynamic>);
+        return AuthStatus(result: AuthResult.authenticated, user: user);
+      }
+    } on DioException catch (e) {
+      final msg = e.response?.data is Map
+          ? (e.response!.data as Map)['detail'] as String? ?? 'Gagal mendaftar'
+          : 'Gagal mendaftar';
+      throw Exception(msg);
+    }
+    throw Exception('Gagal mendaftar');
+  }
+
+  Future<void> logout() async {
+    try {
+      await _api.post('/auth/logout');
+    } catch (_) {}
+    await clearTokens();
+  }
 }
