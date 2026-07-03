@@ -16,7 +16,7 @@
 | Chat Page | ✅ Done | Empty state, bubble list, input field |
 | Analysis Page | ✅ Done | Donut chart distribusi binary, strength/improvement cards, recommendations with chat navigation, progress comparison, history list |
 | Knowledge Page | ✅ Done | List dokumen, refresh, delete (standalone route dari Profile) |
-| Profile Page | ✅ Done | Avatar, stats, role badge, knowledge link, logout |
+| Profile Page | ✅ Done | BiodataCard, stats cards, knowledge management (pengajar), upload sheet, settings, logout dialog |
 | fl_chart | ✅ Done | LineChart probabilitas 7 hari + threshold line 0.5 |
 
 ## Detail Halaman Home (Spec 15)
@@ -27,6 +27,23 @@
 - Tab 3: Analysis (`Icons.insights_rounded`)
 - Tab 4: Profile (`Icons.person_rounded`)
 - Home Tab: greeting card (initial avatar), prediction summary card (primary bg), insight card (success/warning), history chart (fl_chart LineChart with threshold), quick actions row
+
+## Detail Halaman Profile (Spec 18)
+
+- **Route**: `/home/profile` (tab ke-4 `StatefulShellRoute`)
+- **ProfilePage** — `ConsumerWidget` dengan RefreshIndicator
+- **ProfileHeader** — CircleAvatar (radius 48, initials), name, email, role badge (siswa=primary, pengajar=accentBlue)
+- **BiodataCard** — 4 _BioRow (Nama, Email, Peran, Bergabung) dengan icon + divider
+- **Stats cards** — 3 _StatCard (Percakapan, Prediksi, Rata-rata Lulus)
+- **KnowledgeManagementSection** (pengajar only) — list dokumen dengan _KnowledgeDocItem (file icon, title, chunks/size, status badge, popup delete)
+- **KnowledgeUploadSheet** — modal bottom sheet dengan form (title/author/description/tags) + file picker (PDF/DOCX/TXT/MD) + Dio multipart upload
+- **SettingsCard** — 4 _SettingTile (Notifikasi, Bahasa, Tema, Bantuan) semua → snackbar placeholder
+- **LogoutButton** — error bg light, confirmation dialog, clear tokens + invalidate + go to login
+- **App version** — "EduLearn AI v1.0.0" dari pubspec.yaml
+- **knowledge_service.dart** — GET /knowledge, POST /knowledge/upload, DELETE /knowledge/{id}, GET /knowledge/{id}
+- **knowledge_providers.dart** — knowledgeServiceProvider, knowledgeDocumentsProvider
+- **User model** — +initials getter, +roleLabel, +isPengajar, +createdAt field
+- **Backend** — UserResponse now includes `role` and `created_at`; /api/v1/auth/me updated
 
 ## Detail Halaman Analysis (Spec 17)
 

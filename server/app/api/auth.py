@@ -49,4 +49,6 @@ async def me_endpoint(current_user: User = Depends(get_current_user)):
         id=str(current_user.id),
         name=current_user.name,
         email=current_user.email,
+        role=current_user.role,
+        created_at=current_user.created_at.isoformat() if current_user.created_at else None,
     )
