@@ -1,0 +1,35 @@
+# --- Python (server) ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.egg-info/
+.pytest_cache/
+
+# --- Flutter / Dart (app) ---
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/build/
+app/.pub-cache/
+app/.pub/
+app/**/generated_plugin_registrant.dart
+app/*.iml
+app/.idea/
+
+# Flutter build outputs per-platform (opsional, kalau nggak mau commit native project files hasil generate)
+app/android/.gradle/
+app/android/local.properties
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/Flutter.framework
+app/ios/Flutter/Flutter.podspec
+
+# --- General ---
+.DS_Store
+*.log
+.vscode/
+.idea/
+
