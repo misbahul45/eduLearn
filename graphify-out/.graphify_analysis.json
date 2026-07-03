@@ -1,0 +1,2208 @@
+{
+  "communities": {
+    "0": [
+      "client_windows_flutter_generated_plugin_registrant_cc_client_windows_flutter_generated_plugin_registrant",
+      "client_windows_flutter_generated_plugin_registrant_h_client_windows_flutter_generated_plugin_registrant",
+      "client_windows_flutter_generated_plugin_registrant_registerplugins",
+      "client_windows_runner_flutter_window_cpp_client_windows_runner_flutter_window",
+      "client_windows_runner_flutter_window_cpp_dartproject",
+      "client_windows_runner_flutter_window_cpp_hwnd",
+      "client_windows_runner_flutter_window_cpp_lparam",
+      "client_windows_runner_flutter_window_cpp_lresult",
+      "client_windows_runner_flutter_window_cpp_uint",
+      "client_windows_runner_flutter_window_cpp_wparam",
+      "client_windows_runner_flutter_window_flutterwindow",
+      "client_windows_runner_flutter_window_flutterwindow_flutter_controller",
+      "client_windows_runner_flutter_window_flutterwindow_flutterwindow",
+      "client_windows_runner_flutter_window_flutterwindow_messagehandler",
+      "client_windows_runner_flutter_window_flutterwindow_oncreate",
+      "client_windows_runner_flutter_window_flutterwindow_ondestroy",
+      "client_windows_runner_flutter_window_flutterwindow_project",
+      "client_windows_runner_flutter_window_h_client_windows_runner_flutter_window",
+      "client_windows_runner_flutter_window_h_dartproject",
+      "client_windows_runner_resource",
+      "client_windows_runner_win32_window_cpp_client_windows_runner_win32_window",
+      "client_windows_runner_win32_window_cpp_hwnd",
+      "client_windows_runner_win32_window_cpp_lparam",
+      "client_windows_runner_win32_window_cpp_lresult",
+      "client_windows_runner_win32_window_cpp_uint",
+      "client_windows_runner_win32_window_cpp_wchar_t",
+      "client_windows_runner_win32_window_cpp_wparam",
+      "client_windows_runner_win32_window_enablefulldpisupportifavailable",
+      "client_windows_runner_win32_window_h_client_windows_runner_win32_window",
+      "client_windows_runner_win32_window_h_hwnd",
+      "client_windows_runner_win32_window_scale",
+      "client_windows_runner_win32_window_win32window",
+      "client_windows_runner_win32_window_win32window_child_content",
+      "client_windows_runner_win32_window_win32window_create",
+      "client_windows_runner_win32_window_win32window_destroy",
+      "client_windows_runner_win32_window_win32window_getclientarea",
+      "client_windows_runner_win32_window_win32window_gethandle",
+      "client_windows_runner_win32_window_win32window_getthisfromhandle",
+      "client_windows_runner_win32_window_win32window_messagehandler",
+      "client_windows_runner_win32_window_win32window_oncreate",
+      "client_windows_runner_win32_window_win32window_ondestroy",
+      "client_windows_runner_win32_window_win32window_quit_on_close",
+      "client_windows_runner_win32_window_win32window_setchildcontent",
+      "client_windows_runner_win32_window_win32window_setquitonclose",
+      "client_windows_runner_win32_window_win32window_show",
+      "client_windows_runner_win32_window_win32window_updatetheme",
+      "client_windows_runner_win32_window_win32window_win32window",
+      "client_windows_runner_win32_window_win32window_window_handle",
+      "client_windows_runner_win32_window_win32window_wndproc",
+      "client_windows_runner_win32_window_windowclassregistrar",
+      "client_windows_runner_win32_window_windowclassregistrar_class_registered",
+      "client_windows_runner_win32_window_windowclassregistrar_getinstance",
+      "client_windows_runner_win32_window_windowclassregistrar_getwindowclass",
+      "client_windows_runner_win32_window_windowclassregistrar_instance",
+      "client_windows_runner_win32_window_windowclassregistrar_unregisterwindowclass",
+      "client_windows_runner_win32_window_windowclassregistrar_windowclassregistrar",
+      "pluginregistry",
+      "point",
+      "rect",
+      "size",
+      "unique_ptr",
+      "wstring"
+    ],
+    "1": [
+      "citationmeta",
+      "client_lib_core_models_agent_event",
+      "client_lib_core_models_agent_event_author",
+      "client_lib_core_models_agent_event_callid",
+      "client_lib_core_models_agent_event_citation",
+      "client_lib_core_models_agent_event_citationmeta",
+      "client_lib_core_models_agent_event_citations",
+      "client_lib_core_models_agent_event_classscore",
+      "client_lib_core_models_agent_event_classscores",
+      "client_lib_core_models_agent_event_confidence",
+      "client_lib_core_models_agent_event_content",
+      "client_lib_core_models_agent_event_conversationid",
+      "client_lib_core_models_agent_event_data",
+      "client_lib_core_models_agent_event_detail",
+      "client_lib_core_models_agent_event_documentid",
+      "client_lib_core_models_agent_event_durationms",
+      "client_lib_core_models_agent_event_fatal",
+      "client_lib_core_models_agent_event_filename",
+      "client_lib_core_models_agent_event_fromjson",
+      "client_lib_core_models_agent_event_generatedat",
+      "client_lib_core_models_agent_event_index",
+      "client_lib_core_models_agent_event_input",
+      "client_lib_core_models_agent_event_inputfeaturesused",
+      "client_lib_core_models_agent_event_iteration",
+      "client_lib_core_models_agent_event_label",
+      "client_lib_core_models_agent_event_markdownexcerpt",
+      "client_lib_core_models_agent_event_message",
+      "client_lib_core_models_agent_event_metadata",
+      "client_lib_core_models_agent_event_modelname",
+      "client_lib_core_models_agent_event_modelversion",
+      "client_lib_core_models_agent_event_node",
+      "client_lib_core_models_agent_event_outputsummary",
+      "client_lib_core_models_agent_event_page",
+      "client_lib_core_models_agent_event_predictedlabel",
+      "client_lib_core_models_agent_event_predictionlabel",
+      "client_lib_core_models_agent_event_predictionpresent",
+      "client_lib_core_models_agent_event_predictionresult",
+      "client_lib_core_models_agent_event_relevancescore",
+      "client_lib_core_models_agent_event_resultid",
+      "client_lib_core_models_agent_event_score",
+      "client_lib_core_models_agent_event_snippet",
+      "client_lib_core_models_agent_event_source",
+      "client_lib_core_models_agent_event_sourceid",
+      "client_lib_core_models_agent_event_status",
+      "client_lib_core_models_agent_event_summary",
+      "client_lib_core_models_agent_event_timestamp",
+      "client_lib_core_models_agent_event_title",
+      "client_lib_core_models_agent_event_tojson",
+      "client_lib_core_models_agent_event_toolname",
+      "client_lib_core_models_agent_event_url",
+      "client_lib_core_models_agent_event_webresults",
+      "client_lib_core_models_agent_event_websearchresult",
+      "int",
+      "map"
+    ],
+    "2": [
+      "chat_providers_chat_viewmodel_dart",
+      "client_lib_features_analysis_analysis_page",
+      "client_lib_features_analysis_analysis_page_analysiscontent",
+      "client_lib_features_analysis_analysis_page_analysispage",
+      "client_lib_features_analysis_analysis_page_build",
+      "client_lib_features_analysis_analysis_page_data",
+      "client_lib_features_analysis_analysis_page_navigatetochat",
+      "client_lib_features_analysis_analysis_page_ref",
+      "client_lib_features_analysis_providers_analysis_viewmodel_analysisviewmodelprovider",
+      "client_lib_features_chat_chat_page",
+      "client_lib_features_chat_chat_page_build",
+      "client_lib_features_chat_chat_page_chatpage",
+      "client_lib_features_chat_chat_page_chatpagestate",
+      "client_lib_features_chat_chat_page_createstate",
+      "client_lib_features_chat_chat_page_didchangeapplifecyclestate",
+      "client_lib_features_chat_chat_page_dispose",
+      "client_lib_features_chat_chat_page_initstate",
+      "client_lib_features_chat_chat_page_inputfocus",
+      "client_lib_features_chat_chat_page_quicksend",
+      "client_lib_features_chat_chat_page_scrollcontroller",
+      "client_lib_features_chat_chat_page_scrolltobottom",
+      "client_lib_features_chat_chat_page_send",
+      "client_lib_features_chat_chat_page_textcontroller",
+      "client_lib_features_chat_chat_page_tracesheetopen",
+      "client_lib_features_chat_providers_chat_viewmodel_chatpresetqueryprovider",
+      "client_lib_features_chat_providers_chat_viewmodel_chatviewmodelprovider",
+      "providers_chat_viewmodel_dart",
+      "widgetref",
+      "widgets_action_item_dart",
+      "widgets_agent_trace_sheet_dart",
+      "widgets_chat_bubble_dart",
+      "widgets_chat_input_bar_dart",
+      "widgets_connection_mode_banner_dart",
+      "widgets_distribution_card_dart",
+      "widgets_empty_analysis_dart",
+      "widgets_empty_state_dart",
+      "widgets_history_item_dart",
+      "widgets_improvement_card_dart",
+      "widgets_progress_comparison_card_dart",
+      "widgets_shimmer_loading_dart",
+      "widgets_status_badge_dart",
+      "widgets_strength_card_dart",
+      "widgetsbindingobserver"
+    ],
+    "3": [
+      "client_lib_core_widgets_app_button",
+      "client_lib_core_widgets_app_button_appbutton",
+      "client_lib_core_widgets_app_button_build",
+      "client_lib_core_widgets_app_button_isloading",
+      "client_lib_core_widgets_app_button_onpressed",
+      "client_lib_core_widgets_app_button_text",
+      "client_lib_core_widgets_app_text_field",
+      "client_lib_core_widgets_app_text_field_apptextfield",
+      "client_lib_core_widgets_app_text_field_build",
+      "client_lib_core_widgets_app_text_field_controller",
+      "client_lib_core_widgets_app_text_field_enabled",
+      "client_lib_core_widgets_app_text_field_focusnode",
+      "client_lib_core_widgets_app_text_field_hint",
+      "client_lib_core_widgets_app_text_field_keyboardtype",
+      "client_lib_core_widgets_app_text_field_label",
+      "client_lib_core_widgets_app_text_field_obscuretext",
+      "client_lib_core_widgets_app_text_field_suffixicon",
+      "client_lib_core_widgets_app_text_field_textinputaction",
+      "client_lib_core_widgets_social_button",
+      "client_lib_core_widgets_social_button_build",
+      "client_lib_core_widgets_social_button_onpressed",
+      "client_lib_core_widgets_social_button_socialbutton",
+      "client_lib_core_widgets_social_button_text",
+      "client_lib_features_chat_widgets_chat_input_bar",
+      "client_lib_features_chat_widgets_chat_input_bar_build",
+      "client_lib_features_chat_widgets_chat_input_bar_chatinputbar",
+      "client_lib_features_chat_widgets_chat_input_bar_controller",
+      "client_lib_features_chat_widgets_chat_input_bar_focusnode",
+      "client_lib_features_chat_widgets_chat_input_bar_issending",
+      "client_lib_features_chat_widgets_chat_input_bar_onsend",
+      "focusnode",
+      "texteditingcontroller",
+      "textinputaction",
+      "textinputtype",
+      "theme_app_colors_dart",
+      "theme_app_spacing_dart",
+      "theme_app_text_styles_dart",
+      "widget"
+    ],
+    "4": [
+      "client_lib_core_providers_auth_providers_apiclientprovider",
+      "client_lib_core_providers_auth_providers_securestorageprovider",
+      "client_lib_core_providers_knowledge_providers_knowledgeserviceprovider",
+      "client_lib_features_chat_providers_chat_state_chatstate",
+      "client_lib_features_chat_providers_chat_viewmodel_build",
+      "client_lib_features_chat_providers_chat_viewmodel_chatviewmodel",
+      "client_lib_features_knowledge_knowledge_page",
+      "client_lib_features_knowledge_knowledge_page_build",
+      "client_lib_features_knowledge_knowledge_page_builddoccard",
+      "client_lib_features_knowledge_knowledge_page_buildemptystate",
+      "client_lib_features_knowledge_knowledge_page_createstate",
+      "client_lib_features_knowledge_knowledge_page_documents",
+      "client_lib_features_knowledge_knowledge_page_initstate",
+      "client_lib_features_knowledge_knowledge_page_isloading",
+      "client_lib_features_knowledge_knowledge_page_knowledgepage",
+      "client_lib_features_knowledge_knowledge_page_knowledgepagestate",
+      "client_lib_features_knowledge_knowledge_page_loaddocuments",
+      "client_lib_features_profile_knowledge_upload_sheet",
+      "client_lib_features_profile_knowledge_upload_sheet_authorctrl",
+      "client_lib_features_profile_knowledge_upload_sheet_build",
+      "client_lib_features_profile_knowledge_upload_sheet_createstate",
+      "client_lib_features_profile_knowledge_upload_sheet_descctrl",
+      "client_lib_features_profile_knowledge_upload_sheet_dispose",
+      "client_lib_features_profile_knowledge_upload_sheet_formkey",
+      "client_lib_features_profile_knowledge_upload_sheet_isuploading",
+      "client_lib_features_profile_knowledge_upload_sheet_knowledgeuploadsheet",
+      "client_lib_features_profile_knowledge_upload_sheet_knowledgeuploadsheetstate",
+      "client_lib_features_profile_knowledge_upload_sheet_pickfile",
+      "client_lib_features_profile_knowledge_upload_sheet_selectedfile",
+      "client_lib_features_profile_knowledge_upload_sheet_submitupload",
+      "client_lib_features_profile_knowledge_upload_sheet_tagsctrl",
+      "client_lib_features_profile_knowledge_upload_sheet_titlectrl",
+      "consumerstate",
+      "package_file_picker_file_picker_dart",
+      "platformfile"
+    ],
+    "5": [
+      "agent_event_dart",
+      "client_lib_core_models_chat_message",
+      "client_lib_core_models_chat_message_chatmessage",
+      "client_lib_core_models_chat_message_citations",
+      "client_lib_core_models_chat_message_content",
+      "client_lib_core_models_chat_message_copywith",
+      "client_lib_core_models_chat_message_error",
+      "client_lib_core_models_chat_message_id",
+      "client_lib_core_models_chat_message_isstreaming",
+      "client_lib_core_models_chat_message_isuser",
+      "client_lib_core_models_chat_message_prediction",
+      "client_lib_core_models_chat_message_timestamp",
+      "client_lib_core_models_chat_message_tojson",
+      "client_lib_core_models_chat_message_webresults",
+      "client_lib_features_chat_providers_chat_state",
+      "client_lib_features_chat_providers_chat_state_agentstatus",
+      "client_lib_features_chat_providers_chat_state_connectionmode",
+      "client_lib_features_chat_providers_chat_state_conversationid",
+      "client_lib_features_chat_providers_chat_state_copywith",
+      "client_lib_features_chat_providers_chat_state_currentstreamingmessage",
+      "client_lib_features_chat_providers_chat_state_issending",
+      "client_lib_features_chat_providers_chat_state_messages",
+      "client_lib_features_chat_providers_chat_state_status",
+      "client_lib_features_chat_providers_chat_state_tracelog",
+      "client_lib_features_chat_widgets_status_badge",
+      "client_lib_features_chat_widgets_status_badge_build",
+      "client_lib_features_chat_widgets_status_badge_connectionmode",
+      "client_lib_features_chat_widgets_status_badge_status",
+      "client_lib_features_chat_widgets_status_badge_statusbadge",
+      "core_services_agent_socket_service_dart",
+      "providers_chat_state_dart"
+    ],
+    "6": [
+      "app_colors_dart",
+      "client_lib_core_theme_app_colors",
+      "client_lib_core_theme_app_colors_accentblue",
+      "client_lib_core_theme_app_colors_appcolors",
+      "client_lib_core_theme_app_colors_background",
+      "client_lib_core_theme_app_colors_border",
+      "client_lib_core_theme_app_colors_error",
+      "client_lib_core_theme_app_colors_primary",
+      "client_lib_core_theme_app_colors_primarydark",
+      "client_lib_core_theme_app_colors_primarylight",
+      "client_lib_core_theme_app_colors_success",
+      "client_lib_core_theme_app_colors_surface",
+      "client_lib_core_theme_app_colors_texthint",
+      "client_lib_core_theme_app_colors_textonprimary",
+      "client_lib_core_theme_app_colors_textprimary",
+      "client_lib_core_theme_app_colors_textsecondary",
+      "client_lib_core_theme_app_colors_warning",
+      "client_lib_core_theme_app_text_styles",
+      "client_lib_core_theme_app_text_styles_apptextstyles",
+      "client_lib_core_theme_app_text_styles_body",
+      "client_lib_core_theme_app_text_styles_button",
+      "client_lib_core_theme_app_text_styles_caption",
+      "client_lib_core_theme_app_text_styles_h1",
+      "client_lib_core_theme_app_text_styles_h2",
+      "client_lib_core_theme_app_text_styles_label",
+      "client_lib_core_theme_app_text_styles_link",
+      "client_lib_core_theme_app_text_styles_subtitle",
+      "static_const_color",
+      "static_const_textstyle"
+    ],
+    "7": [
+      "client_lib_core_services_agent_socket_service",
+      "client_lib_core_services_agent_socket_service_baseurl",
+      "client_lib_core_services_agent_socket_service_channel",
+      "client_lib_core_services_agent_socket_service_connect",
+      "client_lib_core_services_agent_socket_service_connectivitysub",
+      "client_lib_core_services_agent_socket_service_controller",
+      "client_lib_core_services_agent_socket_service_conversationid",
+      "client_lib_core_services_agent_socket_service_dispose",
+      "client_lib_core_services_agent_socket_service_disposed",
+      "client_lib_core_services_agent_socket_service_events",
+      "client_lib_core_services_agent_socket_service_listenforeground",
+      "client_lib_core_services_agent_socket_service_mode",
+      "client_lib_core_services_agent_socket_service_ondata",
+      "client_lib_core_services_agent_socket_service_reconnect",
+      "client_lib_core_services_agent_socket_service_reconnectattempt",
+      "client_lib_core_services_agent_socket_service_reconnecttimer",
+      "client_lib_core_services_agent_socket_service_schedulereconnect",
+      "client_lib_core_services_agent_socket_service_sendmessage",
+      "client_lib_core_services_agent_socket_service_storage",
+      "connectionmode_get",
+      "network_ws_event_parser_dart",
+      "network_ws_message_builder_dart",
+      "package_connectivity_plus_connectivity_plus_dart",
+      "package_web_socket_channel_web_socket_channel_dart",
+      "stream",
+      "streamcontroller",
+      "string_get",
+      "timer",
+      "websocketchannel"
+    ],
+    "8": [
+      "backgroundtasks",
+      "exception",
+      "server_app_api_knowledge",
+      "server_app_api_knowledge_delete_document",
+      "server_app_api_knowledge_get_document",
+      "server_app_api_knowledge_humanize_error",
+      "server_app_api_knowledge_ingest_document",
+      "server_app_api_knowledge_py_asyncsession",
+      "server_app_api_knowledge_py_path",
+      "server_app_api_knowledge_py_user",
+      "server_app_api_knowledge_sanitize_filename",
+      "server_app_api_knowledge_strip_ext",
+      "server_app_api_knowledge_update_doc_status",
+      "server_app_api_knowledge_upload_knowledge",
+      "server_app_api_knowledge_validate_magic_number",
+      "server_app_core_logging_log_agent_event",
+      "server_app_rag_ingestion",
+      "server_app_rag_ingestion_chunk_text",
+      "server_app_rag_ingestion_embed_batch",
+      "server_app_rag_ingestion_find_char_offset",
+      "server_app_rag_ingestion_find_chunk_end",
+      "server_app_rag_ingestion_parse_docx",
+      "server_app_rag_ingestion_parse_file",
+      "server_app_rag_ingestion_parse_pdf",
+      "server_app_rag_ingestion_py_any",
+      "server_app_rag_ingestion_py_path",
+      "uploadfile"
+    ],
+    "9": [
+      "client_lib_core_config_app_config",
+      "client_lib_core_config_app_config_apibaseurl",
+      "client_lib_core_config_app_config_appconfig",
+      "client_lib_core_config_app_config_kapibaseurl",
+      "client_lib_core_config_app_config_kwsbaseurl",
+      "client_lib_core_config_app_config_wsbaseurl",
+      "client_lib_core_routing_app_routes",
+      "client_lib_core_routing_app_routes_analysistab",
+      "client_lib_core_routing_app_routes_analysistabpath",
+      "client_lib_core_routing_app_routes_approutes",
+      "client_lib_core_routing_app_routes_chattab",
+      "client_lib_core_routing_app_routes_chattabpath",
+      "client_lib_core_routing_app_routes_forgotpassword",
+      "client_lib_core_routing_app_routes_forgotpasswordpath",
+      "client_lib_core_routing_app_routes_hometab",
+      "client_lib_core_routing_app_routes_hometabpath",
+      "client_lib_core_routing_app_routes_knowledge",
+      "client_lib_core_routing_app_routes_knowledgepath",
+      "client_lib_core_routing_app_routes_login",
+      "client_lib_core_routing_app_routes_loginpath",
+      "client_lib_core_routing_app_routes_profiletab",
+      "client_lib_core_routing_app_routes_profiletabpath",
+      "client_lib_core_routing_app_routes_register",
+      "client_lib_core_routing_app_routes_registerpath",
+      "client_lib_core_routing_app_routes_splash",
+      "client_lib_core_routing_app_routes_splashpath",
+      "static_const_string"
+    ],
+    "10": [
+      "client_linux_flutter_generated_plugin_registrant_cc_client_linux_flutter_generated_plugin_registrant",
+      "client_linux_flutter_generated_plugin_registrant_fl_register_plugins",
+      "client_linux_flutter_generated_plugin_registrant_h_client_linux_flutter_generated_plugin_registrant",
+      "client_linux_runner_main",
+      "client_linux_runner_main_main",
+      "client_linux_runner_my_application_cc_client_linux_runner_my_application",
+      "client_linux_runner_my_application_first_frame_cb",
+      "client_linux_runner_my_application_h_client_linux_runner_my_application",
+      "client_linux_runner_my_application_my_application_activate",
+      "client_linux_runner_my_application_my_application_class_init",
+      "client_linux_runner_my_application_my_application_dispose",
+      "client_linux_runner_my_application_my_application_init",
+      "client_linux_runner_my_application_my_application_local_command_line",
+      "client_linux_runner_my_application_my_application_new",
+      "client_linux_runner_my_application_my_application_shutdown",
+      "client_linux_runner_my_application_my_application_startup",
+      "client_linux_runner_my_application_myapplication",
+      "client_linux_runner_my_application_myapplication_dart_entrypoint_arguments",
+      "client_linux_runner_my_application_myapplication_parent_instance",
+      "flpluginregistry",
+      "flview",
+      "gapplication",
+      "gboolean",
+      "gchar",
+      "gobject",
+      "gtkapplication",
+      "myapplicationclass"
+    ],
+    "11": [
+      "chatopenai",
+      "server_app_agent_graph",
+      "server_app_agent_graph_create_graph",
+      "server_app_agent_graph_rationale_44",
+      "server_app_agent_graph_run_agent",
+      "server_app_agent_response_node",
+      "server_app_agent_response_node_rationale_21",
+      "server_app_agent_response_node_response_node",
+      "server_app_agent_state",
+      "server_app_agent_state_agentstate",
+      "server_app_agent_state_agentstate_add_tool_call",
+      "server_app_agent_supervisor",
+      "server_app_agent_supervisor_invoke_callback",
+      "server_app_agent_supervisor_py_any",
+      "server_app_agent_supervisor_rationale_114",
+      "server_app_agent_supervisor_rationale_38",
+      "server_app_agent_supervisor_rationale_51",
+      "server_app_agent_supervisor_route_after_supervisor",
+      "server_app_agent_supervisor_supervisor_node",
+      "server_app_agent_supervisor_tools_node",
+      "server_app_llm",
+      "server_app_llm_get_llm",
+      "server_app_schemas_agent",
+      "server_app_schemas_agent_toolcallrecord",
+      "stategraph"
+    ],
+    "12": [
+      "client_lib_core_models_prediction_prediction",
+      "client_lib_features_analysis_widgets_distribution_card",
+      "client_lib_features_analysis_widgets_distribution_card_build",
+      "client_lib_features_analysis_widgets_distribution_card_color",
+      "client_lib_features_analysis_widgets_distribution_card_distributioncard",
+      "client_lib_features_analysis_widgets_distribution_card_label",
+      "client_lib_features_analysis_widgets_distribution_card_latest",
+      "client_lib_features_analysis_widgets_distribution_card_legendrow",
+      "client_lib_features_analysis_widgets_distribution_card_value",
+      "client_lib_features_home_widgets_prediction_summary_card",
+      "client_lib_features_home_widgets_prediction_summary_card_emptypredictioncard",
+      "client_lib_features_home_widgets_prediction_summary_card_insightcard",
+      "client_lib_features_home_widgets_prediction_summary_card_prediction",
+      "client_lib_features_home_widgets_prediction_summary_card_predictionsummarycard",
+      "client_lib_features_profile_widgets_profile_shimmers",
+      "client_lib_features_profile_widgets_profile_shimmers_avatarshimmer",
+      "client_lib_features_profile_widgets_profile_shimmers_build",
+      "client_lib_features_profile_widgets_profile_shimmers_cardshimmer",
+      "client_lib_features_profile_widgets_profile_shimmers_knowledgeskeleton",
+      "client_lib_features_profile_widgets_profile_shimmers_statsshimmer",
+      "core_models_prediction_dart",
+      "statelesswidget"
+    ],
+    "13": [
+      "client_lib_features_auth_providers_register_viewmodel_registerviewmodelprovider",
+      "client_lib_features_auth_register_page",
+      "client_lib_features_auth_register_page_confirmcontroller",
+      "client_lib_features_auth_register_page_confirmfocus",
+      "client_lib_features_auth_register_page_createstate",
+      "client_lib_features_auth_register_page_dispose",
+      "client_lib_features_auth_register_page_emailcontroller",
+      "client_lib_features_auth_register_page_emailfocus",
+      "client_lib_features_auth_register_page_emailregex",
+      "client_lib_features_auth_register_page_formkey",
+      "client_lib_features_auth_register_page_hasdigit",
+      "client_lib_features_auth_register_page_hasletter",
+      "client_lib_features_auth_register_page_namecontroller",
+      "client_lib_features_auth_register_page_namefocus",
+      "client_lib_features_auth_register_page_obscureconfirm",
+      "client_lib_features_auth_register_page_obscurepassword",
+      "client_lib_features_auth_register_page_passwordcontroller",
+      "client_lib_features_auth_register_page_passwordfocus",
+      "client_lib_features_auth_register_page_registerpage",
+      "client_lib_features_auth_register_page_registerpagestate",
+      "client_lib_features_auth_register_page_submit",
+      "providers_register_viewmodel_dart"
+    ],
+    "14": [
+      "datetime",
+      "declarativebase",
+      "server_app_db_init",
+      "server_app_db_init_base",
+      "server_app_db_init_get_db",
+      "server_app_db_init_py_asyncsession",
+      "server_app_db_models_audit",
+      "server_app_db_models_audit_auditconversation",
+      "server_app_db_models_audit_auditconversation_repr",
+      "server_app_db_models_audit_auditupload",
+      "server_app_db_models_audit_auditupload_repr",
+      "server_app_db_models_conversation",
+      "server_app_db_models_conversation_conversation",
+      "server_app_db_models_conversation_conversation_repr",
+      "server_app_db_models_conversation_conversation_touch",
+      "server_app_db_models_conversation_message",
+      "server_app_db_models_conversation_message_repr",
+      "server_app_db_models_knowledge",
+      "server_app_db_models_knowledge_knowledgechunk",
+      "server_app_db_models_knowledge_knowledgechunk_repr",
+      "server_app_db_models_knowledge_knowledgedocument",
+      "server_app_db_models_knowledge_knowledgedocument_repr"
+    ],
+    "15": [
+      "server_readme",
+      "server_readme_adding_new_agent_nodes",
+      "server_readme_adding_new_api_routes",
+      "server_readme_api_endpoints",
+      "server_readme_architecture",
+      "server_readme_code_style",
+      "server_readme_design_decisions",
+      "server_readme_development",
+      "server_readme_docker",
+      "server_readme_docker_compose_full_stack",
+      "server_readme_edulearn_ai_backend",
+      "server_readme_environment_variables",
+      "server_readme_get_health",
+      "server_readme_langgraph_agent_flow",
+      "server_readme_local_development",
+      "server_readme_ml_model_loading",
+      "server_readme_post_api_v1_chat",
+      "server_readme_prerequisites",
+      "server_readme_project_structure",
+      "server_readme_security",
+      "server_readme_setup",
+      "server_readme_tech_stack"
+    ],
+    "16": [
+      "client_lib_core_providers_auth_providers_authrepositoryprovider",
+      "client_lib_features_auth_providers_login_viewmodel",
+      "client_lib_features_auth_providers_login_viewmodel_build",
+      "client_lib_features_auth_providers_login_viewmodel_error",
+      "client_lib_features_auth_providers_login_viewmodel_login",
+      "client_lib_features_auth_providers_login_viewmodel_loginstage",
+      "client_lib_features_auth_providers_login_viewmodel_loginstate",
+      "client_lib_features_auth_providers_login_viewmodel_loginviewmodel",
+      "client_lib_features_auth_providers_login_viewmodel_reset",
+      "client_lib_features_auth_providers_login_viewmodel_stage",
+      "client_lib_features_auth_providers_register_viewmodel",
+      "client_lib_features_auth_providers_register_viewmodel_build",
+      "client_lib_features_auth_providers_register_viewmodel_error",
+      "client_lib_features_auth_providers_register_viewmodel_register",
+      "client_lib_features_auth_providers_register_viewmodel_registerstage",
+      "client_lib_features_auth_providers_register_viewmodel_registerstate",
+      "client_lib_features_auth_providers_register_viewmodel_registerviewmodel",
+      "client_lib_features_auth_providers_register_viewmodel_reset",
+      "client_lib_features_auth_providers_register_viewmodel_stage",
+      "client_lib_features_splash_providers_splash_provider_check",
+      "notifier"
+    ],
+    "17": [
+      "client_lib_features_analysis_providers_analysis_viewmodel",
+      "client_lib_features_analysis_providers_analysis_viewmodel_actionpayload",
+      "client_lib_features_analysis_providers_analysis_viewmodel_actiontype",
+      "client_lib_features_analysis_providers_analysis_viewmodel_analysis",
+      "client_lib_features_analysis_providers_analysis_viewmodel_date",
+      "client_lib_features_analysis_providers_analysis_viewmodel_delta",
+      "client_lib_features_analysis_providers_analysis_viewmodel_hasdata",
+      "client_lib_features_analysis_providers_analysis_viewmodel_history",
+      "client_lib_features_analysis_providers_analysis_viewmodel_icon",
+      "client_lib_features_analysis_providers_analysis_viewmodel_icontype",
+      "client_lib_features_analysis_providers_analysis_viewmodel_id",
+      "client_lib_features_analysis_providers_analysis_viewmodel_label",
+      "client_lib_features_analysis_providers_analysis_viewmodel_latest",
+      "client_lib_features_analysis_providers_analysis_viewmodel_predictionhistoryitem",
+      "client_lib_features_analysis_providers_analysis_viewmodel_probability",
+      "client_lib_features_analysis_providers_analysis_viewmodel_recommendations",
+      "client_lib_features_analysis_providers_analysis_viewmodel_subtitle",
+      "client_lib_features_analysis_providers_analysis_viewmodel_title",
+      "client_lib_features_analysis_providers_analysis_viewmodel_todayprobability",
+      "client_lib_features_analysis_providers_analysis_viewmodel_yesterdayprobability",
+      "double_get"
+    ],
+    "18": [
+      "basemodel",
+      "server_app_api_knowledge_list_documents",
+      "server_app_schemas_health",
+      "server_app_schemas_health_healtherrorresponse",
+      "server_app_schemas_health_healthresponse",
+      "server_app_schemas_knowledge",
+      "server_app_schemas_knowledge_citation",
+      "server_app_schemas_knowledge_citationmeta",
+      "server_app_schemas_knowledge_knowledgedocument",
+      "server_app_schemas_knowledge_knowledgelistresponse",
+      "server_app_schemas_knowledge_knowledgeuploadresponse",
+      "server_app_schemas_knowledge_uploadedby",
+      "server_app_schemas_knowledge_websearchresult",
+      "server_app_schemas_prediction",
+      "server_app_schemas_prediction_predictionanalysisresponse",
+      "server_app_schemas_prediction_predictionhistoryitem",
+      "server_app_schemas_prediction_predictionhistoryresponse",
+      "server_app_schemas_prediction_predictionrequest",
+      "server_app_schemas_prediction_predictionresponse",
+      "server_app_schemas_prediction_predictionresult"
+    ],
+    "19": [
+      "client_lib_core_models_prediction",
+      "client_lib_core_models_prediction_avgprobability",
+      "client_lib_core_models_prediction_classscore",
+      "client_lib_core_models_prediction_classscores",
+      "client_lib_core_models_prediction_confidence",
+      "client_lib_core_models_prediction_failedcount",
+      "client_lib_core_models_prediction_fromjson",
+      "client_lib_core_models_prediction_generatedat",
+      "client_lib_core_models_prediction_id",
+      "client_lib_core_models_prediction_ispassed",
+      "client_lib_core_models_prediction_label",
+      "client_lib_core_models_prediction_modelname",
+      "client_lib_core_models_prediction_modelversion",
+      "client_lib_core_models_prediction_passedcount",
+      "client_lib_core_models_prediction_passrate",
+      "client_lib_core_models_prediction_predictedlabel",
+      "client_lib_core_models_prediction_predictionanalysis",
+      "client_lib_core_models_prediction_score",
+      "client_lib_core_models_prediction_tojson",
+      "client_lib_core_models_prediction_totalpredictions"
+    ],
+    "20": [
+      "client_lib_features_auth_login_page",
+      "client_lib_features_auth_login_page_build",
+      "client_lib_features_auth_login_page_createstate",
+      "client_lib_features_auth_login_page_dispose",
+      "client_lib_features_auth_login_page_emailcontroller",
+      "client_lib_features_auth_login_page_emailfocus",
+      "client_lib_features_auth_login_page_emailregex",
+      "client_lib_features_auth_login_page_formkey",
+      "client_lib_features_auth_login_page_loginpage",
+      "client_lib_features_auth_login_page_loginpagestate",
+      "client_lib_features_auth_login_page_obscurepassword",
+      "client_lib_features_auth_login_page_passwordcontroller",
+      "client_lib_features_auth_login_page_passwordfocus",
+      "client_lib_features_auth_login_page_submit",
+      "client_lib_features_auth_providers_login_viewmodel_loginviewmodelprovider",
+      "consumerstatefulwidget",
+      "core_widgets_social_button_dart",
+      "providers_login_viewmodel_dart",
+      "route_approutes_forgotpassword",
+      "route_approutes_register"
+    ],
+    "21": [
+      "httpauthorizationcredentials",
+      "server_app_db_models_user",
+      "server_app_db_models_user_refreshtoken",
+      "server_app_db_models_user_refreshtoken_repr",
+      "server_app_db_models_user_user",
+      "server_app_db_models_user_user_repr",
+      "server_app_db_models_user_user_touch",
+      "server_app_services_auth_service",
+      "server_app_services_auth_service_create_access_token",
+      "server_app_services_auth_service_create_refresh_token",
+      "server_app_services_auth_service_decode_token",
+      "server_app_services_auth_service_get_current_user",
+      "server_app_services_auth_service_hash_password",
+      "server_app_services_auth_service_login",
+      "server_app_services_auth_service_logout",
+      "server_app_services_auth_service_py_asyncsession",
+      "server_app_services_auth_service_py_user",
+      "server_app_services_auth_service_refresh",
+      "server_app_services_auth_service_register",
+      "server_app_services_auth_service_verify_password"
+    ],
+    "22": [
+      "server_app_schemas_events",
+      "server_app_schemas_events_eventsanitizer",
+      "server_app_schemas_events_eventsanitizer_redact_offender",
+      "server_app_schemas_events_eventsanitizer_sanitize",
+      "server_app_schemas_events_eventsanitizer_sanitize_value",
+      "server_app_schemas_events_py_any",
+      "server_app_schemas_events_utcnow",
+      "server_app_schemas_events_wscitation",
+      "server_app_schemas_events_wserror",
+      "server_app_schemas_events_wsevent",
+      "server_app_schemas_events_wsfinal",
+      "server_app_schemas_events_wsmessage",
+      "server_app_schemas_events_wsping",
+      "server_app_schemas_events_wspong",
+      "server_app_schemas_events_wspredictionresult",
+      "server_app_schemas_events_wsstateupdate",
+      "server_app_schemas_events_wstoken",
+      "server_app_schemas_events_wstoolcall",
+      "server_app_schemas_events_wstoolresult",
+      "server_app_schemas_events_wswebsearch"
+    ],
+    "23": [
+      "client_lib_core_services_agent_socket_service_connectionmode",
+      "client_lib_features_chat_widgets_agent_trace_sheet",
+      "client_lib_features_chat_widgets_agent_trace_sheet_agenttracesheet",
+      "client_lib_features_chat_widgets_agent_trace_sheet_build",
+      "client_lib_features_chat_widgets_agent_trace_sheet_connectionmode",
+      "client_lib_features_chat_widgets_agent_trace_sheet_onclose",
+      "client_lib_features_chat_widgets_agent_trace_sheet_tracelog",
+      "client_lib_features_chat_widgets_citation_tile",
+      "client_lib_features_chat_widgets_citation_tile_build",
+      "client_lib_features_chat_widgets_citation_tile_citations",
+      "client_lib_features_chat_widgets_citation_tile_createstate",
+      "client_lib_features_chat_widgets_citation_tile_expanded",
+      "client_lib_features_home_widgets_history_chart",
+      "client_lib_features_home_widgets_history_chart_build",
+      "client_lib_features_home_widgets_history_chart_history",
+      "client_lib_features_home_widgets_history_chart_historychart",
+      "core_models_agent_event_dart",
+      "list",
+      "package_fl_chart_fl_chart_dart"
+    ],
+    "24": [
+      "server_app_agent_predictive_node",
+      "server_app_agent_predictive_node_predictive_node",
+      "server_app_api_health",
+      "server_app_api_health_health",
+      "server_app_machine_learning_predictor",
+      "server_app_machine_learning_predictor_predictor",
+      "server_app_machine_learning_predictor_predictor_error",
+      "server_app_machine_learning_predictor_predictor_health",
+      "server_app_machine_learning_predictor_predictor_init",
+      "server_app_machine_learning_predictor_predictor_load",
+      "server_app_machine_learning_predictor_predictor_loaded",
+      "server_app_machine_learning_predictor_predictor_predict",
+      "server_app_machine_learning_predictor_py_any",
+      "server_app_machine_learning_predictor_py_predictionresult",
+      "server_app_machine_learning_singleton",
+      "server_app_machine_learning_singleton_singletonmeta",
+      "server_app_machine_learning_singleton_singletonmeta_call",
+      "server_app_schemas_prediction_classscore",
+      "type"
+    ],
+    "25": [
+      "client_lib_features_auth_register_page_build",
+      "client_lib_features_profile_widgets_logout_button",
+      "client_lib_features_profile_widgets_logout_button_build",
+      "client_lib_features_profile_widgets_logout_button_showlogoutdialog",
+      "client_lib_features_splash_providers_splash_provider_splashprovider",
+      "client_lib_features_splash_splash_page",
+      "client_lib_features_splash_splash_page_build",
+      "client_lib_features_splash_splash_page_checkauth",
+      "client_lib_features_splash_splash_page_createstate",
+      "client_lib_features_splash_splash_page_initstate",
+      "client_lib_features_splash_splash_page_splashpage",
+      "client_lib_features_splash_splash_page_splashpagestate",
+      "core_providers_auth_providers_dart",
+      "core_routing_app_routes_dart",
+      "package_flutter_riverpod_flutter_riverpod_dart",
+      "providers_splash_provider_dart",
+      "route_approutes_hometab",
+      "route_approutes_login"
+    ],
+    "26": [
+      "client_lib_features_home_widgets_prediction_summary_card_build",
+      "client_lib_features_home_widgets_quick_actions_row",
+      "client_lib_features_home_widgets_quick_actions_row_build",
+      "client_lib_features_home_widgets_quick_actions_row_icon",
+      "client_lib_features_home_widgets_quick_actions_row_label",
+      "client_lib_features_home_widgets_quick_actions_row_ontap",
+      "client_lib_features_home_widgets_quick_actions_row_quickaction",
+      "client_lib_features_home_widgets_quick_actions_row_quickactionsrow",
+      "client_lib_features_profile_widgets_settings_card",
+      "client_lib_features_profile_widgets_settings_card_build",
+      "client_lib_features_profile_widgets_settings_card_icon",
+      "client_lib_features_profile_widgets_settings_card_settingscard",
+      "client_lib_features_profile_widgets_settings_card_settingtile",
+      "client_lib_features_profile_widgets_settings_card_subtitle",
+      "client_lib_features_profile_widgets_settings_card_title",
+      "icondata",
+      "route_approutes_analysistab",
+      "route_approutes_chattab"
+    ],
+    "27": [
+      "client_lib_features_analysis_widgets_improvement_card",
+      "client_lib_features_analysis_widgets_improvement_card_build",
+      "client_lib_features_analysis_widgets_improvement_card_improvementcard",
+      "client_lib_features_analysis_widgets_improvement_card_text",
+      "client_lib_features_analysis_widgets_strength_card",
+      "client_lib_features_analysis_widgets_strength_card_build",
+      "client_lib_features_analysis_widgets_strength_card_strengthcard",
+      "client_lib_features_analysis_widgets_strength_card_text",
+      "client_lib_features_chat_widgets_empty_state",
+      "client_lib_features_chat_widgets_empty_state_build",
+      "client_lib_features_chat_widgets_empty_state_emptystate",
+      "client_lib_features_profile_widgets_profile_header",
+      "client_lib_features_profile_widgets_profile_header_build",
+      "client_lib_features_profile_widgets_profile_header_profileheader",
+      "client_lib_features_profile_widgets_profile_header_user",
+      "core_theme_app_colors_dart",
+      "core_theme_app_text_styles_dart"
+    ],
+    "28": [
+      "docs_specification_03_architecture_fastapi",
+      "docs_specification_03_architecture_firecrawl_tool",
+      "docs_specification_03_architecture_langgraph_supervisor",
+      "docs_specification_03_architecture_nginx",
+      "docs_specification_03_architecture_predictive_tool",
+      "docs_specification_03_architecture_rag_tool",
+      "docs_specification_03_architecture_response_node",
+      "docs_specification_04_agent_orchestration_agent_state",
+      "docs_specification_04_agent_orchestration_response_node",
+      "docs_specification_04_agent_orchestration_supervisor",
+      "docs_specification_04_agent_orchestration_tools",
+      "docs_specification_05_rag_knowledge_citation",
+      "docs_specification_05_rag_knowledge_retriever",
+      "docs_specification_06_ml_prediction_prediction_result",
+      "docs_specification_06_ml_prediction_predictor",
+      "docs_specification_07_firecrawl_tool_firecrawl_tool",
+      "docs_specification_10_security_jwt"
+    ],
+    "29": [
+      "server_app_api_auth",
+      "server_app_api_auth_login_endpoint",
+      "server_app_api_auth_logout_endpoint",
+      "server_app_api_auth_me_endpoint",
+      "server_app_api_auth_py_asyncsession",
+      "server_app_api_auth_py_user",
+      "server_app_api_auth_refresh_endpoint",
+      "server_app_api_auth_register_endpoint",
+      "server_app_api_users_get_me",
+      "server_app_api_users_py_user",
+      "server_app_schemas_auth",
+      "server_app_schemas_auth_authloginrequest",
+      "server_app_schemas_auth_authrefreshrequest",
+      "server_app_schemas_auth_authregisterrequest",
+      "server_app_schemas_auth_authtokenresponse",
+      "server_app_schemas_auth_userresponse"
+    ],
+    "30": [
+      "client_lib_core_services_knowledge_service",
+      "client_lib_core_services_knowledge_service_api",
+      "client_lib_core_services_knowledge_service_deletedocument",
+      "client_lib_core_services_knowledge_service_documentid",
+      "client_lib_core_services_knowledge_service_errormessage",
+      "client_lib_core_services_knowledge_service_filename",
+      "client_lib_core_services_knowledge_service_filesizebytes",
+      "client_lib_core_services_knowledge_service_fromjson",
+      "client_lib_core_services_knowledge_service_getdocument",
+      "client_lib_core_services_knowledge_service_knowledgedocument",
+      "client_lib_core_services_knowledge_service_listdocuments",
+      "client_lib_core_services_knowledge_service_status",
+      "client_lib_core_services_knowledge_service_title",
+      "client_lib_core_services_knowledge_service_totalchunks",
+      "client_lib_core_services_knowledge_service_uploaddocument"
+    ],
+    "31": [
+      "chat_state_dart",
+      "client_lib_core_services_agent_socket_service_agentsocketservice",
+      "client_lib_features_chat_providers_chat_viewmodel",
+      "client_lib_features_chat_providers_chat_viewmodel_chatrepository",
+      "client_lib_features_chat_providers_chat_viewmodel_clearhistory",
+      "client_lib_features_chat_providers_chat_viewmodel_eventsub",
+      "client_lib_features_chat_providers_chat_viewmodel_onevent",
+      "client_lib_features_chat_providers_chat_viewmodel_reconnectws",
+      "client_lib_features_chat_providers_chat_viewmodel_sendmessage",
+      "client_lib_features_chat_providers_chat_viewmodel_sendrestfallback",
+      "client_lib_features_chat_providers_chat_viewmodel_socketservice",
+      "core_services_chat_repository_dart",
+      "dart_async",
+      "streamsubscription"
+    ],
+    "32": [
+      "citation",
+      "server_app_agent_rag_node",
+      "server_app_agent_rag_node_rag_node",
+      "server_app_rag_retriever",
+      "server_app_rag_retriever_retriever",
+      "server_app_rag_retriever_retriever_embed",
+      "server_app_rag_retriever_retriever_init",
+      "server_app_rag_retriever_retriever_initialize",
+      "server_app_rag_retriever_retriever_search",
+      "server_app_rag_vectorstore",
+      "server_app_rag_vectorstore_vectorstore",
+      "server_app_rag_vectorstore_vectorstore_init",
+      "server_app_rag_vectorstore_vectorstore_initialize",
+      "server_app_rag_vectorstore_vectorstore_initialized"
+    ],
+    "33": [
+      "client_lib_core_models_user",
+      "client_lib_core_models_user_avgpredictionscore",
+      "client_lib_core_models_user_createdat",
+      "client_lib_core_models_user_email",
+      "client_lib_core_models_user_fromjson",
+      "client_lib_core_models_user_id",
+      "client_lib_core_models_user_ispengajar",
+      "client_lib_core_models_user_name",
+      "client_lib_core_models_user_role",
+      "client_lib_core_models_user_tojson",
+      "client_lib_core_models_user_totalconversations",
+      "client_lib_core_models_user_totalpredictions",
+      "client_lib_core_models_user_user",
+      "client_lib_core_models_user_userstats"
+    ],
+    "34": [
+      "client_lib_features_profile_widgets_knowledge_management_section",
+      "client_lib_features_profile_widgets_knowledge_management_section_confirmdelete",
+      "client_lib_features_profile_widgets_knowledge_management_section_doc",
+      "client_lib_features_profile_widgets_knowledge_management_section_emptyknowledge",
+      "client_lib_features_profile_widgets_knowledge_management_section_fileicon",
+      "client_lib_features_profile_widgets_knowledge_management_section_message",
+      "client_lib_features_profile_widgets_knowledge_management_section_onupload",
+      "client_lib_features_profile_widgets_knowledge_management_section_showuploadsheet",
+      "client_lib_features_profile_widgets_knowledge_management_section_statuscolor",
+      "client_lib_features_profile_widgets_knowledge_management_section_statuslabel",
+      "core_services_knowledge_service_dart",
+      "knowledge_upload_sheet_dart",
+      "knowledgedocument",
+      "profile_shimmers_dart"
+    ],
+    "35": [
+      "fastapi",
+      "logrecord",
+      "server_app_api_chat",
+      "server_app_api_deps",
+      "server_app_api_users",
+      "server_app_api_users_get_stats",
+      "server_app_api_users_py_asyncsession",
+      "server_app_core_logging",
+      "server_app_core_logging_jsonformatter",
+      "server_app_core_logging_jsonformatter_format",
+      "server_app_core_logging_setup_logging",
+      "server_app_main",
+      "server_app_main_lifespan",
+      "server_app_rag_ingestor"
+    ],
+    "36": [
+      "server_app_agent_tools_predictive_tool",
+      "server_app_agent_tools_predictive_tool_predictive_tool",
+      "server_app_agent_tools_predictive_tool_rationale_14",
+      "server_app_agent_tools_rag_tool",
+      "server_app_agent_tools_rag_tool_rag_ingest",
+      "server_app_agent_tools_rag_tool_rag_tool",
+      "server_app_agent_tools_rag_tool_rationale_13",
+      "server_app_agent_tools_validation",
+      "server_app_agent_tools_validation_py_any",
+      "server_app_agent_tools_validation_sanitize_output_summary",
+      "server_app_agent_tools_validation_validate_firecrawl_query",
+      "server_app_agent_tools_validation_validate_rag_query",
+      "server_app_agent_tools_validation_validate_student_signals",
+      "server_app_schemas_prediction_studentsignals"
+    ],
+    "37": [
+      "api_client_dart",
+      "client_lib_core_providers_users_providers",
+      "client_lib_core_providers_users_providers_usermeprovider",
+      "client_lib_core_providers_users_providers_usersserviceprovider",
+      "client_lib_core_providers_users_providers_watch",
+      "client_lib_core_services_users_service",
+      "client_lib_core_services_users_service_api",
+      "client_lib_core_services_users_service_getme",
+      "client_lib_core_services_users_service_getstats",
+      "client_lib_core_services_users_service_usersservice",
+      "models_user_dart",
+      "services_users_service_dart"
+    ],
+    "38": [
+      "app_routes_dart",
+      "client_lib_core_routing_app_router",
+      "client_lib_core_routing_app_router_approuter",
+      "features_analysis_analysis_page_dart",
+      "features_auth_forgot_password_page_dart",
+      "features_auth_login_page_dart",
+      "features_auth_register_page_dart",
+      "features_chat_chat_page_dart",
+      "features_home_home_page_dart",
+      "features_home_home_tab_dart",
+      "features_profile_profile_page_dart",
+      "features_splash_splash_page_dart"
+    ],
+    "39": [
+      "client_lib_core_providers_prediction_providers",
+      "client_lib_core_providers_prediction_providers_predictionserviceprovider",
+      "client_lib_core_providers_prediction_providers_watch",
+      "client_lib_core_services_api_client_apiclient",
+      "client_lib_core_services_prediction_service",
+      "client_lib_core_services_prediction_service_api",
+      "client_lib_core_services_prediction_service_getanalysis",
+      "client_lib_core_services_prediction_service_gethistory",
+      "client_lib_core_services_prediction_service_getlatest",
+      "client_lib_core_services_prediction_service_predictionservice",
+      "models_prediction_dart",
+      "services_prediction_service_dart"
+    ],
+    "40": [
+      "client_lib_core_services_auth_repository",
+      "client_lib_core_services_auth_repository_api",
+      "client_lib_core_services_auth_repository_checkauth",
+      "client_lib_core_services_auth_repository_cleartokens",
+      "client_lib_core_services_auth_repository_login",
+      "client_lib_core_services_auth_repository_logout",
+      "client_lib_core_services_auth_repository_maperror",
+      "client_lib_core_services_auth_repository_register",
+      "client_lib_core_services_auth_repository_savetokens",
+      "client_lib_core_services_auth_repository_storage",
+      "client_lib_core_services_auth_repository_tryrefresh",
+      "dart_io"
+    ],
+    "41": [
+      "client_lib_features_analysis_providers_analysis_viewmodel_recommendation",
+      "client_lib_features_analysis_widgets_action_item",
+      "client_lib_features_analysis_widgets_action_item_actionitem",
+      "client_lib_features_analysis_widgets_action_item_build",
+      "client_lib_features_analysis_widgets_action_item_icon",
+      "client_lib_features_analysis_widgets_action_item_ontap",
+      "client_lib_features_analysis_widgets_action_item_recommendation",
+      "client_lib_features_chat_widgets_connection_mode_banner",
+      "client_lib_features_chat_widgets_connection_mode_banner_build",
+      "client_lib_features_chat_widgets_connection_mode_banner_connectionmodebanner",
+      "client_lib_features_chat_widgets_connection_mode_banner_onretry",
+      "voidcallback"
+    ],
+    "42": [
+      "client_lib_features_auth_forgot_password_page",
+      "client_lib_features_auth_forgot_password_page_build",
+      "client_lib_features_auth_forgot_password_page_createstate",
+      "client_lib_features_auth_forgot_password_page_dispose",
+      "client_lib_features_auth_forgot_password_page_emailcontroller",
+      "client_lib_features_auth_forgot_password_page_emailregex",
+      "client_lib_features_auth_forgot_password_page_formkey",
+      "client_lib_features_auth_forgot_password_page_submit",
+      "core_widgets_app_button_dart",
+      "core_widgets_app_text_field_dart",
+      "formstate",
+      "static_final"
+    ],
+    "43": [
+      "client_windows_runner_main",
+      "client_windows_runner_main_wwinmain",
+      "client_windows_runner_utils_cpp_client_windows_runner_utils",
+      "client_windows_runner_utils_cpp_string",
+      "client_windows_runner_utils_cpp_wchar_t",
+      "client_windows_runner_utils_createandattachconsole",
+      "client_windows_runner_utils_getcommandlinearguments",
+      "client_windows_runner_utils_h_client_windows_runner_utils",
+      "client_windows_runner_utils_utf8fromutf16",
+      "in",
+      "in_opt",
+      "vector"
+    ],
+    "44": [
+      "docs_specification_09_deployment",
+      "docs_specification_09_deployment_09_deployment_kompatibilitas",
+      "docs_specification_09_deployment_docker_compose_perubahan",
+      "docs_specification_09_deployment_endpoint_ws_health_only",
+      "docs_specification_09_deployment_konfigurasi_via_infra_env",
+      "docs_specification_09_deployment_nginx_config_websocket_upgrade",
+      "docs_specification_09_deployment_service_nginx_tambah_volume_ws_conf",
+      "docs_specification_09_deployment_service_postgres_init_pgvector",
+      "docs_specification_09_deployment_service_server_env_baru_healthcheck",
+      "docs_specification_09_deployment_tujuan",
+      "docs_specification_09_deployment_volume",
+      "docs_specification_09_deployment_wireframe_arsitektur_deployment"
+    ],
+    "45": [
+      "docs_specification_11_file_upload",
+      "docs_specification_11_file_upload_11_file_upload_api_knowledge_ingestion",
+      "docs_specification_11_file_upload_delete_api_v1_knowledge_document_id",
+      "docs_specification_11_file_upload_dependencies",
+      "docs_specification_11_file_upload_endpoints",
+      "docs_specification_11_file_upload_flutter",
+      "docs_specification_11_file_upload_get_api_v1_knowledge",
+      "docs_specification_11_file_upload_get_api_v1_knowledge_document_id",
+      "docs_specification_11_file_upload_pipeline_ingestion",
+      "docs_specification_11_file_upload_post_api_v1_knowledge_upload",
+      "docs_specification_11_file_upload_schema",
+      "docs_specification_11_file_upload_tujuan"
+    ],
+    "46": [
+      "agents",
+      "client_agents_skills_flutter_add_integration_test_skill",
+      "client_agents_skills_flutter_add_widget_preview_skill",
+      "client_agents_skills_flutter_add_widget_test_skill",
+      "client_agents_skills_flutter_apply_architecture_best_practices_skill",
+      "client_agents_skills_flutter_build_responsive_layout_skill",
+      "client_agents_skills_flutter_fix_layout_issues_skill",
+      "client_agents_skills_flutter_implement_json_serialization_skill",
+      "client_agents_skills_flutter_setup_declarative_routing_skill",
+      "client_agents_skills_flutter_setup_localization_skill",
+      "client_agents_skills_flutter_use_http_package_skill"
+    ],
+    "47": [
+      "client_lib_core_providers_prediction_providers_latestpredictionprovider",
+      "client_lib_core_providers_prediction_providers_predictionhistory7dprovider",
+      "client_lib_features_home_home_tab",
+      "client_lib_features_home_home_tab_build",
+      "client_lib_features_home_home_tab_hometab",
+      "core_providers_prediction_providers_dart",
+      "widgets_greeting_card_dart",
+      "widgets_history_chart_dart",
+      "widgets_prediction_summary_card_dart",
+      "widgets_quick_actions_row_dart",
+      "widgets_shimmer_card_dart"
+    ],
+    "48": [
+      "client_lib_core_theme_app_spacing",
+      "client_lib_core_theme_app_spacing_appradius",
+      "client_lib_core_theme_app_spacing_appspacing",
+      "client_lib_core_theme_app_spacing_full",
+      "client_lib_core_theme_app_spacing_lg",
+      "client_lib_core_theme_app_spacing_md",
+      "client_lib_core_theme_app_spacing_sm",
+      "client_lib_core_theme_app_spacing_xl",
+      "client_lib_core_theme_app_spacing_xs",
+      "client_lib_core_theme_app_spacing_xxl",
+      "static_const_double"
+    ],
+    "49": [
+      "client_lib_features_analysis_providers_analysis_viewmodel_progresscomparison",
+      "client_lib_features_analysis_widgets_history_item",
+      "client_lib_features_analysis_widgets_history_item_build",
+      "client_lib_features_analysis_widgets_history_item_historyitem",
+      "client_lib_features_analysis_widgets_history_item_item",
+      "client_lib_features_analysis_widgets_progress_comparison_card",
+      "client_lib_features_analysis_widgets_progress_comparison_card_build",
+      "client_lib_features_analysis_widgets_progress_comparison_card_comparison",
+      "client_lib_features_analysis_widgets_progress_comparison_card_progresscomparisoncard",
+      "predictionhistoryitem",
+      "providers_analysis_viewmodel_dart"
+    ],
+    "50": [
+      "client_web_manifest",
+      "client_web_manifest_background_color",
+      "client_web_manifest_description",
+      "client_web_manifest_display",
+      "client_web_manifest_icons",
+      "client_web_manifest_name",
+      "client_web_manifest_orientation",
+      "client_web_manifest_prefer_related_applications",
+      "client_web_manifest_short_name",
+      "client_web_manifest_start_url",
+      "client_web_manifest_theme_color"
+    ],
+    "51": [
+      "client_ios_runner_appdelegate",
+      "client_ios_runner_generatedpluginregistrant_h_client_ios_runner_generatedpluginregistrant",
+      "client_ios_runner_runner_bridging_header",
+      "client_ios_runner_scenedelegate",
+      "client_ios_runner_scenedelegate_scenedelegate",
+      "client_ios_runnertests_runnertests",
+      "flutter",
+      "flutterscenedelegate",
+      "uikit",
+      "xctest"
+    ],
+    "52": [
+      "client_ios_runner_generatedpluginregistrant_generatedpluginregistrant",
+      "client_ios_runner_generatedpluginregistrant_generatedpluginregistrant_registerwithregistry",
+      "client_ios_runner_generatedpluginregistrant_m_client_ios_runner_generatedpluginregistrant",
+      "client_macos_flutter_generatedpluginregistrant",
+      "connectivity_plus",
+      "file_picker",
+      "flutter_secure_storage_macos",
+      "foundation",
+      "nsobject",
+      "url_launcher_macos"
+    ],
+    "53": [
+      "client_lib_core_models_agent_event_agenterrorevent",
+      "client_lib_core_models_agent_event_agentevent",
+      "client_lib_core_models_agent_event_citationevent",
+      "client_lib_core_models_agent_event_finalevent",
+      "client_lib_core_models_agent_event_predictionresultevent",
+      "client_lib_core_models_agent_event_stateupdateevent",
+      "client_lib_core_models_agent_event_tokenevent",
+      "client_lib_core_models_agent_event_toolcallevent",
+      "client_lib_core_models_agent_event_toolresultevent",
+      "client_lib_core_models_agent_event_websearchresultevent"
+    ],
+    "54": [
+      "client_lib_core_network_auth_interceptor",
+      "client_lib_core_network_auth_interceptor_authinterceptor",
+      "client_lib_core_network_auth_interceptor_dio",
+      "client_lib_core_network_auth_interceptor_isrefreshing",
+      "client_lib_core_network_auth_interceptor_onerror",
+      "client_lib_core_network_auth_interceptor_onrequest",
+      "client_lib_core_network_auth_interceptor_storage",
+      "client_lib_core_network_auth_interceptor_tryrefresh",
+      "fluttersecurestorage",
+      "interceptor"
+    ],
+    "55": [
+      "client_lib_features_analysis_widgets_shimmer_loading",
+      "client_lib_features_analysis_widgets_shimmer_loading_build",
+      "client_lib_features_analysis_widgets_shimmer_loading_shimmer",
+      "client_lib_features_analysis_widgets_shimmer_loading_shimmerloading",
+      "client_lib_features_home_widgets_greeting_card",
+      "client_lib_features_home_widgets_greeting_card_build",
+      "client_lib_features_home_widgets_greeting_card_greetingcard",
+      "client_lib_features_home_widgets_greeting_card_initials",
+      "client_lib_features_home_widgets_greeting_card_username",
+      "core_theme_app_spacing_dart"
+    ],
+    "56": [
+      "client_lib_features_profile_profile_page",
+      "core_providers_knowledge_providers_dart",
+      "core_providers_users_providers_dart",
+      "widgets_biodata_card_dart",
+      "widgets_knowledge_management_section_dart",
+      "widgets_logout_button_dart",
+      "widgets_profile_header_dart",
+      "widgets_profile_shimmers_dart",
+      "widgets_settings_card_dart",
+      "widgets_stats_row_dart"
+    ],
+    "57": [
+      "client_lib_features_profile_widgets_stats_row",
+      "client_lib_features_profile_widgets_stats_row_avgscore",
+      "client_lib_features_profile_widgets_stats_row_build",
+      "client_lib_features_profile_widgets_stats_row_icon",
+      "client_lib_features_profile_widgets_stats_row_label",
+      "client_lib_features_profile_widgets_stats_row_statcard",
+      "client_lib_features_profile_widgets_stats_row_statsrow",
+      "client_lib_features_profile_widgets_stats_row_totalconversations",
+      "client_lib_features_profile_widgets_stats_row_totalpredictions",
+      "client_lib_features_profile_widgets_stats_row_value"
+    ],
+    "58": [
+      "app_spacing_dart",
+      "app_text_styles_dart",
+      "client_lib_core_theme_app_theme",
+      "client_lib_core_theme_app_theme_apptheme",
+      "client_lib_features_home_widgets_shimmer_card",
+      "client_lib_features_home_widgets_shimmer_card_build",
+      "client_lib_features_home_widgets_shimmer_card_height",
+      "client_lib_features_home_widgets_shimmer_card_shimmercard",
+      "package_flutter_material_dart"
+    ],
+    "59": [
+      "citation_tile_dart",
+      "client_lib_features_chat_widgets_chat_bubble",
+      "client_lib_features_chat_widgets_chat_bubble_bubblecontent",
+      "client_lib_features_chat_widgets_chat_bubble_build",
+      "client_lib_features_chat_widgets_chat_bubble_chatbubble",
+      "client_lib_features_chat_widgets_chat_bubble_message",
+      "core_models_chat_message_dart",
+      "prediction_chart_card_dart",
+      "web_search_tile_dart"
+    ],
+    "60": [
+      "client_dart_tool_dartpad_web_plugin_registrant",
+      "client_dart_tool_dartpad_web_plugin_registrant_registerplugins",
+      "client_dart_tool_dartpad_web_plugin_registrant_registrar",
+      "package_connectivity_plus_src_connectivity_plus_web_dart",
+      "package_file_picker_internal_file_picker_web_dart",
+      "package_flutter_secure_storage_web_flutter_secure_storage_web_dart",
+      "package_flutter_web_plugins_flutter_web_plugins_dart",
+      "package_url_launcher_web_url_launcher_web_dart",
+      "registrar"
+    ],
+    "61": [
+      "client_lib_features_chat_widgets_prediction_chart_card",
+      "client_lib_features_chat_widgets_prediction_chart_card_build",
+      "client_lib_features_chat_widgets_prediction_chart_card_color",
+      "client_lib_features_chat_widgets_prediction_chart_card_label",
+      "client_lib_features_chat_widgets_prediction_chart_card_legenditem",
+      "client_lib_features_chat_widgets_prediction_chart_card_prediction",
+      "client_lib_features_chat_widgets_prediction_chart_card_predictionchartcard",
+      "client_lib_features_chat_widgets_prediction_chart_card_value",
+      "color"
+    ],
+    "62": [
+      "client_lib_features_chat_widgets_web_search_tile",
+      "client_lib_features_chat_widgets_web_search_tile_build",
+      "client_lib_features_chat_widgets_web_search_tile_createstate",
+      "client_lib_features_chat_widgets_web_search_tile_expanded",
+      "client_lib_features_chat_widgets_web_search_tile_result",
+      "client_lib_features_chat_widgets_web_search_tile_results",
+      "client_lib_features_chat_widgets_web_search_tile_webresultitem",
+      "package_url_launcher_url_launcher_dart",
+      "websearchresult"
+    ],
+    "63": [
+      "client_lib_features_profile_widgets_biodata_card",
+      "client_lib_features_profile_widgets_biodata_card_biodatacard",
+      "client_lib_features_profile_widgets_biodata_card_biorow",
+      "client_lib_features_profile_widgets_biodata_card_build",
+      "client_lib_features_profile_widgets_biodata_card_formatdate",
+      "client_lib_features_profile_widgets_biodata_card_icon",
+      "client_lib_features_profile_widgets_biodata_card_label",
+      "client_lib_features_profile_widgets_biodata_card_user",
+      "client_lib_features_profile_widgets_biodata_card_value"
+    ],
+    "64": [
+      "server_app_api_predictions",
+      "server_app_api_predictions_get_latest_prediction",
+      "server_app_api_predictions_get_prediction_analysis",
+      "server_app_api_predictions_get_prediction_history",
+      "server_app_api_predictions_py_asyncsession",
+      "server_app_api_predictions_py_user",
+      "server_app_db_models_prediction",
+      "server_app_db_models_prediction_predictionhistory",
+      "server_app_db_models_prediction_predictionhistory_repr"
+    ],
+    "65": [
+      "bool_get",
+      "client_lib_core_models_auth_status",
+      "client_lib_core_models_auth_status_authresult",
+      "client_lib_core_models_auth_status_authstatus",
+      "client_lib_core_models_auth_status_isauthenticated",
+      "client_lib_core_models_auth_status_result",
+      "client_lib_core_models_auth_status_user",
+      "user_dart"
+    ],
+    "66": [
+      "client_ios_runner_appdelegate_appdelegate",
+      "client_ios_runner_appdelegate_appdelegate_application",
+      "client_ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
+      "client_ios_runner_appdelegate_swift_any",
+      "client_ios_runner_appdelegate_swift_bool",
+      "flutterimplicitenginebridge",
+      "flutterimplicitenginedelegate",
+      "uiapplication"
+    ],
+    "67": [
+      "client_lib_core_providers_auth_providers",
+      "client_lib_core_providers_auth_providers_api",
+      "client_lib_core_providers_auth_providers_storage",
+      "client_lib_core_providers_auth_providers_watch",
+      "client_lib_core_services_auth_repository_authrepository",
+      "models_auth_status_dart",
+      "services_api_client_dart",
+      "services_auth_repository_dart"
+    ],
+    "68": [
+      "client_lib_core_services_api_client",
+      "client_lib_core_services_api_client_delete",
+      "client_lib_core_services_api_client_dio",
+      "client_lib_core_services_api_client_post",
+      "client_lib_core_services_api_client_postmultipart",
+      "client_lib_core_services_api_client_put",
+      "dio",
+      "network_dio_client_dart"
+    ],
+    "69": [
+      "client_lib_features_auth_forgot_password_page_forgotpasswordpage",
+      "client_lib_features_auth_forgot_password_page_forgotpasswordpagestate",
+      "client_lib_features_chat_widgets_citation_tile_citationtile",
+      "client_lib_features_chat_widgets_citation_tile_citationtilestate",
+      "client_lib_features_chat_widgets_web_search_tile_websearchtile",
+      "client_lib_features_chat_widgets_web_search_tile_websearchtilestate",
+      "state",
+      "statefulwidget"
+    ],
+    "70": [
+      "client_lib_features_splash_providers_splash_provider",
+      "client_lib_features_splash_providers_splash_provider_build",
+      "client_lib_features_splash_providers_splash_provider_copywith",
+      "client_lib_features_splash_providers_splash_provider_error",
+      "client_lib_features_splash_providers_splash_provider_splashnotifier",
+      "client_lib_features_splash_providers_splash_provider_splashstage",
+      "client_lib_features_splash_providers_splash_provider_splashstate",
+      "client_lib_features_splash_providers_splash_provider_stage"
+    ],
+    "71": [
+      "auth_interceptor_dart",
+      "client_lib_core_network_dio_client",
+      "client_lib_core_network_dio_client_builddio",
+      "client_lib_core_network_dio_client_dio",
+      "config_app_config_dart",
+      "package_flutter_secure_storage_flutter_secure_storage_dart",
+      "return"
+    ],
+    "72": [
+      "client_lib_core_providers_knowledge_providers_knowledgedocumentsprovider",
+      "client_lib_features_profile_widgets_knowledge_management_section_build",
+      "client_lib_features_profile_widgets_knowledge_management_section_knowledgedocitem",
+      "client_lib_features_profile_widgets_knowledge_management_section_knowledgemanagementsection",
+      "client_lib_features_profile_widgets_logout_button_logoutbutton",
+      "client_lib_main_edulearnapp",
+      "consumerwidget"
+    ],
+    "73": [
+      "docs_specification_13_login",
+      "docs_specification_13_login_13_halaman_login",
+      "docs_specification_13_login_catatan_interaksi",
+      "docs_specification_13_login_data_kontrak_yang_terlibat",
+      "docs_specification_13_login_komponen_isi_utama",
+      "docs_specification_13_login_tujuan",
+      "docs_specification_13_login_wireframe"
+    ],
+    "74": [
+      "docs_specification_14_register",
+      "docs_specification_14_register_14_halaman_register",
+      "docs_specification_14_register_catatan_interaksi",
+      "docs_specification_14_register_data_kontrak_yang_terlibat",
+      "docs_specification_14_register_komponen_isi_utama",
+      "docs_specification_14_register_tujuan",
+      "docs_specification_14_register_wireframe"
+    ],
+    "75": [
+      "server_app_agent_tools_firecrawl_tool",
+      "server_app_agent_tools_firecrawl_tool_cache_key",
+      "server_app_agent_tools_firecrawl_tool_firecrawl_tool",
+      "server_app_agent_tools_firecrawl_tool_get_cached",
+      "server_app_agent_tools_firecrawl_tool_rationale_22",
+      "server_app_agent_tools_firecrawl_tool_sanitize",
+      "server_app_agent_tools_firecrawl_tool_set_cached"
+    ],
+    "76": [
+      "server_app_api_chat_ws",
+      "server_app_api_chat_ws_chat_websocket",
+      "server_app_api_chat_ws_check_rate_limit",
+      "server_app_api_chat_ws_health_websocket",
+      "server_app_api_chat_ws_track_connection",
+      "server_app_api_chat_ws_verify_ws_jwt",
+      "websocket"
+    ],
+    "77": [
+      "asyncnotifier",
+      "client_lib_core_providers_prediction_providers_predictionanalysisprovider",
+      "client_lib_core_providers_prediction_providers_predictionhistoryprovider",
+      "client_lib_features_analysis_providers_analysis_viewmodel_analysisdata",
+      "client_lib_features_analysis_providers_analysis_viewmodel_analysisviewmodel",
+      "client_lib_features_analysis_providers_analysis_viewmodel_build"
+    ],
+    "78": [
+      "client_android_app_src_main_java_io_flutter_plugins_generatedpluginregistrant",
+      "client_android_app_src_main_java_io_flutter_plugins_generatedpluginregistrant_generatedpluginregistrant",
+      "client_android_app_src_main_java_io_flutter_plugins_generatedpluginregistrant_generatedpluginregistrant_registerwith",
+      "client_android_app_src_main_java_io_flutter_plugins_generatedpluginregistrant_java_string",
+      "flutterengine",
+      "keep"
+    ],
+    "79": [
+      "client_ios_flutter_ephemeral_flutter_lldb_helper",
+      "client_ios_flutter_ephemeral_flutter_lldb_helper_handle_new_rx_page",
+      "client_ios_flutter_ephemeral_flutter_lldb_helper_lldb_init_module",
+      "client_ios_flutter_ephemeral_flutter_lldb_helper_rationale_8",
+      "sbdebugger",
+      "sbframe"
+    ],
+    "80": [
+      "client_lib_features_analysis_widgets_empty_analysis",
+      "client_lib_features_analysis_widgets_empty_analysis_build",
+      "client_lib_features_analysis_widgets_empty_analysis_emptyanalysis",
+      "client_lib_features_analysis_widgets_empty_analysis_errorstate",
+      "client_lib_features_analysis_widgets_empty_analysis_message",
+      "route_home_chat"
+    ],
+    "81": [
+      "client_lib_features_home_home_page",
+      "client_lib_features_home_home_page_build",
+      "client_lib_features_home_home_page_homepage",
+      "client_lib_features_home_home_page_navigationshell",
+      "package_go_router_go_router_dart",
+      "statefulnavigationshell"
+    ],
+    "82": [
+      "client_lib_main",
+      "client_lib_main_build",
+      "client_lib_main_main",
+      "core_routing_app_router_dart",
+      "core_theme_app_theme_dart",
+      "package_flutter_web_plugins_url_strategy_dart"
+    ],
+    "83": [
+      "client_macos_flutter_generatedpluginregistrant_registergeneratedplugins",
+      "client_macos_runner_mainflutterwindow_mainflutterwindow",
+      "client_macos_runner_mainflutterwindow_mainflutterwindow_awakefromnib",
+      "flutterpluginregistry",
+      "flutterviewcontroller",
+      "nswindow"
+    ],
+    "84": [
+      "client_macos_runner_appdelegate_appdelegate",
+      "client_macos_runner_appdelegate_appdelegate_applicationshouldterminateafterlastwindowclosed",
+      "client_macos_runner_appdelegate_appdelegate_applicationsupportssecurerestorablestate",
+      "client_macos_runner_appdelegate_swift_bool",
+      "flutterappdelegate",
+      "nsapplication"
+    ],
+    "85": [
+      "client_web_favicon_png_image",
+      "client_web_icons_Icon_192_png_image",
+      "client_web_icons_Icon_512_png_image",
+      "client_web_icons_Icon_maskable_192_png_image",
+      "client_web_icons_Icon_maskable_512_png_image",
+      "client_web_index_html_file"
+    ],
+    "86": [
+      "docs_specification_12_flutter_splash",
+      "docs_specification_12_flutter_splash_12_halaman_splash",
+      "docs_specification_12_flutter_splash_data_kontrak",
+      "docs_specification_12_flutter_splash_dependencies_baru",
+      "docs_specification_12_flutter_splash_komponen",
+      "docs_specification_12_flutter_splash_tujuan"
+    ],
+    "87": [
+      "auth_providers_dart",
+      "client_lib_core_providers_knowledge_providers",
+      "client_lib_core_providers_knowledge_providers_watch",
+      "client_lib_core_services_knowledge_service_knowledgeservice",
+      "services_knowledge_service_dart"
+    ],
+    "88": [
+      "client_ios_runnertests_runnertests_runnertests",
+      "client_ios_runnertests_runnertests_runnertests_testexample",
+      "client_macos_runnertests_runnertests_runnertests",
+      "client_macos_runnertests_runnertests_runnertests_testexample",
+      "xctestcase"
+    ],
+    "89": [
+      "client_lib_core_network_ws_message_builder",
+      "client_lib_core_network_ws_message_builder_pong",
+      "client_lib_core_network_ws_message_builder_usermessage",
+      "client_lib_core_network_ws_message_builder_wsmessagebuilder",
+      "dart_convert"
+    ],
+    "90": [
+      "client_lib_core_services_chat_repository",
+      "client_lib_core_services_chat_repository_api",
+      "client_lib_core_services_chat_repository_chatrepository",
+      "client_lib_core_services_chat_repository_sendmessage",
+      "package_dio_dio_dart"
+    ],
+    "91": [
+      "client_macos_runner_appdelegate",
+      "client_macos_runner_mainflutterwindow",
+      "client_macos_runnertests_runnertests",
+      "cocoa",
+      "fluttermacos"
+    ],
+    "92": [
+      "docs_specification_15_home",
+      "docs_specification_15_home_15_halaman_home_dashboard",
+      "docs_specification_15_home_catatan_interaksi",
+      "docs_specification_15_home_komponen_isi_utama",
+      "docs_specification_15_home_tujuan"
+    ],
+    "93": [
+      "docs_specification_17_analysis",
+      "docs_specification_17_analysis_17_halaman_analysis_visualisasi_prediksi_binary",
+      "docs_specification_17_analysis_catatan_interaksi",
+      "docs_specification_17_analysis_komponen_isi_utama",
+      "docs_specification_17_analysis_tujuan"
+    ],
+    "94": [
+      "docs_specification_18_profile",
+      "docs_specification_18_profile_18_halaman_profile_knowledge_upload",
+      "docs_specification_18_profile_catatan_interaksi",
+      "docs_specification_18_profile_komponen_isi_utama",
+      "docs_specification_18_profile_tujuan"
+    ],
+    "95": [
+      "client_lib_core_network_ws_event_parser",
+      "client_lib_core_network_ws_event_parser_parse",
+      "client_lib_core_network_ws_event_parser_wseventparser",
+      "models_agent_event_dart"
+    ],
+    "96": [
+      "client_lib_core_providers_auth_providers_currentuserprovider",
+      "client_lib_core_providers_users_providers_userstatsprovider",
+      "client_lib_features_profile_profile_page_build",
+      "client_lib_features_profile_profile_page_profilepage"
+    ],
+    "97": [
+      "client_linux_CMakeLists_file",
+      "client_linux_flutter_CMakeLists_file",
+      "client_linux_runner_CMakeLists_file",
+      "docs_1_setup_requirement_md_file"
+    ],
+    "98": [
+      "client_test_widget_test",
+      "client_test_widget_test_main",
+      "package_app_main_dart",
+      "package_flutter_test_flutter_test_dart"
+    ],
+    "99": [
+      "docs_specification_16_chat",
+      "docs_specification_16_chat_16_halaman_chat_ui_realtime_agent_chat",
+      "docs_specification_16_chat_komponen_isi_utama",
+      "docs_specification_16_chat_tujuan"
+    ],
+    "100": [
+      "server_app_api_chat_chat",
+      "server_app_schemas_chat",
+      "server_app_schemas_chat_chatrequest",
+      "server_app_schemas_chat_chatresponse"
+    ],
+    "101": [
+      "server_app_db_migrations_run",
+      "server_app_db_migrations_run_drop_all",
+      "server_app_db_migrations_run_migrate",
+      "server_app_db_migrations_run_rationale_1"
+    ],
+    "102": [
+      "basesettings",
+      "server_app_core_config",
+      "server_app_core_config_settings"
+    ],
+    "103": [
+      "client_android_app_src_main_kotlin_com_example_app_mainactivity",
+      "client_android_app_src_main_kotlin_com_example_app_mainactivity_mainactivity",
+      "flutteractivity"
+    ],
+    "104": [
+      "client_ios_flutter_ephemeral_packages_fluttergeneratedpluginswiftpackage_package",
+      "client_macos_flutter_ephemeral_packages_fluttergeneratedpluginswiftpackage_package",
+      "packagedescription"
+    ],
+    "105": [
+      "client_windows_CMakeLists_file",
+      "client_windows_flutter_CMakeLists_file",
+      "client_windows_runner_CMakeLists_file"
+    ],
+    "106": [
+      "opencode_opencode",
+      "opencode_opencode_plugin",
+      "opencode_opencode_schema"
+    ],
+    "107": [
+      "opencode_package",
+      "opencode_package_dependencies",
+      "opencode_package_dependencies_opencode_ai_plugin"
+    ],
+    "108": [
+      "client_ios_flutter_flutter_export_environment",
+      "client_ios_flutter_flutter_export_environment_sh__entry"
+    ],
+    "109": [
+      "client_macos_flutter_ephemeral_flutter_export_environment",
+      "client_macos_flutter_ephemeral_flutter_export_environment_sh__entry"
+    ],
+    "110": [
+      "docs_contract_06_chat_md_file",
+      "docs_contract_07_events_md_file"
+    ],
+    "111": [
+      "opencode_plugins_graphify",
+      "opencode_plugins_graphify_graphifyplugin"
+    ],
+    "112": [
+      "server_main",
+      "server_main_main"
+    ],
+    "113": [
+      "client_analysis_options"
+    ],
+    "114": [
+      "client_android_app_build_gradle"
+    ],
+    "115": [
+      "client_android_app_src_main_res_mipmap_hdpi_ic_launcher_png"
+    ],
+    "116": [
+      "client_android_app_src_main_res_mipmap_mdpi_ic_launcher_png"
+    ],
+    "117": [
+      "client_android_app_src_main_res_mipmap_xhdpi_ic_launcher_png"
+    ],
+    "118": [
+      "client_android_build_gradle"
+    ],
+    "119": [
+      "client_android_settings_gradle"
+    ],
+    "120": [
+      "client_dart_tool_extension_discovery_readme"
+    ],
+    "121": [
+      "client_ios_Runner_Assets_xcassets_LaunchImage_imageset_LaunchImage_2x_png_image"
+    ],
+    "122": [
+      "client_ios_Runner_Assets_xcassets_LaunchImage_imageset_LaunchImage_3x_png_image"
+    ],
+    "123": [
+      "client_ios_Runner_Assets_xcassets_LaunchImage_imageset_LaunchImage_png_image"
+    ],
+    "124": [
+      "client_ios_flutter_ephemeral_packages_fluttergeneratedpluginswiftpackage_sources_fluttergeneratedpluginswiftpackage_fluttergeneratedpluginswiftpackage"
+    ],
+    "125": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_1024x1024_1x_png"
+    ],
+    "126": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_20x20_1x_png"
+    ],
+    "127": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_20x20_2x_png"
+    ],
+    "128": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_20x20_3x_png"
+    ],
+    "129": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_29x29_1x_png"
+    ],
+    "130": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_29x29_2x_png"
+    ],
+    "131": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_29x29_3x_png"
+    ],
+    "132": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_40x40_1x_png"
+    ],
+    "133": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_40x40_2x_png"
+    ],
+    "134": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_40x40_3x_png"
+    ],
+    "135": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_60x60_2x_png"
+    ],
+    "136": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_60x60_3x_png"
+    ],
+    "137": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_76x76_1x_png"
+    ],
+    "138": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_76x76_2x_png"
+    ],
+    "139": [
+      "client_ios_runner_assets_xcassets_appicon_appiconset_icon_app_83_5x83_5_2x_png"
+    ],
+    "140": [
+      "client_ios_runner_assets_xcassets_launchimage_imageset_readme"
+    ],
+    "141": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_1024_png_image"
+    ],
+    "142": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_128_png_image"
+    ],
+    "143": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_16_png_image"
+    ],
+    "144": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_256_png_image"
+    ],
+    "145": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_32_png_image"
+    ],
+    "146": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_512_png_image"
+    ],
+    "147": [
+      "client_macos_Runner_Assets_xcassets_AppIcon_appiconset_app_icon_64_png_image"
+    ],
+    "148": [
+      "client_macos_flutter_ephemeral_packages_fluttergeneratedpluginswiftpackage_sources_fluttergeneratedpluginswiftpackage_fluttergeneratedpluginswiftpackage"
+    ],
+    "149": [
+      "client_pubspec"
+    ],
+    "150": [
+      "client_readme"
+    ],
+    "151": [
+      "docs_2_flutter_bootstrap_md_file"
+    ],
+    "152": [
+      "docs_3_server_backend_setup_md_file"
+    ],
+    "153": [
+      "docs_README_md_file"
+    ],
+    "154": [
+      "docs_contract_00_index_md_file"
+    ],
+    "155": [
+      "docs_contract_01_health_md_file"
+    ],
+    "156": [
+      "docs_contract_02_auth_md_file"
+    ],
+    "157": [
+      "docs_contract_03_users_md_file"
+    ],
+    "158": [
+      "docs_contract_04_predictions_md_file"
+    ],
+    "159": [
+      "docs_contract_05_knowledge_md_file"
+    ],
+    "160": [
+      "docs_planning_00_index_md_file"
+    ],
+    "161": [
+      "docs_planning_01_db_models_md_file"
+    ],
+    "162": [
+      "docs_planning_02_service_plan_md_file"
+    ],
+    "163": [
+      "docs_progress_00_index_md_file"
+    ],
+    "164": [
+      "docs_progress_01_specification_md_file"
+    ],
+    "165": [
+      "docs_progress_02_contract_md_file"
+    ],
+    "166": [
+      "docs_progress_03_backend_md_file"
+    ],
+    "167": [
+      "docs_progress_04_flutter_md_file"
+    ],
+    "168": [
+      "docs_progress_05_milestone_md_file"
+    ],
+    "169": [
+      "docs_reports_index_md_file"
+    ],
+    "170": [
+      "docs_reports_ws_chat_fixes_tracking_md_file"
+    ],
+    "171": [
+      "docs_specification_00_index_md_file"
+    ],
+    "172": [
+      "docs_specification_01_overview_md_file"
+    ],
+    "173": [
+      "docs_specification_02_design_system_md_file"
+    ],
+    "174": [
+      "docs_specification_05_rag_knowledge_web_search_result"
+    ],
+    "175": [
+      "docs_specification_06_ml_prediction_student_signals"
+    ],
+    "176": [
+      "docs_specification_08_observability_event_sanitizer"
+    ],
+    "177": [
+      "github_copilot_instructions"
+    ],
+    "178": [
+      "none_predictionresult"
+    ],
+    "179": [
+      "none_string"
+    ],
+    "180": [
+      "none_user"
+    ],
+    "181": [
+      "pkg_server"
+    ],
+    "182": [
+      "readme"
+    ],
+    "183": [
+      "server_app_agent_init"
+    ],
+    "184": [
+      "server_app_agent_tools_init"
+    ],
+    "185": [
+      "server_app_api_init"
+    ],
+    "186": [
+      "server_app_core_init"
+    ],
+    "187": [
+      "server_app_db_migrations_init"
+    ],
+    "188": [
+      "server_app_db_models_init"
+    ],
+    "189": [
+      "server_app_init"
+    ],
+    "190": [
+      "server_app_machine_learning_init"
+    ],
+    "191": [
+      "server_app_models_init"
+    ],
+    "192": [
+      "server_app_rag_init"
+    ],
+    "193": [
+      "server_app_schemas_init"
+    ],
+    "194": [
+      "server_app_services_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.0597567424643046,
+    "1": 0.037037037037037035,
+    "2": 0.05426356589147287,
+    "3": 0.05405405405405406,
+    "4": 0.06722689075630252,
+    "5": 0.06666666666666667,
+    "6": 0.0665024630541872,
+    "7": 0.06896551724137931,
+    "8": 0.13105413105413105,
+    "9": 0.07407407407407407,
+    "10": 0.09401709401709402,
+    "11": 0.13,
+    "12": 0.12554112554112554,
+    "13": 0.09956709956709957,
+    "14": 0.11255411255411256,
+    "15": 0.09090909090909091,
+    "16": 0.11904761904761904,
+    "17": 0.09523809523809523,
+    "18": 0.16842105263157894,
+    "19": 0.1,
+    "20": 0.11578947368421053,
+    "21": 0.22105263157894736,
+    "22": 0.18421052631578946,
+    "23": 0.1111111111111111,
+    "24": 0.10526315789473684,
+    "25": 0.1437908496732026,
+    "26": 0.1111111111111111,
+    "27": 0.13970588235294118,
+    "28": 0.14705882352941177,
+    "29": 0.18333333333333332,
+    "30": 0.13333333333333333,
+    "31": 0.14285714285714285,
+    "32": 0.16483516483516483,
+    "33": 0.14285714285714285,
+    "34": 0.14285714285714285,
+    "35": 0.2087912087912088,
+    "36": 0.15384615384615385,
+    "37": 0.18181818181818182,
+    "38": 0.16666666666666666,
+    "39": 0.18181818181818182,
+    "40": 0.16666666666666666,
+    "41": 0.16666666666666666,
+    "42": 0.16666666666666666,
+    "43": 0.24242424242424243,
+    "44": 0.16666666666666666,
+    "45": 0.16666666666666666,
+    "46": 0.18181818181818182,
+    "47": 0.21818181818181817,
+    "48": 0.18181818181818182,
+    "49": 0.18181818181818182,
+    "50": 0.18181818181818182,
+    "51": 0.24444444444444444,
+    "52": 0.2222222222222222,
+    "53": 0.2,
+    "54": 0.2,
+    "55": 0.2,
+    "56": 0.2,
+    "57": 0.2,
+    "58": 0.2222222222222222,
+    "59": 0.2222222222222222,
+    "60": 0.2222222222222222,
+    "61": 0.2222222222222222,
+    "62": 0.2222222222222222,
+    "63": 0.2222222222222222,
+    "64": 0.3611111111111111,
+    "65": 0.25,
+    "66": 0.25,
+    "67": 0.25,
+    "68": 0.25,
+    "69": 0.32142857142857145,
+    "70": 0.2857142857142857,
+    "71": 0.2857142857142857,
+    "72": 0.2857142857142857,
+    "73": 0.2857142857142857,
+    "74": 0.2857142857142857,
+    "75": 0.47619047619047616,
+    "76": 0.5238095238095238,
+    "77": 0.4,
+    "78": 0.4666666666666667,
+    "79": 0.3333333333333333,
+    "80": 0.3333333333333333,
+    "81": 0.3333333333333333,
+    "82": 0.3333333333333333,
+    "83": 0.3333333333333333,
+    "84": 0.4666666666666667,
+    "85": 0.3333333333333333,
+    "86": 0.3333333333333333,
+    "87": 0.4,
+    "88": 0.4,
+    "89": 0.4,
+    "90": 0.4,
+    "91": 0.6,
+    "92": 0.4,
+    "93": 0.4,
+    "94": 0.4,
+    "95": 0.5,
+    "96": 0.6666666666666666,
+    "97": 0.6666666666666666,
+    "98": 0.5,
+    "99": 0.5,
+    "100": 0.6666666666666666,
+    "101": 0.5,
+    "102": 0.6666666666666666,
+    "103": 0.6666666666666666,
+    "104": 0.6666666666666666,
+    "105": 1.0,
+    "106": 0.6666666666666666,
+    "107": 0.6666666666666666,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0
+  },
+  "gods": [
+    {
+      "id": "client_windows_runner_win32_window_win32window",
+      "label": "Win32Window",
+      "degree": 22
+    },
+    {
+      "id": "server_app_schemas_events_wsevent",
+      "label": "WSEvent",
+      "degree": 14
+    },
+    {
+      "id": "server_app_agent_state_agentstate",
+      "label": "AgentState",
+      "degree": 13
+    },
+    {
+      "id": "client_windows_runner_win32_window_win32window_messagehandler",
+      "label": "MessageHandler",
+      "degree": 12
+    },
+    {
+      "id": "server_app_api_knowledge_upload_knowledge",
+      "label": "upload_knowledge()",
+      "degree": 12
+    },
+    {
+      "id": "server_app_machine_learning_predictor_predictor",
+      "label": "Predictor",
+      "degree": 12
+    },
+    {
+      "id": "server_readme_edulearn_ai_backend",
+      "label": "EduLearn AI Backend",
+      "degree": 11
+    },
+    {
+      "id": "server_app_db_init_base",
+      "label": "Base",
+      "degree": 11
+    },
+    {
+      "id": "client_lib_core_models_agent_event_agentevent",
+      "label": "AgentEvent",
+      "degree": 10
+    },
+    {
+      "id": "client_windows_runner_flutter_window_flutterwindow",
+      "label": "FlutterWindow",
+      "degree": 10
+    }
+  ],
+  "surprises": [
+    {
+      "source": "firecrawl_tool()",
+      "target": "validate_firecrawl_query()",
+      "source_files": [
+        "server/app/agent/tools/firecrawl_tool.py",
+        "server/app/agent/tools/_validation.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities; peripheral node `validate_firecrawl_query()` unexpectedly reaches hub `firecrawl_tool()`"
+    },
+    {
+      "source": "Project Instructions",
+      "target": "flutter-add-integration-test",
+      "source_files": [
+        "AGENTS.md",
+        "client/.agents/skills/flutter-add-integration-test/SKILL.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `flutter-add-integration-test` unexpectedly reaches hub `Project Instructions`"
+    },
+    {
+      "source": "Project Instructions",
+      "target": "flutter-add-widget-preview",
+      "source_files": [
+        "AGENTS.md",
+        "client/.agents/skills/flutter-add-widget-preview/SKILL.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `flutter-add-widget-preview` unexpectedly reaches hub `Project Instructions`"
+    },
+    {
+      "source": "Project Instructions",
+      "target": "flutter-add-widget-test",
+      "source_files": [
+        "AGENTS.md",
+        "client/.agents/skills/flutter-add-widget-test/SKILL.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `flutter-add-widget-test` unexpectedly reaches hub `Project Instructions`"
+    },
+    {
+      "source": "Project Instructions",
+      "target": "flutter-apply-architecture-best-practices",
+      "source_files": [
+        "AGENTS.md",
+        "client/.agents/skills/flutter-apply-architecture-best-practices/SKILL.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `flutter-apply-architecture-best-practices` unexpectedly reaches hub `Project Instructions`"
+    }
+  ],
+  "tokens": {
+    "input": 85746,
+    "output": 21911
+  }
+}
