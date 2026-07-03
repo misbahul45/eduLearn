@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../models/auth_status.dart';
 import '../services/api_client.dart';
 import '../services/auth_repository.dart';
 
@@ -17,4 +18,8 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final api = ref.watch(apiClientProvider);
   final storage = ref.watch(secureStorageProvider);
   return AuthRepository(api: api, storage: storage);
+});
+
+final currentUserProvider = FutureProvider<AuthStatus>((ref) {
+  return ref.watch(authRepositoryProvider).checkAuth();
 });

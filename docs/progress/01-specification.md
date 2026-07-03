@@ -17,9 +17,9 @@ Status per-file dokumen spesifikasi di `docs/specification/`.
 | 10 | `10-security.md` | ✅ | JWT, rate limit, sanitasi |
 | 11 | `11-file-upload.md` | ✅ | File upload & knowledge ingestion |
 | 12 | `12-flutter-splash.md` | ✅ | Halaman splash Flutter |
-| 13 | `13-flutter-login.md` | ⬜ | Halaman login Flutter |
-| 14 | `14-flutter-register.md` | ⬜ | Halaman register Flutter |
-| 15 | `15-flutter-home.md` | ⬜ | Halaman home Flutter |
+| 13 | `13-login.md` | ✅ | Halaman login Flutter |
+| 14 | `14-register.md` | ✅ | Halaman register Flutter |
+| 15 | `15-home.md` | ✅ | Halaman home Flutter (dashboard) |
 | 16 | `16-flutter-chat.md` | ⬜ | Halaman chat Flutter |
 | 17 | `17-flutter-analysis.md` | ⬜ | Halaman analysis Flutter |
 | 18 | `18-flutter-profile.md` | ⬜ | Halaman profile Flutter |

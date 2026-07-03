@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -76,6 +78,26 @@ class AuthRepository {
     await _storage.delete(key: 'refresh_token');
   }
 
+  String _mapError(DioException e) {
+    if (e.error is SocketException || e.type == DioExceptionType.connectionError) {
+      return 'Tidak ada koneksi internet';
+    }
+    final statusCode = e.response?.statusCode;
+    if (statusCode == 401) {
+      return 'Email atau password salah';
+    }
+    if (statusCode == 409) {
+      return 'Email sudah terdaftar';
+    }
+    if (statusCode != null && statusCode >= 500) {
+      return 'Server sedang bermasalah, coba lagi';
+    }
+    final detail = e.response?.data is Map
+        ? (e.response!.data as Map)['detail'] as String?
+        : null;
+    return detail ?? 'Terjadi kesalahan, coba lagi';
+  }
+
   Future<AuthStatus> login(String email, String password) async {
     try {
       final response = await _api.post('/auth/login', data: {
@@ -93,12 +115,9 @@ class AuthRepository {
         return AuthStatus(result: AuthResult.authenticated, user: user);
       }
     } on DioException catch (e) {
-      final msg = e.response?.data is Map
-          ? (e.response!.data as Map)['detail'] as String? ?? 'Gagal login'
-          : 'Gagal login';
-      throw Exception(msg);
+      throw Exception(_mapError(e));
     }
-    throw Exception('Gagal login');
+    throw Exception('Terjadi kesalahan, coba lagi');
   }
 
   Future<AuthStatus> register(String name, String email, String password) async {
@@ -119,12 +138,9 @@ class AuthRepository {
         return AuthStatus(result: AuthResult.authenticated, user: user);
       }
     } on DioException catch (e) {
-      final msg = e.response?.data is Map
-          ? (e.response!.data as Map)['detail'] as String? ?? 'Gagal mendaftar'
-          : 'Gagal mendaftar';
-      throw Exception(msg);
+      throw Exception(_mapError(e));
     }
-    throw Exception('Gagal mendaftar');
+    throw Exception('Terjadi kesalahan, coba lagi');
   }
 
   Future<void> logout() async {

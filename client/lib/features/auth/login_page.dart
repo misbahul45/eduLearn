@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/providers/auth_providers.dart';
 import '../../core/routing/app_routes.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/app_button.dart';
 import '../../core/widgets/app_text_field.dart';
 import '../../core/widgets/social_button.dart';
-import 'providers/auth_notifier.dart';
+import 'providers/login_viewmodel.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -22,134 +22,190 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _emailFocus = FocusNode();
+  final _passwordFocus = FocusNode();
+  bool _obscurePassword = true;
+
+  static final _emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _emailFocus.dispose();
+    _passwordFocus.dispose();
     super.dispose();
+  }
+
+  void _submit() {
+    if (!_formKey.currentState!.validate()) return;
+
+    FocusScope.of(context).unfocus();
+    ref.read(loginViewModelProvider.notifier).login(
+          _emailController.text.trim(),
+          _passwordController.text,
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authNotifierProvider);
+    final loginState = ref.watch(loginViewModelProvider);
 
-    ref.listen(authNotifierProvider, (prev, next) {
-      if (next.stage == AuthFormStage.success && next.authStatus?.isAuthenticated == true) {
-        context.goNamed(AppRoutes.home);
+    ref.listen(loginViewModelProvider, (prev, next) {
+      if (next.stage == LoginStage.success) {
+        context.goNamed(AppRoutes.homeTab);
+      } else if (next.stage == LoginStage.error && next.error != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(next.error!),
+              backgroundColor: AppColors.error,
+              behavior: SnackBarBehavior.floating,
+              action: next.error == 'Tidak ada koneksi internet'
+                  ? SnackAction(
+                      label: 'Coba lagi',
+                      onPressed: _submit,
+                    )
+                  : null,
+            ),
+          );
+
+        ref.read(loginViewModelProvider.notifier).reset();
       }
     });
 
+    final isLoading = loginState.stage == LoginStage.loading;
+
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: AppSpacing.xl),
-                const Text('Welcome Back', style: AppTextStyles.h1),
-                const SizedBox(height: AppSpacing.sm),
-                const Text(
-                  'Sign in to continue learning',
-                  style: AppTextStyles.subtitle,
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: AppSpacing.xxl),
+              const Icon(
+                Icons.smart_toy_rounded,
+                size: 64,
+                color: AppColors.primary,
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              const Text(
+                'Selamat Datang Kembali',
+                style: AppTextStyles.h1,
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              const Text(
+                'Masuk untuk melanjutkan belajar',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: AppColors.textSecondary,
                 ),
-                if (authState.error != null) ...[
-                  const SizedBox(height: AppSpacing.md),
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade50,
-                      borderRadius: BorderRadius.circular(AppSpacing.sm),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.error_outline, color: Colors.red.shade700, size: 20),
-                        const SizedBox(width: AppSpacing.sm),
-                        Expanded(
-                          child: Text(
-                            authState.error!,
-                            style: TextStyle(color: Colors.red.shade700, fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-                const SizedBox(height: AppSpacing.xl),
-                AppTextField(
-                  label: 'Email',
-                  hint: 'Enter your email',
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (val) {
-                    if (val == null || val.isEmpty) return 'Email wajib diisi';
-                    if (!val.contains('@')) return 'Email tidak valid';
-                    return null;
-                  },
-                ),
-                const SizedBox(height: AppSpacing.md),
-                AppTextField(
-                  label: 'Password',
-                  hint: 'Enter your password',
-                  controller: _passwordController,
-                  obscureText: true,
-                  validator: (val) {
-                    if (val == null || val.isEmpty) return 'Password wajib diisi';
-                    if (val.length < 6) return 'Minimal 6 karakter';
-                    return null;
-                  },
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                AppButton(
-                  text: 'Sign In',
-                  isLoading: authState.stage == AuthFormStage.loading,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ref.read(authNotifierProvider.notifier).login(
-                        _emailController.text.trim(),
-                        _passwordController.text,
-                      );
-                    }
-                  },
-                ),
-                const SizedBox(height: AppSpacing.md),
-                Row(
+              ),
+              const SizedBox(height: AppSpacing.xl),
+              Form(
+                key: _formKey,
+                child: Column(
                   children: [
-                    const Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-                      child: Text('or continue with', style: AppTextStyles.caption),
+                    AppTextField(
+                      label: 'Email',
+                      hint: 'nama@email.com',
+                      controller: _emailController,
+                      focusNode: _emailFocus,
+                      keyboardType: TextInputType.emailAddress,
+                      enabled: !isLoading,
+                      textInputAction: TextInputAction.next,
+                      onSubmitted: () => _passwordFocus.requestFocus(),
+                      validator: (val) {
+                        if (val == null || val.isEmpty) return 'Email wajib diisi';
+                        if (!_emailRegex.hasMatch(val)) return 'Email tidak valid';
+                        return null;
+                      },
                     ),
-                    const Expanded(child: Divider()),
+                    const SizedBox(height: AppSpacing.md),
+                    AppTextField(
+                      label: 'Password',
+                      hint: '••••••••',
+                      controller: _passwordController,
+                      focusNode: _passwordFocus,
+                      obscureText: _obscurePassword,
+                      enabled: !isLoading,
+                      textInputAction: TextInputAction.done,
+                      onSubmitted: isLoading ? null : _submit,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off_rounded
+                              : Icons.visibility_rounded,
+                          size: 20,
+                        ),
+                        onPressed: () {
+                          setState(() => _obscurePassword = !_obscurePassword);
+                        },
+                      ),
+                      validator: (val) {
+                        if (val == null || val.isEmpty) return 'Password wajib diisi';
+                        if (val.length < 8) return 'Minimal 8 karakter';
+                        return null;
+                      },
+                    ),
                   ],
                 ),
-                const SizedBox(height: AppSpacing.md),
-                SocialButton(
-                  text: 'Continue with Google',
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Google sign-in coming soon')),
+                      const SnackBar(content: Text('Fitur lupa password akan segera hadir')),
                     );
                   },
+                  child: const Text('Lupa password?', style: AppTextStyles.link),
                 ),
-                const SizedBox(height: AppSpacing.lg),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Don't have an account? ", style: AppTextStyles.body),
-                      TextButton(
-                        onPressed: () => context.goNamed(AppRoutes.register),
-                        child: const Text('Sign Up'),
-                      ),
-                    ],
+              ),
+              const SizedBox(height: AppSpacing.md),
+              AppButton(
+                text: 'Masuk',
+                isLoading: isLoading,
+                onPressed: _submit,
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              Row(
+                children: [
+                  const Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+                    child: Text('atau', style: AppTextStyles.caption),
                   ),
+                  const Expanded(child: Divider()),
+                ],
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              SocialButton(
+                text: 'Masuk dengan Google',
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Google sign-in coming soon')),
+                  );
+                },
+              ),
+              const SizedBox(height: AppSpacing.xl),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Belum punya akun? '),
+                    TextButton(
+                      onPressed: () => context.goNamed(AppRoutes.register),
+                      child: const Text('Daftar', style: AppTextStyles.link),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

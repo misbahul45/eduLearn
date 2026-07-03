@@ -5,46 +5,59 @@ import 'package:go_router/go_router.dart';
 import '../../core/providers/auth_providers.dart';
 import '../../core/providers/prediction_providers.dart';
 import '../../core/routing/app_routes.dart';
+import '../../core/services/auth_repository.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
-import '../auth/providers/auth_notifier.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authNotifierProvider);
+    final userAsync = ref.watch(currentUserProvider);
     final analysisAsync = ref.watch(predictionAnalysisProvider);
-    final api = ref.watch(apiClientProvider);
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.md),
       children: [
         const SizedBox(height: AppSpacing.md),
-        Center(
-          child: CircleAvatar(
-            radius: 40,
-            backgroundColor: AppColors.primary.withValues(alpha: 0.2),
-            child: Text(
-              _getInitials(authState.authStatus?.user?.name ?? 'U'),
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.primary),
-            ),
+        userAsync.when(
+          data: (status) {
+            final user = status.user;
+            return Column(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundColor: AppColors.primary.withValues(alpha: 0.2),
+                  child: Text(
+                    _getInitials(user?.name ?? 'U'),
+                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.primary),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.md),
+                Text(user?.name ?? 'User', style: AppTextStyles.h1),
+                Text(user?.email ?? '', style: AppTextStyles.caption),
+                if (user?.role == 'pengajar' || user?.role == 'admin')
+                  Container(
+                    margin: const EdgeInsets.only(top: AppSpacing.xs),
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(AppSpacing.sm),
+                    ),
+                    child: Text(
+                      user!.role == 'pengajar' ? 'Pengajar' : 'Admin',
+                      style: const TextStyle(fontSize: 12, color: AppColors.primary),
+                    ),
+                  ),
+              ],
+            );
+          },
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
           ),
-        ),
-        const SizedBox(height: AppSpacing.md),
-        Center(
-          child: Text(
-            authState.authStatus?.user?.name ?? 'User',
-            style: AppTextStyles.h1,
-          ),
-        ),
-        Center(
-          child: Text(
-            authState.authStatus?.user?.email ?? '',
-            style: AppTextStyles.caption,
-          ),
+          error: (_, __) => const SizedBox.shrink(),
         ),
         const SizedBox(height: AppSpacing.lg),
 
@@ -101,7 +114,7 @@ class ProfilePage extends ConsumerWidget {
           width: double.infinity,
           child: OutlinedButton.icon(
             onPressed: () async {
-              await ref.read(authNotifierProvider.notifier).logout();
+              await ref.read(authRepositoryProvider).logout();
               if (context.mounted) {
                 context.goNamed(AppRoutes.login);
               }

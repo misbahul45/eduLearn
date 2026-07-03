@@ -5,27 +5,35 @@
 | Area | Progress | Catatan |
 |------|----------|---------|
 | Design System | ✅ Done | Colors, spacing, typography, theme |
-| Routing (GoRouter) | ✅ Done | splash, login, register, home, knowledge |
+| Routing (GoRouter) | ✅ Done | `StatefulShellRoute.indexedStack`: Home, Chat, Analysis, Profile tabs |
 | Riverpod + Dio + SecureStorage | ✅ Done | ProviderScope, ApiClient, AuthRepository |
-| Auth Providers (login/register/logout) | ✅ Done | `authNotifierProvider` — StateNotifier |
 | Auth Models (User, AuthStatus) | ✅ Done | fromJson, AuthResult enum |
-| Prediction Service + Provider | ✅ Done | latest, history, analysis via API |
-| Chat Message Model | ✅ Done | ChatMessage fromJson |
-| Splash Page | ✅ Done | Riverpod ViewModel, auto-routing (login/home) |
-| Login Page | ✅ Done | Riverpod refactor — calls AuthRepository |
-| Register Page | ✅ Done | Riverpod refactor — calls AuthRepository |
-| Home Page | ✅ Done | 4 tabs: Chat, Analisis, Materi, Profil |
-| Chat Page | ✅ Done | UI dengan empty state, bubble list, input |
+| Prediction Service + Provider | ✅ Done | latest, 7d-history, analysis via API |
+| Splash Page | ✅ Done | Riverpod ViewModel, auto-routing (homeTab/login) |
+| Login Page | ✅ Done | SnackBar error, eye toggle, Lupa password, Indonesian |
+| Register Page | ✅ Done | SnackBar error, eye toggle, password strength, 409 login button |
+| Home Tab (Dashboard) | ✅ Done | Greeting, prediction summary, insight, fl_chart history, quick actions |
+| Chat Page | ✅ Done | Empty state, bubble list, input field |
 | Analysis Page | ✅ Done | Stat cards, progress bar, latest prediction |
-| Knowledge Page | ✅ Done | List dokumen, refresh, delete |
-| Profile Page | ✅ Done | Avatar, stats, menu, logout |
+| Knowledge Page | ✅ Done | List dokumen, refresh, delete (standalone route dari Profile) |
+| Profile Page | ✅ Done | Avatar, stats, role badge, knowledge link, logout |
+| fl_chart | ✅ Done | LineChart probabilitas 7 hari + threshold line 0.5 |
+
+## Detail Halaman Home (Spec 15)
+
+- `StatefulShellRoute.indexedStack` — preserve state tiap tab saat pindah
+- Tab 1: Home (`Icons.home_rounded`) — dashboard
+- Tab 2: Chat (`Icons.chat_bubble_rounded`)
+- Tab 3: Analysis (`Icons.insights_rounded`)
+- Tab 4: Profile (`Icons.person_rounded`)
+- Home Tab: greeting card (initial avatar), prediction summary card (primary bg), insight card (success/warning), history chart (fl_chart LineChart with threshold), quick actions row
 
 ## Yang Perlu Dikerjakan Nanti
 
 - **WebSocket Chat** — integrasi WS nyata untuk streaming jawaban AI
+- **Forgot Password** — halaman lupa password
 - **Knowledge Upload** — form upload file (PDF/DOCX/TXT/MD) untuk pengajar
-- **Image/File picker** di chat
 - **Google Sign-In** — integrasi OAuth
 - **Dark mode / Theme switching**
-- **Offline mode** — local caching prediksi & materi
+- **Offline mode**
 - **Push notifications**

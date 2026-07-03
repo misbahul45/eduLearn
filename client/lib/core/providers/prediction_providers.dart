@@ -12,6 +12,10 @@ final latestPredictionProvider = FutureProvider.autoDispose<Prediction?>((ref) {
   return ref.watch(predictionServiceProvider).getLatest();
 });
 
+final predictionHistory7dProvider = FutureProvider.autoDispose<List<Prediction>>((ref) {
+  return ref.watch(predictionServiceProvider).getHistory(days: 7);
+});
+
 final predictionHistoryProvider = FutureProvider.autoDispose<List<Prediction>>((ref) {
   return ref.watch(predictionServiceProvider).getHistory();
 });

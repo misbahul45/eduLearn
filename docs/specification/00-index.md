@@ -12,9 +12,12 @@ Folder ini berisi dokumen spesifikasi sistem EduLearn AI. Bacalah secara berurut
 | 04 | `04-agent-orchestration.md` | LangGraph ReAct loop, node (supervisor/tools/response), AgentState, edge conditional |
 | 05 | `05-rag-knowledge.md` | RAG system: pgvector schema, retrieval flow, citation format, tampilan Flutter |
 | 06 | `06-ml-prediction.md` | ML binary classification: dataset, feature engineering, arsitektur Deep MLP, artifacts, inference flow |
-| 07 | `07-firecrawl-tool.md` | *(belum dibuat)* Web search tool via Firecrawl API |
-| 08 | `08-observability.md` | *(belum dibuat)* Logging, tracing, monitoring |
-| 09 | `09-deployment.md` | *(belum dibuat)* Deployment, Docker, Nginx, CI/CD |
-| 10 | `10-security.md` | *(belum dibuat)* JWT, rate limiting, sanitasi, audit log |
-| 11 | `11-file-upload.md` | *(belum dibuat)* File upload & knowledge ingestion pipeline |
-| 12-18 | `12-flutter-*.md` | *(belum dibuat)* Halaman Flutter (splash, login, register, home, chat, analysis, profile) |
+| 07 | `07-firecrawl-tool.md` | Web search tool via Firecrawl API: endpoint, caching, sanitasi |
+| 08 | `08-observability.md` | Logging, tracing, monitoring: EventSanitizer, agent.trace JSON logger |
+| 09 | `09-deployment.md` | Deployment, Docker, Nginx reverse proxy + WS config, environment variables |
+| 10 | `10-security.md` | JWT, rate limiting (token bucket Redis), sanitasi input, audit log |
+| 11 | `11-file-upload.md` | File upload & knowledge ingestion pipeline: parse, chunk, embed, pgvector insert |
+| 12 | `12-flutter-splash.md` | Splash page Flutter: Riverpod ViewModel, auto-routing (login/home) |
+| 13 | `13-login.md` | Login page: ViewModel, AuthRepository, secure storage, error handling |
+| 14 | `14-register.md` | Register page: ViewModel, AuthRepository, secure storage, validation |
+| 15 | `15-home.md` | Home dashboard: StatefulShellRoute, greeting, prediction summary, fl_chart history, quick actions |

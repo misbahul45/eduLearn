@@ -29,7 +29,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     if (!mounted) return;
 
     if (stage == SplashStage.authenticated) {
-      context.goNamed(AppRoutes.home);
+      context.goNamed(AppRoutes.homeTab);
     } else {
       context.goNamed(AppRoutes.login);
     }
