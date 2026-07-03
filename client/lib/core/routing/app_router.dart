@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
 
 import '../../features/analysis/analysis_page.dart';
+import '../../features/auth/forgot_password_page.dart';
 import '../../features/auth/login_page.dart';
 import '../../features/auth/register_page.dart';
 import '../../features/chat/chat_page.dart';
 import '../../features/home/home_page.dart';
 import '../../features/home/home_tab.dart';
-import '../../features/knowledge/knowledge_page.dart';
 import '../../features/profile/profile_page.dart';
 import '../../features/splash/splash_page.dart';
 import 'app_routes.dart';
@@ -29,8 +29,14 @@ final appRouter = GoRouter(
       name: AppRoutes.register,
       builder: (context, state) => const RegisterPage(),
     ),
+    GoRoute(
+      path: AppRoutes.forgotPasswordPath,
+      name: AppRoutes.forgotPassword,
+      builder: (context, state) => const ForgotPasswordPage(),
+    ),
     StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) => HomePage(navigationShell: navigationShell),
+      builder: (context, state, navigationShell) =>
+          HomePage(navigationShell: navigationShell),
       branches: [
         StatefulShellBranch(
           routes: [
@@ -69,11 +75,6 @@ final appRouter = GoRouter(
           ],
         ),
       ],
-    ),
-    GoRoute(
-      path: AppRoutes.knowledgePath,
-      name: AppRoutes.knowledge,
-      builder: (context, state) => const KnowledgePage(),
     ),
   ],
 );

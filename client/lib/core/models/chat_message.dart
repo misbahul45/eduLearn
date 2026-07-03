@@ -47,4 +47,16 @@ class ChatMessage {
       error: clearError ? null : (error ?? this.error),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'is_user': isUser,
+        'content': content,
+        'is_streaming': isStreaming,
+        'citations': citations.map((c) => c.toJson()).toList(),
+        'web_results': webResults.map((w) => w.toJson()).toList(),
+        'prediction': prediction?.toJson(),
+        'timestamp': timestamp.toIso8601String(),
+        'error': error,
+      };
 }

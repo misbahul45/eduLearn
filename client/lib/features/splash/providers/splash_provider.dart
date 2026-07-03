@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/models/auth_status.dart';
 import '../../../core/providers/auth_providers.dart';
-import '../../../core/services/auth_repository.dart';
 
 enum SplashStage { initial, checking, authenticated, unauthenticated }
 

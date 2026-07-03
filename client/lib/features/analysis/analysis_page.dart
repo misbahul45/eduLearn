@@ -51,7 +51,8 @@ class _AnalysisContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return LayoutBuilder(
+      builder: (context, constraints) => ListView(
       padding: const EdgeInsets.all(AppSpacing.lg),
       children: [
         Text('Distribusi Prediksi', style: AppTextStyles.h2),
@@ -90,6 +91,7 @@ class _AnalysisContent extends StatelessWidget {
         const SizedBox(height: AppSpacing.md),
         ...data.historyItems.map((item) => _HistoryItem(item: item)),
       ],
+    ),
     );
   }
 }
@@ -102,8 +104,8 @@ class _DistributionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final passed = latest.isPassed;
-    final passedPct = passed ? latest.probability : 1.0 - latest.probability;
-    final failedPct = passed ? 1.0 - latest.probability : latest.probability;
+    final passedPct = passed ? latest.confidence : 1.0 - latest.confidence;
+    final failedPct = passed ? 1.0 - latest.confidence : latest.confidence;
     final centerLabel = passed ? 'Lulus' : 'Tidak Lulus';
     final centerValue = '${(passedPct * 100).toStringAsFixed(0)}%';
 

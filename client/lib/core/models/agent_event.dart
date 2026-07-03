@@ -10,7 +10,13 @@ class StateUpdateEvent extends AgentEvent {
   final String node;
   final String status;
   final int iteration;
-  const StateUpdateEvent(this.node, this.status, this.iteration, super.timestamp);
+
+  const StateUpdateEvent(
+    this.node,
+    this.status,
+    this.iteration,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Node: $node → $status';
@@ -23,7 +29,13 @@ class ToolCallEvent extends AgentEvent {
   final String toolName;
   final Map<String, dynamic> input;
   final String callId;
-  const ToolCallEvent(this.toolName, this.input, this.callId, super.timestamp);
+
+  const ToolCallEvent(
+    this.toolName,
+    this.input,
+    this.callId,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Tool dipanggil: $toolName';
@@ -37,7 +49,14 @@ class ToolResultEvent extends AgentEvent {
   final String callId;
   final String outputSummary;
   final int durationMs;
-  const ToolResultEvent(this.toolName, this.callId, this.outputSummary, this.durationMs, super.timestamp);
+
+  const ToolResultEvent(
+    this.toolName,
+    this.callId,
+    this.outputSummary,
+    this.durationMs,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Tool selesai: $toolName';
@@ -49,7 +68,8 @@ class ToolResultEvent extends AgentEvent {
 class TokenEvent extends AgentEvent {
   final String content;
   final int index;
-  const TokenEvent(this.content, this.index, DateTime ts) : super(ts);
+
+  const TokenEvent(this.content, this.index, super.timestamp);
 
   @override
   String get summary => 'Token ke-${index + 1}';
@@ -60,13 +80,15 @@ class TokenEvent extends AgentEvent {
 
 class PredictionResultEvent extends AgentEvent {
   final PredictionResult data;
+
   const PredictionResultEvent(this.data, super.timestamp);
 
   @override
   String get summary => 'Prediksi: ${data.predictedLabel}';
 
   @override
-  String get detail => 'Confidence: ${(data.confidence * 100).toStringAsFixed(1)}%';
+  String get detail =>
+      'Confidence: ${(data.confidence * 100).toStringAsFixed(1)}%';
 }
 
 class CitationEvent extends AgentEvent {
@@ -74,7 +96,14 @@ class CitationEvent extends AgentEvent {
   final String snippet;
   final double score;
   final CitationMeta metadata;
-  const CitationEvent(this.sourceId, this.snippet, this.score, this.metadata, super.timestamp);
+
+  const CitationEvent(
+    this.sourceId,
+    this.snippet,
+    this.score,
+    this.metadata,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Sumber ditemukan';
@@ -91,8 +120,17 @@ class WebSearchResultEvent extends AgentEvent {
   final String markdownExcerpt;
   final String source;
   final double relevanceScore;
-  const WebSearchResultEvent(this.resultId, this.url, this.title, this.snippet,
-      this.markdownExcerpt, this.source, this.relevanceScore, super.timestamp);
+
+  const WebSearchResultEvent(
+    this.resultId,
+    this.url,
+    this.title,
+    this.snippet,
+    this.markdownExcerpt,
+    this.source,
+    this.relevanceScore,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Web search: $title';
@@ -108,8 +146,16 @@ class FinalEvent extends AgentEvent {
   final List<String> webResults;
   final bool predictionPresent;
   final String? predictionLabel;
-  const FinalEvent(this.message, this.conversationId, this.citations, this.webResults,
-      this.predictionPresent, this.predictionLabel, super.timestamp);
+
+  const FinalEvent(
+    this.message,
+    this.conversationId,
+    this.citations,
+    this.webResults,
+    this.predictionPresent,
+    this.predictionLabel,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Respon final diterima';
@@ -122,7 +168,13 @@ class AgentErrorEvent extends AgentEvent {
   final String? node;
   final String message;
   final bool fatal;
-  const AgentErrorEvent(this.node, this.message, this.fatal, super.timestamp);
+
+  const AgentErrorEvent(
+    this.node,
+    this.message,
+    this.fatal,
+    super.timestamp,
+  );
 
   @override
   String get summary => 'Error: ${fatal ? "Fatal" : "Non-fatal"}';
@@ -139,7 +191,14 @@ class CitationMeta {
   final String? documentId;
   final String? fileName;
 
-  const CitationMeta({this.title, this.author, this.page, this.url, this.documentId, this.fileName});
+  const CitationMeta({
+    this.title,
+    this.author,
+    this.page,
+    this.url,
+    this.documentId,
+    this.fileName,
+  });
 
   factory CitationMeta.fromJson(Map<String, dynamic> json) {
     return CitationMeta(
@@ -151,6 +210,15 @@ class CitationMeta {
       fileName: json['file_name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        if (title != null) 'title': title,
+        if (author != null) 'author': author,
+        if (page != null) 'page': page,
+        if (url != null) 'url': url,
+        if (documentId != null) 'document_id': documentId,
+        if (fileName != null) 'file_name': fileName,
+      };
 }
 
 class WebSearchResult {
@@ -180,9 +248,20 @@ class WebSearchResult {
       snippet: json['snippet'] as String? ?? '',
       markdownExcerpt: json['markdown_excerpt'] as String? ?? '',
       source: json['source'] as String? ?? '',
-      relevanceScore: (json['relevance_score'] as num?)?.toDouble() ?? 0.0,
+      relevanceScore:
+          (json['relevance_score'] as num?)?.toDouble() ?? 0.0,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'result_id': resultId,
+        'url': url,
+        'title': title,
+        'snippet': snippet,
+        'markdown_excerpt': markdownExcerpt,
+        'source': source,
+        'relevance_score': relevanceScore,
+      };
 }
 
 class Citation {
@@ -203,6 +282,13 @@ class Citation {
           : const CitationMeta(),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'source_id': sourceId,
+        'snippet': snippet,
+        'score': score,
+        'metadata': metadata.toJson(),
+      };
 }
 
 class PredictionResult {
@@ -243,6 +329,16 @@ class PredictionResult {
           : DateTime.now(),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'predicted_label': predictedLabel,
+        'confidence': confidence,
+        'class_scores': classScores.map((e) => e.toJson()).toList(),
+        'model_name': modelName,
+        'model_version': modelVersion,
+        'input_features_used': inputFeaturesUsed,
+        'generated_at': generatedAt.toIso8601String(),
+      };
 }
 
 class ClassScore {
@@ -257,4 +353,9 @@ class ClassScore {
       score: (json['score'] as num?)?.toDouble() ?? 0.0,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'label': label,
+        'score': score,
+      };
 }

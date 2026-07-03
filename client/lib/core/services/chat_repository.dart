@@ -12,7 +12,7 @@ class ChatRepository {
     try {
       final response = await _api.post('/chat', data: {
         'message': text,
-        if (conversationId != null) 'conversation_id': conversationId,
+        'conversation_id': ?conversationId,
       });
       if (response.statusCode == 200) {
         return response.data as Map<String, dynamic>;

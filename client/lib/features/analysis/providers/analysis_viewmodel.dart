@@ -39,13 +39,11 @@ class PredictionHistoryItem {
   final DateTime date;
   final String label;
   final double probability;
-  final String? conversationId;
 
   const PredictionHistoryItem({
     required this.date,
     required this.label,
     required this.probability,
-    this.conversationId,
   });
 }
 
@@ -60,71 +58,76 @@ class AnalysisData {
     this.history = const [],
   });
 
-  bool get hasData => latest != null && latest!.label != '-';
+  bool get hasData =>
+      latest != null && latest!.predictedLabel.isNotEmpty;
 
   String get strength {
     if (!hasData) return 'Belum ada data untuk dianalisis.';
-    final prob = latest!.probability;
+    final prob = latest!.confidence;
     if (prob >= 0.7) {
-      return 'Ritme belajar konsisten dengan completion rate video 85% dan quiz score rata-rata di atas threshold kelulusan.';
+      return 'Ritme belajar konsisten. Probabilitas kelulusan di atas 70% menunjukkan performa yang baik.';
     } else if (prob >= 0.5) {
-      return 'Kamu sudah berada di jalur yang tepat. Tingkatkan sedikit lagi quiz score untuk mencapai probabilitas kelulusan yang lebih tinggi.';
+      return 'Kamu sudah berada di jalur yang tepat. Tingkatkan sedikit lagi untuk mencapai probabilitas yang lebih tinggi.';
     }
     return 'Kamu masih memiliki waktu untuk meningkatkan performa. Fokus pada penyelesaian video dan quiz secara konsisten.';
   }
 
   String get improvement {
-    if (!hasData) return 'Gunakan fitur chat dengan AI untuk mendapatkan saran belajar.';
-    final prob = latest!.probability;
+    if (!hasData) {
+      return 'Gunakan fitur chat dengan AI untuk mendapatkan saran belajar.';
+    }
+    final prob = latest!.confidence;
     if (prob < 0.7) {
-      return 'Forum participation masih rendah. Disarankan aktif di diskusi forum untuk meningkatkan engagement & probabilitas lulus.';
+      return 'Forum participation masih rendah. Disarankan aktif di diskusi forum untuk meningkatkan engagement.';
     }
     return 'Tingkatkan interaksi di forum diskusi untuk memperdalam pemahaman materi.';
   }
 
-  List<Recommendation> get recommendations {
-    final r = <Recommendation>[];
-    r.add(const Recommendation(
-      id: 'chat_quiz',
-      icon: IconType.chat,
-      title: 'Tanya AI cara meningkatkan quiz score',
-      subtitle: 'Chat dengan AI · 2 menit',
-      actionType: 'chat',
-      actionPayload: 'Cara meningkatkan quiz score',
-    ));
-    r.add(const Recommendation(
-      id: 'read_material',
-      icon: IconType.book,
-      title: 'Baca materi yang relevan',
-      subtitle: 'Modul 4 · 15 menit',
-      actionType: 'chat',
-      actionPayload: 'Materi apa saja yang perlu saya pelajari ulang?',
-    ));
-    r.add(const Recommendation(
-      id: 'quiz_practice',
-      icon: IconType.quiz,
-      title: 'Latihan 5 soal',
-      subtitle: 'Estimasi 20 menit',
-      actionType: 'quiz',
-      actionPayload: '',
-    ));
-    return r;
-  }
+  List<Recommendation> get recommendations => [
+        const Recommendation(
+          id: 'chat_quiz',
+          icon: IconType.chat,
+          title: 'Tanya AI cara meningkatkan quiz score',
+          subtitle: 'Chat dengan AI · 2 menit',
+          actionType: 'chat',
+          actionPayload: 'Cara meningkatkan quiz score',
+        ),
+        const Recommendation(
+          id: 'read_material',
+          icon: IconType.book,
+          title: 'Baca materi yang relevan',
+          subtitle: 'Modul 4 · 15 menit',
+          actionType: 'chat',
+          actionPayload: 'Materi apa saja yang perlu saya pelajari ulang?',
+        ),
+        const Recommendation(
+          id: 'quiz_practice',
+          icon: IconType.quiz,
+          title: 'Latihan 5 soal',
+          subtitle: 'Estimasi 20 menit',
+          actionType: 'quiz',
+          actionPayload: '',
+        ),
+      ];
 
   ProgressComparison? get progressComparison {
     if (history.length < 2) return null;
     return ProgressComparison(
-      yesterdayProbability: history[history.length - 2].probability,
-      todayProbability: history.last.probability,
+      yesterdayProbability: history[history.length - 2].confidence,
+      todayProbability: history.last.confidence,
     );
   }
 
   List<PredictionHistoryItem> get historyItems {
-    return history.reversed.map((p) => PredictionHistoryItem(
-      date: p.createdAt,
-      label: p.isPassed ? 'Lulus' : 'Tidak Lulus',
-      probability: p.probability,
-    )).toList();
+    return history.reversed
+        .map(
+          (p) => PredictionHistoryItem(
+            date: p.generatedAt,
+            label: p.predictedLabel,
+            probability: p.confidence,
+          ),
+        )
+        .toList();
   }
 }
 
@@ -139,4 +142,6 @@ class AnalysisViewModel extends AsyncNotifier<AnalysisData> {
 }
 
 final analysisViewModelProvider =
-    AsyncNotifierProvider<AnalysisViewModel, AnalysisData>(AnalysisViewModel.new);
+    AsyncNotifierProvider<AnalysisViewModel, AnalysisData>(
+  AnalysisViewModel.new,
+);

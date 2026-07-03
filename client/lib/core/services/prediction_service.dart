@@ -19,11 +19,16 @@ class PredictionService {
 
   Future<List<Prediction>> getHistory({int days = 30}) async {
     try {
-      final response = await _api.get('/predictions/history', queryParameters: {'days': days});
+      final response = await _api.get(
+        '/predictions/history',
+        queryParameters: {'days': days},
+      );
       if (response.statusCode == 200) {
         final data = response.data as Map<String, dynamic>;
         final list = data['predictions'] as List<dynamic>? ?? [];
-        return list.map((e) => Prediction.fromJson(e as Map<String, dynamic>)).toList();
+        return list
+            .map((e) => Prediction.fromJson(e as Map<String, dynamic>))
+            .toList();
       }
     } catch (_) {}
     return [];
@@ -33,7 +38,9 @@ class PredictionService {
     try {
       final response = await _api.get('/predictions/analysis');
       if (response.statusCode == 200) {
-        return PredictionAnalysis.fromJson(response.data as Map<String, dynamic>);
+        return PredictionAnalysis.fromJson(
+          response.data as Map<String, dynamic>,
+        );
       }
     } catch (_) {}
     return null;

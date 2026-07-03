@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers/auth_providers.dart';
-import '../../../core/services/auth_repository.dart';
 
 enum LoginStage { idle, loading, success, error }
 

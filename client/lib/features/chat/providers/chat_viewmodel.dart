@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/models/agent_event.dart';
@@ -5,61 +7,31 @@ import '../../../core/models/chat_message.dart';
 import '../../../core/providers/auth_providers.dart';
 import '../../../core/services/agent_socket_service.dart';
 import '../../../core/services/chat_repository.dart';
+import 'chat_state.dart';
 
-enum AgentStatus { idle, thinking, online }
+class ChatViewModel extends Notifier<ChatState> {
+  late final AgentSocketService _socketService;
+  late final ChatRepository _chatRepository;
+  StreamSubscription<AgentEvent>? _eventSub;
 
-class ChatState {
-  final List<ChatMessage> messages;
-  final ChatMessage? currentStreamingMessage;
-  final List<AgentEvent> traceLog;
-  final AgentStatus status;
-  final ConnectionMode connectionMode;
-  final bool isSending;
+  @override
+  ChatState build() {
+    final storage = ref.watch(secureStorageProvider);
+    final api = ref.watch(apiClientProvider);
 
-  const ChatState({
-    this.messages = const [],
-    this.currentStreamingMessage,
-    this.traceLog = const [],
-    this.status = AgentStatus.online,
-    this.connectionMode = ConnectionMode.realtime,
-    this.isSending = false,
-  });
+    _socketService = AgentSocketService(storage: storage);
+    _chatRepository = ChatRepository(api);
 
-  ChatState copyWith({
-    List<ChatMessage>? messages,
-    ChatMessage? currentStreamingMessage,
-    List<AgentEvent>? traceLog,
-    AgentStatus? status,
-    ConnectionMode? connectionMode,
-    bool? isSending,
-  }) {
-    return ChatState(
-      messages: messages ?? this.messages,
-      currentStreamingMessage: currentStreamingMessage ?? this.currentStreamingMessage,
-      traceLog: traceLog ?? this.traceLog,
-      status: status ?? this.status,
-      connectionMode: connectionMode ?? this.connectionMode,
-      isSending: isSending ?? this.isSending,
-    );
-  }
-}
+    _socketService.connect();
+    _socketService.listenForeground();
+    _eventSub = _socketService.events?.listen(_onEvent);
 
-class ChatViewModel extends StateNotifier<ChatState> {
-  final AgentSocketService _socketService;
-  final ChatRepository _chatRepository;
-  final Ref _ref;
-
-  ChatViewModel(this._socketService, this._chatRepository, this._ref)
-      : super(const ChatState()) {
-    _init();
-    _ref.onDispose(() {
+    ref.onDispose(() {
+      _eventSub?.cancel();
       _socketService.dispose();
     });
-  }
 
-  void _init() {
-    _socketService.connect();
-    _socketService.events?.listen(_onEvent);
+    return const ChatState();
   }
 
   void _onEvent(AgentEvent event) {
@@ -67,12 +39,17 @@ class ChatViewModel extends StateNotifier<ChatState> {
 
     switch (event) {
       case StateUpdateEvent e:
-        final status = switch (e.node) {
-          'supervisor' || 'rag_tool' || 'firecrawl_tool' || 'predictive_tool' || 'response_node' =>
-            AgentStatus.thinking,
-          _ => AgentStatus.online,
-        };
-        state = state.copyWith(traceLog: trace, status: status);
+        final isActive = const {
+          'supervisor',
+          'rag_tool',
+          'firecrawl_tool',
+          'predictive_tool',
+          'response_node',
+        }.contains(e.node);
+        state = state.copyWith(
+          traceLog: trace,
+          status: isActive ? AgentStatus.thinking : AgentStatus.online,
+        );
 
       case ToolCallEvent _:
         state = state.copyWith(traceLog: trace);
@@ -84,7 +61,9 @@ class ChatViewModel extends StateNotifier<ChatState> {
         final msg = state.currentStreamingMessage;
         if (msg != null) {
           state = state.copyWith(
-            currentStreamingMessage: msg.copyWith(content: msg.content + e.content),
+            currentStreamingMessage: msg.copyWith(
+              content: msg.content + e.content,
+            ),
           );
         }
 
@@ -99,10 +78,12 @@ class ChatViewModel extends StateNotifier<ChatState> {
       case CitationEvent e:
         final msg = state.currentStreamingMessage;
         if (msg != null) {
-          final citation = Citation(e.sourceId, e.snippet, e.score, e.metadata);
           state = state.copyWith(
             currentStreamingMessage: msg.copyWith(
-              citations: [...msg.citations, citation],
+              citations: [
+                ...msg.citations,
+                Citation(e.sourceId, e.snippet, e.score, e.metadata),
+              ],
             ),
           );
         }
@@ -110,18 +91,20 @@ class ChatViewModel extends StateNotifier<ChatState> {
       case WebSearchResultEvent e:
         final msg = state.currentStreamingMessage;
         if (msg != null) {
-          final result = WebSearchResult(
-            resultId: e.resultId,
-            url: e.url,
-            title: e.title,
-            snippet: e.snippet,
-            markdownExcerpt: e.markdownExcerpt,
-            source: e.source,
-            relevanceScore: e.relevanceScore,
-          );
           state = state.copyWith(
             currentStreamingMessage: msg.copyWith(
-              webResults: [...msg.webResults, result],
+              webResults: [
+                ...msg.webResults,
+                WebSearchResult(
+                  resultId: e.resultId,
+                  url: e.url,
+                  title: e.title,
+                  snippet: e.snippet,
+                  markdownExcerpt: e.markdownExcerpt,
+                  source: e.source,
+                  relevanceScore: e.relevanceScore,
+                ),
+              ],
             ),
           );
         }
@@ -135,15 +118,21 @@ class ChatViewModel extends StateNotifier<ChatState> {
           );
           state = state.copyWith(
             messages: [...state.messages, finalMsg],
-            currentStreamingMessage: null,
+            clearStreaming: true,
             status: AgentStatus.online,
             isSending: false,
+            conversationId: e.conversationId.isNotEmpty
+                ? e.conversationId
+                : state.conversationId,
           );
         }
 
       case AgentErrorEvent e:
         if (e.fatal) {
-          state = state.copyWith(status: AgentStatus.online, isSending: false);
+          state = state.copyWith(
+            status: AgentStatus.online,
+            isSending: false,
+          );
         } else {
           final msg = state.currentStreamingMessage;
           if (msg != null) {
@@ -152,25 +141,24 @@ class ChatViewModel extends StateNotifier<ChatState> {
             );
           }
         }
-
     }
   }
 
   void sendMessage(String text) {
     if (state.isSending || text.trim().isEmpty) return;
 
+    final now = DateTime.now();
     final userMsg = ChatMessage(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      id: now.millisecondsSinceEpoch.toString(),
       isUser: true,
       content: text.trim(),
-      timestamp: DateTime.now(),
+      timestamp: now,
     );
-
     final assistantMsg = ChatMessage(
-      id: 'stream_${DateTime.now().millisecondsSinceEpoch}',
+      id: 'stream_${now.millisecondsSinceEpoch}',
       isUser: false,
       isStreaming: true,
-      timestamp: DateTime.now(),
+      timestamp: now,
     );
 
     state = state.copyWith(
@@ -189,16 +177,24 @@ class ChatViewModel extends StateNotifier<ChatState> {
 
   Future<void> _sendRestFallback(String text) async {
     try {
-      final response = await _chatRepository.sendMessage(text);
+      final response = await _chatRepository.sendMessage(
+        text,
+        conversationId: state.conversationId,
+      );
       final msg = state.currentStreamingMessage;
       if (msg != null) {
         final finalMsg = msg.copyWith(
           content: response['message'] as String? ?? '',
           isStreaming: false,
         );
+        if (response['conversation_id'] != null) {
+          state = state.copyWith(
+            conversationId: response['conversation_id'] as String,
+          );
+        }
         state = state.copyWith(
           messages: [...state.messages, finalMsg],
-          currentStreamingMessage: null,
+          clearStreaming: true,
           isSending: false,
         );
       }
@@ -216,7 +212,7 @@ class ChatViewModel extends StateNotifier<ChatState> {
     }
   }
 
-  void reconnectWs() async {
+  Future<void> reconnectWs() async {
     await _socketService.reconnect();
     state = state.copyWith(connectionMode: _socketService.mode);
   }
@@ -227,12 +223,6 @@ class ChatViewModel extends StateNotifier<ChatState> {
 }
 
 final chatViewModelProvider =
-    StateNotifierProvider<ChatViewModel, ChatState>((ref) {
-  final storage = ref.watch(secureStorageProvider);
-  final api = ref.watch(apiClientProvider);
-  final socketService = AgentSocketService(storage: storage);
-  final chatRepository = ChatRepository(api);
-  return ChatViewModel(socketService, chatRepository, ref);
-});
+    NotifierProvider<ChatViewModel, ChatState>(ChatViewModel.new);
 
 final chatPresetQueryProvider = StateProvider<String?>((ref) => null);

@@ -34,31 +34,31 @@ class HomeTab extends ConsumerWidget {
             userAsync.when(
               data: (status) => _GreetingCard(userName: status.user?.name ?? ''),
               loading: () => const _GreetingCard(userName: ''),
-              error: (_, __) => const _GreetingCard(userName: ''),
+              error: (_, _) => const _GreetingCard(userName: ''),
             ),
             const SizedBox(height: AppSpacing.lg),
 
             latestAsync.when(
               data: (pred) {
-                if (pred == null || pred.label == '-') {
+                if (pred == null || pred.predictedLabel == '-' || pred.predictedLabel.isEmpty) {
                   return _EmptyPredictionCard();
                 }
                 return _PredictionSummaryCard(prediction: pred);
               },
               loading: () => const _ShimmerCard(),
-              error: (_, __) => const SizedBox.shrink(),
+              error: (_, _) => const SizedBox.shrink(),
             ),
             const SizedBox(height: AppSpacing.lg),
 
             latestAsync.when(
               data: (pred) {
-                if (pred == null || pred.label == '-') {
+                if (pred == null || pred.predictedLabel == '-' || pred.predictedLabel.isEmpty) {
                   return const SizedBox.shrink();
                 }
                 return _InsightCard(prediction: pred);
               },
               loading: () => const SizedBox.shrink(),
-              error: (_, __) => const SizedBox.shrink(),
+              error: (_, _) => const SizedBox.shrink(),
             ),
             const SizedBox(height: AppSpacing.lg),
 
@@ -68,7 +68,7 @@ class HomeTab extends ConsumerWidget {
             historyAsync.when(
               data: (history) => _HistoryChart(history: history),
               loading: () => const _ShimmerCard(height: 240),
-              error: (_, __) => const SizedBox.shrink(),
+              error: (_, _) => const SizedBox.shrink(),
             ),
             const SizedBox(height: AppSpacing.lg),
 
@@ -162,7 +162,7 @@ class _PredictionSummaryCard extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   Text(
-                    prediction.label,
+                    prediction.predictedLabel,
                     style: const TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class _PredictionSummaryCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Confidence ${(prediction.probability * 100).toStringAsFixed(0)}% · Model: Deep MLP',
+                    'Confidence ${(prediction.confidence * 100).toStringAsFixed(0)}% · Model: Deep MLP',
                     style: const TextStyle(
                       fontSize: 13,
                       color: AppColors.textOnPrimary,
@@ -286,10 +286,10 @@ class _HistoryChart extends StatelessWidget {
     }
 
     final sorted = List<Prediction>.from(history)
-      ..sort((a, b) => a.createdAt.compareTo(b.createdAt));
+      ..sort((a, b) => a.generatedAt.compareTo(b.generatedAt));
 
     final spots = sorted.asMap().entries.map((e) {
-      return FlSpot(e.key.toDouble(), e.value.probability);
+      return FlSpot(e.key.toDouble(), e.value.confidence);
     }).toList();
 
     return Card(
@@ -341,7 +341,7 @@ class _HistoryChart extends StatelessWidget {
                         getTitlesWidget: (value, meta) {
                           final idx = value.toInt();
                           if (idx < 0 || idx >= sorted.length) return const SizedBox.shrink();
-                          final date = sorted[idx].createdAt;
+                          final date = sorted[idx].generatedAt;
                           return Padding(
                             padding: const EdgeInsets.only(top: 4),
                             child: Text(

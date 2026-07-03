@@ -9,6 +9,7 @@ import '../../core/services/agent_socket_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
+import 'providers/chat_state.dart';
 import 'providers/chat_viewmodel.dart';
 
 class ChatPage extends ConsumerStatefulWidget {
@@ -18,18 +19,37 @@ class ChatPage extends ConsumerStatefulWidget {
   ConsumerState<ChatPage> createState() => _ChatPageState();
 }
 
-class _ChatPageState extends ConsumerState<ChatPage> {
+class _ChatPageState extends ConsumerState<ChatPage>
+    with WidgetsBindingObserver {
   final _textController = TextEditingController();
   final _scrollController = ScrollController();
   final _inputFocus = FocusNode();
   bool _traceSheetOpen = false;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _textController.dispose();
     _scrollController.dispose();
     _inputFocus.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState lifecycle) {
+    if (lifecycle == AppLifecycleState.resumed) {
+      final vm = ref.read(chatViewModelProvider.notifier);
+      if (ref.read(chatViewModelProvider).connectionMode ==
+          ConnectionMode.realtime) {
+        vm.reconnectWs();
+      }
+    }
   }
 
   void _send() {
@@ -69,8 +89,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     });
 
     final chatState = ref.watch(chatViewModelProvider);
-    final status = chatState.status;
-    final connectionMode = chatState.connectionMode;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -79,7 +97,10 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         elevation: 0.5,
         title: Row(
           children: [
-            _StatusBadge(status: status, connectionMode: connectionMode),
+            _StatusBadge(
+              status: chatState.status,
+              connectionMode: chatState.connectionMode,
+            ),
             const SizedBox(width: 8),
             const Text('AI Assistant'),
           ],
@@ -87,7 +108,8 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.receipt_long_rounded),
-            onPressed: () => setState(() => _traceSheetOpen = !_traceSheetOpen),
+            onPressed: () =>
+                setState(() => _traceSheetOpen = !_traceSheetOpen),
           ),
           PopupMenuButton<String>(
             onSelected: (value) {
@@ -95,50 +117,50 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                 ref.read(chatViewModelProvider.notifier).clearHistory();
               }
             },
-            itemBuilder: (context) => [
-              const PopupMenuItem(value: 'clear', child: Text('Hapus percakapan')),
+            itemBuilder: (_) => [
+              const PopupMenuItem(
+                value: 'clear',
+                child: Text('Hapus percakapan'),
+              ),
             ],
           ),
         ],
       ),
       body: Column(
         children: [
-          if (connectionMode == ConnectionMode.rest)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: AppSpacing.md),
-              color: AppColors.warning.withValues(alpha: 0.15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.wifi_off_rounded, size: 14, color: AppColors.warning),
-                  const SizedBox(width: 6),
-                  Text(
-                    'Mode non-realtime',
-                    style: AppTextStyles.caption.copyWith(color: AppColors.warning),
-                  ),
-                ],
-              ),
+          if (chatState.connectionMode == ConnectionMode.rest)
+            _ConnectionModeBanner(
+              onRetry: () =>
+                  ref.read(chatViewModelProvider.notifier).reconnectWs(),
             ),
           Expanded(
-            child: chatState.messages.isEmpty && chatState.currentStreamingMessage == null
+            child: chatState.messages.isEmpty &&
+                    chatState.currentStreamingMessage == null
                 ? _EmptyState(onQuickSend: _quickSend)
                 : ListView.builder(
                     controller: _scrollController,
                     reverse: true,
-                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
-                    itemCount: chatState.messages.length + (chatState.currentStreamingMessage != null ? 1 : 0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.sm,
+                    ),
+                    itemCount: chatState.messages.length +
+                        (chatState.currentStreamingMessage != null ? 1 : 0),
                     itemBuilder: (context, index) {
-                      if (index == 0 && chatState.currentStreamingMessage != null) {
+                      if (index == 0 &&
+                          chatState.currentStreamingMessage != null) {
                         return _ChatBubble(
                           message: chatState.currentStreamingMessage!,
                         );
                       }
-                      final msgIndex = chatState.currentStreamingMessage != null
-                          ? index - 1
-                          : index;
-                      final reversed = chatState.messages.length - 1 - msgIndex;
-                      if (reversed < 0 || reversed >= chatState.messages.length) {
+                      final msgIndex =
+                          chatState.currentStreamingMessage != null
+                              ? index - 1
+                              : index;
+                      final reversed =
+                          chatState.messages.length - 1 - msgIndex;
+                      if (reversed < 0 ||
+                          reversed >= chatState.messages.length) {
                         return const SizedBox.shrink();
                       }
                       return _ChatBubble(
@@ -155,18 +177,10 @@ class _ChatPageState extends ConsumerState<ChatPage> {
           ),
         ],
       ),
-      floatingActionButton: _traceSheetOpen
-          ? null
-          : FloatingActionButton(
-              onPressed: () => setState(() => _traceSheetOpen = true),
-              backgroundColor: AppColors.primary,
-              foregroundColor: AppColors.textOnPrimary,
-              child: const Icon(Icons.receipt_long_rounded),
-            ),
       bottomSheet: _traceSheetOpen
           ? _AgentTraceSheet(
               traceLog: chatState.traceLog,
-              connectionMode: connectionMode,
+              connectionMode: chatState.connectionMode,
               onClose: () => setState(() => _traceSheetOpen = false),
             )
           : null,
@@ -174,28 +188,83 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   }
 }
 
-class _StatusBadge extends ConsumerWidget {
+class _ConnectionModeBanner extends StatelessWidget {
+  final VoidCallback onRetry;
+
+  const _ConnectionModeBanner({required this.onRetry});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        vertical: 4,
+        horizontal: AppSpacing.md,
+      ),
+      color: AppColors.warning.withValues(alpha: 0.15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.wifi_off_rounded,
+            size: 14,
+            color: AppColors.warning,
+          ),
+          const SizedBox(width: 6),
+          Text(
+            'Mode non-realtime',
+            style: AppTextStyles.caption.copyWith(color: AppColors.warning),
+          ),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: onRetry,
+            child: Text(
+              'Coba sambungkan ulang',
+              style: AppTextStyles.caption.copyWith(
+                color: AppColors.warning,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _StatusBadge extends StatelessWidget {
   final AgentStatus status;
   final ConnectionMode connectionMode;
 
-  const _StatusBadge({required this.status, required this.connectionMode});
+  const _StatusBadge({
+    required this.status,
+    required this.connectionMode,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     if (connectionMode == ConnectionMode.rest) {
-      return const Icon(Icons.warning_amber_rounded, size: 16, color: AppColors.warning);
+      return const Icon(
+        Icons.warning_amber_rounded,
+        size: 16,
+        color: AppColors.warning,
+      );
     }
-    switch (status) {
-      case AgentStatus.thinking:
-        return const SizedBox(
-          width: 16, height: 16,
-          child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary),
-        );
-      case AgentStatus.online:
-        return const Icon(Icons.check_circle_rounded, size: 16, color: AppColors.success);
-      case AgentStatus.idle:
-        return const Icon(Icons.check_circle_rounded, size: 16, color: AppColors.success);
-    }
+    return switch (status) {
+      AgentStatus.thinking => const SizedBox(
+          width: 16,
+          height: 16,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            color: AppColors.primary,
+          ),
+        ),
+      _ => const Icon(
+          Icons.check_circle_rounded,
+          size: 16,
+          color: AppColors.success,
+        ),
+    };
   }
 }
 
@@ -206,10 +275,10 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final suggestions = [
+    const suggestions = [
       ('Jelaskan neural network', 'Jelaskan neural network'),
-      ('Apa itu supervised learning?', 'Apa itu supervised learning?'),
-      ('Bantu saya quiz', 'Bantu saya quiz'),
+      ('Prediksi kelulusanku', 'Prediksi kelulusanku'),
+      ('Berita AI terbaru 2026', 'Berita AI terbaru 2026'),
     ];
     return Center(
       child: Padding(
@@ -217,21 +286,36 @@ class _EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.psychology_rounded, size: 64, color: AppColors.textHint.withValues(alpha: 0.4)),
+            Icon(
+              Icons.psychology_rounded,
+              size: 64,
+              color: AppColors.textHint.withValues(alpha: 0.4),
+            ),
             const SizedBox(height: AppSpacing.md),
             const Text('Mulai belajar dengan AI', style: AppTextStyles.h2),
             const SizedBox(height: AppSpacing.sm),
-            const Text('Tanya apapun seputar materi pembelajaran', style: AppTextStyles.body, textAlign: TextAlign.center),
+            const Text(
+              'Tanya apapun seputar materi pembelajaran',
+              style: AppTextStyles.body,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: AppSpacing.lg),
-            ...suggestions.map((s) => Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: ActionChip(
-                label: Text(s.$1, style: const TextStyle(color: AppColors.primary)),
-                onPressed: () => onQuickSend(s.$2),
-                side: const BorderSide(color: AppColors.primary),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.full)),
+            ...suggestions.map(
+              (s) => Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                child: ActionChip(
+                  label: Text(
+                    s.$1,
+                    style: const TextStyle(color: AppColors.primary),
+                  ),
+                  onPressed: () => onQuickSend(s.$2),
+                  side: const BorderSide(color: AppColors.primary),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.full),
+                  ),
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),
@@ -250,38 +334,58 @@ class _ChatBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.sm),
       child: Row(
-        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isUser) ...[
             Container(
-              width: 32, height: 32,
+              width: 32,
+              height: 32,
               decoration: const BoxDecoration(
                 color: AppColors.primary,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.auto_awesome_rounded, size: 18, color: AppColors.textOnPrimary),
+              child: const Icon(
+                Icons.auto_awesome_rounded,
+                size: 18,
+                color: AppColors.textOnPrimary,
+              ),
             ),
             const SizedBox(width: AppSpacing.sm),
           ],
           Flexible(
             child: Container(
-              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * (isUser ? 0.75 : 0.7)),
+              constraints: BoxConstraints(
+                maxWidth:
+                    MediaQuery.of(context).size.width * (isUser ? 0.75 : 0.7),
+              ),
               padding: const EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
-                color: isUser ? AppColors.primary : AppColors.surface,
+                color:
+                    isUser ? AppColors.primary : AppColors.surface,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(AppRadius.lg),
                   topRight: const Radius.circular(AppRadius.lg),
-                  bottomLeft: Radius.circular(isUser ? AppRadius.lg : AppRadius.sm),
-                  bottomRight: Radius.circular(isUser ? AppRadius.sm : AppRadius.lg),
+                  bottomLeft:
+                      Radius.circular(isUser ? AppRadius.lg : AppRadius.sm),
+                  bottomRight:
+                      Radius.circular(isUser ? AppRadius.sm : AppRadius.lg),
                 ),
-                boxShadow: isUser ? null : [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 4, offset: const Offset(0, 2))],
+                boxShadow: isUser
+                    ? null
+                    : [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.04),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildContent(context),
+                  _BubbleContent(message: message),
                   if (message.prediction != null) ...[
                     const SizedBox(height: AppSpacing.md),
                     _PredictionChartCard(prediction: message.prediction!),
@@ -301,20 +405,32 @@ class _ChatBubble extends StatelessWidget {
           if (isUser) ...[
             const SizedBox(width: AppSpacing.sm),
             Container(
-              width: 32, height: 32,
+              width: 32,
+              height: 32,
               decoration: const BoxDecoration(
                 color: AppColors.accentBlue,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.person_rounded, size: 18, color: AppColors.textOnPrimary),
+              child: const Icon(
+                Icons.person_rounded,
+                size: 18,
+                color: AppColors.textOnPrimary,
+              ),
             ),
           ],
         ],
       ),
     );
   }
+}
 
-  Widget _buildContent(BuildContext context) {
+class _BubbleContent extends StatelessWidget {
+  final ChatMessage message;
+
+  const _BubbleContent({required this.message});
+
+  @override
+  Widget build(BuildContext context) {
     if (message.content.isEmpty && message.isStreaming) {
       return Row(
         mainAxisSize: MainAxisSize.min,
@@ -322,8 +438,12 @@ class _ChatBubble extends StatelessWidget {
           const Text('Memproses', style: AppTextStyles.body),
           const SizedBox(width: 4),
           SizedBox(
-            width: 12, height: 12,
-            child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary.withValues(alpha: 0.6)),
+            width: 12,
+            height: 12,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: AppColors.primary.withValues(alpha: 0.6),
+            ),
           ),
         ],
       );
@@ -334,15 +454,24 @@ class _ChatBubble extends StatelessWidget {
       children: [
         if (message.content.isNotEmpty)
           SelectableText(
-            message.isStreaming ? '$content┃' : message.content,
-            style: isUser
-                ? AppTextStyles.body.copyWith(color: AppColors.textOnPrimary)
+            message.isStreaming
+                ? '${message.content}┃'
+                : message.content,
+            style: message.isUser
+                ? AppTextStyles.body
+                    .copyWith(color: AppColors.textOnPrimary)
                 : AppTextStyles.body,
           ),
         if (message.error != null) ...[
           const SizedBox(height: AppSpacing.sm),
           Chip(
-            label: Text(message.error!, style: const TextStyle(color: AppColors.error, fontSize: 12)),
+            label: Text(
+              message.error!,
+              style: const TextStyle(
+                color: AppColors.error,
+                fontSize: 12,
+              ),
+            ),
             backgroundColor: AppColors.error.withValues(alpha: 0.1),
             side: BorderSide.none,
             padding: EdgeInsets.zero,
@@ -352,9 +481,6 @@ class _ChatBubble extends StatelessWidget {
       ],
     );
   }
-
-  bool get isUser => message.isUser;
-  String get content => message.content;
 }
 
 class _PredictionChartCard extends StatelessWidget {
@@ -364,8 +490,14 @@ class _PredictionChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final passed = prediction.classScores.length >= 2 ? prediction.classScores[0].score : 0.0;
-    final failed = prediction.classScores.length >= 2 ? prediction.classScores[1].score : 0.0;
+    final lulusScore = prediction.classScores
+        .where((s) => s.label == 'Lulus')
+        .map((s) => s.score)
+        .firstOrNull ?? 0.0;
+    final tidakLulusScore = prediction.classScores
+        .where((s) => s.label == 'Tidak Lulus')
+        .map((s) => s.score)
+        .firstOrNull ?? 0.0;
 
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -376,7 +508,33 @@ class _PredictionChartCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Prediksi Kelulusan', style: AppTextStyles.label),
+          Row(
+            children: [
+              const Text('Prediksi Kelulusan', style: AppTextStyles.label),
+              const Spacer(),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: prediction.predictedLabel == 'Lulus'
+                      ? AppColors.success.withValues(alpha: 0.1)
+                      : AppColors.error.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(AppRadius.full),
+                ),
+                child: Text(
+                  '${prediction.predictedLabel} '
+                  '${(prediction.confidence * 100).toStringAsFixed(0)}%',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: prediction.predictedLabel == 'Lulus'
+                        ? AppColors.success
+                        : AppColors.error,
+                  ),
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 120,
@@ -392,31 +550,53 @@ class _PredictionChartCard extends StatelessWidget {
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
                         const texts = ['Lulus', 'Tidak Lulus'];
-                        return Text(texts[value.toInt()], style: const TextStyle(fontSize: 11, color: AppColors.textSecondary));
+                        final idx = value.toInt();
+                        if (idx < 0 || idx >= texts.length) {
+                          return const SizedBox.shrink();
+                        }
+                        return Text(
+                          texts[idx],
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: AppColors.textSecondary,
+                          ),
+                        );
                       },
                     ),
                   ),
-                  leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                  topTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                  rightTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
                 ),
                 gridData: FlGridData(show: false),
                 borderData: FlBorderData(show: false),
                 barGroups: [
                   BarChartGroupData(x: 0, barRods: [
                     BarChartRodData(
-                      toY: passed,
+                      toY: lulusScore,
                       color: AppColors.success,
                       width: 24,
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(4),
+                        topRight: Radius.circular(4),
+                      ),
                     ),
                   ]),
                   BarChartGroupData(x: 1, barRods: [
                     BarChartRodData(
-                      toY: failed,
+                      toY: tidakLulusScore,
                       color: AppColors.error,
                       width: 24,
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(4),
+                        topRight: Radius.circular(4),
+                      ),
                     ),
                   ]),
                 ],
@@ -454,55 +634,104 @@ class _CitationTileState extends State<_CitationTile> {
             onTap: () => setState(() => _expanded = !_expanded),
             borderRadius: BorderRadius.circular(AppRadius.md),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.sm,
+                vertical: AppSpacing.sm,
+              ),
               child: Row(
                 children: [
-                  Icon(Icons.menu_book_rounded, size: 16, color: AppColors.accentBlue),
+                  const Icon(
+                    Icons.menu_book_rounded,
+                    size: 16,
+                    color: AppColors.accentBlue,
+                  ),
                   const SizedBox(width: 6),
-                  Text('${widget.citations.length} sumber', style: AppTextStyles.caption.copyWith(color: AppColors.accentBlue)),
+                  Text(
+                    '${widget.citations.length} sumber',
+                    style: AppTextStyles.caption
+                        .copyWith(color: AppColors.accentBlue),
+                  ),
                   const Spacer(),
-                  Icon(_expanded ? Icons.expand_less : Icons.expand_more, size: 16, color: AppColors.textHint),
+                  Icon(
+                    _expanded
+                        ? Icons.expand_less
+                        : Icons.expand_more,
+                    size: 16,
+                    color: AppColors.textHint,
+                  ),
                 ],
               ),
             ),
           ),
           if (_expanded) ...[
             const Divider(height: 1),
-            ...widget.citations.map((c) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('${widget.citations.indexOf(c) + 1}. ', style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary)),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(c.snippet, style: AppTextStyles.caption, maxLines: 3, overflow: TextOverflow.ellipsis),
-                        const SizedBox(height: 2),
-                        Row(
-                          children: [
-                            if (c.metadata.author != null) ...[
-                              Text(c.metadata.author!, style: const TextStyle(fontSize: 10, color: AppColors.textHint)),
-                              const SizedBox(width: 8),
-                            ],
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                              decoration: BoxDecoration(
-                                color: AppColors.success.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(2),
-                              ),
-                              child: Text('${(c.score * 100).toStringAsFixed(0)}%', style: const TextStyle(fontSize: 10, color: AppColors.success)),
-                            ),
-                          ],
-                        ),
-                      ],
+            ...widget.citations.asMap().entries.map(
+              (entry) => Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.xs,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${entry.key + 1}. ',
+                      style: AppTextStyles.caption.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            entry.value.snippet,
+                            style: AppTextStyles.caption,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                          Row(
+                            children: [
+                              if (entry.value.metadata.author != null) ...[
+                                Text(
+                                  entry.value.metadata.author!,
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    color: AppColors.textHint,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                  vertical: 1,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColors.success
+                                      .withValues(alpha: 0.1),
+                                  borderRadius:
+                                      BorderRadius.circular(2),
+                                ),
+                                child: Text(
+                                  '${(entry.value.score * 100).toStringAsFixed(0)}%',
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    color: AppColors.success,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ),
           ],
         ],
       ),
@@ -535,21 +764,40 @@ class _WebSearchTileState extends State<_WebSearchTile> {
             onTap: () => setState(() => _expanded = !_expanded),
             borderRadius: BorderRadius.circular(AppRadius.md),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.sm,
+                vertical: AppSpacing.sm,
+              ),
               child: Row(
                 children: [
-                  Icon(Icons.language_rounded, size: 16, color: AppColors.accentBlue),
+                  const Icon(
+                    Icons.language_rounded,
+                    size: 16,
+                    color: AppColors.accentBlue,
+                  ),
                   const SizedBox(width: 6),
-                  Text('${widget.results.length} hasil web', style: AppTextStyles.caption.copyWith(color: AppColors.accentBlue)),
+                  Text(
+                    '${widget.results.length} hasil web',
+                    style: AppTextStyles.caption
+                        .copyWith(color: AppColors.accentBlue),
+                  ),
                   const Spacer(),
-                  Icon(_expanded ? Icons.expand_less : Icons.expand_more, size: 16, color: AppColors.textHint),
+                  Icon(
+                    _expanded
+                        ? Icons.expand_less
+                        : Icons.expand_more,
+                    size: 16,
+                    color: AppColors.textHint,
+                  ),
                 ],
               ),
             ),
           ),
           if (_expanded) ...[
             const Divider(height: 1),
-            ...widget.results.map((r) => _WebResultItem(result: r)),
+            ...widget.results.map(
+              (r) => _WebResultItem(result: r),
+            ),
           ],
         ],
       ),
@@ -566,31 +814,61 @@ class _WebResultItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        final uri = Uri.parse(result.url);
-        launchUrl(uri, mode: LaunchMode.externalApplication);
+        final uri = Uri.tryParse(result.url);
+        if (uri != null) {
+          launchUrl(uri, mode: LaunchMode.externalApplication);
+        }
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.sm,
+          vertical: AppSpacing.sm,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              result.source.isNotEmpty ? result.source : Uri.tryParse(result.url)?.host ?? result.url,
-              style: const TextStyle(fontSize: 11, color: AppColors.textHint),
+              Uri.tryParse(result.url)?.host ?? result.url,
+              style: const TextStyle(
+                fontSize: 11,
+                color: AppColors.textHint,
+              ),
             ),
             const SizedBox(height: 2),
-            Text(result.title, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.accentBlue)),
+            Text(
+              result.title,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: AppColors.accentBlue,
+              ),
+            ),
             const SizedBox(height: 2),
-            Text(result.snippet, style: AppTextStyles.caption, maxLines: 2, overflow: TextOverflow.ellipsis),
+            Text(
+              result.snippet,
+              style: AppTextStyles.caption,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
             if (result.relevanceScore > 0) ...[
               const SizedBox(height: 2),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 1,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(2),
                 ),
-                child: Text('relevansi ${(result.relevanceScore * 100).toStringAsFixed(0)}%', style: const TextStyle(fontSize: 10, color: AppColors.primary)),
+                child: Text(
+                  'relevansi '
+                  '${(result.relevanceScore * 100).toStringAsFixed(0)}%',
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: AppColors.primary,
+                  ),
+                ),
               ),
             ],
           ],
@@ -622,14 +900,21 @@ class _AgentTraceSheet extends StatelessWidget {
         return Container(
           decoration: const BoxDecoration(
             color: AppColors.surface,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.lg)),
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(AppRadius.lg),
+            ),
           ),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.sm,
+                ),
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: AppColors.border)),
+                  border: Border(
+                    bottom: BorderSide(color: AppColors.border),
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -637,7 +922,10 @@ class _AgentTraceSheet extends StatelessWidget {
                     const SizedBox(width: 8),
                     const Text('Agent Trace', style: AppTextStyles.subtitle),
                     const Spacer(),
-                    Text('${traceLog.length} events', style: AppTextStyles.caption),
+                    Text(
+                      '${traceLog.length} events',
+                      style: AppTextStyles.caption,
+                    ),
                     const SizedBox(width: AppSpacing.sm),
                     IconButton(
                       icon: const Icon(Icons.close, size: 18),
@@ -651,31 +939,52 @@ class _AgentTraceSheet extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               Expanded(
                 child: traceLog.isEmpty
-                    ? const Center(child: Text('Belum ada trace', style: AppTextStyles.body))
+                    ? const Center(
+                        child: Text(
+                          'Belum ada trace',
+                          style: AppTextStyles.body,
+                        ),
+                      )
                     : ListView.builder(
                         controller: scrollController,
-                        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.md,
+                        ),
                         itemCount: traceLog.length,
                         itemBuilder: (context, index) {
                           final event = traceLog[index];
                           return Padding(
-                            padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                            padding: const EdgeInsets.only(
+                              bottom: AppSpacing.xs,
+                            ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('${index + 1}.', style: AppTextStyles.caption),
+                                Text(
+                                  '${index + 1}.',
+                                  style: AppTextStyles.caption,
+                                ),
                                 const SizedBox(width: 4),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         event.summary,
-                                        style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                                        style: AppTextStyles.caption.copyWith(
+                                          color: AppColors.textSecondary,
+                                        ),
                                       ),
                                       if (event.detail.isNotEmpty) ...[
                                         const SizedBox(height: 2),
-                                        Text(event.detail, style: const TextStyle(fontSize: 11, color: AppColors.textHint)),
+                                        Text(
+                                          event.detail,
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            color: AppColors.textHint,
+                                          ),
+                                        ),
                                       ],
                                     ],
                                   ),
@@ -710,19 +1019,26 @@ class _ChatInputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(AppSpacing.sm, AppSpacing.sm, AppSpacing.sm, AppSpacing.md),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.sm,
+        AppSpacing.sm,
+        AppSpacing.sm,
+        AppSpacing.md,
+      ),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 4, offset: const Offset(0, -2))],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 4,
+            offset: const Offset(0, -2),
+          ),
+        ],
       ),
       child: SafeArea(
         top: false,
         child: Row(
           children: [
-            IconButton(
-              icon: const Icon(Icons.attach_file_rounded, color: AppColors.textHint),
-              onPressed: () {},
-            ),
             const SizedBox(width: AppSpacing.xs),
             Expanded(
               child: TextField(
@@ -733,12 +1049,17 @@ class _ChatInputBar extends StatelessWidget {
                 onSubmitted: isSending ? null : (_) => onSend(),
                 decoration: InputDecoration(
                   hintText: 'Tanya AI...',
-                  hintStyle: AppTextStyles.body.copyWith(color: AppColors.textHint),
+                  hintStyle: AppTextStyles.body
+                      .copyWith(color: AppColors.textHint),
                   filled: true,
                   fillColor: AppColors.background,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 10),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.md,
+                    vertical: 10,
+                  ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.full),
+                    borderRadius:
+                        BorderRadius.circular(AppRadius.full),
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -746,9 +1067,16 @@ class _ChatInputBar extends StatelessWidget {
             ),
             const SizedBox(width: AppSpacing.xs),
             isSending
-                ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
                 : IconButton(
-                    icon: const Icon(Icons.send_rounded, color: AppColors.primary),
+                    icon: const Icon(
+                      Icons.send_rounded,
+                      color: AppColors.primary,
+                    ),
                     onPressed: onSend,
                   ),
           ],
