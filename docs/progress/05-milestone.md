@@ -9,7 +9,7 @@
 | 5 | ML layer + Predictor singleton | - | ✅ |
 | 6 | LangGraph agent ReAct loop | - | ✅ |
 | 7 | Auth (JWT) + User API | - | ✅ |
-| 8 | WebSocket chat streaming | TBD | 🔧 |
+| 8 | WebSocket chat streaming + Flutter UI | - | ✅ |
 | 9 | RAG + pgvector search | - | ✅ |
 | 10 | File upload + knowledge ingestion | - | ✅ |
 | 11 | Flutter pages (all 8 pages) | - | ✅ |

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/analysis/analysis_page.dart';
@@ -10,10 +9,7 @@ import '../../features/home/home_tab.dart';
 import '../../features/knowledge/knowledge_page.dart';
 import '../../features/profile/profile_page.dart';
 import '../../features/splash/splash_page.dart';
-import '../../core/theme/app_colors.dart';
 import 'app_routes.dart';
-
-final _shellKey = GlobalKey<NavigatorState>();
 
 final appRouter = GoRouter(
   initialLocation: AppRoutes.splashPath,

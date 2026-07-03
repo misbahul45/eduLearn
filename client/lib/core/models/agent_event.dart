@@ -1,8 +1,9 @@
-import 'prediction.dart';
-
 sealed class AgentEvent {
   final DateTime timestamp;
   const AgentEvent(this.timestamp);
+
+  String get summary;
+  String get detail;
 }
 
 class StateUpdateEvent extends AgentEvent {
@@ -10,6 +11,12 @@ class StateUpdateEvent extends AgentEvent {
   final String status;
   final int iteration;
   const StateUpdateEvent(this.node, this.status, this.iteration, super.timestamp);
+
+  @override
+  String get summary => 'Node: $node → $status';
+
+  @override
+  String get detail => 'Iterasi ke-$iteration';
 }
 
 class ToolCallEvent extends AgentEvent {
@@ -17,6 +24,12 @@ class ToolCallEvent extends AgentEvent {
   final Map<String, dynamic> input;
   final String callId;
   const ToolCallEvent(this.toolName, this.input, this.callId, super.timestamp);
+
+  @override
+  String get summary => 'Tool dipanggil: $toolName';
+
+  @override
+  String get detail => 'Call ID: $callId';
 }
 
 class ToolResultEvent extends AgentEvent {
@@ -25,17 +38,35 @@ class ToolResultEvent extends AgentEvent {
   final String outputSummary;
   final int durationMs;
   const ToolResultEvent(this.toolName, this.callId, this.outputSummary, this.durationMs, super.timestamp);
+
+  @override
+  String get summary => 'Tool selesai: $toolName';
+
+  @override
+  String get detail => '${durationMs}ms · $outputSummary';
 }
 
 class TokenEvent extends AgentEvent {
   final String content;
   final int index;
   const TokenEvent(this.content, this.index, DateTime ts) : super(ts);
+
+  @override
+  String get summary => 'Token ke-${index + 1}';
+
+  @override
+  String get detail => '';
 }
 
 class PredictionResultEvent extends AgentEvent {
   final PredictionResult data;
   const PredictionResultEvent(this.data, super.timestamp);
+
+  @override
+  String get summary => 'Prediksi: ${data.predictedLabel}';
+
+  @override
+  String get detail => 'Confidence: ${(data.confidence * 100).toStringAsFixed(1)}%';
 }
 
 class CitationEvent extends AgentEvent {
@@ -44,6 +75,12 @@ class CitationEvent extends AgentEvent {
   final double score;
   final CitationMeta metadata;
   const CitationEvent(this.sourceId, this.snippet, this.score, this.metadata, super.timestamp);
+
+  @override
+  String get summary => 'Sumber ditemukan';
+
+  @override
+  String get detail => 'Score: ${(score * 100).toStringAsFixed(0)}%';
 }
 
 class WebSearchResultEvent extends AgentEvent {
@@ -56,6 +93,12 @@ class WebSearchResultEvent extends AgentEvent {
   final double relevanceScore;
   const WebSearchResultEvent(this.resultId, this.url, this.title, this.snippet,
       this.markdownExcerpt, this.source, this.relevanceScore, super.timestamp);
+
+  @override
+  String get summary => 'Web search: $title';
+
+  @override
+  String get detail => source;
 }
 
 class FinalEvent extends AgentEvent {
@@ -67,6 +110,12 @@ class FinalEvent extends AgentEvent {
   final String? predictionLabel;
   const FinalEvent(this.message, this.conversationId, this.citations, this.webResults,
       this.predictionPresent, this.predictionLabel, super.timestamp);
+
+  @override
+  String get summary => 'Respon final diterima';
+
+  @override
+  String get detail => predictionPresent ? 'Mengandung prediksi' : '';
 }
 
 class AgentErrorEvent extends AgentEvent {
@@ -74,6 +123,12 @@ class AgentErrorEvent extends AgentEvent {
   final String message;
   final bool fatal;
   const AgentErrorEvent(this.node, this.message, this.fatal, super.timestamp);
+
+  @override
+  String get summary => 'Error: ${fatal ? "Fatal" : "Non-fatal"}';
+
+  @override
+  String get detail => message;
 }
 
 class CitationMeta {

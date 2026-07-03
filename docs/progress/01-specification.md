@@ -20,6 +20,6 @@ Status per-file dokumen spesifikasi di `docs/specification/`.
 | 13 | `13-login.md` | ✅ | Halaman login Flutter |
 | 14 | `14-register.md` | ✅ | Halaman register Flutter |
 | 15 | `15-home.md` | ✅ | Halaman home Flutter (dashboard) |
-| 16 | `16-flutter-chat.md` | ⬜ | Halaman chat Flutter |
+| 16 | `16-chat.md` | ✅ | Halaman chat Flutter (WS realtime) |
 | 17 | `17-flutter-analysis.md` | ⬜ | Halaman analysis Flutter |
 | 18 | `18-flutter-profile.md` | ⬜ | Halaman profile Flutter |
