@@ -1,4 +1,4 @@
-# 03 — Agent Orchestration (LangGraph ReAct)
+# Agent Orchestration (LangGraph ReAct)
 
 ## Tujuan
 
@@ -114,3 +114,4 @@ def route_after_supervisor(state: AgentState) -> str:
 - Iteration counter increments before supervisor runs
 - Tool executor catches exceptions per tool, logs stack trace, return ToolException to scratchpad
 - Tools and LLM layers remain independent from LangGraph
+- Event contract detail: `contract/07-events.md`

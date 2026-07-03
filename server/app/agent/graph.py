@@ -30,3 +30,15 @@ def create_graph() -> StateGraph:
 
 
 graph = create_graph()
+
+
+async def run_agent(message: str, conversation_id: str | None = None) -> dict:
+    initial = AgentState(
+        user_message=message,
+        conversation_id=conversation_id or "",
+    )
+    final_state = await graph.ainvoke(initial)
+    return {
+        "response": final_state.get("final_answer", ""),
+        "conversation_id": final_state.get("conversation_id", conversation_id or ""),
+    }

@@ -1,10 +1,10 @@
-# 01 — Overview & Tujuan Sistem
+# Overview & Tujuan Sistem
 
 ## Tujuan Sistem
 
 EduLearn AI adalah backend edukasi + aplikasi mobile "Smart Academic Learning Assistant" yang memadukan empat lapis kecerdasan:
 
-1. **Retrieval-Augmented Generation (RAG)** — mengambil referensi akademis dari basis pengetahuan berbasis **pgvector (PostgreSQL)** untuk menjawab pertanyaan konsep. Basis pengetahuan diisi via **API upload file** (lihat `11-file-upload-api.md`).
+1. **Retrieval-Augmented Generation (RAG)** — mengambil referensi akademis dari basis pengetahuan berbasis **pgvector (PostgreSQL)** untuk menjawab pertanyaan konsep. Basis pengetahuan diisi via **API upload file** (lihat `11-file-upload.md`).
 2. **Predictive ML inference** — model **Deep MLP (TensorFlow)** yang memprediksi `course_completed` (binary: Lulus/Tidak Lulus) berdasarkan data analytics pembelajaran siswa (time_spent, video_completion_rate, quiz_attempts, dll.). Detail di `06-ml-prediction.md`.
 3. **Web Search (Firecrawl)** — tool tambahan untuk mencari informasi terkini di web saat RAG lokal tidak punya jawaban. Detail di `07-firecrawl-tool.md`.
 4. **LLM reasoning (LangGraph ReAct)** — supervisor yang menalar pertanyaan siswa, memutuskan tool mana yang dipakai (RAG, prediksi, Firecrawl, atau langsung jawab), boleh berulang, lalu menyusun jawaban akademis.

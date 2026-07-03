@@ -1,14 +1,37 @@
 import logging
 
-from app.core.config import settings
-from app.machine_learning.predictor import Predictor
+from langchain_core.tools import tool
+
+from app.rag.retriever import Retriever
 
 logger = logging.getLogger(__name__)
 
 
-async def rag_search(query: str, top_k: int = 5) -> list[dict]:
-    logger.info("rag_tool search: %s", query[:50])
-    return []
+@tool
+async def rag_tool(query: str, top_k: int = 5) -> list[dict]:
+    """Cari referensi akademis dari knowledge base lokal (RAG / pgvector).
+
+    Args:
+        query: Kata kunci pencarian dalam Bahasa Indonesia.
+        top_k: Jumlah hasil yang diminta (max 10).
+    """
+    logger.info("rag_tool search: %s | top_k=%d", query[:50], top_k)
+
+    retriever = Retriever()
+    try:
+        citations = await retriever.search(query, top_k=top_k)
+        return [
+            {
+                "source_id": c.source_id,
+                "snippet": c.snippet[:300],
+                "score": c.score,
+                "metadata": c.metadata.model_dump(exclude_none=True),
+            }
+            for c in citations
+        ]
+    except Exception as e:
+        logger.exception("RAG search failed")
+        return []
 
 
 async def rag_ingest(file_path: str, filename: str) -> dict:

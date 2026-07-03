@@ -1,4 +1,4 @@
-# 02 — Arsitektur Sistem (High-Level)
+# Arsitektur Sistem (High-Level)
 
 ## Tujuan
 
@@ -52,7 +52,7 @@ Menjelaskan alur end-to-end dari client (Flutter) sampai tool (RAG/ML/Firecrawl)
 
 - **Nginx** — reverse proxy, wajib handle WebSocket upgrade (`Upgrade`, `Connection` header). Detail di `09-deployment.md`.
 - **FastAPI** — async, expose WS + REST. Lifespan loader singleton Predictor (fail-fast).
-- **LangGraph** — `StateGraph` dengan `supervisor ⇄ tools ⇄ response_node`. Detail di `03-agent-orchestration.md`.
+- **LangGraph** — `StateGraph` dengan `supervisor ⇄ tools ⇄ response_node`. Detail di `04-agent-orchestration.md`.
 - **PostgreSQL 17 + pgvector** — basis pengetahuan RAG (dokumen yang diupload di-embed & disimpan di sini). Juga menyimpan `audit_conversations` & `users` table.
 - **Redis 7** — state percakapan per `conversation_id` + cache embedding + rate limit token bucket.
 - **ML models** — read-only mount `/app/models` (`model.weights.h5`, `pipeline.joblib`, `metadata.json`, `config.json`).
@@ -95,7 +95,7 @@ Menjelaskan alur end-to-end dari client (Flutter) sampai tool (RAG/ML/Firecrawl)
 | `/api/v1/predictions/latest` | GET | Latest prediction for current user |
 | `/api/v1/predictions/history?days=N` | GET | N-day prediction history |
 | `/api/v1/predictions/analysis` | GET | Aggregated analysis (distribution, strengths, recommendations) |
-| `/api/v1/knowledge/upload` | POST (multipart) | Upload file ke knowledge base (lihat `11-file-upload-api.md`) |
+| `/api/v1/knowledge/upload` | POST (multipart) | Upload file ke knowledge base (lihat `11-file-upload.md`) |
 | `/health` | GET | Health check (kontrak tidak berubah) |
 | `/ws/v1/health` | WEBSOCKET | WS ping-only untuk Docker healthcheck |
 

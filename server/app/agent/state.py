@@ -1,5 +1,7 @@
+from collections.abc import Callable
+from typing import Optional
+
 from pydantic import BaseModel, Field
-from typing import Optional, Callable
 
 from app.schemas.agent import Citation, PredictionResult, ToolCallRecord, WebSearchResult
 

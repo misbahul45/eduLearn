@@ -3,9 +3,7 @@ import logging
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 from app.agent.state import AgentState
-from app.agent.tools import rag_tool as rag_t
-from app.agent.tools import predictive_tool as pred_t
-from app.agent.tools import firecrawl_tool as fire_t
+from app.agent.tools import firecrawl_tool, predictive_tool, rag_tool
 from app.llm import get_llm
 
 logger = logging.getLogger(__name__)
@@ -13,7 +11,10 @@ logger = logging.getLogger(__name__)
 SYSTEM_PROMPT = (
     "Kamu adalah asisten akademis EduLearn AI. "
     "Kamu punya 3 tools: rag_tool, predictive_tool, firecrawl_tool. "
-    "rag_tool: referensi lokal, predictive_tool: prediksi lulus/tidak lulus, firecrawl_tool: web search. "
+    "- rag_tool: cari referensi lokal dari knowledge base (materi kuliah, buku). "
+    "- predictive_tool: prediksi lulus/tidak lulus berdasarkan data belajar siswa. "
+    "- firecrawl_tool: cari informasi terkini dari web. "
+    "Gunakan Bahasa Indonesia. "
     "Bila pertanyaan konsep -> rag_tool. Info terkini -> firecrawl_tool. Progress/kelulusan -> predictive_tool. "
     "Bila sudah cukup -> susun jawaban."
 )
@@ -23,39 +24,30 @@ async def supervisor_node(state: AgentState) -> dict:
     logger.info("Supervisor reasoning iteration=%d", state.iteration)
     llm = get_llm()
 
-    llm_binding = llm.bind_tools([rag_t.bound_tool, pred_t.bound_tool, fire_t.bound_tool])
+    bound_llm = llm.bind_tools([rag_tool, predictive_tool, firecrawl_tool])
     messages = [SystemMessage(content=SYSTEM_PROMPT)]
+
     for m in state.scratchpad:
-        r = m.get("role", "")
+        role = m.get("role", "")
         content = m.get("content", "")
-        if r == "user":
+        if role == "user":
             messages.append(HumanMessage(content=content))
-        elif r == "assistant":
+        elif role == "assistant":
             tc_list = m.get("tool_calls", [])
-            airesult = AIMessage(content=content, tool_calls=tc_list if tc_list else None)
-            messages.append(airesult)
-        elif r == "function":
-            name = m.get("name", "")
-            messages.append(AIMessage(content="", tool_call_id="placeholder"))
-            messages.append(HumanMessage(content=f"Tool {name} result: {content[:1000]}"))
+            aim = AIMessage(content=content, tool_calls=tc_list if tc_list else None)
+            messages.append(aim)
+        elif role == "function":
+            messages.append(HumanMessage(content=f"Hasil tool {m.get('name', '')}: {content[:1000]}"))
 
     if not any(m.type == "human" for m in messages):
         messages.append(HumanMessage(content=state.user_message))
 
-    result = await llm_binding.ainvoke(messages)
-
-    sc_list = []
-    if isinstance(result.content, list):
-        sc_list = result.content
-    elif isinstance(result.content, str):
-        sc_list = [{"type": "text", "text": result.content}]
-
-    tc_list = result.tool_calls if result.tool_calls else sc_list
+    result = await bound_llm.ainvoke(messages)
 
     new_scratchpad = state.scratchpad.copy()
     new_scratchpad.append({
         "role": "assistant",
-        "content": str(sc_list),
+        "content": result.content if isinstance(result.content, str) else str(result.content),
         "tool_calls": result.tool_calls if result.tool_calls else [],
     })
 
@@ -77,23 +69,8 @@ def route_after_supervisor(state: AgentState) -> str:
     return "respond"
 
 
-async def _get_tool_response(tool_name: str, func_args: dict) -> dict | list:
-    if tool_name == "rag_tool":
-        q = func_args.get("query", "")
-        res = await rag_t.rag_search(q)
-        return res
-    elif tool_name == "predictive_tool":
-        res = await pred_t.predictive_predict()
-        return res
-    elif tool_name == "firecrawl_tool":
-        q = func_args.get("query", "")
-        res = await fire_t.firecrawl_search(q)
-        return res
-    return {}
-
-
 async def tools_node(state: AgentState) -> dict:
-    last_sr = state.scratchpad[-1]
+    last_sr = state.scratchpad[-1] if state.scratchpad else {}
     tcs = last_sr.get("tool_calls", [])
 
     new_citations = list(state.citations)
@@ -111,24 +88,34 @@ async def tools_node(state: AgentState) -> dict:
             args = json.loads(args)
         if isinstance(args, list):
             args = args[0] if args else args
-        try:
-            result = await _get_tool_response(func_name, args)
-            result_str = str(result)
 
+        try:
+            if func_name == "rag_tool":
+                result = await rag_tool.ainvoke(args)
+            elif func_name == "predictive_tool":
+                result = predictive_tool.invoke(args)
+            elif func_name == "firecrawl_tool":
+                result = await firecrawl_tool.ainvoke(args)
+            else:
+                result = {}
+
+            result_str = str(result)
             new_scratchpad.append({
                 "role": "function",
                 "name": func_name,
                 "content": result_str[:1000],
             })
 
-            if func_name == "rag_tool" or func_name == "rag_tool":
+            if func_name == "rag_tool":
                 raw = result if isinstance(result, list) else (result.get("results", []) if isinstance(result, dict) else [])
                 for cit in raw:
                     if isinstance(cit, dict):
+                        meta = cit.get("metadata", {})
                         new_citations.append({
-                            "document": cit.get("document", cit.get("title", "")),
+                            "source_id": cit.get("source_id", ""),
                             "snippet": cit.get("snippet", str(cit)[:200]),
-                            "relevance": cit.get("relevance", cit.get("score", 0.0)),
+                            "score": cit.get("score", 0.0),
+                            "document": meta.get("title", meta.get("file_name", "")),
                         })
             elif func_name == "firecrawl_tool":
                 raw = result if isinstance(result, list) else (result.get("results", []) if isinstance(result, dict) and "results" in result else [])
@@ -143,11 +130,16 @@ async def tools_node(state: AgentState) -> dict:
                         })
             elif func_name == "predictive_tool":
                 rdict = result if isinstance(result, dict) else {}
-                new_pred = {
-                    "label": rdict.get("label", ""),
-                    "probability": rdict.get("probability", 0.0),
-                    "class_scores": rdict.get("class_scores", {}),
-                }
+                from app.schemas.prediction import PredictionResult as PR
+                new_pred = PR(
+                    predicted_label=rdict.get("predicted_label", rdict.get("label", "")),
+                    confidence=rdict.get("confidence", rdict.get("probability", 0.0)),
+                    class_scores=rdict.get("class_scores", []),
+                    model_name=rdict.get("model_name", "Deep MLP (TensorFlow)"),
+                    model_version=rdict.get("model_version", "1.0.0"),
+                    input_features_used=rdict.get("input_features_used", []),
+                    generated_at=rdict.get("generated_at"),
+                )
         except Exception as e:
             logger.exception("Tool %s failed", func_name)
             new_scratchpad.append({

@@ -1,18 +1,23 @@
 import json
 import logging
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import joblib
 import numpy as np
+import pandas as pd
 
 try:
     import tensorflow as tf
+    import keras
 except ImportError:
     tf = None
+    keras = None
 
 from app.core.config import settings
 from app.machine_learning.singleton import SingletonMeta
+from app.schemas.prediction import ClassScore, PredictionResult
 
 logger = logging.getLogger(__name__)
 
@@ -20,15 +25,20 @@ logger = logging.getLogger(__name__)
 class Predictor(metaclass=SingletonMeta):
     def __init__(self) -> None:
         self._model: tf.keras.Model | None = None
-        self._pipeline: Any | None = None
+        self._bundle: dict[str, Any] = {}
         self._metadata: dict[str, Any] = {}
         self._config: dict[str, Any] = {}
+        self._preprocessor: Any = None
+        self._pca: Any = None
+        self._lda: Any = None
+        self._best_dr: str = ""
+        self._input_features: list[str] = []
         self._loaded: bool = False
         self._error: str | None = None
 
     def load(self) -> None:
-        if tf is None:
-            msg = "TensorFlow is not installed. Cannot load model."
+        if tf is None or keras is None:
+            msg = "TensorFlow/Keras is not installed. Cannot load model."
             logger.critical(msg)
             raise RuntimeError(msg)
 
@@ -39,46 +49,91 @@ class Predictor(metaclass=SingletonMeta):
             logger.critical(msg)
             raise FileNotFoundError(msg)
 
-        model_path = model_dir / "model.weights.h5"
+        weights_path = model_dir / "model.weights.h5"
         pipeline_path = model_dir / "pipeline.joblib"
-        metadata_path = model_dir / "metadata.json"
         config_path = model_dir / "config.json"
+        metadata_path = model_dir / "metadata.json"
 
-        if not model_path.exists():
-            msg = f"Model weights not found: {model_path}"
+        if not weights_path.exists():
+            msg = f"Model weights not found: {weights_path}"
             logger.critical(msg)
             raise FileNotFoundError(msg)
         if not pipeline_path.exists():
-            msg = f"Pipeline not found: {pipeline_path}"
+            msg = f"Pipeline bundle not found: {pipeline_path}"
+            logger.critical(msg)
+            raise FileNotFoundError(msg)
+        if not config_path.exists():
+            msg = f"Model config not found: {config_path}"
             logger.critical(msg)
             raise FileNotFoundError(msg)
 
-        logger.info("Loading model weights from %s", model_path)
-        self._model = tf.keras.models.load_model(str(model_path))
-        logger.info("Model loaded successfully")
+        logger.info("Loading pipeline bundle from %s", pipeline_path)
+        self._bundle = joblib.load(pipeline_path)
+        logger.info("Pipeline bundle loaded successfully")
 
-        logger.info("Loading pipeline from %s", pipeline_path)
-        self._pipeline = joblib.load(pipeline_path)
-        logger.info("Pipeline loaded successfully")
+        self._preprocessor = self._bundle["preprocessor"]
+        self._pca = self._bundle.get("pca")
+        self._lda = self._bundle.get("lda")
+        self._best_dr = self._bundle.get("best_dr", "")
+        self._input_features = self._bundle.get("input_features", [])
+
+        logger.info("Reconstructing model architecture from %s", config_path)
+        with open(config_path) as f:
+            config_data = json.load(f)
+        self._model = keras.models.Sequential.from_config(config_data)
+
+        logger.info("Loading model weights from %s", weights_path)
+        self._model.load_weights(str(weights_path))
+        logger.info("Model weights loaded successfully")
 
         if metadata_path.exists():
             with open(metadata_path) as f:
                 self._metadata = json.load(f)
             logger.info("Metadata loaded from %s", metadata_path)
 
-        if config_path.exists():
-            with open(config_path) as f:
-                self._config = json.load(f)
-            logger.info("Config loaded from %s", config_path)
-
         self._loaded = True
-        logger.info("Predictor fully initialized")
+        logger.info("Predictor fully initialized (best_dr=%s, features=%d)", self._best_dr, len(self._input_features))
 
-    def predict(self, features: np.ndarray) -> np.ndarray:
+    def predict(self, student_signals: dict) -> PredictionResult:
         if not self._loaded or self._model is None:
             raise RuntimeError("Predictor not loaded. Call load() first.")
-        transformed = self._pipeline.transform(features) if self._pipeline else features
-        return self._model.predict(transformed, verbose=0)
+
+        df = pd.DataFrame([student_signals], columns=self._input_features)
+
+        X_pre = self._preprocessor.transform(df)
+
+        if self._best_dr == "PCA" and self._pca is not None:
+            X_dr = self._pca.transform(X_pre)
+        elif self._best_dr == "LDA" and self._lda is not None:
+            X_dr = self._lda.transform(X_pre)
+        elif self._best_dr == "PCA+LDA" and self._pca is not None and self._lda is not None:
+            X_pca = self._pca.transform(X_pre)
+            X_lda = self._lda.transform(X_pre)
+            X_dr = np.hstack([X_pca, X_lda])
+        else:
+            X_dr = X_pre
+
+        prob_lulus = float(self._model.predict(X_dr, verbose=0).ravel()[0])
+        prob_tidak = 1.0 - prob_lulus
+
+        predicted_label = "Lulus" if prob_lulus >= 0.5 else "Tidak Lulus"
+        confidence = prob_lulus if predicted_label == "Lulus" else prob_tidak
+
+        model_name = self._bundle.get("best_model_name", "Deep MLP (TensorFlow)")
+        model_version = self._metadata.get("model_version", "1.0.0")
+
+        return PredictionResult(
+            predicted_label=predicted_label,
+            confidence=round(confidence, 4),
+            class_scores=[
+                ClassScore(label="Tidak Lulus", score=round(prob_tidak, 4)),
+                ClassScore(label="Lulus", score=round(prob_lulus, 4)),
+            ],
+            model_name=model_name,
+            model_version=model_version,
+            input_features_used=list(self._input_features),
+            generated_at=datetime.now(timezone.utc),
+        )
 
     def health(self) -> dict[str, Any]:
         return {

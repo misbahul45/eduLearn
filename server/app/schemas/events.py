@@ -3,6 +3,10 @@ from datetime import datetime, timezone
 from pydantic import BaseModel, Field
 
 
+def _utcnow() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
 class WSEvent(BaseModel):
     type: str
     timestamp: str = ""
@@ -44,6 +48,7 @@ class WSToken(WSEvent):
 
 class WSPredictionResult(WSEvent):
     type: str = "prediction_result"
+    node: str = "predictive_node"
     data: dict = Field(default_factory=dict)
 
 
@@ -61,6 +66,7 @@ class WSWebSearch(WSEvent):
     url: str = ""
     title: str = ""
     snippet: str = ""
+    markdown_excerpt: str = ""
     source: str = "firecrawl"
     relevance_score: float = 0.0
 

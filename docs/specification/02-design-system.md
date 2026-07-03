@@ -1,6 +1,6 @@
-# 00 — Konvensi & Token Desain (Acuan Bersama)
+# Konvensi & Token Desain (Acuan Bersama)
 
-> File ini **wajib dibaca pertama**. Semua halaman Flutter & kontrak backend memakai token di sini. Dilarang hardcode warna, spacing, text style, atau nilai konfigurasi di file lain.
+> File ini **wajib dibaca pertama** untuk developer Flutter. Semua halaman Flutter & kontrak backend memakai token di sini. Dilarang hardcode warna, spacing, text style, atau nilai konfigurasi di file lain.
 
 ## Palet Warna (`lib/core/theme/app_colors.dart`)
 
