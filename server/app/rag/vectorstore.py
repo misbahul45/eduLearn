@@ -11,6 +11,10 @@ CREATE TABLE IF NOT EXISTS knowledge_documents (
     file_name TEXT NOT NULL,
     file_type TEXT NOT NULL CHECK (file_type IN ('pdf', 'docx', 'txt', 'md')),
     file_size_bytes BIGINT NOT NULL,
+    title TEXT NOT NULL,
+    author TEXT,
+    description TEXT,
+    tags TEXT[] NOT NULL DEFAULT '{}',
     total_chunks INT NOT NULL DEFAULT 0,
     uploaded_by UUID NOT NULL,
     status TEXT NOT NULL DEFAULT 'processing' CHECK (status IN ('processing', 'ready', 'failed')),
@@ -18,6 +22,14 @@ CREATE TABLE IF NOT EXISTS knowledge_documents (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     processed_at TIMESTAMPTZ
 );
+"""
+
+ALTER_DOCUMENTS_ADD_COLUMNS = """
+ALTER TABLE knowledge_documents
+    ADD COLUMN IF NOT EXISTS title TEXT NOT NULL DEFAULT '',
+    ADD COLUMN IF NOT EXISTS author TEXT,
+    ADD COLUMN IF NOT EXISTS description TEXT,
+    ADD COLUMN IF NOT EXISTS tags TEXT[] NOT NULL DEFAULT '{}';
 """
 
 CREATE_KNOWLEDGE_CHUNKS = """
@@ -65,6 +77,7 @@ class VectorStore:
             conn = await asyncpg.connect(dsn=dsn, timeout=5)
             await conn.execute('CREATE EXTENSION IF NOT EXISTS vector;')
             await conn.execute(CREATE_KNOWLEDGE_DOCUMENTS)
+            await conn.execute(ALTER_DOCUMENTS_ADD_COLUMNS)
             await conn.execute(CREATE_KNOWLEDGE_CHUNKS)
             try:
                 await conn.execute(CREATE_HNSW_INDEX)

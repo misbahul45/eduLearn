@@ -12,17 +12,18 @@ Folder ini berisi status implementasi tiap area proyek EduLearn AI. Dibagi per d
 
 | Area | Progress | Prioritas |
 |------|----------|-----------|
-| Dokumentasi spesifikasi | ✅ 8/18 docs | Selesai |
+| Dokumentasi spesifikasi | ✅ 10/18 docs | Selesai |
 | Kontrak API | ✅ 7/7 docs | Selesai |
 | Backend core | ✅ Done | - |
 | ML Inference | ✅ Done | - |
 | LangGraph Agent | ✅ Done | - |
 | RAG + pgvector | 🔧 Partial | Tinggi |
 | Flutter App | 🔧 Partial | Tinggi |
-| Auth (JWT) | ⬜ Pending | Tinggi |
-| Knowledge Upload | ⬜ Pending | Sedang |
+| Auth (JWT) | 🔧 Partial | Tinggi |
+| Knowledge Upload | ✅ Done | Tinggi |
 | Firecrawl Tool | ✅ Done | Selesai |
 | Observability & EventSanitizer | ✅ Done | Selesai |
+| Input Tool Validation & Audit DDL | ✅ Done | Selesai |
 
 ## File Index
 

@@ -30,6 +30,7 @@ class Settings(BaseSettings):
 
     FIRECRAWL_API_KEY: str = ""
     FIRECRAWL_CACHE_TTL: int = 3600
+    FIRECRAWL_RATE_PER_CONV: int = 5
 
     RAG_EMBEDDING_MODEL: str = "text-embedding-3-small"
     RAG_CHUNK_SIZE: int = 1000
@@ -43,6 +44,7 @@ class Settings(BaseSettings):
     UPLOAD_MAX_FILE_SIZE_MB: int = 20
     UPLOAD_ALLOWED_TYPES: str = "pdf,docx,txt,md"
     UPLOAD_DIR: str = "/app/uploads"
+    UPLOAD_RATE_PER_DAY: int = 10
     UPLOAD_MAX_SIZE_MB: int = Field(default=10, deprecated=True)
     UPLOAD_ALLOWED_EXTENSIONS: str = Field(default=".pdf,.docx,.txt,.md", deprecated=True)
     UPLOAD_DESTINATION: str = Field(default="/app/uploads", deprecated=True)

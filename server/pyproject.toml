@@ -33,4 +33,11 @@ dependencies = [
     "pandas",
     "joblib",
     "scikit-learn",
+
+    # File upload & parsing
+    "pymupdf",
+    "python-docx",
+    "tiktoken",
+    "python-multipart",
+    "aiofiles",
 ]

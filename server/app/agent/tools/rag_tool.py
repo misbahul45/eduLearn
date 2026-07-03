@@ -2,6 +2,7 @@ import logging
 
 from langchain_core.tools import tool
 
+from app.agent.tools._validation import validate_rag_query
 from app.rag.retriever import Retriever
 
 logger = logging.getLogger(__name__)
@@ -15,6 +16,13 @@ async def rag_tool(query: str, top_k: int = 5) -> list[dict]:
         query: Kata kunci pencarian dalam Bahasa Indonesia.
         top_k: Jumlah hasil yang diminta (max 10).
     """
+    try:
+        query = validate_rag_query(query)
+    except ValueError as e:
+        logger.warning("rag_tool validation failed: %s", e)
+        return []
+    top_k = min(max(top_k, 1), 10)
+
     logger.info("rag_tool search: %s | top_k=%d", query[:50], top_k)
 
     retriever = Retriever()

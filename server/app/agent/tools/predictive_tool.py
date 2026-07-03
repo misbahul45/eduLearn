@@ -2,6 +2,7 @@ import logging
 
 from langchain_core.tools import tool
 
+from app.agent.tools._validation import validate_student_signals
 from app.machine_learning.predictor import Predictor
 from app.schemas.prediction import StudentSignals
 
@@ -18,17 +19,18 @@ def predictive_tool(student_signals: StudentSignals | None = None) -> dict:
     """
     logger.info("predictive_tool called")
 
+    try:
+        signals = validate_student_signals(student_signals)
+    except ValueError as e:
+        logger.warning("predictive_tool validation failed: %s", e)
+        return {"label": "error", "probability": 0.0, "class_scores": [], "error": str(e)}
+
     predictor = Predictor()
     if not predictor.loaded:
         logger.warning("Predictor not loaded")
         return {"label": "unknown", "probability": 0.0, "class_scores": []}
 
     try:
-        if student_signals is None:
-            signals = {}
-        else:
-            signals = {k: v for k, v in student_signals.model_dump().items() if v is not None}
-
         result = predictor.predict(signals)
         return {
             "predicted_label": result.predicted_label,

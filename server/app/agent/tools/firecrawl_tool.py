@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import httpx
 from langchain_core.tools import tool
 
+from app.agent.tools._validation import validate_firecrawl_query
 from app.core.config import settings
 from app.schemas.knowledge import WebSearchResult
 
@@ -24,13 +25,16 @@ async def firecrawl_tool(query: str, max_results: int = 3) -> list[dict]:
         query: Kata kunci pencarian (max 200 karakter).
         max_results: Jumlah hasil maksimal (default 3, max 5).
     """
+    try:
+        query, max_results = validate_firecrawl_query(query, max_results)
+    except ValueError as e:
+        logger.warning("firecrawl_tool validation failed: %s", e)
+        return []
+
     logger.info("firecrawl_tool search: %s | max_results=%d", query[:50], max_results)
 
     if not settings.FIRECRAWL_API_KEY or settings.FIRECRAWL_API_KEY == "fcc_xxx":
         raise RuntimeError("FIRECRAWL_API_KEY belum di-set. Tidak bisa mencari info web.")
-
-    query = query[:200]
-    max_results = min(max(max_results, 1), FIRECRAWL_MAX_RESULTS)
 
     cache_key = _cache_key(query)
     cached = await _get_cached(cache_key)

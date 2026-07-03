@@ -23,15 +23,15 @@
 | `POST /api/v1/auth/*` | ⬜ Pending | Stub — return 501 |
 | `GET /api/v1/users/*` | ⬜ Pending | Stub — return 501 |
 | `GET /api/v1/predictions/*` | ⬜ Pending | Stub — return 501 |
-| `POST /api/v1/knowledge/upload` | ⬜ Pending | Stub — return 501 |
+| `POST /api/v1/knowledge/upload` | ✅ Done | Upload + background ingestion (parse, chunk, embed, pgvector) |
 
 ## Komponen Pending
 
 | Area | Progress | Catatan |
 |------|----------|---------|
-| RAG + pgvector | 🔧 Partial | vectorstore (DDL + HNSW) + retriever (embed + cosine search) implemented. Ingestion masih stub. |
-| Auth JWT | ⬜ Pending | Stub endpoints + contract defined |
-| File Upload | ⬜ Pending | Stub endpoint + contract defined |
+| RAG + pgvector | ✅ Done | vectorstore (DDL + HNSW) + retriever (embed + cosine search) + ingestion pipeline |
+| Auth JWT | 🔧 Partial | Stub endpoints + WS JWT auth + rate limiting via Redis token bucket |
+| File Upload | ✅ Done | Full implementation: magic number check, sanitize filename, background ingestion |
 | Firecrawl Tool | ✅ Done | Firecrawl API via httpx, Redis caching, sanitasi, error handling |
 | Observability & EventSanitizer | ✅ Done | agent.trace JSON logger, EventSanitizer dengan 9 aturan sanitasi |
 | Deployment infra (Docker, Nginx WS config, env) | ✅ Done | ws.conf terpisah, healthcheck, uploads_data volume, semua env vars |
