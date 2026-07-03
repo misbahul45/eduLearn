@@ -14,7 +14,7 @@
 | Register Page | ✅ Done | SnackBar error, eye toggle, password strength, 409 login button |
 | Home Tab (Dashboard) | ✅ Done | Greeting, prediction summary, insight, fl_chart history, quick actions |
 | Chat Page | ✅ Done | Empty state, bubble list, input field |
-| Analysis Page | ✅ Done | Stat cards, progress bar, latest prediction |
+| Analysis Page | ✅ Done | Donut chart distribusi binary, strength/improvement cards, recommendations with chat navigation, progress comparison, history list |
 | Knowledge Page | ✅ Done | List dokumen, refresh, delete (standalone route dari Profile) |
 | Profile Page | ✅ Done | Avatar, stats, role badge, knowledge link, logout |
 | fl_chart | ✅ Done | LineChart probabilitas 7 hari + threshold line 0.5 |
@@ -27,6 +27,20 @@
 - Tab 3: Analysis (`Icons.insights_rounded`)
 - Tab 4: Profile (`Icons.person_rounded`)
 - Home Tab: greeting card (initial avatar), prediction summary card (primary bg), insight card (success/warning), history chart (fl_chart LineChart with threshold), quick actions row
+
+## Detail Halaman Analysis (Spec 17)
+
+- **Route**: `/home/analysis` (tab ke-3 `StatefulShellRoute`)
+- **AnalysisPage** — `ConsumerWidget` dengan RefreshIndicator + shimmer loading
+- **DistributionCard** — fl_chart PieChart donut, 2 segmen (Lulus success / Tidak Lulus error), center text stack ("87%" + "Lulus")
+- **StrengthCard** — success bg light, dynamic text based on prediction probability
+- **ImprovementCard** — warning bg light, dynamic text for weak areas
+- **ActionItem** — 3 recommendations (Tanya AI → chat preset, Baca materi → chat preset, Latihan → snackbar coming soon)
+- **ProgressComparisonCard** — yesterday vs today probability with trending_up/trending_down icon, progress bar, delta label
+- **HistoryItem** — date, indicator dot (success/error), label (Lulus/Tidak Lulus), probability percentage, threshold 0.5
+- **EmptyState** — illustration + "Mulai chat dengan AI untuk dapatkan prediksi pertamamu" + CTA "Tanya AI"
+- **AnalysisData** — model with derived strength/improvement/recommendations/progressComparison
+- **analysisViewModelProvider** — AsyncNotifier fetching latest + analysis + history from PredictionService
 
 ## Detail Halaman Chat (Spec 16)
 

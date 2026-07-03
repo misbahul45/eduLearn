@@ -12,7 +12,7 @@ Folder ini berisi status implementasi tiap area proyek EduLearn AI.
 
 | Area | Progress | Prioritas |
 |------|----------|-----------|
-| Dokumentasi spesifikasi | ✅ 16/18 docs | Selesai |
+| Dokumentasi spesifikasi | ✅ 17/18 docs | Selesai |
 | Planning DB | ✅ 3/3 docs | docs/planning/ |
 | DB Models (SQLAlchemy) | ✅ 9 tabel | server/app/db/ |
 | Kontrak API | ✅ 7/7 docs | Selesai |

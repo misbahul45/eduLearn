@@ -22,3 +22,4 @@ Folder ini berisi dokumen spesifikasi sistem EduLearn AI. Bacalah secara berurut
 | 14 | `14-register.md` | Register page: ViewModel, AuthRepository, secure storage, validation |
 | 15 | `15-home.md` | Home dashboard: StatefulShellRoute, greeting, prediction summary, fl_chart history, quick actions |
 | 16 | `16-chat.md` | Chat UI: realtime WS agent, streaming tokens, AgentTraceSheet, prediction chart, citations, web search |
+| 17 | `17-analysis.md` | Analysis page: donut chart distribusi, strength/improvement cards, recommendations, progress comparison, history list |
