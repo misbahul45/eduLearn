@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "server/README.md": {
-    "mtime": 1783096820.1910608,
-    "ast_hash": "5d1acd45f4c72251b1627659b9796e7f",
+    "mtime": 1783112964.399959,
+    "ast_hash": "2f00db1a9831dda8b3e5604064a59811",
     "semantic_hash": ""
   },
   "server/app/__init__.py": {
@@ -665,8 +665,8 @@
     "semantic_hash": ""
   },
   "client/README.md": {
-    "mtime": 1783089269.7401483,
-    "ast_hash": "e4130cfe192174e52dbcc260d2454026",
+    "mtime": 1783113008.176829,
+    "ast_hash": "0bf4d213cd8f702506c3a2a5c9e9a020",
     "semantic_hash": ""
   },
   "client/analysis_options.yaml": {
@@ -1463,5 +1463,15 @@
     "mtime": 1783111126.7271335,
     "ast_hash": "98acb21d908cf9eb82d494e189d1ddae",
     "semantic_hash": "98acb21d908cf9eb82d494e189d1ddae"
+  },
+  "README.md": {
+    "mtime": 1783112983.4995685,
+    "ast_hash": "7c9a9a31adc6978d3c8df5be81cab9e7",
+    "semantic_hash": ""
+  },
+  "infra/README.md": {
+    "mtime": 1783113028.9324138,
+    "ast_hash": "645a515ee85d91acb152c98df9dbd845",
+    "semantic_hash": ""
   }
 }
