@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import '../models/prediction.dart';
 import 'api_client.dart';
 

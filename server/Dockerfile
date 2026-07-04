@@ -34,7 +34,6 @@ ENV PATH="/app/.venv/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE=1 \
     MODEL_DIR=/app/models
 
-USER appuser
 
 EXPOSE 8000
 

@@ -77,17 +77,12 @@ services:
       - eduLearn_net
 
   nginx:
-    image: nginx:alpine
-    container_name: eduLearn_nginx
-    restart: unless-stopped
+    build: ./nginx
     ports:
       - "${NGINX_PORT}:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./nginx/ws.conf:/etc/nginx/conf.d/ws.conf:ro
     depends_on:
       server:
-        condition: service_started
+        condition: service_healthy
     networks:
       - eduLearn_net
 

@@ -80,7 +80,12 @@ class Predictor(metaclass=SingletonMeta):
         logger.info("Reconstructing model architecture from %s", config_path)
         with open(config_path) as f:
             config_data = json.load(f)
-        self._model = keras.models.Sequential.from_config(config_data)
+
+        # [FIX] Keras 3 get_config() returns full serialization wrapper
+        # with 'module', 'class_name', 'config' keys.
+        # Sequential.from_config() only needs the inner 'config' dict.
+        inner_config = config_data.get("config", config_data) if isinstance(config_data, dict) else config_data
+        self._model = keras.models.Sequential.from_config(inner_config)
 
         logger.info("Loading model weights from %s", weights_path)
         self._model.load_weights(str(weights_path))

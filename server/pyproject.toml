@@ -33,7 +33,12 @@ dependencies = [
     "numpy",
     "pandas",
     "joblib",
-    "scikit-learn",
+    "scikit-learn==1.6.1",
+    "imbalanced-learn>=0.12.0",     # ← SMOTETomek (ini penyebab error imblearn)
+
+    # Visualization
+    "matplotlib>=3.8.0",             # ← plot, confusion matrix
+    "seaborn>=0.13.0",               # ← heatmap
 
     # File upload & parsing
     "pymupdf",

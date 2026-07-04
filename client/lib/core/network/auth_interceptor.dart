@@ -6,8 +6,7 @@ class AuthInterceptor extends Interceptor {
   final Dio _dio;
   bool _isRefreshing = false;
 
-  AuthInterceptor({required this._storage, required Dio dio})
-      : _dio = dio;
+  AuthInterceptor({required this._storage, required this._dio});
 
   @override
   Future<void> onRequest(

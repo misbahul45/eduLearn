@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-import '../models/agent_event.dart';
 import 'api_client.dart';
 
 class ChatRepository {

@@ -13,8 +13,8 @@ class AuthRepository {
 
   AuthRepository({
     required this._api,
-    required FlutterSecureStorage storage,
-  })  : _storage = storage;
+    required this._storage,
+  });
 
   Future<AuthStatus> checkAuth() async {
     final token = await _storage.read(key: 'access_token');
