@@ -48,7 +48,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ../models:/app/models:ro
+      - ../server/models:/app/models:ro
       - uploads_data:/app/uploads
     depends_on:
       db:
@@ -58,7 +58,13 @@ services:
     expose:
       - "8000"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')",
+        ]
       interval: 30s
       timeout: 5s
       retries: 3
