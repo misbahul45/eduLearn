@@ -19,11 +19,6 @@
     "ast_hash": "c5feb580682a996e59412838429e7e17",
     "semantic_hash": "c5feb580682a996e59412838429e7e17"
   },
-  "server/main.py": {
-    "mtime": 1783088701.6877043,
-    "ast_hash": "133ea78e4c6366002407de863194ea63",
-    "semantic_hash": "133ea78e4c6366002407de863194ea63"
-  },
   "server/pyproject.toml": {
     "mtime": 1783103638.9668045,
     "ast_hash": "6b0ae1ea8d1298c12db76d2d471fe152",
@@ -45,13 +40,13 @@
     "semantic_hash": ""
   },
   "infra/docker-compose.override.yml": {
-    "mtime": 1783090146.8267128,
-    "ast_hash": "c450e5b54e6f44577ac314c29ac7580c",
+    "mtime": 1783115798.3313951,
+    "ast_hash": "b1d1d575d76c8d6e528a369ff02283de",
     "semantic_hash": ""
   },
   "infra/docker-compose.yml": {
-    "mtime": 1783102234.8887908,
-    "ast_hash": "a984b54ea65787808612d5e903f2b22b",
+    "mtime": 1783117787.5389118,
+    "ast_hash": "9d1a1428088a07cc3926f15978a64103",
     "semantic_hash": ""
   },
   "readme.md": {
@@ -260,7 +255,7 @@
     "semantic_hash": "4440672748462857e9bdbbf5fd06fe1a"
   },
   "client/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Package.swift": {
-    "mtime": 1783111773.1181438,
+    "mtime": 1783169621.5848413,
     "ast_hash": "63bc00d19466662a75b7492ac07d5a97",
     "semantic_hash": "63bc00d19466662a75b7492ac07d5a97"
   },
@@ -420,7 +415,7 @@
     "semantic_hash": "decd75ae48e1a5b7b8a49a26b7248905"
   },
   "client/macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Package.swift": {
-    "mtime": 1783111773.1631434,
+    "mtime": 1783169621.6158404,
     "ast_hash": "61d013e6c93b3d917c4f6178b9f6c9cb",
     "semantic_hash": "61d013e6c93b3d917c4f6178b9f6c9cb"
   },
@@ -573,11 +568,6 @@
     "mtime": 1783100527.6433234,
     "ast_hash": "6ef3f51a323b021f584419ede9123316",
     "semantic_hash": "6ef3f51a323b021f584419ede9123316"
-  },
-  "server/app/models/__init__.py": {
-    "mtime": 1783099488.7183812,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
-    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "server/app/rag/ingestor.py": {
     "mtime": 1783099516.1219695,
@@ -1270,9 +1260,9 @@
     "semantic_hash": ""
   },
   "client/lib/core/config/app_config.dart": {
-    "mtime": 1783106188.6048894,
-    "ast_hash": "7c6172f187627c814fc2e7ec800383a5",
-    "semantic_hash": "7c6172f187627c814fc2e7ec800383a5"
+    "mtime": 1783169794.291108,
+    "ast_hash": "ec466563aba339e2692e50e937d20b0a",
+    "semantic_hash": ""
   },
   "client/lib/core/network/auth_interceptor.dart": {
     "mtime": 1783108323.503668,
@@ -1472,6 +1462,16 @@
   "infra/README.md": {
     "mtime": 1783113028.9324138,
     "ast_hash": "645a515ee85d91acb152c98df9dbd845",
+    "semantic_hash": ""
+  },
+  "client/.dart_tool/flutter_build/dart_plugin_registrant.dart": {
+    "mtime": 1783169621.7908347,
+    "ast_hash": "8680e969bfb4bcb0cbbb99c5d6321621",
+    "semantic_hash": ""
+  },
+  "riset/PLAN_RISET.md": {
+    "mtime": 1783114908.0358844,
+    "ast_hash": "1ad84ee4b7e735b2aeed74d7c56cf580",
     "semantic_hash": ""
   }
 }

@@ -23,15 +23,25 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   }
 
   Future<void> _checkAuth() async {
-    final stage = await ref.read(splashProvider.notifier).check();
-    await Future.delayed(const Duration(seconds: 2));
+    debugPrint('[Splash] Starting auth check...');
+    
+    try {
+      final stage = await ref.read(splashProvider.notifier).check();
+      debugPrint('[Splash] Stage result: $stage');
+      
+      await Future.delayed(const Duration(seconds: 2));
 
-    if (!mounted) return;
+      if (!mounted) return;
 
-    if (stage == SplashStage.authenticated) {
-      context.goNamed(AppRoutes.homeTab);
-    } else {
-      context.goNamed(AppRoutes.login);
+      if (stage == SplashStage.authenticated) {
+        context.goNamed(AppRoutes.homeTab);
+      } else {
+        context.goNamed(AppRoutes.login);
+      }
+    } catch (e, st) {
+      debugPrint('[Splash] ERROR: $e');
+      debugPrint('[Splash] STACK: $st');
+      if (mounted) context.goNamed(AppRoutes.login);
     }
   }
 

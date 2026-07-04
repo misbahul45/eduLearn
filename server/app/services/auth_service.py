@@ -12,7 +12,7 @@ from app.core.config import settings
 from app.db import get_db
 from app.db.models import RefreshToken, User
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 security = HTTPBearer(auto_error=False)
 
 ALGORITHM = "HS256"

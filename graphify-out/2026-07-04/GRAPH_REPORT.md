@@ -1,15 +1,16 @@
-# Graph Report - .  (2026-07-04)
+# Graph Report - eduLearn  (2026-07-04)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 249 files · ~85,641 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1504 nodes · 2052 edges · 195 communities (130 shown, 65 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 95 edges (avg confidence: 0.75)
+- 1592 nodes · 2140 edges · 187 communities (122 shown, 65 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 95 edges (avg confidence: 0.75)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2b6a95fe`
+- Built from commit: `ec26353a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -91,30 +92,24 @@
 - [[_COMMUNITY_Register Page Documentation|Register Page Documentation]]
 - [[_COMMUNITY_Web Search Tool|Web Search Tool]]
 - [[_COMMUNITY_WebSocket Connection Handler|WebSocket Connection Handler]]
-- [[_COMMUNITY_Prediction Analysis State|Prediction Analysis State]]
 - [[_COMMUNITY_Android Plugin Registration|Android Plugin Registration]]
 - [[_COMMUNITY_LLDB Debugging Helpers|LLDB Debugging Helpers]]
 - [[_COMMUNITY_Empty Analysis State|Empty Analysis State]]
-- [[_COMMUNITY_Main Navigation Shell|Main Navigation Shell]]
 - [[_COMMUNITY_App Entry Point|App Entry Point]]
 - [[_COMMUNITY_macOS Window Management|macOS Window Management]]
 - [[_COMMUNITY_macOS App Delegate|macOS App Delegate]]
 - [[_COMMUNITY_Web Assets and Icons|Web Assets and Icons]]
 - [[_COMMUNITY_Splash Screen Documentation|Splash Screen Documentation]]
-- [[_COMMUNITY_Knowledge Service Providers|Knowledge Service Providers]]
 - [[_COMMUNITY_iOS Unit Tests|iOS Unit Tests]]
-- [[_COMMUNITY_WebSocket Message Builder|WebSocket Message Builder]]
 - [[_COMMUNITY_Chat Repository Client|Chat Repository Client]]
 - [[_COMMUNITY_macOS Runner Swift|macOS Runner Swift]]
 - [[_COMMUNITY_Home Page Documentation|Home Page Documentation]]
 - [[_COMMUNITY_Analysis Page Documentation|Analysis Page Documentation]]
 - [[_COMMUNITY_Profile Page Documentation|Profile Page Documentation]]
 - [[_COMMUNITY_WebSocket Event Parser|WebSocket Event Parser]]
-- [[_COMMUNITY_Profile State Providers|Profile State Providers]]
 - [[_COMMUNITY_Linux Build Configuration|Linux Build Configuration]]
 - [[_COMMUNITY_Flutter Widget Tests|Flutter Widget Tests]]
 - [[_COMMUNITY_Chat UI Documentation|Chat UI Documentation]]
-- [[_COMMUNITY_Chat API Models|Chat API Models]]
 - [[_COMMUNITY_Database Migrations|Database Migrations]]
 - [[_COMMUNITY_Application Configuration|Application Configuration]]
 - [[_COMMUNITY_Mobile Entry Points|Mobile Entry Points]]
@@ -183,15 +178,15 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `Win32Window` - 22 edges
-2. `WSEvent` - 14 edges
-3. `AgentState` - 13 edges
-4. `MessageHandler` - 12 edges
-5. `upload_knowledge()` - 12 edges
-6. `Predictor` - 12 edges
-7. `EduLearn AI Backend` - 11 edges
-8. `Base` - 11 edges
-9. `AgentEvent` - 10 edges
-10. `FlutterWindow` - 10 edges
+2. `EduLearn AI — Flutter Client` - 14 edges
+3. `EduLearn AI — Infrastructure` - 14 edges
+4. `EduLearn AI Backend` - 14 edges
+5. `WSEvent` - 14 edges
+6. `AgentState` - 13 edges
+7. `MessageHandler` - 12 edges
+8. `upload_knowledge()` - 12 edges
+9. `Predictor` - 12 edges
+10. `5. Detail per Modul` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `firecrawl_tool()` --calls--> `validate_firecrawl_query()`  [INFERRED]
@@ -216,7 +211,7 @@
 - **Reasoning Loop Tools** — docs_specification_03_architecture_rag_tool, docs_specification_03_architecture_predictive_tool, docs_specification_07_firecrawl_tool_firecrawl_tool, docs_specification_04_agent_orchestration_supervisor [EXTRACTED 0.75]
 - **LangGraph Workflow** — docs_specification_04_agent_orchestration_supervisor, docs_specification_04_agent_orchestration_tools, docs_specification_04_agent_orchestration_response_node [INFERRED 0.75]
 
-## Communities (195 total, 65 thin omitted)
+## Communities (187 total, 65 thin omitted)
 
 ### Community 0 - "Windows Platform Integration"
 Cohesion: 0.06
@@ -235,8 +230,8 @@ Cohesion: 0.05
 Nodes (34): AppButton, build, isLoading, onPressed, text, AppTextField, build, controller (+26 more)
 
 ### Community 4 - "Knowledge Management State"
-Cohesion: 0.07
-Nodes (33): apiClientProvider, secureStorageProvider, knowledgeServiceProvider, ChatState, build, ChatViewModel, build, _buildDocCard (+25 more)
+Cohesion: 0.12
+Nodes (17): knowledgeServiceProvider, _authorCtrl, build, createState, _descCtrl, dispose, _formKey, _isUploading (+9 more)
 
 ### Community 5 - "Chat Message Models"
 Cohesion: 0.07
@@ -267,40 +262,40 @@ Cohesion: 0.13
 Nodes (18): ChatOpenAI, create_graph(), Run the LangGraph reasoning loop for a user message and return the execution res, run_agent(), Generate the final tutor response by incorporating knowledge base citations, web, response_node(), AgentState, invoke_callback() (+10 more)
 
 ### Community 12 - "Prediction Summary Cards"
-Cohesion: 0.13
-Nodes (19): Prediction, build, color, DistributionCard, label, latest, LegendRow, value (+11 more)
+Cohesion: 0.22
+Nodes (11): Prediction, EmptyPredictionCard, InsightCard, prediction, PredictionSummaryCard, AvatarShimmer, build, CardShimmer (+3 more)
 
 ### Community 13 - "Registration Form Logic"
-Cohesion: 0.10
-Nodes (21): registerViewModelProvider, _confirmController, _confirmFocus, createState, dispose, _emailController, _emailFocus, _emailRegex (+13 more)
+Cohesion: 0.11
+Nodes (17): _confirmController, _confirmFocus, createState, dispose, _emailController, _emailFocus, _emailRegex, _formKey (+9 more)
 
 ### Community 14 - "Database Models and Audit"
 Cohesion: 0.11
-Nodes (11): DateTime, DeclarativeBase, Base, get_db(), AsyncSession, AuditConversation, AuditUpload, Conversation (+3 more)
+Nodes (10): DeclarativeBase, Base, get_db(), AsyncSession, AuditConversation, AuditUpload, Conversation, Message (+2 more)
 
 ### Community 15 - "Backend Documentation"
-Cohesion: 0.09
-Nodes (21): Adding new agent nodes, Adding new API routes, API Endpoints, Architecture, Code style, Design Decisions, Development, Docker (+13 more)
+Cohesion: 0.05
+Nodes (39): Adding new agent nodes, Adding new API routes, API Endpoints, Architecture, Auth, Client → Server Events, Code style, Connection (+31 more)
 
 ### Community 16 - "Auth ViewModels"
-Cohesion: 0.12
-Nodes (19): authRepositoryProvider, build, error, login, LoginStage, LoginState, LoginViewModel, reset (+11 more)
+Cohesion: 0.20
+Nodes (11): authRepositoryProvider, login, register, build, check, copyWith, error, SplashNotifier (+3 more)
 
 ### Community 17 - "Analysis Data Models"
-Cohesion: 0.10
-Nodes (20): actionPayload, actionType, analysis, date, delta, hasData, history, icon (+12 more)
+Cohesion: 0.06
+Nodes (40): AsyncNotifier, latestPredictionProvider, predictionAnalysisProvider, predictionHistory7dProvider, predictionHistoryProvider, predictionServiceProvider, watch, actionPayload (+32 more)
 
 ### Community 18 - "Knowledge API Schemas"
-Cohesion: 0.17
-Nodes (17): BaseModel, list_documents(), HealthErrorResponse, HealthResponse, Citation, CitationMeta, KnowledgeDocument, KnowledgeListResponse (+9 more)
+Cohesion: 0.19
+Nodes (14): BaseModel, chat(), list_documents(), ChatRequest, ChatResponse, HealthErrorResponse, HealthResponse, Citation (+6 more)
 
 ### Community 19 - "Prediction Result Models"
-Cohesion: 0.10
-Nodes (19): avgProbability, ClassScore, classScores, confidence, failedCount, fromJson, generatedAt, id (+11 more)
+Cohesion: 0.05
+Nodes (39): bool get, AuthResult, AuthStatus, isAuthenticated, result, user, avgProbability, ClassScore (+31 more)
 
 ### Community 20 - "Login Page UI"
 Cohesion: 0.12
-Nodes (19): build, createState, dispose, _emailController, _emailFocus, _emailRegex, _formKey, LoginPage (+11 more)
+Nodes (18): build, createState, dispose, _emailController, _emailFocus, _emailRegex, _formKey, LoginPage (+10 more)
 
 ### Community 21 - "User Authentication Service"
 Cohesion: 0.22
@@ -311,72 +306,72 @@ Cohesion: 0.18
 Nodes (15): EventSanitizer, Any, WSCitation, WSError, WSEvent, WSFinal, WSMessage, WSPing (+7 more)
 
 ### Community 23 - "Agent Trace and History"
-Cohesion: 0.11
-Nodes (16): ConnectionMode, AgentTraceSheet, build, connectionMode, onClose, traceLog, build, citations (+8 more)
+Cohesion: 0.09
+Nodes (20): AgentTraceSheet, build, connectionMode, onClose, traceLog, build, citations, createState (+12 more)
 
 ### Community 24 - "Predictive Model Service"
-Cohesion: 0.11
-Nodes (8): predictive_node(), health(), Predictor, Any, PredictionResult, SingletonMeta, ClassScore, type
+Cohesion: 0.12
+Nodes (6): predictive_node(), health(), Predictor, Any, SingletonMeta, type
 
 ### Community 25 - "Splash and Auth Flow"
-Cohesion: 0.14
-Nodes (16): build, build, _showLogoutDialog, splashProvider, build, _checkAuth, createState, initState (+8 more)
+Cohesion: 0.10
+Nodes (18): build, _shimmer, ShimmerLoading, build, StrengthCard, text, build, GreetingCard (+10 more)
 
 ### Community 26 - "Dashboard Action Widgets"
-Cohesion: 0.11
-Nodes (16): build, build, icon, label, onTap, QuickAction, QuickActionsRow, build (+8 more)
+Cohesion: 0.10
+Nodes (19): build, HomePage, navigationShell, build, build, icon, label, onTap (+11 more)
 
 ### Community 27 - "Profile UI Components"
-Cohesion: 0.14
-Nodes (13): build, ImprovementCard, text, build, StrengthCard, text, build, EmptyState (+5 more)
+Cohesion: 0.08
+Nodes (23): `00_config.py`, `01_data_loading.py`, `02_eda.py`, `03_preprocessing.py`, `04_split_dr.py`, `05_smote.py`, `06_train_mlp_tf.py`, `07_train_rnn_pt.py` (+15 more)
 
 ### Community 28 - "System Architecture Overview"
 Cohesion: 0.15
 Nodes (17): FastAPI, firecrawl_tool, LangGraph Supervisor, Nginx, predictive_tool, rag_tool, response_node, AgentState (+9 more)
 
 ### Community 29 - "Auth API Endpoints"
-Cohesion: 0.18
-Nodes (14): login_endpoint(), logout_endpoint(), me_endpoint(), AsyncSession, User, refresh_endpoint(), register_endpoint(), get_me() (+6 more)
+Cohesion: 0.22
+Nodes (12): login_endpoint(), logout_endpoint(), me_endpoint(), AsyncSession, User, refresh_endpoint(), register_endpoint(), AuthLoginRequest (+4 more)
 
 ### Community 30 - "Knowledge Service Client"
 Cohesion: 0.13
 Nodes (14): _api, deleteDocument, documentId, errorMessage, fileName, fileSizeBytes, fromJson, getDocument (+6 more)
 
 ### Community 31 - "Chat ViewModel Logic"
-Cohesion: 0.14
-Nodes (13): chat_state.dart, AgentSocketService, _chatRepository, clearHistory, _eventSub, _onEvent, reconnectWs, sendMessage (+5 more)
+Cohesion: 0.09
+Nodes (22): `default.conf`, Deployment, Development with hot reload, Docker Compose, Dockerfile (server), EduLearn AI — Infrastructure, Environment Variables, Monitoring (+14 more)
 
 ### Community 32 - "RAG and Vector Search"
 Cohesion: 0.16
 Nodes (4): Citation, rag_node(), Retriever, VectorStore
 
 ### Community 33 - "User Data Model"
-Cohesion: 0.14
-Nodes (13): avgPredictionScore, createdAt, email, fromJson, id, isPengajar, name, role (+5 more)
+Cohesion: 0.18
+Nodes (14): registerViewModelProvider, build, RegisterPage, _RegisterPageState, _submit, _showLogoutDialog, splashProvider, _checkAuth (+6 more)
 
 ### Community 34 - "Knowledge Management UI"
-Cohesion: 0.14
-Nodes (13): _confirmDelete, doc, EmptyKnowledge, _fileIcon, message, onUpload, _showUploadSheet, _statusColor (+5 more)
+Cohesion: 0.12
+Nodes (16): knowledgeDocumentsProvider, build, _confirmDelete, doc, EmptyKnowledge, _fileIcon, KnowledgeManagementSection, message (+8 more)
 
 ### Community 35 - "Backend Logging and Setup"
-Cohesion: 0.21
-Nodes (7): FastAPI, LogRecord, get_stats(), AsyncSession, _JsonFormatter, setup_logging(), lifespan()
+Cohesion: 0.18
+Nodes (9): FastAPI, LogRecord, get_me(), get_stats(), AsyncSession, User, _JsonFormatter, setup_logging() (+1 more)
 
 ### Community 36 - "Agent Tool Definitions"
 Cohesion: 0.15
 Nodes (9): predictive_tool(), Prediksi kelulusan course (Lulus/Tidak Lulus) berdasarkan data belajar siswa., rag_tool(), Cari referensi akademis dari knowledge base lokal (RAG / pgvector).      Args:, Any, validate_firecrawl_query(), validate_rag_query(), validate_student_signals() (+1 more)
 
 ### Community 37 - "User Service Providers"
-Cohesion: 0.18
-Nodes (10): api_client.dart, userMeProvider, usersServiceProvider, watch, _api, getMe, getStats, UsersService (+2 more)
+Cohesion: 0.17
+Nodes (10): auth_providers.dart, watch, userMeProvider, usersServiceProvider, watch, KnowledgeService, UsersService, ../models/user.dart (+2 more)
 
 ### Community 38 - "App Router Configuration"
 Cohesion: 0.17
 Nodes (11): app_routes.dart, appRouter, ../../features/analysis/analysis_page.dart, ../../features/auth/forgot_password_page.dart, ../../features/auth/login_page.dart, ../../features/auth/register_page.dart, ../../features/chat/chat_page.dart, ../../features/home/home_page.dart (+3 more)
 
 ### Community 39 - "Prediction Service Client"
-Cohesion: 0.18
-Nodes (10): predictionServiceProvider, watch, ApiClient, _api, getAnalysis, getHistory, getLatest, PredictionService (+2 more)
+Cohesion: 0.14
+Nodes (13): chat_state.dart, AgentSocketService, _chatRepository, clearHistory, _eventSub, _onEvent, reconnectWs, sendMessage (+5 more)
 
 ### Community 40 - "Auth Repository Implementation"
 Cohesion: 0.17
@@ -407,27 +402,27 @@ Cohesion: 0.18
 Nodes (11): Project Instructions, flutter-add-integration-test, flutter-add-widget-preview, flutter-add-widget-test, flutter-apply-architecture-best-practices, flutter-build-responsive-layout, flutter-fix-layout-issues, flutter-implement-json-serialization (+3 more)
 
 ### Community 47 - "Home Tab State"
-Cohesion: 0.22
-Nodes (10): latestPredictionProvider, predictionHistory7dProvider, build, HomeTab, ../../core/providers/prediction_providers.dart, widgets/greeting_card.dart, widgets/history_chart.dart, widgets/prediction_summary_card.dart (+2 more)
+Cohesion: 0.21
+Nodes (11): apiClientProvider, build, _buildDocCard, _buildEmptyState, createState, _documents, initState, _isLoading (+3 more)
 
 ### Community 48 - "App Spacing Constants"
 Cohesion: 0.18
 Nodes (10): AppRadius, AppSpacing, full, lg, md, sm, xl, xs (+2 more)
 
 ### Community 49 - "History and Comparison UI"
-Cohesion: 0.18
-Nodes (9): ProgressComparison, build, HistoryItem, item, build, comparison, ProgressComparisonCard, PredictionHistoryItem (+1 more)
+Cohesion: 0.14
+Nodes (12): ProgressComparison, build, HistoryItem, item, build, comparison, ProgressComparisonCard, build (+4 more)
 
 ### Community 50 - "Web App Manifest"
 Cohesion: 0.18
 Nodes (10): background_color, description, display, icons, name, orientation, prefer_related_applications, short_name (+2 more)
 
 ### Community 51 - "iOS Runner Files"
-Cohesion: 0.38
-Nodes (4): SceneDelegate, Flutter, FlutterSceneDelegate, UIKit
+Cohesion: 0.24
+Nodes (5): SceneDelegate, Flutter, FlutterSceneDelegate, UIKit, XCTest
 
 ### Community 52 - "macOS Plugin Registration"
-Cohesion: 0.20
+Cohesion: 0.22
 Nodes (8): GeneratedPluginRegistrant, +registerWithRegistry, connectivity_plus, file_picker, flutter_secure_storage_macos, Foundation, NSObject, url_launcher_macos
 
 ### Community 53 - "Agent Event Types"
@@ -440,11 +435,11 @@ Nodes (9): AuthInterceptor, _dio, _isRefreshing, onError, onRequest, _storage, _
 
 ### Community 55 - "Shimmer and Greeting Widgets"
 Cohesion: 0.20
-Nodes (8): build, _shimmer, ShimmerLoading, build, GreetingCard, _initials, userName, ../../core/theme/app_spacing.dart
+Nodes (10): build, error, RegisterStage, RegisterState, RegisterViewModel, reset, stage, build (+2 more)
 
 ### Community 56 - "Profile Page Layout"
-Cohesion: 0.20
-Nodes (9): ../../../core/providers/knowledge_providers.dart, ../../core/providers/users_providers.dart, widgets/biodata_card.dart, widgets/knowledge_management_section.dart, widgets/logout_button.dart, widgets/profile_header.dart, widgets/profile_shimmers.dart, widgets/settings_card.dart (+1 more)
+Cohesion: 0.16
+Nodes (13): currentUserProvider, userStatsProvider, build, ProfilePage, ../../../core/providers/knowledge_providers.dart, ../../core/providers/users_providers.dart, widgets/biodata_card.dart, widgets/knowledge_management_section.dart (+5 more)
 
 ### Community 57 - "Statistics Dashboard Widgets"
 Cohesion: 0.20
@@ -452,7 +447,7 @@ Nodes (9): avgScore, build, icon, label, StatCard, StatsRow, totalConversations,
 
 ### Community 58 - "App Theme and Shimmers"
 Cohesion: 0.22
-Nodes (7): app_spacing.dart, app_text_styles.dart, AppTheme, build, height, ShimmerCard, package:flutter/material.dart
+Nodes (7): app_spacing.dart, app_text_styles.dart, AppTheme, build, ImprovementCard, text, package:flutter/material.dart
 
 ### Community 59 - "Chat Bubble Components"
 Cohesion: 0.22
@@ -463,24 +458,24 @@ Cohesion: 0.22
 Nodes (8): registerPlugins, registrar, package:connectivity_plus/src/connectivity_plus_web.dart, package:file_picker/_internal/file_picker_web.dart, package:flutter_secure_storage_web/flutter_secure_storage_web.dart, package:flutter_web_plugins/flutter_web_plugins.dart, package:url_launcher_web/url_launcher_web.dart, Registrar
 
 ### Community 61 - "Prediction Chart Widgets"
-Cohesion: 0.22
-Nodes (8): build, color, label, LegendItem, prediction, PredictionChartCard, value, Color
+Cohesion: 0.09
+Nodes (20): build, color, DistributionCard, label, latest, LegendRow, value, build (+12 more)
 
 ### Community 62 - "Web Search Results UI"
-Cohesion: 0.22
-Nodes (8): build, createState, _expanded, result, results, WebResultItem, package:url_launcher/url_launcher.dart, WebSearchResult
+Cohesion: 0.25
+Nodes (8): build, error, LoginStage, LoginState, LoginViewModel, reset, stage, Notifier
 
 ### Community 63 - "User Biodata Card"
-Cohesion: 0.22
-Nodes (8): BiodataCard, BioRow, build, _formatDate, icon, label, user, value
+Cohesion: 0.12
+Nodes (15): BiodataCard, BioRow, build, _formatDate, icon, label, user, value (+7 more)
 
 ### Community 64 - "Prediction Database Queries"
-Cohesion: 0.36
-Nodes (6): get_latest_prediction(), get_prediction_analysis(), get_prediction_history(), AsyncSession, User, PredictionHistory
+Cohesion: 0.19
+Nodes (13): DateTime, get_latest_prediction(), get_prediction_analysis(), get_prediction_history(), AsyncSession, User, PredictionHistory, PredictionAnalysisResponse (+5 more)
 
 ### Community 65 - "Auth Status State"
-Cohesion: 0.25
-Nodes (7): bool get, AuthResult, AuthStatus, isAuthenticated, result, user, user.dart
+Cohesion: 0.40
+Nodes (4): pong, userMessage, WsMessageBuilder, dart:convert
 
 ### Community 66 - "iOS App Delegate"
 Cohesion: 0.25
@@ -499,16 +494,12 @@ Cohesion: 0.32
 Nodes (8): ForgotPasswordPage, _ForgotPasswordPageState, CitationTile, _CitationTileState, WebSearchTile, _WebSearchTileState, State, StatefulWidget
 
 ### Community 70 - "Splash Screen State"
-Cohesion: 0.29
-Nodes (7): build, copyWith, error, SplashNotifier, SplashStage, SplashState, stage
+Cohesion: 0.50
+Nodes (4): secureStorageProvider, ChatState, build, ChatViewModel
 
 ### Community 71 - "Network Client Configuration"
 Cohesion: 0.29
 Nodes (6): auth_interceptor.dart, buildDio, dio, ../config/app_config.dart, package:flutter_secure_storage/flutter_secure_storage.dart, return
-
-### Community 72 - "Knowledge Provider Setup"
-Cohesion: 0.29
-Nodes (7): knowledgeDocumentsProvider, build, KnowledgeDocItem, KnowledgeManagementSection, LogoutButton, EduLearnApp, ConsumerWidget
 
 ### Community 73 - "Login Page Documentation"
 Cohesion: 0.29
@@ -526,10 +517,6 @@ Nodes (6): _cache_key(), firecrawl_tool(), _get_cached(), Cari informasi terkini
 Cohesion: 0.52
 Nodes (6): chat_websocket(), _check_rate_limit(), health_websocket(), _track_connection(), _verify_ws_jwt(), WebSocket
 
-### Community 77 - "Prediction Analysis State"
-Cohesion: 0.40
-Nodes (6): AsyncNotifier, predictionAnalysisProvider, predictionHistoryProvider, AnalysisData, AnalysisViewModel, build
-
 ### Community 78 - "Android Plugin Registration"
 Cohesion: 0.47
 Nodes (4): GeneratedPluginRegistrant, String, FlutterEngine, Keep
@@ -542,13 +529,9 @@ Nodes (5): handle_new_rx_page(), __lldb_init_module(), Intercept NOTIFY_DEBUGGER
 Cohesion: 0.33
 Nodes (5): build, EmptyAnalysis, ErrorState, message, Route /home/chat
 
-### Community 81 - "Main Navigation Shell"
-Cohesion: 0.33
-Nodes (5): build, HomePage, navigationShell, package:go_router/go_router.dart, StatefulNavigationShell
-
 ### Community 82 - "App Entry Point"
-Cohesion: 0.33
-Nodes (5): build, main, core/routing/app_router.dart, core/theme/app_theme.dart, package:flutter_web_plugins/url_strategy.dart
+Cohesion: 0.20
+Nodes (9): KnowledgeDocItem, LogoutButton, build, EduLearnApp, main, ConsumerWidget, core/routing/app_router.dart, core/theme/app_theme.dart (+1 more)
 
 ### Community 83 - "macOS Window Management"
 Cohesion: 0.33
@@ -562,25 +545,13 @@ Nodes (4): AppDelegate, Bool, FlutterAppDelegate, NSApplication
 Cohesion: 0.33
 Nodes (5): 12 — Halaman Splash, Data / Kontrak, Dependencies Baru, Komponen, Tujuan
 
-### Community 87 - "Knowledge Service Providers"
-Cohesion: 0.40
-Nodes (4): auth_providers.dart, watch, KnowledgeService, ../services/knowledge_service.dart
-
 ### Community 88 - "iOS Unit Tests"
 Cohesion: 0.40
 Nodes (3): RunnerTests, RunnerTests, XCTestCase
 
-### Community 89 - "WebSocket Message Builder"
-Cohesion: 0.40
-Nodes (4): pong, userMessage, WsMessageBuilder, dart:convert
-
 ### Community 90 - "Chat Repository Client"
-Cohesion: 0.40
-Nodes (4): _api, ChatRepository, sendMessage, package:dio/dio.dart
-
-### Community 91 - "macOS Runner Swift"
-Cohesion: 0.47
-Nodes (3): Cocoa, FlutterMacOS, XCTest
+Cohesion: 0.15
+Nodes (14): api_client.dart, ApiClient, _api, ChatRepository, sendMessage, _api, getAnalysis, getHistory (+6 more)
 
 ### Community 92 - "Home Page Documentation"
 Cohesion: 0.40
@@ -598,10 +569,6 @@ Nodes (4): 18 — Halaman Profile + Knowledge Upload, Catatan Interaksi, Kompone
 Cohesion: 0.50
 Nodes (3): parse, WsEventParser, ../models/agent_event.dart
 
-### Community 96 - "Profile State Providers"
-Cohesion: 0.67
-Nodes (4): currentUserProvider, userStatsProvider, build, ProfilePage
-
 ### Community 97 - "Linux Build Configuration"
 Cohesion: 0.67
 Nodes (4): client/linux/CMakeLists.txt, client/linux/flutter/CMakeLists.txt, client/linux/runner/CMakeLists.txt, docs/1_setup_requirement.md
@@ -614,20 +581,24 @@ Nodes (3): main, package:app/main.dart, package:flutter_test/flutter_test.dart
 Cohesion: 0.50
 Nodes (3): 16 — Halaman Chat UI (Realtime Agent Chat), Komponen / Isi Utama, Tujuan
 
-### Community 100 - "Chat API Models"
-Cohesion: 0.67
-Nodes (3): chat(), ChatRequest, ChatResponse
-
 ### Community 105 - "Windows Build Configuration"
 Cohesion: 1.00
 Nodes (3): client/windows/CMakeLists.txt, client/windows/flutter/CMakeLists.txt, client/windows/runner/CMakeLists.txt
+
+### Community 150 - "Flutter Project Documentation"
+Cohesion: 0.12
+Nodes (16): Architecture, Code Style, Development, EduLearn AI — Flutter Client, Environment Configuration, Flutter Skills, Networking, Pages Overview (+8 more)
+
+### Community 182 - "Repository Documentation"
+Cohesion: 0.18
+Nodes (10): Architecture, Documentation, EduLearn AI, Environment Variables, Key Features, License, Quick Start, Repository Structure (+2 more)
 
 ## Ambiguous Edges - Review These
 - `firecrawl_tool` → `JWT (WebSocket auth)`  [AMBIGUOUS]
   docs/specification/07-firecrawl-tool.md · relation: references
 
 ## Knowledge Gaps
-- **621 isolated node(s):** `Tujuan`, `Nginx Config (WebSocket Upgrade)`, `Service `server` — env baru + healthcheck`, `Service `nginx` — tambah volume ws.conf`, `Service `postgres` — init pgvector` (+616 more)
+- **696 isolated node(s):** `AppConfig`, `_kApiBaseUrl`, `_kWsBaseUrl`, `apiBaseUrl`, `wsBaseUrl` (+691 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **65 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -636,14 +607,14 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `firecrawl_tool` and `JWT (WebSocket auth)`?**
   _Edge tagged AMBIGUOUS (relation: references) - confidence is low._
-- **Why does `Predictor` connect `Predictive Model Service` to `Backend Logging and Setup`, `Agent Tool Definitions`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `ConnectionMode` connect `Agent Trace and History` to `Chat Message Models`, `Agent Socket Service`?**
+- **Why does `ConnectionMode` connect `Chat Message Models` to `Agent Trace and History`, `Agent Socket Service`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `Prediction` connect `Prediction Summary Cards` to `Analysis Data Models`, `Prediction Result Models`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **What connects `Tujuan`, `Nginx Config (WebSocket Upgrade)`, `Service `server` — env baru + healthcheck` to the rest of the system?**
-  _631 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `Predictor` connect `Predictive Model Service` to `Knowledge Provider Setup`, `Backend Logging and Setup`, `Agent Tool Definitions`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `Prediction` connect `Prediction Summary Cards` to `Analysis Data Models`, `Prediction Result Models`, `Prediction Chart Widgets`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **What connects `AppConfig`, `_kApiBaseUrl`, `_kWsBaseUrl` to the rest of the system?**
+  _706 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Windows Platform Integration` be split into smaller, more focused modules?**
   _Cohesion score 0.0597567424643046 - nodes in this community are weakly interconnected._
 - **Should `Citation and Scoring Models` be split into smaller, more focused modules?**

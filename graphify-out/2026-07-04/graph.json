@@ -131,14 +131,324 @@
   },
   "nodes": [
     {
+      "label": "app_config.dart",
+      "file_type": "code",
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "client_lib_core_config_app_config",
+      "community": 9,
+      "norm_label": "app_config.dart"
+    },
+    {
+      "label": "AppConfig",
+      "file_type": "code",
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "client_lib_core_config_app_config_appconfig",
+      "community": 9,
+      "norm_label": "appconfig"
+    },
+    {
+      "label": "_kApiBaseUrl",
+      "file_type": "code",
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "client_lib_core_config_app_config_kapibaseurl",
+      "community": 9,
+      "norm_label": "_kapibaseurl"
+    },
+    {
+      "label": "_kWsBaseUrl",
+      "file_type": "code",
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "client_lib_core_config_app_config_kwsbaseurl",
+      "community": 9,
+      "norm_label": "_kwsbaseurl"
+    },
+    {
+      "label": "apiBaseUrl",
+      "file_type": "code",
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "client_lib_core_config_app_config_apibaseurl",
+      "community": 9,
+      "norm_label": "apibaseurl"
+    },
+    {
+      "label": "static const String",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "static_const_string",
+      "community": 9,
+      "norm_label": "static const string"
+    },
+    {
+      "label": "wsBaseUrl",
+      "file_type": "code",
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "client_lib_core_config_app_config_wsbaseurl",
+      "community": 9,
+      "norm_label": "wsbaseurl"
+    },
+    {
+      "label": "PLAN_RISET.md",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "riset_plan_riset",
+      "community": 27,
+      "norm_label": "plan_riset.md"
+    },
+    {
+      "label": "PLAN RISET \u2014 End-to-End Deep Learning Pipeline",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "community": 27,
+      "norm_label": "plan riset \u2014 end-to-end deep learning pipeline"
+    },
+    {
+      "label": "AI-Powered Adaptive Learning Recommender (Pemecahan `ml-prak-uas.ipynb`)",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "riset_plan_riset_ai_powered_adaptive_learning_recommender_pemecahan_ml_prak_uas_ipynb",
+      "community": 27,
+      "norm_label": "ai-powered adaptive learning recommender (pemecahan `ml-prak-uas.ipynb`)"
+    },
+    {
+      "label": "Daftar Isi",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "riset_plan_riset_daftar_isi",
+      "community": 27,
+      "norm_label": "daftar isi"
+    },
+    {
+      "label": "1. Pemetaan Notebook \u2192 Modul",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "riset_plan_riset_1_pemetaan_notebook_modul",
+      "community": 27,
+      "norm_label": "1. pemetaan notebook \u2192 modul"
+    },
+    {
+      "label": "2. Struktur Folder (Nested)",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "riset_plan_riset_2_struktur_folder_nested",
+      "community": 27,
+      "norm_label": "2. struktur folder (nested)"
+    },
+    {
+      "label": "3. Diagram Alur Data",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "riset_plan_riset_3_diagram_alur_data",
+      "community": 27,
+      "norm_label": "3. diagram alur data"
+    },
+    {
+      "label": "4. Kontrak IO Antar-modul",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L235",
+      "_origin": "ast",
+      "id": "riset_plan_riset_4_kontrak_io_antar_modul",
+      "community": 27,
+      "norm_label": "4. kontrak io antar-modul"
+    },
+    {
+      "label": "5. Detail per Modul",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L259",
+      "_origin": "ast",
+      "id": "riset_plan_riset_5_detail_per_modul",
+      "community": 27,
+      "norm_label": "5. detail per modul"
+    },
+    {
+      "label": "`00_config.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L265",
+      "_origin": "ast",
+      "id": "riset_plan_riset_00_config_py",
+      "community": 27,
+      "norm_label": "`00_config.py`"
+    },
+    {
+      "label": "`01_data_loading.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L295",
+      "_origin": "ast",
+      "id": "riset_plan_riset_01_data_loading_py",
+      "community": 27,
+      "norm_label": "`01_data_loading.py`"
+    },
+    {
+      "label": "`02_eda.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L325",
+      "_origin": "ast",
+      "id": "riset_plan_riset_02_eda_py",
+      "community": 27,
+      "norm_label": "`02_eda.py`"
+    },
+    {
+      "label": "`03_preprocessing.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L358",
+      "_origin": "ast",
+      "id": "riset_plan_riset_03_preprocessing_py",
+      "community": 27,
+      "norm_label": "`03_preprocessing.py`"
+    },
+    {
+      "label": "`04_split_dr.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L399",
+      "_origin": "ast",
+      "id": "riset_plan_riset_04_split_dr_py",
+      "community": 27,
+      "norm_label": "`04_split_dr.py`"
+    },
+    {
+      "label": "`05_smote.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L444",
+      "_origin": "ast",
+      "id": "riset_plan_riset_05_smote_py",
+      "community": 27,
+      "norm_label": "`05_smote.py`"
+    },
+    {
+      "label": "`06_train_mlp_tf.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L476",
+      "_origin": "ast",
+      "id": "riset_plan_riset_06_train_mlp_tf_py",
+      "community": 27,
+      "norm_label": "`06_train_mlp_tf.py`"
+    },
+    {
+      "label": "`07_train_rnn_pt.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L519",
+      "_origin": "ast",
+      "id": "riset_plan_riset_07_train_rnn_pt_py",
+      "community": 27,
+      "norm_label": "`07_train_rnn_pt.py`"
+    },
+    {
+      "label": "`08_eval_compare_save.py`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L568",
+      "_origin": "ast",
+      "id": "riset_plan_riset_08_eval_compare_save_py",
+      "community": 27,
+      "norm_label": "`08_eval_compare_save.py`"
+    },
+    {
+      "label": "`master_pipeline.ipynb`",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L627",
+      "_origin": "ast",
+      "id": "riset_plan_riset_master_pipeline_ipynb",
+      "community": 27,
+      "norm_label": "`master_pipeline.ipynb`"
+    },
+    {
+      "label": "6. Cara Menjalankan",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L652",
+      "_origin": "ast",
+      "id": "riset_plan_riset_6_cara_menjalankan",
+      "community": 27,
+      "norm_label": "6. cara menjalankan"
+    },
+    {
+      "label": "Opsi A \u2014 Per modul (rekomendasi untuk debugging)",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L654",
+      "_origin": "ast",
+      "id": "riset_plan_riset_opsi_a_per_modul_rekomendasi_untuk_debugging",
+      "community": 27,
+      "norm_label": "opsi a \u2014 per modul (rekomendasi untuk debugging)"
+    },
+    {
+      "label": "Opsi B \u2014 Sekali jalan via orchestrator",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L673",
+      "_origin": "ast",
+      "id": "riset_plan_riset_opsi_b_sekali_jalan_via_orchestrator",
+      "community": 27,
+      "norm_label": "opsi b \u2014 sekali jalan via orchestrator"
+    },
+    {
+      "label": "Opsi C \u2014 Rerun partial",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L682",
+      "_origin": "ast",
+      "id": "riset_plan_riset_opsi_c_rerun_partial",
+      "community": 27,
+      "norm_label": "opsi c \u2014 rerun partial"
+    },
+    {
+      "label": "7. Catatan Reproducibility & Environment",
+      "file_type": "document",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L688",
+      "_origin": "ast",
+      "id": "riset_plan_riset_7_catatan_reproducibility_environment",
+      "community": 27,
+      "norm_label": "7. catatan reproducibility & environment"
+    },
+    {
       "label": "README.md",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "readme",
       "community": 182,
-      "norm_label": "readme.md"
+      "norm_label": "readme.md",
+      "id": "readme"
     },
     {
       "label": "EduLearn AI",
@@ -146,9 +456,9 @@
       "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "readme_edulearn_ai",
       "community": 182,
-      "norm_label": "edulearn ai"
+      "norm_label": "edulearn ai",
+      "id": "readme_edulearn_ai"
     },
     {
       "label": "Architecture",
@@ -156,9 +466,9 @@
       "source_file": "README.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "readme_architecture",
       "community": 182,
-      "norm_label": "architecture"
+      "norm_label": "architecture",
+      "id": "readme_architecture"
     },
     {
       "label": "Tech Stack",
@@ -166,9 +476,9 @@
       "source_file": "README.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "readme_tech_stack",
       "community": 182,
-      "norm_label": "tech stack"
+      "norm_label": "tech stack",
+      "id": "readme_tech_stack"
     },
     {
       "label": "Repository Structure",
@@ -176,9 +486,9 @@
       "source_file": "README.md",
       "source_location": "L50",
       "_origin": "ast",
-      "id": "readme_repository_structure",
       "community": 182,
-      "norm_label": "repository structure"
+      "norm_label": "repository structure",
+      "id": "readme_repository_structure"
     },
     {
       "label": "Quick Start",
@@ -186,9 +496,9 @@
       "source_file": "README.md",
       "source_location": "L78",
       "_origin": "ast",
-      "id": "readme_quick_start",
       "community": 182,
-      "norm_label": "quick start"
+      "norm_label": "quick start",
+      "id": "readme_quick_start"
     },
     {
       "label": "Services",
@@ -196,9 +506,9 @@
       "source_file": "README.md",
       "source_location": "L101",
       "_origin": "ast",
-      "id": "readme_services",
       "community": 182,
-      "norm_label": "services"
+      "norm_label": "services",
+      "id": "readme_services"
     },
     {
       "label": "Key Features",
@@ -206,9 +516,9 @@
       "source_file": "README.md",
       "source_location": "L110",
       "_origin": "ast",
-      "id": "readme_key_features",
       "community": 182,
-      "norm_label": "key features"
+      "norm_label": "key features",
+      "id": "readme_key_features"
     },
     {
       "label": "Documentation",
@@ -216,9 +526,9 @@
       "source_file": "README.md",
       "source_location": "L120",
       "_origin": "ast",
-      "id": "readme_documentation",
       "community": 182,
-      "norm_label": "documentation"
+      "norm_label": "documentation",
+      "id": "readme_documentation"
     },
     {
       "label": "Environment Variables",
@@ -226,9 +536,9 @@
       "source_file": "README.md",
       "source_location": "L128",
       "_origin": "ast",
-      "id": "readme_environment_variables",
       "community": 182,
-      "norm_label": "environment variables"
+      "norm_label": "environment variables",
+      "id": "readme_environment_variables"
     },
     {
       "label": "License",
@@ -236,9 +546,9 @@
       "source_file": "README.md",
       "source_location": "L144",
       "_origin": "ast",
-      "id": "readme_license",
       "community": 182,
-      "norm_label": "license"
+      "norm_label": "license",
+      "id": "readme_license"
     },
     {
       "label": "README.md",
@@ -246,9 +556,9 @@
       "source_file": "client/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "client_readme",
       "community": 150,
-      "norm_label": "readme.md"
+      "norm_label": "readme.md",
+      "id": "client_readme"
     },
     {
       "label": "EduLearn AI \u2014 Flutter Client",
@@ -256,9 +566,9 @@
       "source_file": "client/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "client_readme_edulearn_ai_flutter_client",
       "community": 150,
-      "norm_label": "edulearn ai \u2014 flutter client"
+      "norm_label": "edulearn ai \u2014 flutter client",
+      "id": "client_readme_edulearn_ai_flutter_client"
     },
     {
       "label": "Tech Stack",
@@ -266,9 +576,9 @@
       "source_file": "client/README.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "client_readme_tech_stack",
       "community": 150,
-      "norm_label": "tech stack"
+      "norm_label": "tech stack",
+      "id": "client_readme_tech_stack"
     },
     {
       "label": "Architecture",
@@ -276,9 +586,9 @@
       "source_file": "client/README.md",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "client_readme_architecture",
       "community": 150,
-      "norm_label": "architecture"
+      "norm_label": "architecture",
+      "id": "client_readme_architecture"
     },
     {
       "label": "Routing",
@@ -286,9 +596,9 @@
       "source_file": "client/README.md",
       "source_location": "L68",
       "_origin": "ast",
-      "id": "client_readme_routing",
       "community": 150,
-      "norm_label": "routing"
+      "norm_label": "routing",
+      "id": "client_readme_routing"
     },
     {
       "label": "Project Structure",
@@ -296,9 +606,9 @@
       "source_file": "client/README.md",
       "source_location": "L83",
       "_origin": "ast",
-      "id": "client_readme_project_structure",
       "community": 150,
-      "norm_label": "project structure"
+      "norm_label": "project structure",
+      "id": "client_readme_project_structure"
     },
     {
       "label": "State Management",
@@ -306,9 +616,9 @@
       "source_file": "client/README.md",
       "source_location": "L127",
       "_origin": "ast",
-      "id": "client_readme_state_management",
       "community": 150,
-      "norm_label": "state management"
+      "norm_label": "state management",
+      "id": "client_readme_state_management"
     },
     {
       "label": "Networking",
@@ -316,9 +626,9 @@
       "source_file": "client/README.md",
       "source_location": "L136",
       "_origin": "ast",
-      "id": "client_readme_networking",
       "community": 150,
-      "norm_label": "networking"
+      "norm_label": "networking",
+      "id": "client_readme_networking"
     },
     {
       "label": "REST (Dio)",
@@ -326,9 +636,9 @@
       "source_file": "client/README.md",
       "source_location": "L138",
       "_origin": "ast",
-      "id": "client_readme_rest_dio",
       "community": 150,
-      "norm_label": "rest (dio)"
+      "norm_label": "rest (dio)",
+      "id": "client_readme_rest_dio"
     },
     {
       "label": "WebSocket",
@@ -336,9 +646,9 @@
       "source_file": "client/README.md",
       "source_location": "L145",
       "_origin": "ast",
-      "id": "client_readme_websocket",
       "community": 150,
-      "norm_label": "websocket"
+      "norm_label": "websocket",
+      "id": "client_readme_websocket"
     },
     {
       "label": "Setup",
@@ -346,9 +656,9 @@
       "source_file": "client/README.md",
       "source_location": "L155",
       "_origin": "ast",
-      "id": "client_readme_setup",
       "community": 150,
-      "norm_label": "setup"
+      "norm_label": "setup",
+      "id": "client_readme_setup"
     },
     {
       "label": "Testing",
@@ -356,9 +666,9 @@
       "source_file": "client/README.md",
       "source_location": "L180",
       "_origin": "ast",
-      "id": "client_readme_testing",
       "community": 150,
-      "norm_label": "testing"
+      "norm_label": "testing",
+      "id": "client_readme_testing"
     },
     {
       "label": "Environment Configuration",
@@ -366,9 +676,9 @@
       "source_file": "client/README.md",
       "source_location": "L193",
       "_origin": "ast",
-      "id": "client_readme_environment_configuration",
       "community": 150,
-      "norm_label": "environment configuration"
+      "norm_label": "environment configuration",
+      "id": "client_readme_environment_configuration"
     },
     {
       "label": "Code Style",
@@ -376,9 +686,9 @@
       "source_file": "client/README.md",
       "source_location": "L203",
       "_origin": "ast",
-      "id": "client_readme_code_style",
       "community": 150,
-      "norm_label": "code style"
+      "norm_label": "code style",
+      "id": "client_readme_code_style"
     },
     {
       "label": "Flutter Skills",
@@ -386,9 +696,9 @@
       "source_file": "client/README.md",
       "source_location": "L214",
       "_origin": "ast",
-      "id": "client_readme_flutter_skills",
       "community": 150,
-      "norm_label": "flutter skills"
+      "norm_label": "flutter skills",
+      "id": "client_readme_flutter_skills"
     },
     {
       "label": "Pages Overview",
@@ -396,9 +706,9 @@
       "source_file": "client/README.md",
       "source_location": "L229",
       "_origin": "ast",
-      "id": "client_readme_pages_overview",
       "community": 150,
-      "norm_label": "pages overview"
+      "norm_label": "pages overview",
+      "id": "client_readme_pages_overview"
     },
     {
       "label": "Development",
@@ -406,9 +716,9 @@
       "source_file": "client/README.md",
       "source_location": "L240",
       "_origin": "ast",
-      "id": "client_readme_development",
       "community": 150,
-      "norm_label": "development"
+      "norm_label": "development",
+      "id": "client_readme_development"
     },
     {
       "label": "README.md",
@@ -416,9 +726,9 @@
       "source_file": "infra/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "infra_readme",
       "community": 31,
-      "norm_label": "readme.md"
+      "norm_label": "readme.md",
+      "id": "infra_readme"
     },
     {
       "label": "EduLearn AI \u2014 Infrastructure",
@@ -426,9 +736,9 @@
       "source_file": "infra/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "infra_readme_edulearn_ai_infrastructure",
       "community": 31,
-      "norm_label": "edulearn ai \u2014 infrastructure"
+      "norm_label": "edulearn ai \u2014 infrastructure",
+      "id": "infra_readme_edulearn_ai_infrastructure"
     },
     {
       "label": "Services",
@@ -436,9 +746,9 @@
       "source_file": "infra/README.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "infra_readme_services",
       "community": 31,
-      "norm_label": "services"
+      "norm_label": "services",
+      "id": "infra_readme_services"
     },
     {
       "label": "Docker Compose",
@@ -446,9 +756,9 @@
       "source_file": "infra/README.md",
       "source_location": "L37",
       "_origin": "ast",
-      "id": "infra_readme_docker_compose",
       "community": 31,
-      "norm_label": "docker compose"
+      "norm_label": "docker compose",
+      "id": "infra_readme_docker_compose"
     },
     {
       "label": "Volumes",
@@ -456,9 +766,9 @@
       "source_file": "infra/README.md",
       "source_location": "L55",
       "_origin": "ast",
-      "id": "infra_readme_volumes",
       "community": 31,
-      "norm_label": "volumes"
+      "norm_label": "volumes",
+      "id": "infra_readme_volumes"
     },
     {
       "label": "Nginx Configuration",
@@ -466,9 +776,9 @@
       "source_file": "infra/README.md",
       "source_location": "L64",
       "_origin": "ast",
-      "id": "infra_readme_nginx_configuration",
       "community": 31,
-      "norm_label": "nginx configuration"
+      "norm_label": "nginx configuration",
+      "id": "infra_readme_nginx_configuration"
     },
     {
       "label": "`default.conf`",
@@ -476,9 +786,9 @@
       "source_file": "infra/README.md",
       "source_location": "L66",
       "_origin": "ast",
-      "id": "infra_readme_default_conf",
       "community": 31,
-      "norm_label": "`default.conf`"
+      "norm_label": "`default.conf`",
+      "id": "infra_readme_default_conf"
     },
     {
       "label": "`ws.conf`",
@@ -486,9 +796,9 @@
       "source_file": "infra/README.md",
       "source_location": "L76",
       "_origin": "ast",
-      "id": "infra_readme_ws_conf",
       "community": 31,
-      "norm_label": "`ws.conf`"
+      "norm_label": "`ws.conf`",
+      "id": "infra_readme_ws_conf"
     },
     {
       "label": "Environment Variables",
@@ -496,9 +806,9 @@
       "source_file": "infra/README.md",
       "source_location": "L84",
       "_origin": "ast",
-      "id": "infra_readme_environment_variables",
       "community": 31,
-      "norm_label": "environment variables"
+      "norm_label": "environment variables",
+      "id": "infra_readme_environment_variables"
     },
     {
       "label": "Setup",
@@ -506,9 +816,9 @@
       "source_file": "infra/README.md",
       "source_location": "L86",
       "_origin": "ast",
-      "id": "infra_readme_setup",
       "community": 31,
-      "norm_label": "setup"
+      "norm_label": "setup",
+      "id": "infra_readme_setup"
     },
     {
       "label": "Variable Groups",
@@ -516,9 +826,9 @@
       "source_file": "infra/README.md",
       "source_location": "L94",
       "_origin": "ast",
-      "id": "infra_readme_variable_groups",
       "community": 31,
-      "norm_label": "variable groups"
+      "norm_label": "variable groups",
+      "id": "infra_readme_variable_groups"
     },
     {
       "label": "Deployment",
@@ -526,9 +836,9 @@
       "source_file": "infra/README.md",
       "source_location": "L113",
       "_origin": "ast",
-      "id": "infra_readme_deployment",
       "community": 31,
-      "norm_label": "deployment"
+      "norm_label": "deployment",
+      "id": "infra_readme_deployment"
     },
     {
       "label": "Production",
@@ -536,9 +846,9 @@
       "source_file": "infra/README.md",
       "source_location": "L115",
       "_origin": "ast",
-      "id": "infra_readme_production",
       "community": 31,
-      "norm_label": "production"
+      "norm_label": "production",
+      "id": "infra_readme_production"
     },
     {
       "label": "Development with hot reload",
@@ -546,9 +856,9 @@
       "source_file": "infra/README.md",
       "source_location": "L139",
       "_origin": "ast",
-      "id": "infra_readme_development_with_hot_reload",
       "community": 31,
-      "norm_label": "development with hot reload"
+      "norm_label": "development with hot reload",
+      "id": "infra_readme_development_with_hot_reload"
     },
     {
       "label": "Scaling",
@@ -556,9 +866,9 @@
       "source_file": "infra/README.md",
       "source_location": "L148",
       "_origin": "ast",
-      "id": "infra_readme_scaling",
       "community": 31,
-      "norm_label": "scaling"
+      "norm_label": "scaling",
+      "id": "infra_readme_scaling"
     },
     {
       "label": "Stop & Cleanup",
@@ -566,9 +876,9 @@
       "source_file": "infra/README.md",
       "source_location": "L156",
       "_origin": "ast",
-      "id": "infra_readme_stop_cleanup",
       "community": 31,
-      "norm_label": "stop & cleanup"
+      "norm_label": "stop & cleanup",
+      "id": "infra_readme_stop_cleanup"
     },
     {
       "label": "Network",
@@ -576,9 +886,9 @@
       "source_file": "infra/README.md",
       "source_location": "L169",
       "_origin": "ast",
-      "id": "infra_readme_network",
       "community": 31,
-      "norm_label": "network"
+      "norm_label": "network",
+      "id": "infra_readme_network"
     },
     {
       "label": "Dockerfile (server)",
@@ -586,9 +896,9 @@
       "source_file": "infra/README.md",
       "source_location": "L177",
       "_origin": "ast",
-      "id": "infra_readme_dockerfile_server",
       "community": 31,
-      "norm_label": "dockerfile (server)"
+      "norm_label": "dockerfile (server)",
+      "id": "infra_readme_dockerfile_server"
     },
     {
       "label": "Resource Limits",
@@ -596,9 +906,9 @@
       "source_file": "infra/README.md",
       "source_location": "L186",
       "_origin": "ast",
-      "id": "infra_readme_resource_limits",
       "community": 31,
-      "norm_label": "resource limits"
+      "norm_label": "resource limits",
+      "id": "infra_readme_resource_limits"
     },
     {
       "label": "Security",
@@ -606,9 +916,9 @@
       "source_file": "infra/README.md",
       "source_location": "L194",
       "_origin": "ast",
-      "id": "infra_readme_security",
       "community": 31,
-      "norm_label": "security"
+      "norm_label": "security",
+      "id": "infra_readme_security"
     },
     {
       "label": "PostgreSQL Init",
@@ -616,9 +926,9 @@
       "source_file": "infra/README.md",
       "source_location": "L204",
       "_origin": "ast",
-      "id": "infra_readme_postgresql_init",
       "community": 31,
-      "norm_label": "postgresql init"
+      "norm_label": "postgresql init",
+      "id": "infra_readme_postgresql_init"
     },
     {
       "label": "Monitoring",
@@ -626,9 +936,9 @@
       "source_file": "infra/README.md",
       "source_location": "L210",
       "_origin": "ast",
-      "id": "infra_readme_monitoring",
       "community": 31,
-      "norm_label": "monitoring"
+      "norm_label": "monitoring",
+      "id": "infra_readme_monitoring"
     },
     {
       "label": "Troubleshooting",
@@ -636,9 +946,9 @@
       "source_file": "infra/README.md",
       "source_location": "L227",
       "_origin": "ast",
-      "id": "infra_readme_troubleshooting",
       "community": 31,
-      "norm_label": "troubleshooting"
+      "norm_label": "troubleshooting",
+      "id": "infra_readme_troubleshooting"
     },
     {
       "label": "README.md",
@@ -646,9 +956,9 @@
       "source_file": "server/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "server_readme",
       "community": 15,
-      "norm_label": "readme.md"
+      "norm_label": "readme.md",
+      "id": "server_readme"
     },
     {
       "label": "EduLearn AI Backend",
@@ -656,9 +966,9 @@
       "source_file": "server/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "server_readme_edulearn_ai_backend",
       "community": 15,
-      "norm_label": "edulearn ai backend"
+      "norm_label": "edulearn ai backend",
+      "id": "server_readme_edulearn_ai_backend"
     },
     {
       "label": "Architecture",
@@ -666,9 +976,9 @@
       "source_file": "server/README.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "server_readme_architecture",
       "community": 15,
-      "norm_label": "architecture"
+      "norm_label": "architecture",
+      "id": "server_readme_architecture"
     },
     {
       "label": "Tech Stack",
@@ -676,9 +986,9 @@
       "source_file": "server/README.md",
       "source_location": "L44",
       "_origin": "ast",
-      "id": "server_readme_tech_stack",
       "community": 15,
-      "norm_label": "tech stack"
+      "norm_label": "tech stack",
+      "id": "server_readme_tech_stack"
     },
     {
       "label": "Project Structure",
@@ -686,9 +996,9 @@
       "source_file": "server/README.md",
       "source_location": "L61",
       "_origin": "ast",
-      "id": "server_readme_project_structure",
       "community": 15,
-      "norm_label": "project structure"
+      "norm_label": "project structure",
+      "id": "server_readme_project_structure"
     },
     {
       "label": "Setup",
@@ -696,9 +1006,9 @@
       "source_file": "server/README.md",
       "source_location": "L125",
       "_origin": "ast",
-      "id": "server_readme_setup",
       "community": 15,
-      "norm_label": "setup"
+      "norm_label": "setup",
+      "id": "server_readme_setup"
     },
     {
       "label": "Prerequisites",
@@ -706,9 +1016,9 @@
       "source_file": "server/README.md",
       "source_location": "L127",
       "_origin": "ast",
-      "id": "server_readme_prerequisites",
       "community": 15,
-      "norm_label": "prerequisites"
+      "norm_label": "prerequisites",
+      "id": "server_readme_prerequisites"
     },
     {
       "label": "Local Development",
@@ -716,9 +1026,9 @@
       "source_file": "server/README.md",
       "source_location": "L133",
       "_origin": "ast",
-      "id": "server_readme_local_development",
       "community": 15,
-      "norm_label": "local development"
+      "norm_label": "local development",
+      "id": "server_readme_local_development"
     },
     {
       "label": "Docker Compose (full stack)",
@@ -726,9 +1036,9 @@
       "source_file": "server/README.md",
       "source_location": "L158",
       "_origin": "ast",
-      "id": "server_readme_docker_compose_full_stack",
       "community": 15,
-      "norm_label": "docker compose (full stack)"
+      "norm_label": "docker compose (full stack)",
+      "id": "server_readme_docker_compose_full_stack"
     },
     {
       "label": "Environment Variables",
@@ -736,9 +1046,9 @@
       "source_file": "server/README.md",
       "source_location": "L180",
       "_origin": "ast",
-      "id": "server_readme_environment_variables",
       "community": 15,
-      "norm_label": "environment variables"
+      "norm_label": "environment variables",
+      "id": "server_readme_environment_variables"
     },
     {
       "label": "ML Model Loading",
@@ -746,9 +1056,9 @@
       "source_file": "server/README.md",
       "source_location": "L200",
       "_origin": "ast",
-      "id": "server_readme_ml_model_loading",
       "community": 15,
-      "norm_label": "ml model loading"
+      "norm_label": "ml model loading",
+      "id": "server_readme_ml_model_loading"
     },
     {
       "label": "API Endpoints",
@@ -756,9 +1066,9 @@
       "source_file": "server/README.md",
       "source_location": "L212",
       "_origin": "ast",
-      "id": "server_readme_api_endpoints",
       "community": 15,
-      "norm_label": "api endpoints"
+      "norm_label": "api endpoints",
+      "id": "server_readme_api_endpoints"
     },
     {
       "label": "`GET /health`",
@@ -766,9 +1076,9 @@
       "source_file": "server/README.md",
       "source_location": "L214",
       "_origin": "ast",
-      "id": "server_readme_get_health",
       "community": 15,
-      "norm_label": "`get /health`"
+      "norm_label": "`get /health`",
+      "id": "server_readme_get_health"
     },
     {
       "label": "`POST /api/v1/chat`",
@@ -776,9 +1086,9 @@
       "source_file": "server/README.md",
       "source_location": "L218",
       "_origin": "ast",
-      "id": "server_readme_post_api_v1_chat",
       "community": 15,
-      "norm_label": "`post /api/v1/chat`"
+      "norm_label": "`post /api/v1/chat`",
+      "id": "server_readme_post_api_v1_chat"
     },
     {
       "label": "`WS /ws/v1/chat`",
@@ -786,9 +1096,9 @@
       "source_file": "server/README.md",
       "source_location": "L222",
       "_origin": "ast",
-      "id": "server_readme_ws_ws_v1_chat",
       "community": 15,
-      "norm_label": "`ws /ws/v1/chat`"
+      "norm_label": "`ws /ws/v1/chat`",
+      "id": "server_readme_ws_ws_v1_chat"
     },
     {
       "label": "Auth",
@@ -796,9 +1106,9 @@
       "source_file": "server/README.md",
       "source_location": "L226",
       "_origin": "ast",
-      "id": "server_readme_auth",
       "community": 15,
-      "norm_label": "auth"
+      "norm_label": "auth",
+      "id": "server_readme_auth"
     },
     {
       "label": "Users",
@@ -806,9 +1116,9 @@
       "source_file": "server/README.md",
       "source_location": "L236",
       "_origin": "ast",
-      "id": "server_readme_users",
       "community": 15,
-      "norm_label": "users"
+      "norm_label": "users",
+      "id": "server_readme_users"
     },
     {
       "label": "Predictions",
@@ -816,9 +1126,9 @@
       "source_file": "server/README.md",
       "source_location": "L243",
       "_origin": "ast",
-      "id": "server_readme_predictions",
       "community": 15,
-      "norm_label": "predictions"
+      "norm_label": "predictions",
+      "id": "server_readme_predictions"
     },
     {
       "label": "Knowledge",
@@ -826,9 +1136,9 @@
       "source_file": "server/README.md",
       "source_location": "L251",
       "_origin": "ast",
-      "id": "server_readme_knowledge",
       "community": 15,
-      "norm_label": "knowledge"
+      "norm_label": "knowledge",
+      "id": "server_readme_knowledge"
     },
     {
       "label": "WebSocket Protocol",
@@ -836,9 +1146,9 @@
       "source_file": "server/README.md",
       "source_location": "L260",
       "_origin": "ast",
-      "id": "server_readme_websocket_protocol",
       "community": 15,
-      "norm_label": "websocket protocol"
+      "norm_label": "websocket protocol",
+      "id": "server_readme_websocket_protocol"
     },
     {
       "label": "Connection",
@@ -846,9 +1156,9 @@
       "source_file": "server/README.md",
       "source_location": "L262",
       "_origin": "ast",
-      "id": "server_readme_connection",
       "community": 15,
-      "norm_label": "connection"
+      "norm_label": "connection",
+      "id": "server_readme_connection"
     },
     {
       "label": "Client \u2192 Server Events",
@@ -856,9 +1166,9 @@
       "source_file": "server/README.md",
       "source_location": "L270",
       "_origin": "ast",
-      "id": "server_readme_client_server_events",
       "community": 15,
-      "norm_label": "client \u2192 server events"
+      "norm_label": "client \u2192 server events",
+      "id": "server_readme_client_server_events"
     },
     {
       "label": "Server \u2192 Client Events",
@@ -866,9 +1176,9 @@
       "source_file": "server/README.md",
       "source_location": "L277",
       "_origin": "ast",
-      "id": "server_readme_server_client_events",
       "community": 15,
-      "norm_label": "server \u2192 client events"
+      "norm_label": "server \u2192 client events",
+      "id": "server_readme_server_client_events"
     },
     {
       "label": "Rate Limiting",
@@ -876,9 +1186,9 @@
       "source_file": "server/README.md",
       "source_location": "L292",
       "_origin": "ast",
-      "id": "server_readme_rate_limiting",
       "community": 15,
-      "norm_label": "rate limiting"
+      "norm_label": "rate limiting",
+      "id": "server_readme_rate_limiting"
     },
     {
       "label": "LangGraph Agent Flow",
@@ -886,9 +1196,9 @@
       "source_file": "server/README.md",
       "source_location": "L298",
       "_origin": "ast",
-      "id": "server_readme_langgraph_agent_flow",
       "community": 15,
-      "norm_label": "langgraph agent flow"
+      "norm_label": "langgraph agent flow",
+      "id": "server_readme_langgraph_agent_flow"
     },
     {
       "label": "Design Decisions",
@@ -896,9 +1206,9 @@
       "source_file": "server/README.md",
       "source_location": "L318",
       "_origin": "ast",
-      "id": "server_readme_design_decisions",
       "community": 15,
-      "norm_label": "design decisions"
+      "norm_label": "design decisions",
+      "id": "server_readme_design_decisions"
     },
     {
       "label": "Docker",
@@ -906,9 +1216,9 @@
       "source_file": "server/README.md",
       "source_location": "L326",
       "_origin": "ast",
-      "id": "server_readme_docker",
       "community": 15,
-      "norm_label": "docker"
+      "norm_label": "docker",
+      "id": "server_readme_docker"
     },
     {
       "label": "Security",
@@ -916,9 +1226,9 @@
       "source_file": "server/README.md",
       "source_location": "L335",
       "_origin": "ast",
-      "id": "server_readme_security",
       "community": 15,
-      "norm_label": "security"
+      "norm_label": "security",
+      "id": "server_readme_security"
     },
     {
       "label": "Database Schema",
@@ -926,9 +1236,9 @@
       "source_file": "server/README.md",
       "source_location": "L343",
       "_origin": "ast",
-      "id": "server_readme_database_schema",
       "community": 15,
-      "norm_label": "database schema"
+      "norm_label": "database schema",
+      "id": "server_readme_database_schema"
     },
     {
       "label": "`users`",
@@ -936,9 +1246,9 @@
       "source_file": "server/README.md",
       "source_location": "L345",
       "_origin": "ast",
-      "id": "server_readme_users_345",
       "community": 15,
-      "norm_label": "`users`"
+      "norm_label": "`users`",
+      "id": "server_readme_users_345"
     },
     {
       "label": "`conversations`",
@@ -946,9 +1256,9 @@
       "source_file": "server/README.md",
       "source_location": "L357",
       "_origin": "ast",
-      "id": "server_readme_conversations",
       "community": 15,
-      "norm_label": "`conversations`"
+      "norm_label": "`conversations`",
+      "id": "server_readme_conversations"
     },
     {
       "label": "`messages`",
@@ -956,9 +1266,9 @@
       "source_file": "server/README.md",
       "source_location": "L369",
       "_origin": "ast",
-      "id": "server_readme_messages",
       "community": 15,
-      "norm_label": "`messages`"
+      "norm_label": "`messages`",
+      "id": "server_readme_messages"
     },
     {
       "label": "`prediction_histories`",
@@ -966,9 +1276,9 @@
       "source_file": "server/README.md",
       "source_location": "L381",
       "_origin": "ast",
-      "id": "server_readme_prediction_histories",
       "community": 15,
-      "norm_label": "`prediction_histories`"
+      "norm_label": "`prediction_histories`",
+      "id": "server_readme_prediction_histories"
     },
     {
       "label": "`knowledge_documents`",
@@ -976,9 +1286,9 @@
       "source_file": "server/README.md",
       "source_location": "L393",
       "_origin": "ast",
-      "id": "server_readme_knowledge_documents",
       "community": 15,
-      "norm_label": "`knowledge_documents`"
+      "norm_label": "`knowledge_documents`",
+      "id": "server_readme_knowledge_documents"
     },
     {
       "label": "`knowledge_chunks`",
@@ -986,9 +1296,9 @@
       "source_file": "server/README.md",
       "source_location": "L405",
       "_origin": "ast",
-      "id": "server_readme_knowledge_chunks",
       "community": 15,
-      "norm_label": "`knowledge_chunks`"
+      "norm_label": "`knowledge_chunks`",
+      "id": "server_readme_knowledge_chunks"
     },
     {
       "label": "Testing",
@@ -996,9 +1306,9 @@
       "source_file": "server/README.md",
       "source_location": "L416",
       "_origin": "ast",
-      "id": "server_readme_testing",
       "community": 15,
-      "norm_label": "testing"
+      "norm_label": "testing",
+      "id": "server_readme_testing"
     },
     {
       "label": "Development",
@@ -1006,9 +1316,9 @@
       "source_file": "server/README.md",
       "source_location": "L433",
       "_origin": "ast",
-      "id": "server_readme_development",
       "community": 15,
-      "norm_label": "development"
+      "norm_label": "development",
+      "id": "server_readme_development"
     },
     {
       "label": "Adding new API routes",
@@ -1016,9 +1326,9 @@
       "source_file": "server/README.md",
       "source_location": "L435",
       "_origin": "ast",
-      "id": "server_readme_adding_new_api_routes",
       "community": 15,
-      "norm_label": "adding new api routes"
+      "norm_label": "adding new api routes",
+      "id": "server_readme_adding_new_api_routes"
     },
     {
       "label": "Adding new agent nodes",
@@ -1026,9 +1336,9 @@
       "source_file": "server/README.md",
       "source_location": "L440",
       "_origin": "ast",
-      "id": "server_readme_adding_new_agent_nodes",
       "community": 15,
-      "norm_label": "adding new agent nodes"
+      "norm_label": "adding new agent nodes",
+      "id": "server_readme_adding_new_agent_nodes"
     },
     {
       "label": "Code style",
@@ -1036,9 +1346,9 @@
       "source_file": "server/README.md",
       "source_location": "L446",
       "_origin": "ast",
-      "id": "server_readme_code_style",
       "community": 15,
-      "norm_label": "code style"
+      "norm_label": "code style",
+      "id": "server_readme_code_style"
     },
     {
       "label": "Registrar",
@@ -1272,23 +1582,12 @@
       "id": "xctestcase"
     },
     {
-      "label": "static const String",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "static const string",
-      "community_name": "app_routes.dart",
-      "id": "static_const_string"
-    },
-    {
       "label": "DateTime",
       "file_type": "code",
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 14,
+      "community": 64,
       "norm_label": "datetime",
       "community_name": "DateTime",
       "id": "datetime"
@@ -1442,7 +1741,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 54,
+      "community": 68,
       "norm_label": "dio",
       "community_name": "api_client.dart",
       "id": "dio"
@@ -1453,7 +1752,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 71,
+      "community": 90,
       "norm_label": "package:dio/dio.dart",
       "community_name": "package:dio/dio.dart",
       "id": "package_dio_dio_dart"
@@ -1464,7 +1763,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 68,
+      "community": 71,
       "norm_label": "package:flutter_secure_storage/flutter_secure_storage.dart",
       "community_name": "dio_client.dart",
       "id": "package_flutter_secure_storage_flutter_secure_storage_dart"
@@ -1519,7 +1818,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 65,
       "norm_label": "dart:convert",
       "community_name": "ws_message_builder.dart",
       "id": "dart_convert"
@@ -1530,7 +1829,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 37,
+      "community": 55,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "package_flutter_riverpod_flutter_riverpod_dart"
@@ -1596,7 +1895,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "../models/prediction.dart",
       "community_name": "prediction_providers.dart",
       "id": "models_prediction_dart"
@@ -1607,7 +1906,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "../services/prediction_service.dart",
       "community_name": "prediction_providers.dart",
       "id": "services_prediction_service_dart"
@@ -1640,7 +1939,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 80,
+      "community": 26,
       "norm_label": "package:go_router/go_router.dart",
       "community_name": "package:go_router/go_router.dart",
       "id": "package_go_router_go_router_dart"
@@ -1783,7 +2082,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "streamsubscription",
       "community_name": "chat_viewmodel.dart",
       "id": "streamsubscription"
@@ -1827,7 +2126,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "dart:async",
       "community_name": "chat_viewmodel.dart",
       "id": "dart_async"
@@ -2146,7 +2445,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 49,
       "norm_label": "../../core/theme/app_text_styles.dart",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "core_theme_app_text_styles_dart"
@@ -2267,7 +2566,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "asyncnotifier",
       "community_name": "AnalysisViewModel",
       "id": "asyncnotifier"
@@ -2300,7 +2599,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "../../core/providers/prediction_providers.dart",
       "community_name": "home_tab.dart",
       "id": "core_providers_prediction_providers_dart"
@@ -2476,7 +2775,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "norm_label": "../../core/routing/app_routes.dart",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "core_routing_app_routes_dart"
@@ -2509,7 +2808,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "notifier",
       "community_name": "login_viewmodel.dart",
       "id": "notifier"
@@ -2520,7 +2819,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "../../../core/providers/auth_providers.dart",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "core_providers_auth_providers_dart"
@@ -2674,7 +2973,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "../../../core/services/chat_repository.dart",
       "community_name": "chat_viewmodel.dart",
       "id": "core_services_chat_repository_dart"
@@ -2685,7 +2984,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "chat_state.dart",
       "community_name": "chat_viewmodel.dart",
       "id": "chat_state_dart"
@@ -2762,7 +3061,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 80,
+      "community": 26,
       "norm_label": "statefulnavigationshell",
       "community_name": "package:go_router/go_router.dart",
       "id": "statefulnavigationshell"
@@ -2773,7 +3072,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "widgets/greeting_card.dart",
       "community_name": "home_tab.dart",
       "id": "widgets_greeting_card_dart"
@@ -2784,7 +3083,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "widgets/history_chart.dart",
       "community_name": "home_tab.dart",
       "id": "widgets_history_chart_dart"
@@ -2795,7 +3094,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "widgets/prediction_summary_card.dart",
       "community_name": "home_tab.dart",
       "id": "widgets_prediction_summary_card_dart"
@@ -2806,7 +3105,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "widgets/quick_actions_row.dart",
       "community_name": "home_tab.dart",
       "id": "widgets_quick_actions_row_dart"
@@ -2817,7 +3116,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "widgets/shimmer_card.dart",
       "community_name": "home_tab.dart",
       "id": "widgets_shimmer_card_dart"
@@ -3026,7 +3325,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "norm_label": "providers/splash_provider.dart",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "providers_splash_provider_dart"
@@ -3708,7 +4007,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 101,
+      "community": 35,
       "norm_label": "logrecord",
       "community_name": "logging.py",
       "id": "logrecord"
@@ -3752,7 +4051,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 18,
+      "community": 72,
       "norm_label": "predictionresult",
       "community_name": "Predictor",
       "id": "server_app_machine_learning_predictor_py_predictionresult"
@@ -5066,72 +5365,6 @@
       "norm_label": ".testexample()",
       "community_name": "RunnerTests",
       "id": "client_ios_runnertests_runnertests_runnertests_testexample"
-    },
-    {
-      "label": "app_config.dart",
-      "file_type": "code",
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "app_config.dart",
-      "community_name": "app_routes.dart",
-      "id": "client_lib_core_config_app_config"
-    },
-    {
-      "label": "AppConfig",
-      "file_type": "code",
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "appconfig",
-      "community_name": "app_routes.dart",
-      "id": "client_lib_core_config_app_config_appconfig"
-    },
-    {
-      "label": "_kApiBaseUrl",
-      "file_type": "code",
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "_kapibaseurl",
-      "community_name": "app_routes.dart",
-      "id": "client_lib_core_config_app_config_kapibaseurl"
-    },
-    {
-      "label": "_kWsBaseUrl",
-      "file_type": "code",
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "_kwsbaseurl",
-      "community_name": "app_routes.dart",
-      "id": "client_lib_core_config_app_config_kwsbaseurl"
-    },
-    {
-      "label": "apiBaseUrl",
-      "file_type": "code",
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "apibaseurl",
-      "community_name": "app_routes.dart",
-      "id": "client_lib_core_config_app_config_apibaseurl"
-    },
-    {
-      "label": "wsBaseUrl",
-      "file_type": "code",
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "community": 9,
-      "norm_label": "wsbaseurl",
-      "community_name": "app_routes.dart",
-      "id": "client_lib_core_config_app_config_wsbaseurl"
     },
     {
       "label": "agent_event.dart",
@@ -6558,7 +6791,7 @@
       "source_file": "client/lib/core/network/ws_message_builder.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 65,
       "norm_label": "ws_message_builder.dart",
       "community_name": "ws_message_builder.dart",
       "id": "client_lib_core_network_ws_message_builder"
@@ -6569,7 +6802,7 @@
       "source_file": "client/lib/core/network/ws_message_builder.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 65,
       "norm_label": "wsmessagebuilder",
       "community_name": "ws_message_builder.dart",
       "id": "client_lib_core_network_ws_message_builder_wsmessagebuilder"
@@ -6580,7 +6813,7 @@
       "source_file": "client/lib/core/network/ws_message_builder.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 65,
       "norm_label": "usermessage",
       "community_name": "ws_message_builder.dart",
       "id": "client_lib_core_network_ws_message_builder_usermessage"
@@ -6591,7 +6824,7 @@
       "source_file": "client/lib/core/network/ws_message_builder.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 65,
       "norm_label": "pong",
       "community_name": "ws_message_builder.dart",
       "id": "client_lib_core_network_ws_message_builder_pong"
@@ -6613,7 +6846,7 @@
       "source_file": "client/lib/core/providers/auth_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 70,
       "norm_label": "securestorageprovider",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_core_providers_auth_providers_securestorageprovider"
@@ -6624,7 +6857,7 @@
       "source_file": "client/lib/core/providers/auth_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "apiclientprovider",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_core_providers_auth_providers_apiclientprovider"
@@ -6734,7 +6967,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "prediction_providers.dart",
       "community_name": "prediction_providers.dart",
       "id": "client_lib_core_providers_prediction_providers"
@@ -6745,7 +6978,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "predictionserviceprovider",
       "community_name": "prediction_providers.dart",
       "id": "client_lib_core_providers_prediction_providers_predictionserviceprovider"
@@ -6756,7 +6989,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "latestpredictionprovider",
       "community_name": "home_tab.dart",
       "id": "client_lib_core_providers_prediction_providers_latestpredictionprovider"
@@ -6767,7 +7000,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "predictionhistory7dprovider",
       "community_name": "home_tab.dart",
       "id": "client_lib_core_providers_prediction_providers_predictionhistory7dprovider"
@@ -6778,7 +7011,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "predictionhistoryprovider",
       "community_name": "AnalysisViewModel",
       "id": "client_lib_core_providers_prediction_providers_predictionhistoryprovider"
@@ -6789,7 +7022,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "predictionanalysisprovider",
       "community_name": "AnalysisViewModel",
       "id": "client_lib_core_providers_prediction_providers_predictionanalysisprovider"
@@ -6800,7 +7033,7 @@
       "source_file": "client/lib/core/providers/prediction_providers.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "watch",
       "community_name": "prediction_providers.dart",
       "id": "client_lib_core_providers_prediction_providers_watch"
@@ -7130,7 +7363,7 @@
       "source_file": "client/lib/core/services/agent_socket_service.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "agentsocketservice",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_core_services_agent_socket_service_agentsocketservice"
@@ -7779,7 +8012,7 @@
       "source_file": "client/lib/core/services/prediction_service.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 90,
       "norm_label": "predictionservice",
       "community_name": "prediction_providers.dart",
       "id": "client_lib_core_services_prediction_service_predictionservice"
@@ -7834,7 +8067,7 @@
       "source_file": "client/lib/core/services/users_service.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 37,
+      "community": 90,
       "norm_label": "users_service.dart",
       "community_name": "users_providers.dart",
       "id": "client_lib_core_services_users_service"
@@ -7856,7 +8089,7 @@
       "source_file": "client/lib/core/services/users_service.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 37,
+      "community": 90,
       "norm_label": "_api",
       "community_name": "users_providers.dart",
       "id": "client_lib_core_services_users_service_api"
@@ -7867,7 +8100,7 @@
       "source_file": "client/lib/core/services/users_service.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 37,
+      "community": 90,
       "norm_label": "getme",
       "community_name": "users_providers.dart",
       "id": "client_lib_core_services_users_service_getme"
@@ -7878,7 +8111,7 @@
       "source_file": "client/lib/core/services/users_service.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 37,
+      "community": 90,
       "norm_label": "getstats",
       "community_name": "users_providers.dart",
       "id": "client_lib_core_services_users_service_getstats"
@@ -8692,7 +8925,7 @@
       "source_file": "client/lib/features/analysis/providers/analysis_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "analysisdata",
       "community_name": "AnalysisViewModel",
       "id": "client_lib_features_analysis_providers_analysis_viewmodel_analysisdata"
@@ -8703,7 +8936,7 @@
       "source_file": "client/lib/features/analysis/providers/analysis_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "analysisviewmodel",
       "community_name": "AnalysisViewModel",
       "id": "client_lib_features_analysis_providers_analysis_viewmodel_analysisviewmodel"
@@ -8912,7 +9145,7 @@
       "source_file": "client/lib/features/analysis/providers/analysis_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "build",
       "community_name": "AnalysisViewModel",
       "id": "client_lib_features_analysis_providers_analysis_viewmodel_build"
@@ -9308,7 +9541,7 @@
       "source_file": "client/lib/features/analysis/widgets/strength_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "strength_card.dart",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_analysis_widgets_strength_card"
@@ -9319,7 +9552,7 @@
       "source_file": "client/lib/features/analysis/widgets/strength_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "strengthcard",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_analysis_widgets_strength_card_strengthcard"
@@ -9330,7 +9563,7 @@
       "source_file": "client/lib/features/analysis/widgets/strength_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "text",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_analysis_widgets_strength_card_text"
@@ -9341,7 +9574,7 @@
       "source_file": "client/lib/features/analysis/widgets/strength_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "build",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_analysis_widgets_strength_card_build"
@@ -9616,7 +9849,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "login_viewmodel.dart",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel"
@@ -9627,7 +9860,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "loginstage",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_loginstage"
@@ -9638,7 +9871,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "loginstate",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_loginstate"
@@ -9649,7 +9882,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "loginviewmodel",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_loginviewmodel"
@@ -9660,7 +9893,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "stage",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_stage"
@@ -9671,7 +9904,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "error",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_error"
@@ -9693,7 +9926,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "build",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_build"
@@ -9715,7 +9948,7 @@
       "source_file": "client/lib/features/auth/providers/login_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 62,
       "norm_label": "reset",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_login_viewmodel_reset"
@@ -9726,7 +9959,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "register_viewmodel.dart",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel"
@@ -9737,7 +9970,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "registerstage",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_registerstage"
@@ -9748,7 +9981,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "registerstate",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_registerstate"
@@ -9759,7 +9992,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "registerviewmodel",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_registerviewmodel"
@@ -9770,7 +10003,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "stage",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_stage"
@@ -9781,7 +10014,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "error",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_error"
@@ -9803,7 +10036,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "build",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_build"
@@ -9825,7 +10058,7 @@
       "source_file": "client/lib/features/auth/providers/register_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 16,
+      "community": 55,
       "norm_label": "reset",
       "community_name": "login_viewmodel.dart",
       "id": "client_lib_features_auth_providers_register_viewmodel_reset"
@@ -10254,7 +10487,7 @@
       "source_file": "client/lib/features/chat/providers/chat_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 70,
       "norm_label": "chatstate",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_chat_providers_chat_state_chatstate"
@@ -10353,7 +10586,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "chat_viewmodel.dart",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel"
@@ -10364,7 +10597,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 70,
       "norm_label": "chatviewmodel",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_chatviewmodel"
@@ -10375,7 +10608,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "_socketservice",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_socketservice"
@@ -10386,7 +10619,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "_chatrepository",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_chatrepository"
@@ -10397,7 +10630,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "_eventsub",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_eventsub"
@@ -10430,7 +10663,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 70,
       "norm_label": "build",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_build"
@@ -10441,7 +10674,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "_onevent",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_onevent"
@@ -10452,7 +10685,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "sendmessage",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_sendmessage"
@@ -10463,7 +10696,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "_sendrestfallback",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_sendrestfallback"
@@ -10474,7 +10707,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "reconnectws",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_reconnectws"
@@ -10485,7 +10718,7 @@
       "source_file": "client/lib/features/chat/providers/chat_viewmodel.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 7,
+      "community": 39,
       "norm_label": "clearhistory",
       "community_name": "chat_viewmodel.dart",
       "id": "client_lib_features_chat_providers_chat_viewmodel_clearhistory"
@@ -10815,7 +11048,7 @@
       "source_file": "client/lib/features/chat/widgets/empty_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 49,
       "norm_label": "empty_state.dart",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_chat_widgets_empty_state"
@@ -10826,7 +11059,7 @@
       "source_file": "client/lib/features/chat/widgets/empty_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 49,
       "norm_label": "emptystate",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_chat_widgets_empty_state_emptystate"
@@ -10837,7 +11070,7 @@
       "source_file": "client/lib/features/chat/widgets/empty_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 49,
       "norm_label": "build",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_chat_widgets_empty_state_build"
@@ -11090,7 +11323,7 @@
       "source_file": "client/lib/features/home/home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 80,
+      "community": 26,
       "norm_label": "home_page.dart",
       "community_name": "package:go_router/go_router.dart",
       "id": "client_lib_features_home_home_page"
@@ -11101,7 +11334,7 @@
       "source_file": "client/lib/features/home/home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 80,
+      "community": 26,
       "norm_label": "homepage",
       "community_name": "package:go_router/go_router.dart",
       "id": "client_lib_features_home_home_page_homepage"
@@ -11112,7 +11345,7 @@
       "source_file": "client/lib/features/home/home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 80,
+      "community": 26,
       "norm_label": "navigationshell",
       "community_name": "package:go_router/go_router.dart",
       "id": "client_lib_features_home_home_page_navigationshell"
@@ -11123,7 +11356,7 @@
       "source_file": "client/lib/features/home/home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 80,
+      "community": 26,
       "norm_label": "build",
       "community_name": "package:go_router/go_router.dart",
       "id": "client_lib_features_home_home_page_build"
@@ -11134,7 +11367,7 @@
       "source_file": "client/lib/features/home/home_tab.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 47,
+      "community": 17,
       "norm_label": "home_tab.dart",
       "community_name": "home_tab.dart",
       "id": "client_lib_features_home_home_tab"
@@ -11145,7 +11378,7 @@
       "source_file": "client/lib/features/home/home_tab.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "hometab",
       "community_name": "home_tab.dart",
       "id": "client_lib_features_home_home_tab_hometab"
@@ -11156,7 +11389,7 @@
       "source_file": "client/lib/features/home/home_tab.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 39,
+      "community": 17,
       "norm_label": "build",
       "community_name": "home_tab.dart",
       "id": "client_lib_features_home_home_tab_build"
@@ -11167,7 +11400,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "greeting_card.dart",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card"
@@ -11178,7 +11411,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "greetingcard",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_greetingcard"
@@ -11189,7 +11422,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "username",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_username"
@@ -11200,7 +11433,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "_initials",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_initials"
@@ -11211,7 +11444,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "build",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_build"
@@ -11453,7 +11686,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "knowledge_page.dart",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page"
@@ -11464,7 +11697,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "knowledgepage",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_knowledgepage"
@@ -11475,7 +11708,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "_knowledgepagestate",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_knowledgepagestate"
@@ -11486,7 +11719,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "_documents",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_documents"
@@ -11497,7 +11730,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "_isloading",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_isloading"
@@ -11508,7 +11741,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "createstate",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_createstate"
@@ -11519,7 +11752,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "initstate",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_initstate"
@@ -11530,7 +11763,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "_loaddocuments",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_loaddocuments"
@@ -11541,7 +11774,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "build",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_build"
@@ -11552,7 +11785,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "_buildemptystate",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_buildemptystate"
@@ -11563,7 +11796,7 @@
       "source_file": "client/lib/features/knowledge/knowledge_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "_builddoccard",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_knowledge_knowledge_page_builddoccard"
@@ -12014,7 +12247,7 @@
       "source_file": "client/lib/features/profile/widgets/logout_button.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 55,
       "norm_label": "logout_button.dart",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "client_lib_features_profile_widgets_logout_button"
@@ -12036,7 +12269,7 @@
       "source_file": "client/lib/features/profile/widgets/logout_button.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 55,
       "norm_label": "build",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "client_lib_features_profile_widgets_logout_button_build"
@@ -12465,7 +12698,7 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "norm_label": "splash_page.dart",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "client_lib_features_splash_splash_page"
@@ -12498,7 +12731,7 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "norm_label": "createstate",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "client_lib_features_splash_splash_page_createstate"
@@ -12509,7 +12742,7 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "norm_label": "initstate",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "client_lib_features_splash_splash_page_initstate"
@@ -12531,7 +12764,7 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "norm_label": "build",
       "community_name": "package:flutter_riverpod/flutter_riverpod.dart",
       "id": "client_lib_features_splash_splash_page_build"
@@ -13767,7 +14000,7 @@
       "source_file": "server/app/agent/graph.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 100,
+      "community": 11,
       "norm_label": "graph.py",
       "community_name": "AgentState",
       "id": "server_app_agent_graph"
@@ -13789,7 +14022,7 @@
       "source_file": "server/app/agent/graph.py",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 100,
+      "community": 11,
       "norm_label": "run_agent()",
       "community_name": "AgentState",
       "id": "server_app_agent_graph_run_agent"
@@ -13800,7 +14033,7 @@
       "source_file": "server/app/agent/graph.py",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 100,
+      "community": 11,
       "norm_label": "run the langgraph reasoning loop for a user message and return the execution res",
       "community_name": "AgentState",
       "id": "server_app_agent_graph_rationale_44"
@@ -14306,7 +14539,7 @@
       "source_file": "server/app/api/chat.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 100,
+      "community": 35,
       "norm_label": "chat.py",
       "community_name": "logging.py",
       "id": "server_app_api_chat"
@@ -14317,7 +14550,7 @@
       "source_file": "server/app/api/chat.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 100,
+      "community": 18,
       "norm_label": "chat()",
       "community_name": "chat",
       "id": "server_app_api_chat_chat"
@@ -14405,7 +14638,7 @@
       "source_file": "server/app/api/health.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 35,
+      "community": 24,
       "norm_label": "health.py",
       "community_name": "Predictor",
       "id": "server_app_api_health"
@@ -14416,7 +14649,7 @@
       "source_file": "server/app/api/health.py",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 35,
+      "community": 24,
       "norm_label": "health()",
       "community_name": "Predictor",
       "id": "server_app_api_health_health"
@@ -14526,7 +14759,7 @@
       "source_file": "server/app/api/knowledge.py",
       "source_location": "L232",
       "_origin": "ast",
-      "community": 8,
+      "community": 18,
       "norm_label": "list_documents()",
       "community_name": "BaseModel",
       "id": "server_app_api_knowledge_list_documents"
@@ -14658,7 +14891,7 @@
       "source_file": "server/app/core/logging.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 101,
+      "community": 35,
       "norm_label": "logging.py",
       "community_name": "logging.py",
       "id": "server_app_core_logging"
@@ -14669,7 +14902,7 @@
       "source_file": "server/app/core/logging.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 101,
+      "community": 35,
       "norm_label": "_jsonformatter",
       "community_name": "logging.py",
       "id": "server_app_core_logging_jsonformatter"
@@ -14680,7 +14913,7 @@
       "source_file": "server/app/core/logging.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 101,
+      "community": 35,
       "norm_label": ".format()",
       "community_name": "logging.py",
       "id": "server_app_core_logging_jsonformatter_format"
@@ -14691,7 +14924,7 @@
       "source_file": "server/app/core/logging.py",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 101,
+      "community": 35,
       "norm_label": "setup_logging()",
       "community_name": "logging.py",
       "id": "server_app_core_logging_setup_logging"
@@ -15164,7 +15397,7 @@
       "source_file": "server/app/machine_learning/predictor.py",
       "source_location": "L97",
       "_origin": "ast",
-      "community": 18,
+      "community": 72,
       "norm_label": ".predict()",
       "community_name": "Predictor",
       "id": "server_app_machine_learning_predictor_predictor_predict"
@@ -15256,17 +15489,6 @@
       "norm_label": "lifespan()",
       "community_name": "logging.py",
       "id": "server_app_main_lifespan"
-    },
-    {
-      "label": "__init__.py",
-      "file_type": "code",
-      "source_file": "server/app/models/__init__.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 191,
-      "norm_label": "__init__.py",
-      "community_name": "__init__.py",
-      "id": "server_app_models_init"
     },
     {
       "label": "__init__.py",
@@ -15373,7 +15595,7 @@
       "source_file": "server/app/rag/ingestor.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 101,
+      "community": 35,
       "norm_label": "ingestor.py",
       "community_name": "logging.py",
       "id": "server_app_rag_ingestor"
@@ -15604,7 +15826,7 @@
       "source_file": "server/app/schemas/chat.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 100,
+      "community": 18,
       "norm_label": "chat.py",
       "community_name": "chat",
       "id": "server_app_schemas_chat"
@@ -15615,7 +15837,7 @@
       "source_file": "server/app/schemas/chat.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 100,
+      "community": 18,
       "norm_label": "chatrequest",
       "community_name": "chat",
       "id": "server_app_schemas_chat_chatrequest"
@@ -15626,7 +15848,7 @@
       "source_file": "server/app/schemas/chat.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 100,
+      "community": 18,
       "norm_label": "chatresponse",
       "community_name": "chat",
       "id": "server_app_schemas_chat_chatresponse"
@@ -15901,7 +16123,7 @@
       "source_file": "server/app/schemas/knowledge.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 8,
+      "community": 18,
       "norm_label": "uploadedby",
       "community_name": "BaseModel",
       "id": "server_app_schemas_knowledge_uploadedby"
@@ -16033,7 +16255,7 @@
       "source_file": "server/app/schemas/prediction.py",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 18,
+      "community": 72,
       "norm_label": "classscore",
       "community_name": "Predictor",
       "id": "server_app_schemas_prediction_classscore"
@@ -16191,28 +16413,6 @@
       "norm_label": "get_current_user()",
       "community_name": "auth_service.py",
       "id": "server_app_services_auth_service_get_current_user"
-    },
-    {
-      "label": "main.py",
-      "file_type": "code",
-      "source_file": "server/main.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 112,
-      "norm_label": "main.py",
-      "community_name": "main.py",
-      "id": "server_main"
-    },
-    {
-      "label": "main()",
-      "file_type": "code",
-      "source_file": "server/main.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 112,
-      "norm_label": "main()",
-      "community_name": "main.py",
-      "id": "server_main_main"
     },
     {
       "label": "server",
@@ -17659,14 +17859,316 @@
   ],
   "links": [
     {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "client_lib_core_config_app_config",
+      "target": "client_lib_core_config_app_config_apibaseurl"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "client_lib_core_config_app_config",
+      "target": "client_lib_core_config_app_config_appconfig"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "client_lib_core_config_app_config",
+      "target": "client_lib_core_config_app_config_kapibaseurl"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "client_lib_core_config_app_config",
+      "target": "client_lib_core_config_app_config_kwsbaseurl"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "client_lib_core_config_app_config",
+      "target": "client_lib_core_config_app_config_wsbaseurl"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/config/app_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "source": "client_lib_core_config_app_config",
+      "target": "static_const_string"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/lib/core/routing/app_routes.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "source": "client_lib_core_routing_app_routes",
+      "target": "static_const_string"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "riset_plan_riset",
+      "target": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_1_pemetaan_notebook_modul",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_2_struktur_folder_nested",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_3_diagram_alur_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L235",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_4_kontrak_io_antar_modul",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L259",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_5_detail_per_modul",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L652",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_6_cara_menjalankan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L688",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_7_catatan_reproducibility_environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_ai_powered_adaptive_learning_recommender_pemecahan_ml_prak_uas_ipynb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "riset_plan_riset_plan_riset_end_to_end_deep_learning_pipeline",
+      "target": "riset_plan_riset_daftar_isi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L265",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_00_config_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L295",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_01_data_loading_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L325",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_02_eda_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L358",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_03_preprocessing_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L399",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_04_split_dr_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L444",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_05_smote_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L476",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_06_train_mlp_tf_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L519",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_07_train_rnn_pt_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L568",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_08_eval_compare_save_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L627",
+      "weight": 1.0,
+      "source": "riset_plan_riset_5_detail_per_modul",
+      "target": "riset_plan_riset_master_pipeline_ipynb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L654",
+      "weight": 1.0,
+      "source": "riset_plan_riset_6_cara_menjalankan",
+      "target": "riset_plan_riset_opsi_a_per_modul_rekomendasi_untuk_debugging",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L673",
+      "weight": 1.0,
+      "source": "riset_plan_riset_6_cara_menjalankan",
+      "target": "riset_plan_riset_opsi_b_sekali_jalan_via_orchestrator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "riset/PLAN_RISET.md",
+      "source_location": "L682",
+      "weight": 1.0,
+      "source": "riset_plan_riset_6_cara_menjalankan",
+      "target": "riset_plan_riset_opsi_c_rerun_partial",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme",
-      "target": "readme_edulearn_ai",
-      "confidence_score": 1.0
+      "target": "readme_edulearn_ai"
     },
     {
       "relation": "contains",
@@ -17674,9 +18176,9 @@
       "source_file": "README.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_architecture",
-      "confidence_score": 1.0
+      "target": "readme_architecture"
     },
     {
       "relation": "contains",
@@ -17684,9 +18186,9 @@
       "source_file": "README.md",
       "source_location": "L120",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_documentation",
-      "confidence_score": 1.0
+      "target": "readme_documentation"
     },
     {
       "relation": "contains",
@@ -17694,9 +18196,9 @@
       "source_file": "README.md",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_environment_variables",
-      "confidence_score": 1.0
+      "target": "readme_environment_variables"
     },
     {
       "relation": "contains",
@@ -17704,9 +18206,9 @@
       "source_file": "README.md",
       "source_location": "L110",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_key_features",
-      "confidence_score": 1.0
+      "target": "readme_key_features"
     },
     {
       "relation": "contains",
@@ -17714,9 +18216,9 @@
       "source_file": "README.md",
       "source_location": "L144",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_license",
-      "confidence_score": 1.0
+      "target": "readme_license"
     },
     {
       "relation": "contains",
@@ -17724,9 +18226,9 @@
       "source_file": "README.md",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_quick_start",
-      "confidence_score": 1.0
+      "target": "readme_quick_start"
     },
     {
       "relation": "contains",
@@ -17734,9 +18236,9 @@
       "source_file": "README.md",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_repository_structure",
-      "confidence_score": 1.0
+      "target": "readme_repository_structure"
     },
     {
       "relation": "contains",
@@ -17744,9 +18246,9 @@
       "source_file": "README.md",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_services",
-      "confidence_score": 1.0
+      "target": "readme_services"
     },
     {
       "relation": "contains",
@@ -17754,9 +18256,9 @@
       "source_file": "README.md",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_edulearn_ai",
-      "target": "readme_tech_stack",
-      "confidence_score": 1.0
+      "target": "readme_tech_stack"
     },
     {
       "relation": "contains",
@@ -17764,9 +18266,9 @@
       "source_file": "client/README.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme",
-      "target": "client_readme_edulearn_ai_flutter_client",
-      "confidence_score": 1.0
+      "target": "client_readme_edulearn_ai_flutter_client"
     },
     {
       "relation": "contains",
@@ -17774,9 +18276,9 @@
       "source_file": "client/README.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_architecture",
-      "confidence_score": 1.0
+      "target": "client_readme_architecture"
     },
     {
       "relation": "contains",
@@ -17784,9 +18286,9 @@
       "source_file": "client/README.md",
       "source_location": "L203",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_code_style",
-      "confidence_score": 1.0
+      "target": "client_readme_code_style"
     },
     {
       "relation": "contains",
@@ -17794,9 +18296,9 @@
       "source_file": "client/README.md",
       "source_location": "L240",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_development",
-      "confidence_score": 1.0
+      "target": "client_readme_development"
     },
     {
       "relation": "contains",
@@ -17804,9 +18306,9 @@
       "source_file": "client/README.md",
       "source_location": "L193",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_environment_configuration",
-      "confidence_score": 1.0
+      "target": "client_readme_environment_configuration"
     },
     {
       "relation": "contains",
@@ -17814,9 +18316,9 @@
       "source_file": "client/README.md",
       "source_location": "L214",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_flutter_skills",
-      "confidence_score": 1.0
+      "target": "client_readme_flutter_skills"
     },
     {
       "relation": "contains",
@@ -17824,9 +18326,9 @@
       "source_file": "client/README.md",
       "source_location": "L136",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_networking",
-      "confidence_score": 1.0
+      "target": "client_readme_networking"
     },
     {
       "relation": "contains",
@@ -17834,9 +18336,9 @@
       "source_file": "client/README.md",
       "source_location": "L229",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_pages_overview",
-      "confidence_score": 1.0
+      "target": "client_readme_pages_overview"
     },
     {
       "relation": "contains",
@@ -17844,9 +18346,9 @@
       "source_file": "client/README.md",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_project_structure",
-      "confidence_score": 1.0
+      "target": "client_readme_project_structure"
     },
     {
       "relation": "contains",
@@ -17854,9 +18356,9 @@
       "source_file": "client/README.md",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_routing",
-      "confidence_score": 1.0
+      "target": "client_readme_routing"
     },
     {
       "relation": "contains",
@@ -17864,9 +18366,9 @@
       "source_file": "client/README.md",
       "source_location": "L155",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_setup",
-      "confidence_score": 1.0
+      "target": "client_readme_setup"
     },
     {
       "relation": "contains",
@@ -17874,9 +18376,9 @@
       "source_file": "client/README.md",
       "source_location": "L127",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_state_management",
-      "confidence_score": 1.0
+      "target": "client_readme_state_management"
     },
     {
       "relation": "contains",
@@ -17884,9 +18386,9 @@
       "source_file": "client/README.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_tech_stack",
-      "confidence_score": 1.0
+      "target": "client_readme_tech_stack"
     },
     {
       "relation": "contains",
@@ -17894,9 +18396,9 @@
       "source_file": "client/README.md",
       "source_location": "L180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_edulearn_ai_flutter_client",
-      "target": "client_readme_testing",
-      "confidence_score": 1.0
+      "target": "client_readme_testing"
     },
     {
       "relation": "contains",
@@ -17904,9 +18406,9 @@
       "source_file": "client/README.md",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_networking",
-      "target": "client_readme_rest_dio",
-      "confidence_score": 1.0
+      "target": "client_readme_rest_dio"
     },
     {
       "relation": "contains",
@@ -17914,9 +18416,9 @@
       "source_file": "client/README.md",
       "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "client_readme_networking",
-      "target": "client_readme_websocket",
-      "confidence_score": 1.0
+      "target": "client_readme_websocket"
     },
     {
       "relation": "contains",
@@ -17924,9 +18426,9 @@
       "source_file": "infra/README.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme",
-      "target": "infra_readme_edulearn_ai_infrastructure",
-      "confidence_score": 1.0
+      "target": "infra_readme_edulearn_ai_infrastructure"
     },
     {
       "relation": "contains",
@@ -17934,9 +18436,9 @@
       "source_file": "infra/README.md",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_deployment",
-      "confidence_score": 1.0
+      "target": "infra_readme_deployment"
     },
     {
       "relation": "contains",
@@ -17944,9 +18446,9 @@
       "source_file": "infra/README.md",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_docker_compose",
-      "confidence_score": 1.0
+      "target": "infra_readme_docker_compose"
     },
     {
       "relation": "contains",
@@ -17954,9 +18456,9 @@
       "source_file": "infra/README.md",
       "source_location": "L177",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_dockerfile_server",
-      "confidence_score": 1.0
+      "target": "infra_readme_dockerfile_server"
     },
     {
       "relation": "contains",
@@ -17964,9 +18466,9 @@
       "source_file": "infra/README.md",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_environment_variables",
-      "confidence_score": 1.0
+      "target": "infra_readme_environment_variables"
     },
     {
       "relation": "contains",
@@ -17974,9 +18476,9 @@
       "source_file": "infra/README.md",
       "source_location": "L210",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_monitoring",
-      "confidence_score": 1.0
+      "target": "infra_readme_monitoring"
     },
     {
       "relation": "contains",
@@ -17984,9 +18486,9 @@
       "source_file": "infra/README.md",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_network",
-      "confidence_score": 1.0
+      "target": "infra_readme_network"
     },
     {
       "relation": "contains",
@@ -17994,9 +18496,9 @@
       "source_file": "infra/README.md",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_nginx_configuration",
-      "confidence_score": 1.0
+      "target": "infra_readme_nginx_configuration"
     },
     {
       "relation": "contains",
@@ -18004,9 +18506,9 @@
       "source_file": "infra/README.md",
       "source_location": "L204",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_postgresql_init",
-      "confidence_score": 1.0
+      "target": "infra_readme_postgresql_init"
     },
     {
       "relation": "contains",
@@ -18014,9 +18516,9 @@
       "source_file": "infra/README.md",
       "source_location": "L186",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_resource_limits",
-      "confidence_score": 1.0
+      "target": "infra_readme_resource_limits"
     },
     {
       "relation": "contains",
@@ -18024,9 +18526,9 @@
       "source_file": "infra/README.md",
       "source_location": "L194",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_security",
-      "confidence_score": 1.0
+      "target": "infra_readme_security"
     },
     {
       "relation": "contains",
@@ -18034,9 +18536,9 @@
       "source_file": "infra/README.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_services",
-      "confidence_score": 1.0
+      "target": "infra_readme_services"
     },
     {
       "relation": "contains",
@@ -18044,9 +18546,9 @@
       "source_file": "infra/README.md",
       "source_location": "L227",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_troubleshooting",
-      "confidence_score": 1.0
+      "target": "infra_readme_troubleshooting"
     },
     {
       "relation": "contains",
@@ -18054,9 +18556,9 @@
       "source_file": "infra/README.md",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_edulearn_ai_infrastructure",
-      "target": "infra_readme_volumes",
-      "confidence_score": 1.0
+      "target": "infra_readme_volumes"
     },
     {
       "relation": "contains",
@@ -18064,9 +18566,9 @@
       "source_file": "infra/README.md",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_nginx_configuration",
-      "target": "infra_readme_default_conf",
-      "confidence_score": 1.0
+      "target": "infra_readme_default_conf"
     },
     {
       "relation": "contains",
@@ -18074,9 +18576,9 @@
       "source_file": "infra/README.md",
       "source_location": "L76",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_nginx_configuration",
-      "target": "infra_readme_ws_conf",
-      "confidence_score": 1.0
+      "target": "infra_readme_ws_conf"
     },
     {
       "relation": "contains",
@@ -18084,9 +18586,9 @@
       "source_file": "infra/README.md",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_environment_variables",
-      "target": "infra_readme_setup",
-      "confidence_score": 1.0
+      "target": "infra_readme_setup"
     },
     {
       "relation": "contains",
@@ -18094,9 +18596,9 @@
       "source_file": "infra/README.md",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_environment_variables",
-      "target": "infra_readme_variable_groups",
-      "confidence_score": 1.0
+      "target": "infra_readme_variable_groups"
     },
     {
       "relation": "contains",
@@ -18104,9 +18606,9 @@
       "source_file": "infra/README.md",
       "source_location": "L139",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_deployment",
-      "target": "infra_readme_development_with_hot_reload",
-      "confidence_score": 1.0
+      "target": "infra_readme_development_with_hot_reload"
     },
     {
       "relation": "contains",
@@ -18114,9 +18616,9 @@
       "source_file": "infra/README.md",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_deployment",
-      "target": "infra_readme_production",
-      "confidence_score": 1.0
+      "target": "infra_readme_production"
     },
     {
       "relation": "contains",
@@ -18124,9 +18626,9 @@
       "source_file": "infra/README.md",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_deployment",
-      "target": "infra_readme_scaling",
-      "confidence_score": 1.0
+      "target": "infra_readme_scaling"
     },
     {
       "relation": "contains",
@@ -18134,9 +18636,9 @@
       "source_file": "infra/README.md",
       "source_location": "L156",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "infra_readme_deployment",
-      "target": "infra_readme_stop_cleanup",
-      "confidence_score": 1.0
+      "target": "infra_readme_stop_cleanup"
     },
     {
       "relation": "contains",
@@ -18144,9 +18646,9 @@
       "source_file": "server/README.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme",
-      "target": "server_readme_edulearn_ai_backend",
-      "confidence_score": 1.0
+      "target": "server_readme_edulearn_ai_backend"
     },
     {
       "relation": "contains",
@@ -18154,9 +18656,9 @@
       "source_file": "server/README.md",
       "source_location": "L212",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_api_endpoints",
-      "confidence_score": 1.0
+      "target": "server_readme_api_endpoints"
     },
     {
       "relation": "contains",
@@ -18164,9 +18666,9 @@
       "source_file": "server/README.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_architecture",
-      "confidence_score": 1.0
+      "target": "server_readme_architecture"
     },
     {
       "relation": "contains",
@@ -18174,9 +18676,9 @@
       "source_file": "server/README.md",
       "source_location": "L343",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_database_schema",
-      "confidence_score": 1.0
+      "target": "server_readme_database_schema"
     },
     {
       "relation": "contains",
@@ -18184,9 +18686,9 @@
       "source_file": "server/README.md",
       "source_location": "L318",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_design_decisions",
-      "confidence_score": 1.0
+      "target": "server_readme_design_decisions"
     },
     {
       "relation": "contains",
@@ -18194,9 +18696,9 @@
       "source_file": "server/README.md",
       "source_location": "L433",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_development",
-      "confidence_score": 1.0
+      "target": "server_readme_development"
     },
     {
       "relation": "contains",
@@ -18204,9 +18706,9 @@
       "source_file": "server/README.md",
       "source_location": "L326",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_docker",
-      "confidence_score": 1.0
+      "target": "server_readme_docker"
     },
     {
       "relation": "contains",
@@ -18214,9 +18716,9 @@
       "source_file": "server/README.md",
       "source_location": "L298",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_langgraph_agent_flow",
-      "confidence_score": 1.0
+      "target": "server_readme_langgraph_agent_flow"
     },
     {
       "relation": "contains",
@@ -18224,9 +18726,9 @@
       "source_file": "server/README.md",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_project_structure",
-      "confidence_score": 1.0
+      "target": "server_readme_project_structure"
     },
     {
       "relation": "contains",
@@ -18234,9 +18736,9 @@
       "source_file": "server/README.md",
       "source_location": "L335",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_security",
-      "confidence_score": 1.0
+      "target": "server_readme_security"
     },
     {
       "relation": "contains",
@@ -18244,9 +18746,9 @@
       "source_file": "server/README.md",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_setup",
-      "confidence_score": 1.0
+      "target": "server_readme_setup"
     },
     {
       "relation": "contains",
@@ -18254,9 +18756,9 @@
       "source_file": "server/README.md",
       "source_location": "L44",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_tech_stack",
-      "confidence_score": 1.0
+      "target": "server_readme_tech_stack"
     },
     {
       "relation": "contains",
@@ -18264,9 +18766,9 @@
       "source_file": "server/README.md",
       "source_location": "L416",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_testing",
-      "confidence_score": 1.0
+      "target": "server_readme_testing"
     },
     {
       "relation": "contains",
@@ -18274,9 +18776,9 @@
       "source_file": "server/README.md",
       "source_location": "L260",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_edulearn_ai_backend",
-      "target": "server_readme_websocket_protocol",
-      "confidence_score": 1.0
+      "target": "server_readme_websocket_protocol"
     },
     {
       "relation": "contains",
@@ -18284,9 +18786,9 @@
       "source_file": "server/README.md",
       "source_location": "L158",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_setup",
-      "target": "server_readme_docker_compose_full_stack",
-      "confidence_score": 1.0
+      "target": "server_readme_docker_compose_full_stack"
     },
     {
       "relation": "contains",
@@ -18294,9 +18796,9 @@
       "source_file": "server/README.md",
       "source_location": "L180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_setup",
-      "target": "server_readme_environment_variables",
-      "confidence_score": 1.0
+      "target": "server_readme_environment_variables"
     },
     {
       "relation": "contains",
@@ -18304,9 +18806,9 @@
       "source_file": "server/README.md",
       "source_location": "L133",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_setup",
-      "target": "server_readme_local_development",
-      "confidence_score": 1.0
+      "target": "server_readme_local_development"
     },
     {
       "relation": "contains",
@@ -18314,9 +18816,9 @@
       "source_file": "server/README.md",
       "source_location": "L200",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_setup",
-      "target": "server_readme_ml_model_loading",
-      "confidence_score": 1.0
+      "target": "server_readme_ml_model_loading"
     },
     {
       "relation": "contains",
@@ -18324,9 +18826,9 @@
       "source_file": "server/README.md",
       "source_location": "L127",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_setup",
-      "target": "server_readme_prerequisites",
-      "confidence_score": 1.0
+      "target": "server_readme_prerequisites"
     },
     {
       "relation": "contains",
@@ -18334,9 +18836,9 @@
       "source_file": "server/README.md",
       "source_location": "L226",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_auth",
-      "confidence_score": 1.0
+      "target": "server_readme_auth"
     },
     {
       "relation": "contains",
@@ -18344,9 +18846,9 @@
       "source_file": "server/README.md",
       "source_location": "L214",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_get_health",
-      "confidence_score": 1.0
+      "target": "server_readme_get_health"
     },
     {
       "relation": "contains",
@@ -18354,9 +18856,9 @@
       "source_file": "server/README.md",
       "source_location": "L251",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_knowledge",
-      "confidence_score": 1.0
+      "target": "server_readme_knowledge"
     },
     {
       "relation": "contains",
@@ -18364,9 +18866,9 @@
       "source_file": "server/README.md",
       "source_location": "L218",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_post_api_v1_chat",
-      "confidence_score": 1.0
+      "target": "server_readme_post_api_v1_chat"
     },
     {
       "relation": "contains",
@@ -18374,9 +18876,9 @@
       "source_file": "server/README.md",
       "source_location": "L243",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_predictions",
-      "confidence_score": 1.0
+      "target": "server_readme_predictions"
     },
     {
       "relation": "contains",
@@ -18384,9 +18886,9 @@
       "source_file": "server/README.md",
       "source_location": "L236",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_users",
-      "confidence_score": 1.0
+      "target": "server_readme_users"
     },
     {
       "relation": "contains",
@@ -18394,9 +18896,9 @@
       "source_file": "server/README.md",
       "source_location": "L222",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_api_endpoints",
-      "target": "server_readme_ws_ws_v1_chat",
-      "confidence_score": 1.0
+      "target": "server_readme_ws_ws_v1_chat"
     },
     {
       "relation": "contains",
@@ -18404,9 +18906,9 @@
       "source_file": "server/README.md",
       "source_location": "L270",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_websocket_protocol",
-      "target": "server_readme_client_server_events",
-      "confidence_score": 1.0
+      "target": "server_readme_client_server_events"
     },
     {
       "relation": "contains",
@@ -18414,9 +18916,9 @@
       "source_file": "server/README.md",
       "source_location": "L262",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_websocket_protocol",
-      "target": "server_readme_connection",
-      "confidence_score": 1.0
+      "target": "server_readme_connection"
     },
     {
       "relation": "contains",
@@ -18424,9 +18926,9 @@
       "source_file": "server/README.md",
       "source_location": "L292",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_websocket_protocol",
-      "target": "server_readme_rate_limiting",
-      "confidence_score": 1.0
+      "target": "server_readme_rate_limiting"
     },
     {
       "relation": "contains",
@@ -18434,9 +18936,9 @@
       "source_file": "server/README.md",
       "source_location": "L277",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_websocket_protocol",
-      "target": "server_readme_server_client_events",
-      "confidence_score": 1.0
+      "target": "server_readme_server_client_events"
     },
     {
       "relation": "contains",
@@ -18444,9 +18946,9 @@
       "source_file": "server/README.md",
       "source_location": "L357",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_database_schema",
-      "target": "server_readme_conversations",
-      "confidence_score": 1.0
+      "target": "server_readme_conversations"
     },
     {
       "relation": "contains",
@@ -18454,9 +18956,9 @@
       "source_file": "server/README.md",
       "source_location": "L405",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_database_schema",
-      "target": "server_readme_knowledge_chunks",
-      "confidence_score": 1.0
+      "target": "server_readme_knowledge_chunks"
     },
     {
       "relation": "contains",
@@ -18464,9 +18966,9 @@
       "source_file": "server/README.md",
       "source_location": "L393",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_database_schema",
-      "target": "server_readme_knowledge_documents",
-      "confidence_score": 1.0
+      "target": "server_readme_knowledge_documents"
     },
     {
       "relation": "contains",
@@ -18474,9 +18976,9 @@
       "source_file": "server/README.md",
       "source_location": "L369",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_database_schema",
-      "target": "server_readme_messages",
-      "confidence_score": 1.0
+      "target": "server_readme_messages"
     },
     {
       "relation": "contains",
@@ -18484,9 +18986,9 @@
       "source_file": "server/README.md",
       "source_location": "L381",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_database_schema",
-      "target": "server_readme_prediction_histories",
-      "confidence_score": 1.0
+      "target": "server_readme_prediction_histories"
     },
     {
       "relation": "contains",
@@ -18494,9 +18996,9 @@
       "source_file": "server/README.md",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_database_schema",
-      "target": "server_readme_users_345",
-      "confidence_score": 1.0
+      "target": "server_readme_users_345"
     },
     {
       "relation": "contains",
@@ -18504,9 +19006,9 @@
       "source_file": "server/README.md",
       "source_location": "L440",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_development",
-      "target": "server_readme_adding_new_agent_nodes",
-      "confidence_score": 1.0
+      "target": "server_readme_adding_new_agent_nodes"
     },
     {
       "relation": "contains",
@@ -18514,9 +19016,9 @@
       "source_file": "server/README.md",
       "source_location": "L435",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_development",
-      "target": "server_readme_adding_new_api_routes",
-      "confidence_score": 1.0
+      "target": "server_readme_adding_new_api_routes"
     },
     {
       "relation": "contains",
@@ -18524,9 +19026,9 @@
       "source_file": "server/README.md",
       "source_location": "L446",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "server_readme_development",
-      "target": "server_readme_code_style",
-      "confidence_score": 1.0
+      "target": "server_readme_code_style"
     },
     {
       "relation": "references",
@@ -18789,28 +19291,6 @@
       "confidence_score": 1.0,
       "source": "client_macos_runnertests_runnertests_runnertests",
       "target": "xctestcase"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "source": "client_lib_core_config_app_config",
-      "target": "static_const_string"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/routing/app_routes.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "source": "client_lib_core_routing_app_routes",
-      "target": "static_const_string"
     },
     {
       "relation": "references",
@@ -26849,56 +27329,6 @@
       "confidence_score": 1.0,
       "source": "client_ios_runnertests_runnertests_runnertests",
       "target": "client_ios_runnertests_runnertests_runnertests_testexample"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "client_lib_core_config_app_config",
-      "target": "client_lib_core_config_app_config_apibaseurl"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "client_lib_core_config_app_config",
-      "target": "client_lib_core_config_app_config_appconfig"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "client_lib_core_config_app_config",
-      "target": "client_lib_core_config_app_config_kapibaseurl"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "client_lib_core_config_app_config",
-      "target": "client_lib_core_config_app_config_kwsbaseurl"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/lib/core/config/app_config.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "client_lib_core_config_app_config",
-      "target": "client_lib_core_config_app_config_wsbaseurl"
     },
     {
       "relation": "defines",
@@ -38965,16 +39395,6 @@
       "target": "server_app_services_auth_service_decode_token"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "server/main.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "server_main",
-      "target": "server_main_main"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -39531,5 +39951,5 @@
       "source_file": "docs/specification/04-agent-orchestration.md"
     }
   ],
-  "built_at_commit": "2b6a95fe8e1f35e84363c4ec1a9d060ca0c65d9d"
+  "built_at_commit": "ec26353a3fcf14fa1772ed1904a1ea14eea5821b"
 }

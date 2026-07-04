@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/providers/auth_providers.dart';
 
@@ -19,17 +20,30 @@ class SplashNotifier extends Notifier<SplashState> {
   SplashState build() => const SplashState();
 
   Future<SplashStage> check() async {
+    debugPrint('[SplashProvider] check() called');
     state = state.copyWith(stage: SplashStage.checking);
 
-    final repository = ref.read(authRepositoryProvider);
-    final status = await repository.checkAuth();
+    try {
+      final repository = ref.read(authRepositoryProvider);
+      debugPrint('[SplashProvider] Calling repository.checkAuth()...');
+      final status = await repository.checkAuth()
+          .timeout(const Duration(seconds: 5));
+      debugPrint('[SplashProvider] Result: authenticated=${status.isAuthenticated}');
 
-    final stage = status.isAuthenticated
-        ? SplashStage.authenticated
-        : SplashStage.unauthenticated;
+      final stage = status.isAuthenticated
+          ? SplashStage.authenticated
+          : SplashStage.unauthenticated;
 
-    state = state.copyWith(stage: stage);
-    return stage;
+      state = state.copyWith(stage: stage);
+      return stage;
+    } catch (e) {
+      debugPrint('[SplashProvider] ERROR: $e');
+      state = state.copyWith(
+        stage: SplashStage.unauthenticated,
+        error: e.toString(),
+      );
+      return SplashStage.unauthenticated;
+    }
   }
 }
 

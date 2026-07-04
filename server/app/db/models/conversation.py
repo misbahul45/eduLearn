@@ -15,6 +15,8 @@ from sqlalchemy.dialects.postgresql import JSON, JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
+from app.db.models.prediction import PredictionHistory
+from app.db.models.user import User
 
 
 class Conversation(Base):
@@ -53,6 +55,7 @@ class Conversation(Base):
     prediction_histories: Mapped[list["PredictionHistory"]] = relationship(
         "PredictionHistory", back_populates="conversation"
     )
+    user: Mapped["User"] = relationship("User", back_populates="conversations")
 
     def __repr__(self) -> str:
         return f"<Conversation id={self.id} user_id={self.user_id} status={self.status}>"
