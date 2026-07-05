@@ -20,21 +20,21 @@ class HomePage extends StatelessWidget {
           );
         },
         destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home_rounded),
-            label: 'Home',
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.home_outlined),
+          //   selectedIcon: Icon(Icons.home_rounded),
+          //   label: 'Home',
+          // ),
           NavigationDestination(
             icon: Icon(Icons.chat_bubble_outline_rounded),
             selectedIcon: Icon(Icons.chat_bubble_rounded),
             label: 'Chat',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.insights_outlined),
-            selectedIcon: Icon(Icons.insights_rounded),
-            label: 'Analysis',
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.insights_outlined),
+          //   selectedIcon: Icon(Icons.insights_rounded),
+          //   label: 'Analysis',
+          // ),
           NavigationDestination(
             icon: Icon(Icons.person_outline_rounded),
             selectedIcon: Icon(Icons.person_rounded),

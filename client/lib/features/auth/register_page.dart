@@ -235,25 +235,25 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 onPressed: _submit,
               ),
               const SizedBox(height: AppSpacing.lg),
-              Row(
-                children: [
-                  const Expanded(child: Divider()),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-                    child: Text('atau', style: AppTextStyles.caption),
-                  ),
-                  const Expanded(child: Divider()),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.lg),
-              SocialButton(
-                text: 'Daftar dengan Google',
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Google sign-in coming soon')),
-                  );
-                },
-              ),
+              // Row(
+              //   children: [
+              //     const Expanded(child: Divider()),
+              //     Padding(
+              //       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+              //       child: Text('atau', style: AppTextStyles.caption),
+              //     ),
+              //     const Expanded(child: Divider()),
+              //   ],
+              // ),
+              // const SizedBox(height: AppSpacing.lg),
+              // SocialButton(
+              //   text: 'Daftar dengan Google',
+              //   onPressed: () {
+              //     ScaffoldMessenger.of(context).showSnackBar(
+              //       const SnackBar(content: Text('Google sign-in coming soon')),
+              //     );
+              //   },
+              // ),
               const SizedBox(height: AppSpacing.xl),
               Center(
                 child: Row(
