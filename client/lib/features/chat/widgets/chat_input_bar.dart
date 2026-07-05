@@ -39,7 +39,7 @@ class ChatInputBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                   border: Border.all(color: AppColors.border),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
                 child: TextField(
                   controller: controller,
                   focusNode: focusNode,
@@ -63,7 +63,7 @@ class ChatInputBar extends StatelessWidget {
               icon: isSending
                   ? const SizedBox(
                       width: 20,
-                      height: 20,
+                      height: 30,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
                         valueColor: AlwaysStoppedAnimation(Colors.white),

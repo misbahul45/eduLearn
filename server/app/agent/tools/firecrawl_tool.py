@@ -56,7 +56,6 @@ async def firecrawl_tool(query: str, max_results: int = 3) -> list[dict]:
                     "scrapeOptions": {
                         "formats": ["markdown"],
                         "onlyMainContent": True,
-                        "maxTokens": 1000,
                     },
                 },
             )
@@ -83,7 +82,6 @@ async def firecrawl_tool(query: str, max_results: int = 3) -> list[dict]:
 
     await _set_cached(cache_key, results)
     return results
-
 
 def _sanitize(text: str) -> str:
     text = text.replace("<script", "&lt;script").replace("</script", "&lt;/script")

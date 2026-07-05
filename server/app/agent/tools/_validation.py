@@ -37,35 +37,111 @@ def validate_firecrawl_query(query: str, max_results: int) -> tuple[str, int]:
     return query.strip(), max_results
 
 
-def validate_student_signals(signals: dict[str, Any] | StudentSignals | None) -> dict[str, Any]:
+def validate_student_signals(signals: dict[str, Any] | StudentSignals | None) -> StudentSignals:
     if signals is None:
-        return {}
+        return StudentSignals()
+
     if isinstance(signals, StudentSignals):
-        signals = signals.model_dump(exclude_none=True)
-    for key in signals:
-        if signals[key] is None:
-            continue
-        if key == "time_spent_minutes":
-            if not (0 <= signals[key] <= 10000):
-                raise ValueError(f"time_spent_minutes harus 0–10000, mendapat {signals[key]}")
-        elif key == "video_completion_rate":
-            if not (0.0 <= signals[key] <= 1.0):
-                raise ValueError(f"video_completion_rate harus 0.0–1.0, mendapat {signals[key]}")
-        elif key in ("quiz_score_avg", "quiz_score_max"):
-            if not (0 <= signals[key] <= 100):
-                raise ValueError(f"{key} harus 0–100, mendapat {signals[key]}")
-        elif key in ("quiz_attempts", "forum_posts", "login_frequency", "assignment_completion_rate_times_100"):
-            if signals[key] < 0:
-                raise ValueError(f"{key} tidak boleh negatif, mendapat {signals[key]}")
-        elif key == "education_level":
-            allowed = {"High School", "Some College", "Bachelor's", "Graduate", "Doctoral"}
-            if signals[key] not in allowed:
-                raise ValueError(f"education_level harus salah satu dari {allowed}, mendapat {signals[key]}")
-        elif key == "learning_path_type":
-            allowed = {"Linear", "Branched", "Adaptive"}
-            if signals[key] not in allowed:
-                raise ValueError(f"learning_path_type harus salah satu dari {allowed}, mendapat {signals[key]}")
-    return signals
+        return signals
+
+    if not isinstance(signals, dict):
+        raise ValueError(f"Expected dict or StudentSignals, got {type(signals)}")
+
+    valid_fields = set(StudentSignals.model_fields.keys())
+    filtered = {k: v for k, v in signals.items() if k in valid_fields and v is not None}
+
+    range_checks = {
+        "age": (14, 65),
+        "digital_literacy_score": (0, 10),
+        "app_completion_rate": (0, 100),
+        "in_app_quiz_score": (0, 100),
+        "skill_pre_score": (0, 100),
+        "skill_post_score": (0, 100),
+        "essay_vocabulary_richness": (0, 1),
+        "essay_coherence_score": (0, 1),
+        "video_completion_pct": (0, 100),
+        "assignment_submission_rate": (0, 100),
+        "content_difficulty_avg": (1, 5),
+        "content_recommendations_followed": (0, 100),
+        "mastery_score": (0, 100),
+        "engagement_consistency": (0, 1),
+        "course_duration_weeks": (1, 20),
+    }
+
+    non_negative_int = {
+        "prior_online_courses", "session_count_weekly", "essay_word_count",
+        "essay_grammar_errors", "knowledge_gaps_identified",
+        "remediation_modules_completed",
+    }
+    non_negative_float = {
+        "daily_app_minutes", "gamification_engagement", "forum_posts",
+        "peer_review_given", "learning_efficiency_score",
+        "total_learning_hours", "time_to_mastery_hours",
+    }
+
+    for key, value in filtered.items():
+        try:
+            if key in range_checks:
+                lo, hi = range_checks[key]
+                v = float(value)
+                if not (lo <= v <= hi):
+                    raise ValueError(f"{key} harus {lo}–{hi}, mendapat {value}")
+                filtered[key] = v
+            elif key in non_negative_int:
+                filtered[key] = int(value)
+                if filtered[key] < 0:
+                    raise ValueError(f"{key} tidak boleh negatif")
+            elif key in non_negative_float:
+                filtered[key] = float(value)
+                if filtered[key] < 0:
+                    raise ValueError(f"{key} tidak boleh negatif")
+            elif key == "education_level":
+                allowed = {"High School", "Some College", "Bachelor's", "Graduate", "Doctoral"}
+                if value not in allowed:
+                    raise ValueError(f"education_level harus salah satu dari {allowed}")
+            elif key == "learning_path_type":
+                allowed = {"Linear", "Branched", "Adaptive"}
+                if value not in allowed:
+                    raise ValueError(f"learning_path_type harus salah satu dari {allowed}")
+            elif key == "gender":
+                allowed = {"Male", "Female", "Non-binary"}
+                if value not in allowed:
+                    raise ValueError(f"gender harus salah satu dari {allowed}")
+            elif key == "employment_status":
+                allowed = {
+                    "Student", "Employed Full-time", "Employed Part-time",
+                    "Self-employed", "Unemployed", "Retired", "Homemaker",
+                }
+                if value not in allowed:
+                    raise ValueError(f"employment_status harus salah satu dari {allowed}")
+            elif key == "app_category":
+                allowed = {
+                    "Test Prep", "Language Learning", "Mathematics", "Soft Skills",
+                    "Science", "Programming", "Art & Design", "Business",
+                    "Productivity", "Health & Fitness",
+                }
+                if value not in allowed:
+                    raise ValueError(f"app_category harus salah satu dari {allowed}")
+            elif key == "essay_topic_category":
+                allowed = {"Argumentative", "Descriptive", "Expository", "Narrative", "Persuasive"}
+                if value not in allowed:
+                    raise ValueError(f"essay_topic_category harus salah satu dari {allowed}")
+            elif key == "mooc_platform":
+                allowed = {"Coursera", "FutureLearn", "Skillshare", "edX", "Udacity", "Canvas"}
+                if value not in allowed:
+                    raise ValueError(f"mooc_platform harus salah satu dari {allowed}")
+            elif key == "course_category":
+                allowed = {
+                    "Personal Development", "Technology", "Business & Finance",
+                    "Health & Medicine", "Arts & Humanities", "Data Science",
+                    "Engineering", "Social Sciences",
+                }
+                if value not in allowed:
+                    raise ValueError(f"course_category harus salah satu dari {allowed}")
+        except (ValueError, TypeError) as e:
+            raise ValueError(f"Field {key} invalid: {e}")
+
+    return StudentSignals(**filtered)
 
 
 def sanitize_output_summary(summary: str) -> str:

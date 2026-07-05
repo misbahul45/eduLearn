@@ -1,5 +1,9 @@
+import os
 import logging
 from contextlib import asynccontextmanager
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -29,8 +33,8 @@ async def lifespan(app: FastAPI):
         predictor.load()
         logger.info("Predictor loaded successfully on startup")
     except Exception as e:
-        logger.critical("Failed to load predictor on startup: %s", e)
-        raise
+        logger.error("Failed to load predictor on startup: %s", e)
+        predictor = None
 
     yield
 

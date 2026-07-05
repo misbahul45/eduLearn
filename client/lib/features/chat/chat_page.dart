@@ -102,7 +102,7 @@ class _ChatPageState extends ConsumerState<ChatPage>
               connectionMode: chatState.connectionMode,
             ),
             const SizedBox(width: 8),
-            const Text('AI Assistant'),
+            const Text('SAGA AI'),
           ],
         ),
         actions: [
@@ -157,14 +157,14 @@ class _ChatPageState extends ConsumerState<ChatPage>
                           chatState.currentStreamingMessage != null
                               ? index - 1
                               : index;
-                      final reversed =
+                      final reversedIndex =
                           chatState.messages.length - 1 - msgIndex;
-                      if (reversed < 0 ||
-                          reversed >= chatState.messages.length) {
+                      if (reversedIndex < 0 ||
+                          reversedIndex >= chatState.messages.length) {
                         return const SizedBox.shrink();
                       }
                       return ChatBubble(
-                        message: chatState.messages[reversed],
+                        message: chatState.messages[reversedIndex],
                       );
                     },
                   ),

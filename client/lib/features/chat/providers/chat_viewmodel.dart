@@ -13,6 +13,14 @@ class ChatViewModel extends Notifier<ChatState> {
   late final AgentSocketService _socketService;
   late final ChatRepository _chatRepository;
   StreamSubscription<AgentEvent>? _eventSub;
+  Timer? _reconnectTimer;
+  int _reconnectAttempts = 0;
+  bool _isReconnecting = false;
+  
+  static const int _maxTraceLogSize = 100;
+  static const int _maxReconnectAttempts = 5;
+  static const int _messageTimeoutSeconds = 60;
+  Timer? _messageTimeoutTimer;
 
   @override
   ChatState build() {
@@ -22,20 +30,119 @@ class ChatViewModel extends Notifier<ChatState> {
     _socketService = AgentSocketService(storage: storage);
     _chatRepository = ChatRepository(api);
 
-    _socketService.connect();
+    _initializeSocket();
     _socketService.listenForeground();
-    _eventSub = _socketService.events?.listen(_onEvent);
 
     ref.onDispose(() {
       _eventSub?.cancel();
+      _reconnectTimer?.cancel();
+      _messageTimeoutTimer?.cancel();
       _socketService.dispose();
     });
 
     return const ChatState();
   }
 
+  void _initializeSocket() {
+    _socketService.connect();
+    _eventSub = _socketService.events?.listen(
+      _onEvent,
+      onError: _onStreamError,
+      onDone: _onStreamDone,
+      cancelOnError: false,
+    );
+  }
+
+  void _onStreamError(Object error, StackTrace stack) {
+    if (_socketService.isProcessing) {
+      return;
+    }
+    state = state.copyWith(
+      status: AgentStatus.online,
+      connectionMode: ConnectionMode.rest,
+    );
+    _scheduleReconnect();
+  }
+
+  void _onStreamDone() {
+    if (_socketService.isProcessing) {
+      return;
+    }
+    state = state.copyWith(
+      status: AgentStatus.online,
+      connectionMode: ConnectionMode.rest,
+    );
+    _scheduleReconnect();
+  }
+
+  void _scheduleReconnect() {
+    if (_isReconnecting || _reconnectAttempts >= _maxReconnectAttempts || _socketService.isProcessing) {
+      return;
+    }
+
+    _isReconnecting = true;
+    _reconnectAttempts++;
+    
+    final delaySeconds = _calculateBackoffDelay(_reconnectAttempts);
+    
+    _reconnectTimer?.cancel();
+    _reconnectTimer = Timer(Duration(seconds: delaySeconds), () async {
+      await _attemptReconnect();
+    });
+  }
+
+  int _calculateBackoffDelay(int attempt) {
+    final baseDelay = 2;
+    final maxDelay = 30;
+    final delay = (baseDelay * (1 << (attempt - 1))).clamp(1, maxDelay);
+    return delay;
+  }
+
+  Future<void> _attemptReconnect() async {
+    if (_socketService.isProcessing) {
+      _isReconnecting = false;
+      return;
+    }
+    
+    try {
+      state = state.copyWith(status: AgentStatus.thinking);
+      await _socketService.reconnect();
+      
+      _eventSub?.cancel();
+      _eventSub = _socketService.events?.listen(
+        _onEvent,
+        onError: _onStreamError,
+        onDone: _onStreamDone,
+        cancelOnError: false,
+      );
+      
+      state = state.copyWith(
+        connectionMode: _socketService.mode,
+        status: AgentStatus.online,
+      );
+      
+      _reconnectAttempts = 0;
+      _isReconnecting = false;
+      
+    } catch (e) {
+      _isReconnecting = false;
+      
+      if (_reconnectAttempts < _maxReconnectAttempts && !_socketService.isProcessing) {
+        _scheduleReconnect();
+      } else {
+        state = state.copyWith(
+          connectionMode: ConnectionMode.rest,
+          status: AgentStatus.online,
+        );
+      }
+    }
+  }
+
   void _onEvent(AgentEvent event) {
-    final trace = [...state.traceLog, event];
+    final newTrace = [...state.traceLog, event];
+    final trimmedTrace = newTrace.length > _maxTraceLogSize
+        ? newTrace.sublist(newTrace.length - _maxTraceLogSize)
+        : newTrace;
 
     switch (event) {
       case StateUpdateEvent e:
@@ -47,17 +154,18 @@ class ChatViewModel extends Notifier<ChatState> {
           'response_node',
         }.contains(e.node);
         state = state.copyWith(
-          traceLog: trace,
+          traceLog: trimmedTrace,
           status: isActive ? AgentStatus.thinking : AgentStatus.online,
         );
 
       case ToolCallEvent _:
-        state = state.copyWith(traceLog: trace);
+        state = state.copyWith(traceLog: trimmedTrace);
 
       case ToolResultEvent _:
-        state = state.copyWith(traceLog: trace);
+        state = state.copyWith(traceLog: trimmedTrace);
 
       case TokenEvent e:
+        _messageTimeoutTimer?.cancel();
         final msg = state.currentStreamingMessage;
         if (msg != null) {
           state = state.copyWith(
@@ -110,6 +218,7 @@ class ChatViewModel extends Notifier<ChatState> {
         }
 
       case FinalEvent e:
+        _messageTimeoutTimer?.cancel();
         final msg = state.currentStreamingMessage;
         if (msg != null) {
           final finalMsg = msg.copyWith(
@@ -128,6 +237,7 @@ class ChatViewModel extends Notifier<ChatState> {
         }
 
       case AgentErrorEvent e:
+        _messageTimeoutTimer?.cancel();
         if (e.fatal) {
           state = state.copyWith(
             status: AgentStatus.online,
@@ -137,7 +247,12 @@ class ChatViewModel extends Notifier<ChatState> {
           final msg = state.currentStreamingMessage;
           if (msg != null) {
             state = state.copyWith(
-              currentStreamingMessage: msg.copyWith(error: e.message),
+              currentStreamingMessage: msg.copyWith(
+                error: e.message,
+                isStreaming: false,
+              ),
+              isSending: false,
+              status: AgentStatus.online,
             );
           }
         }
@@ -146,6 +261,8 @@ class ChatViewModel extends Notifier<ChatState> {
 
   void sendMessage(String text) {
     if (state.isSending || text.trim().isEmpty) return;
+
+    _messageTimeoutTimer?.cancel();
 
     final now = DateTime.now();
     final userMsg = ChatMessage(
@@ -162,14 +279,49 @@ class ChatViewModel extends Notifier<ChatState> {
     );
 
     state = state.copyWith(
-      messages: [...state.messages, userMsg, assistantMsg],
+      messages: [...state.messages, userMsg],
       currentStreamingMessage: assistantMsg,
       isSending: true,
       status: AgentStatus.thinking,
     );
 
+    _messageTimeoutTimer = Timer(
+      Duration(seconds: _messageTimeoutSeconds),
+      () {
+        if (state.isSending) {
+          final msg = state.currentStreamingMessage;
+          if (msg != null) {
+            state = state.copyWith(
+              currentStreamingMessage: msg.copyWith(
+                error: 'Timeout: Server tidak merespon dalam ${_messageTimeoutSeconds} detik',
+                isStreaming: false,
+              ),
+              isSending: false,
+              status: AgentStatus.online,
+            );
+          }
+        }
+      },
+    );
+
     if (state.connectionMode == ConnectionMode.realtime) {
-      _socketService.sendMessage(text);
+      try {
+        _socketService.sendMessage(text);
+      } catch (e) {
+        _messageTimeoutTimer?.cancel();
+        final msg = state.currentStreamingMessage;
+        if (msg != null) {
+          state = state.copyWith(
+            currentStreamingMessage: msg.copyWith(
+              error: 'Gagal mengirim pesan: ${e.toString()}',
+              isStreaming: false,
+            ),
+            isSending: false,
+            status: AgentStatus.online,
+          );
+        }
+        _sendRestFallback(text);
+      }
     } else {
       _sendRestFallback(text);
     }
@@ -181,24 +333,27 @@ class ChatViewModel extends Notifier<ChatState> {
         text,
         conversationId: state.conversationId,
       );
+      
+      _messageTimeoutTimer?.cancel();
+      
       final msg = state.currentStreamingMessage;
       if (msg != null) {
         final finalMsg = msg.copyWith(
           content: response['message'] as String? ?? '',
           isStreaming: false,
         );
-        if (response['conversation_id'] != null) {
-          state = state.copyWith(
-            conversationId: response['conversation_id'] as String,
-          );
-        }
         state = state.copyWith(
           messages: [...state.messages, finalMsg],
           clearStreaming: true,
           isSending: false,
+          status: AgentStatus.online,
+          conversationId: response['conversation_id'] as String? ??
+              state.conversationId,
         );
       }
     } catch (e) {
+      _messageTimeoutTimer?.cancel();
+      
       final msg = state.currentStreamingMessage;
       if (msg != null) {
         state = state.copyWith(
@@ -207,14 +362,41 @@ class ChatViewModel extends Notifier<ChatState> {
             isStreaming: false,
           ),
           isSending: false,
+          status: AgentStatus.online,
         );
       }
     }
   }
 
   Future<void> reconnectWs() async {
-    await _socketService.reconnect();
-    state = state.copyWith(connectionMode: _socketService.mode);
+    if (_isReconnecting || _socketService.isProcessing) return;
+    
+    _reconnectTimer?.cancel();
+    _reconnectAttempts = 0;
+    
+    state = state.copyWith(status: AgentStatus.thinking);
+    
+    try {
+      await _socketService.reconnect();
+      
+      _eventSub?.cancel();
+      _eventSub = _socketService.events?.listen(
+        _onEvent,
+        onError: _onStreamError,
+        onDone: _onStreamDone,
+        cancelOnError: false,
+      );
+      
+      state = state.copyWith(
+        connectionMode: _socketService.mode,
+        status: AgentStatus.online,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        connectionMode: ConnectionMode.rest,
+        status: AgentStatus.online,
+      );
+    }
   }
 
   void clearHistory() {

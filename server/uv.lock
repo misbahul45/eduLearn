@@ -528,6 +528,17 @@ wheels = [
 ]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dotenv" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892, upload-time = "2025-02-19T22:15:01.647Z" },
+]
+
+[[package]]
 name = "ecdsa"
 version = "0.19.2"
 source = { registry = "https://pypi.org/simple" }
@@ -2391,6 +2402,7 @@ dependencies = [
     { name = "aiofiles" },
     { name = "argon2-cffi" },
     { name = "asyncpg" },
+    { name = "dotenv" },
     { name = "fastapi" },
     { name = "httpx" },
     { name = "imbalanced-learn" },
@@ -2424,6 +2436,7 @@ requires-dist = [
     { name = "aiofiles" },
     { name = "argon2-cffi" },
     { name = "asyncpg" },
+    { name = "dotenv", specifier = ">=0.9.9" },
     { name = "fastapi" },
     { name = "httpx" },
     { name = "imbalanced-learn", specifier = ">=0.12.0" },

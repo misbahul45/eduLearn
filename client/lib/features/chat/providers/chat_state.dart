@@ -45,4 +45,28 @@ class ChatState {
       conversationId: conversationId ?? this.conversationId,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is ChatState &&
+        other.messages == messages &&
+        other.currentStreamingMessage == currentStreamingMessage &&
+        other.traceLog == traceLog &&
+        other.status == status &&
+        other.connectionMode == connectionMode &&
+        other.isSending == isSending &&
+        other.conversationId == conversationId;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        messages,
+        currentStreamingMessage,
+        traceLog,
+        status,
+        connectionMode,
+        isSending,
+        conversationId,
+      );
 }

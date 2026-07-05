@@ -22,6 +22,8 @@ class AgentSocketService {
   Timer? _reconnectTimer;
   int _reconnectAttempt = 0;
   bool _disposed = false;
+  bool _isProcessing = false;
+  bool _isConnecting = false;
   String? _conversationId;
 
   ConnectionMode _mode = ConnectionMode.realtime;
@@ -30,31 +32,61 @@ class AgentSocketService {
   AgentSocketService({
     required this._storage,
     String? baseUrl,
-  })  : _baseUrl = baseUrl ?? AppConfig.wsBaseUrl;
+  }) : _baseUrl = baseUrl ?? AppConfig.wsBaseUrl;
 
   Stream<AgentEvent>? get events => _controller?.stream;
   String? get conversationId => _conversationId;
+  bool get isProcessing => _isProcessing;
+
+  void setProcessing(bool value) {
+    _isProcessing = value;
+  }
 
   Future<void> connect() async {
-    if (_disposed) return;
+    if (_disposed || _isConnecting || _channel != null) return;
+    _isConnecting = true;
     _controller ??= StreamController<AgentEvent>.broadcast();
 
     try {
       final token = await _storage.read(key: 'access_token');
-      if (token == null) return;
+      if (token == null) {
+        _isConnecting = false;
+        return;
+      }
+      if (_disposed || _channel != null) {
+        _isConnecting = false;
+        return;
+      }
 
       final uri = Uri.parse('$_baseUrl?token=$token');
-      _channel = WebSocketChannel.connect(uri);
+      final channel = WebSocketChannel.connect(uri);
+      _channel = channel;
       _mode = ConnectionMode.realtime;
-      _reconnectAttempt = 0;
 
-      _channel!.stream.listen(
-        _onData,
-        onError: (_) => _scheduleReconnect(),
-        onDone: () => _scheduleReconnect(),
+      channel.stream.listen(
+        (raw) {
+          _reconnectAttempt = 0;
+          _onData(raw);
+        },
+        onError: (_) {
+          if (identical(_channel, channel)) {
+            _channel = null;
+            _scheduleReconnect();
+          }
+        },
+        onDone: () {
+          if (identical(_channel, channel)) {
+            _channel = null;
+            _scheduleReconnect();
+          }
+        },
+        cancelOnError: false,
       );
     } catch (_) {
+      _channel = null;
       _scheduleReconnect();
+    } finally {
+      _isConnecting = false;
     }
   }
 
@@ -69,8 +101,13 @@ class AgentSocketService {
 
     final event = WsEventParser.parse(json);
     if (event != null) {
-      if (event is FinalEvent && event.conversationId.isNotEmpty) {
-        _conversationId = event.conversationId;
+      if (event is FinalEvent) {
+        _isProcessing = false;
+        if (event.conversationId.isNotEmpty) {
+          _conversationId = event.conversationId;
+        }
+      } else if (event is AgentErrorEvent && event.fatal) {
+        _isProcessing = false;
       }
       _controller?.add(event);
     }
@@ -78,23 +115,30 @@ class AgentSocketService {
 
   void sendMessage(String text) {
     if (_channel == null || _mode != ConnectionMode.realtime) return;
-    _channel!.sink.add(
-      WsMessageBuilder.userMessage(
-        message: text,
-        conversationId: _conversationId,
-      ),
-    );
+    _isProcessing = true;
+    try {
+      _channel!.sink.add(
+        WsMessageBuilder.userMessage(
+          message: text,
+          conversationId: _conversationId,
+        ),
+      );
+    } catch (_) {
+      _isProcessing = false;
+      _channel = null;
+      _scheduleReconnect();
+      rethrow;
+    }
   }
 
   void listenForeground() {
     _connectivitySub?.cancel();
-    _connectivitySub = Connectivity()
-        .onConnectivityChanged
-        .listen((results) {
-      final hasNetwork = results.any(
-        (r) => r != ConnectivityResult.none,
-      );
-      if (hasNetwork && _mode == ConnectionMode.realtime && _channel == null) {
+    _connectivitySub = Connectivity().onConnectivityChanged.listen((results) {
+      final hasNetwork = results.any((r) => r != ConnectivityResult.none);
+      if (hasNetwork &&
+          _mode == ConnectionMode.realtime &&
+          _channel == null &&
+          !_isConnecting) {
         _reconnectAttempt = 0;
         connect();
       }
@@ -103,10 +147,9 @@ class AgentSocketService {
 
   void _scheduleReconnect() {
     if (_disposed || _mode == ConnectionMode.rest) return;
-    _channel = null;
 
     _reconnectAttempt++;
-    if (_reconnectAttempt >= 3) {
+    if (_reconnectAttempt > 3) {
       _mode = ConnectionMode.rest;
       return;
     }

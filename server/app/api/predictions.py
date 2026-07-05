@@ -33,15 +33,27 @@ async def get_latest_prediction(
     pred = result.scalar_one_or_none()
     if not pred:
         return PredictionResponse(
-            label="-",
-            probability=0.0,
-            class_scores={},
+            predicted_label="-",
+            confidence=0.0,
+            confidence_interpretation="Belum ada data",
+            class_scores=[],
+            model_name="-",
+            recommendations=[],
+            risk_factors=[],
         )
 
+    class_scores = pred.class_scores or []
+    if isinstance(class_scores, dict):
+        class_scores = [{"label": k, "score": v} for k, v in class_scores.items()]
+
     return PredictionResponse(
-        label=pred.predicted_label,
-        probability=pred.confidence,
-        class_scores=pred.class_scores or {},
+        predicted_label=pred.predicted_label,
+        confidence=pred.confidence,
+        confidence_interpretation=_interpret_confidence(pred.confidence),
+        class_scores=class_scores,
+        model_name=pred.model_name or "Deep MLP (TensorFlow)",
+        recommendations=pred.input_features_snapshot.get("recommendations", []) if pred.input_features_snapshot else [],
+        risk_factors=pred.input_features_snapshot.get("risk_factors", []) if pred.input_features_snapshot else [],
     )
 
 
@@ -63,8 +75,8 @@ async def get_prediction_history(
     items = [
         PredictionHistoryItem(
             id=str(p.id),
-            probability=p.confidence,
-            label=p.predicted_label,
+            predicted_label=p.predicted_label,
+            confidence=p.confidence,
             created_at=p.created_at.isoformat(),
         )
         for p in result.scalars().all()
@@ -89,8 +101,8 @@ async def get_prediction_analysis(
         )
     )
     failed = (total or 0) - (passed or 0)
-    avg_prob = await db.scalar(
-        select(func.avg(PredictionHistory.probability)).where(
+    avg_conf = await db.scalar(
+        select(func.avg(PredictionHistory.confidence)).where(
             PredictionHistory.user_id == current_user.id
         )
     )
@@ -99,6 +111,16 @@ async def get_prediction_analysis(
         total_predictions=total or 0,
         passed_count=passed or 0,
         failed_count=failed,
-        pass_rate=(passed or 0) / (total or 1) * 100,
-        avg_probability=round(float(avg_prob or 0.0), 4),
+        pass_rate=((passed or 0) / (total or 1)) * 100,
+        avg_confidence=round(float(avg_conf or 0.0), 4),
     )
+
+
+def _interpret_confidence(confidence: float) -> str:
+    if confidence >= 0.90:
+        return "Sangat tinggi — model sangat yakin"
+    if confidence >= 0.75:
+        return "Tinggi — model cukup yakin"
+    if confidence >= 0.60:
+        return "Sedang — prediksi moderately yakin"
+    return "Rendah — prediksi kurang pasti"
