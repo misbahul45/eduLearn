@@ -65,7 +65,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     ref.listen(registerViewModelProvider, (prev, next) {
       if (next.stage == RegisterStage.success) {
-        context.goNamed(AppRoutes.homeTab);
+        context.goNamed(AppRoutes.chatTab);
       } else if (next.stage == RegisterStage.error && next.error != null) {
         final isDuplicateEmail = next.error == 'Email sudah terdaftar';
 

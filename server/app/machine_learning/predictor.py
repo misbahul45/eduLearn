@@ -208,22 +208,69 @@ class Predictor(metaclass=SingletonMeta):
         if not self._loaded or self._model is None:
             raise RuntimeError("Predictor not loaded. Call load() first.")
 
+        logger.info("=" * 80)
+        logger.info("PREDICTIVE TOOL CALLED")
+        logger.info("Raw StudentSignals:")
+        try:
+            logger.info(
+                json.dumps(signals.model_dump(exclude_none=True), indent=2, ensure_ascii=False, default=str)
+            )
+        except Exception as e:
+            logger.warning("Failed to serialize StudentSignals: %s", e)
+
+        logger.info("=" * 80)
+        logger.info("Validated StudentSignals")
+        for field in signals.model_dump():
+            logger.info("%-40s : %s", field, getattr(signals, field))
+
         df = self._signals_to_dataframe(signals)
+
+        logger.info("=" * 80)
+        logger.info("DataFrame sent to preprocessor")
+        logger.info("Shape: %s", df.shape)
+        logger.info("Columns: %s", list(df.columns))
+        logger.info("\n%s", df.to_string())
+
         X_pre = self._preprocessor.transform(df)
+
+        logger.info("=" * 80)
+        logger.info("After preprocessing")
+        logger.info("Shape: %s", X_pre.shape)
+        logger.info("Values: %s", X_pre)
 
         if self._best_dr == "PCA+LDA" and self._pca is not None and self._lda is not None:
             X_pca = self._pca.transform(X_pre)
             X_lda = self._lda.transform(X_pre)
             X_dr = np.hstack([X_pca, X_lda])
+            logger.info("DR method: PCA+LDA hybrid")
+            logger.info("PCA components: %d, LDA components: %d", X_pca.shape[1], X_lda.shape[1])
         elif self._best_dr == "PCA" and self._pca is not None:
             X_dr = self._pca.transform(X_pre)
+            logger.info("DR method: PCA only")
         elif self._best_dr == "LDA" and self._lda is not None:
             X_dr = self._lda.transform(X_pre)
+            logger.info("DR method: LDA only")
         else:
             X_dr = X_pre
+            logger.info("DR method: None (raw preprocessed features)")
 
-        prob_lulus = float(self._model.predict(X_dr, verbose=0).ravel()[0])
+        logger.info("=" * 80)
+        logger.info("After dimensionality reduction")
+        logger.info("Shape: %s", X_dr.shape)
+        logger.info("Values: %s", X_dr)
+
+        raw_prediction = self._model.predict(X_dr, verbose=0)
+
+        logger.info("=" * 80)
+        logger.info("RAW MODEL OUTPUT")
+        logger.info("Raw output: %s", raw_prediction)
+
+        prob_lulus = float(raw_prediction.ravel()[0])
         prob_tidak = 1.0 - prob_lulus
+
+        logger.info("Probability Lulus       : %.8f", prob_lulus)
+        logger.info("Probability Tidak Lulus : %.8f", prob_tidak)
+
         predicted_class = 1 if prob_lulus >= 0.5 else 0
         confidence = prob_lulus if predicted_class == 1 else prob_tidak
         predicted_label = "Lulus" if predicted_class == 1 else "Tidak Lulus"
@@ -233,6 +280,23 @@ class Predictor(metaclass=SingletonMeta):
         features_used = [
             f for f in self._input_features if getattr(signals, f, None) is not None
         ]
+
+        logger.info("=" * 80)
+        logger.info("FINAL PREDICTION")
+        logger.info("Predicted Label : %s", predicted_label)
+        logger.info("Confidence      : %.6f", confidence)
+        logger.info("Interpretation  : %s", self._interpret_confidence(confidence))
+        logger.info("Class Scores:")
+        logger.info("   %-15s %.6f", "Tidak Lulus", prob_tidak)
+        logger.info("   %-15s %.6f", "Lulus", prob_lulus)
+        logger.info("Features Used (%d): %s", len(features_used), features_used)
+        logger.info("Recommendations:")
+        for r in recommendations:
+            logger.info("   • %s", r)
+        logger.info("Risk Factors:")
+        for r in risk_factors:
+            logger.info("   • %s", r)
+        logger.info("=" * 80)
 
         return PredictionResult(
             predicted_label=predicted_label,

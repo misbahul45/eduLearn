@@ -53,7 +53,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     ref.listen(loginViewModelProvider, (prev, next) {
       if (next.stage == LoginStage.success) {
-        context.goNamed(AppRoutes.homeTab);
+        context.goNamed(AppRoutes.chatTab);
       } else if (next.stage == LoginStage.error && next.error != null) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()

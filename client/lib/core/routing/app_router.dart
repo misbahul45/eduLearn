@@ -38,15 +38,15 @@ final appRouter = GoRouter(
       builder: (context, state, navigationShell) =>
           HomePage(navigationShell: navigationShell),
       branches: [
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.homeTabPath,
-              name: AppRoutes.homeTab,
-              builder: (context, state) => const HomeTab(),
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: AppRoutes.homeTabPath,
+        //       name: AppRoutes.homeTab,
+        //       builder: (context, state) => const HomeTab(),
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -56,15 +56,15 @@ final appRouter = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.analysisTabPath,
-              name: AppRoutes.analysisTab,
-              builder: (context, state) => const AnalysisPage(),
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: AppRoutes.analysisTabPath,
+        //       name: AppRoutes.analysisTab,
+        //       builder: (context, state) => const AnalysisPage(),
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(

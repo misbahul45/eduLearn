@@ -1,11 +1,11 @@
 const String _kApiBaseUrl = String.fromEnvironment(
   'API_BASE_URL',
-  defaultValue: 'http://192.168.110.239/api/v1',
+  defaultValue: 'http://192.168.1.102/api/v1',
 );
 
 const String _kWsBaseUrl = String.fromEnvironment(
   'WS_BASE_URL',
-  defaultValue: 'ws://192.168.110.239/ws/v1/chat',
+  defaultValue: 'ws://192.168.1.102/ws/v1/chat',
 );
 
 class AppConfig {

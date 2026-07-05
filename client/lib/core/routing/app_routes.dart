@@ -14,9 +14,9 @@ class AppRoutes {
   static const String splashPath = '/';
   static const String loginPath = '/login';
   static const String registerPath = '/register';
-  static const String homeTabPath = '/home';
+  // static const String homeTabPath = '/home';
   static const String chatTabPath = '/home/chat';
-  static const String analysisTabPath = '/home/analysis';
+  // static const String analysisTabPath = '/home/analysis';
   static const String profileTabPath = '/home/profile';
   static const String knowledgePath = '/knowledge';
   static const String forgotPasswordPath = '/forgot-password';

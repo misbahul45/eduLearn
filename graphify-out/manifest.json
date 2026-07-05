@@ -250,7 +250,7 @@
     "semantic_hash": "4440672748462857e9bdbbf5fd06fe1a"
   },
   "client/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Package.swift": {
-    "mtime": 1783273565.284001,
+    "mtime": 1783279037.2542088,
     "ast_hash": "63bc00d19466662a75b7492ac07d5a97",
     "semantic_hash": "63bc00d19466662a75b7492ac07d5a97"
   },
@@ -355,19 +355,19 @@
     "semantic_hash": "9f810bd322c031aa4bdf9aecc68ae923"
   },
   "client/lib/features/auth/login_page.dart": {
-    "mtime": 1783111378.8146179,
-    "ast_hash": "f5594a88365279fdc46886d88fc9da9c",
-    "semantic_hash": "f5594a88365279fdc46886d88fc9da9c"
+    "mtime": 1783280141.4341352,
+    "ast_hash": "bbc750ff101a4ad5ef4cff5f6968c6f1",
+    "semantic_hash": ""
   },
   "client/lib/features/auth/register_page.dart": {
-    "mtime": 1783111372.3036792,
-    "ast_hash": "e8fd2600f08e68496498bf22d34aa86c",
-    "semantic_hash": "e8fd2600f08e68496498bf22d34aa86c"
+    "mtime": 1783280134.7220178,
+    "ast_hash": "7214138d3bd03628c7c9ca56096ad422",
+    "semantic_hash": ""
   },
   "client/lib/features/home/home_page.dart": {
-    "mtime": 1783108323.504668,
-    "ast_hash": "44366213c4d3e7bf87e7362f83e5e354",
-    "semantic_hash": "44366213c4d3e7bf87e7362f83e5e354"
+    "mtime": 1783280059.300549,
+    "ast_hash": "995a57bd91444916247c8c27ced27bc2",
+    "semantic_hash": ""
   },
   "client/lib/features/splash/splash_page.dart": {
     "mtime": 1783177750.2531326,
@@ -410,7 +410,7 @@
     "semantic_hash": "decd75ae48e1a5b7b8a49a26b7248905"
   },
   "client/macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Package.swift": {
-    "mtime": 1783273565.3160012,
+    "mtime": 1783279037.2962084,
     "ast_hash": "61d013e6c93b3d917c4f6178b9f6c9cb",
     "semantic_hash": "61d013e6c93b3d917c4f6178b9f6c9cb"
   },
@@ -1255,8 +1255,8 @@
     "semantic_hash": ""
   },
   "client/lib/core/network/auth_interceptor.dart": {
-    "mtime": 1783173914.2233214,
-    "ast_hash": "bbf6e0f3fa56db97b07a20481ea8615a",
+    "mtime": 1783280161.5585394,
+    "ast_hash": "e2f236f5287fe51fa073f798b33cb961",
     "semantic_hash": ""
   },
   "client/lib/core/network/dio_client.dart": {
@@ -1350,8 +1350,8 @@
     "semantic_hash": ""
   },
   "client/lib/features/chat/widgets/chat_input_bar.dart": {
-    "mtime": 1783278364.0516603,
-    "ast_hash": "ebb3f98cebc2c782e33e1a9830d1748c",
+    "mtime": 1783279268.1518862,
+    "ast_hash": "f9f9dfb79395e96ab8601bcd0c1133d1",
     "semantic_hash": ""
   },
   "client/lib/features/chat/widgets/citation_tile.dart": {
