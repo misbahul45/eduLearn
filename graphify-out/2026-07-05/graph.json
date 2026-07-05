@@ -131,84 +131,14 @@
   },
   "nodes": [
     {
-      "label": "chat_ws.py",
-      "file_type": "code",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "server_app_api_chat_ws",
-      "community": 76,
-      "norm_label": "chat_ws.py"
-    },
-    {
-      "label": "_verify_ws_jwt()",
-      "file_type": "code",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L20",
-      "_origin": "ast",
-      "id": "server_app_api_chat_ws_verify_ws_jwt",
-      "community": 76,
-      "norm_label": "_verify_ws_jwt()"
-    },
-    {
-      "label": "WebSocket",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "websocket",
-      "community": 76,
-      "norm_label": "websocket"
-    },
-    {
-      "label": "_check_rate_limit()",
-      "file_type": "code",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L64",
-      "_origin": "ast",
-      "id": "server_app_api_chat_ws_check_rate_limit",
-      "community": 76,
-      "norm_label": "_check_rate_limit()"
-    },
-    {
-      "label": "_track_connection()",
-      "file_type": "code",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "server_app_api_chat_ws_track_connection",
-      "community": 76,
-      "norm_label": "_track_connection()"
-    },
-    {
-      "label": "chat_websocket()",
-      "file_type": "code",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L90",
-      "_origin": "ast",
-      "id": "server_app_api_chat_ws_chat_websocket",
-      "community": 76,
-      "norm_label": "chat_websocket()"
-    },
-    {
-      "label": "health_websocket()",
-      "file_type": "code",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L199",
-      "_origin": "ast",
-      "id": "server_app_api_chat_ws_health_websocket",
-      "community": 76,
-      "norm_label": "health_websocket()"
-    },
-    {
       "label": "app_config.dart",
       "file_type": "code",
       "source_file": "client/lib/core/config/app_config.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_core_config_app_config",
       "community": 9,
-      "norm_label": "app_config.dart",
-      "id": "client_lib_core_config_app_config"
+      "norm_label": "app_config.dart"
     },
     {
       "label": "AppConfig",
@@ -216,9 +146,9 @@
       "source_file": "client/lib/core/config/app_config.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_core_config_app_config_appconfig",
       "community": 9,
-      "norm_label": "appconfig",
-      "id": "client_lib_core_config_app_config_appconfig"
+      "norm_label": "appconfig"
     },
     {
       "label": "_kApiBaseUrl",
@@ -226,9 +156,9 @@
       "source_file": "client/lib/core/config/app_config.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_core_config_app_config_kapibaseurl",
       "community": 9,
-      "norm_label": "_kapibaseurl",
-      "id": "client_lib_core_config_app_config_kapibaseurl"
+      "norm_label": "_kapibaseurl"
     },
     {
       "label": "_kWsBaseUrl",
@@ -236,9 +166,9 @@
       "source_file": "client/lib/core/config/app_config.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_core_config_app_config_kwsbaseurl",
       "community": 9,
-      "norm_label": "_kwsbaseurl",
-      "id": "client_lib_core_config_app_config_kwsbaseurl"
+      "norm_label": "_kwsbaseurl"
     },
     {
       "label": "apiBaseUrl",
@@ -246,9 +176,9 @@
       "source_file": "client/lib/core/config/app_config.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_core_config_app_config_apibaseurl",
       "community": 9,
-      "norm_label": "apibaseurl",
-      "id": "client_lib_core_config_app_config_apibaseurl"
+      "norm_label": "apibaseurl"
     },
     {
       "label": "static const String",
@@ -256,9 +186,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "static_const_string",
       "community": 9,
-      "norm_label": "static const string",
-      "id": "static_const_string"
+      "norm_label": "static const string"
     },
     {
       "label": "wsBaseUrl",
@@ -266,9 +196,9 @@
       "source_file": "client/lib/core/config/app_config.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_core_config_app_config_wsbaseurl",
       "community": 9,
-      "norm_label": "wsbaseurl",
-      "id": "client_lib_core_config_app_config_wsbaseurl"
+      "norm_label": "wsbaseurl"
     },
     {
       "label": "splash_provider.dart",
@@ -276,9 +206,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider",
       "community": 16,
-      "norm_label": "splash_provider.dart",
-      "id": "client_lib_features_splash_providers_splash_provider"
+      "norm_label": "splash_provider.dart"
     },
     {
       "label": "SplashStage",
@@ -286,9 +216,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_splashstage",
       "community": 16,
-      "norm_label": "splashstage",
-      "id": "client_lib_features_splash_providers_splash_provider_splashstage"
+      "norm_label": "splashstage"
     },
     {
       "label": "SplashState",
@@ -296,9 +226,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_splashstate",
       "community": 16,
-      "norm_label": "splashstate",
-      "id": "client_lib_features_splash_providers_splash_provider_splashstate"
+      "norm_label": "splashstate"
     },
     {
       "label": "SplashNotifier",
@@ -306,9 +236,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_splashnotifier",
       "community": 16,
-      "norm_label": "splashnotifier",
-      "id": "client_lib_features_splash_providers_splash_provider_splashnotifier"
+      "norm_label": "splashnotifier"
     },
     {
       "label": "Notifier",
@@ -316,9 +246,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "notifier",
       "community": 16,
-      "norm_label": "notifier",
-      "id": "notifier"
+      "norm_label": "notifier"
     },
     {
       "label": "authRepositoryProvider",
@@ -326,9 +256,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "authrepositoryprovider",
       "community": 16,
-      "norm_label": "authrepositoryprovider",
-      "id": "authrepositoryprovider"
+      "norm_label": "authrepositoryprovider"
     },
     {
       "label": "stage",
@@ -336,9 +266,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_stage",
       "community": 16,
-      "norm_label": "stage",
-      "id": "client_lib_features_splash_providers_splash_provider_stage"
+      "norm_label": "stage"
     },
     {
       "label": "error",
@@ -346,9 +276,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_error",
       "community": 16,
-      "norm_label": "error",
-      "id": "client_lib_features_splash_providers_splash_provider_error"
+      "norm_label": "error"
     },
     {
       "label": "String?",
@@ -356,9 +286,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "string",
       "community": 16,
-      "norm_label": "string?",
-      "id": "string"
+      "norm_label": "string?"
     },
     {
       "label": "splashProvider",
@@ -366,9 +296,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 33,
-      "norm_label": "splashprovider",
-      "id": "client_lib_features_splash_providers_splash_provider_splashprovider"
+      "id": "client_lib_features_splash_providers_splash_provider_splashprovider",
+      "community": 62,
+      "norm_label": "splashprovider"
     },
     {
       "label": "copyWith",
@@ -376,9 +306,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_copywith",
       "community": 16,
-      "norm_label": "copywith",
-      "id": "client_lib_features_splash_providers_splash_provider_copywith"
+      "norm_label": "copywith"
     },
     {
       "label": "build",
@@ -386,9 +316,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_build",
       "community": 16,
-      "norm_label": "build",
-      "id": "client_lib_features_splash_providers_splash_provider_build"
+      "norm_label": "build"
     },
     {
       "label": "check",
@@ -396,9 +326,9 @@
       "source_file": "client/lib/features/splash/providers/splash_provider.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_providers_splash_provider_check",
       "community": 16,
-      "norm_label": "check",
-      "id": "client_lib_features_splash_providers_splash_provider_check"
+      "norm_label": "check"
     },
     {
       "label": "package:flutter/foundation.dart",
@@ -406,9 +336,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "package_flutter_foundation_dart",
       "community": 16,
-      "norm_label": "package:flutter/foundation.dart",
-      "id": "package_flutter_foundation_dart"
+      "norm_label": "package:flutter/foundation.dart"
     },
     {
       "label": "package:flutter_riverpod/flutter_riverpod.dart",
@@ -416,9 +346,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "package_flutter_riverpod_flutter_riverpod_dart",
       "community": 55,
-      "norm_label": "package:flutter_riverpod/flutter_riverpod.dart",
-      "id": "package_flutter_riverpod_flutter_riverpod_dart"
+      "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
       "label": "../../../core/providers/auth_providers.dart",
@@ -426,9 +356,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "core_providers_auth_providers_dart",
       "community": 16,
-      "norm_label": "../../../core/providers/auth_providers.dart",
-      "id": "core_providers_auth_providers_dart"
+      "norm_label": "../../../core/providers/auth_providers.dart"
     },
     {
       "label": "splash_page.dart",
@@ -436,9 +366,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page",
       "community": 26,
-      "norm_label": "splash_page.dart",
-      "id": "client_lib_features_splash_splash_page"
+      "norm_label": "splash_page.dart"
     },
     {
       "label": "SplashPage",
@@ -446,9 +376,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page_splashpage",
       "community": 33,
-      "norm_label": "splashpage",
-      "id": "client_lib_features_splash_splash_page_splashpage"
+      "norm_label": "splashpage"
     },
     {
       "label": "ConsumerStatefulWidget",
@@ -456,9 +386,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "consumerstatefulwidget",
       "community": 33,
-      "norm_label": "consumerstatefulwidget",
-      "id": "consumerstatefulwidget"
+      "norm_label": "consumerstatefulwidget"
     },
     {
       "label": "_SplashPageState",
@@ -466,9 +396,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page_splashpagestate",
       "community": 33,
-      "norm_label": "_splashpagestate",
-      "id": "client_lib_features_splash_splash_page_splashpagestate"
+      "norm_label": "_splashpagestate"
     },
     {
       "label": "ConsumerState",
@@ -476,9 +406,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "consumerstate",
       "community": 33,
-      "norm_label": "consumerstate",
-      "id": "consumerstate"
+      "norm_label": "consumerstate"
     },
     {
       "label": "createState",
@@ -486,9 +416,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page_createstate",
       "community": 26,
-      "norm_label": "createstate",
-      "id": "client_lib_features_splash_splash_page_createstate"
+      "norm_label": "createstate"
     },
     {
       "label": "initState",
@@ -496,9 +426,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page_initstate",
       "community": 26,
-      "norm_label": "initstate",
-      "id": "client_lib_features_splash_splash_page_initstate"
+      "norm_label": "initstate"
     },
     {
       "label": "_checkAuth",
@@ -506,9 +436,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page_checkauth",
       "community": 62,
-      "norm_label": "_checkauth",
-      "id": "client_lib_features_splash_splash_page_checkauth"
+      "norm_label": "_checkauth"
     },
     {
       "label": "AppRoutes.homeTab",
@@ -516,9 +446,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "route_approutes_hometab",
       "community": 62,
-      "norm_label": "approutes.hometab",
-      "id": "route_approutes_hometab"
+      "norm_label": "approutes.hometab"
     },
     {
       "label": "AppRoutes.login",
@@ -526,9 +456,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "route_approutes_login",
       "community": 62,
-      "norm_label": "approutes.login",
-      "id": "route_approutes_login"
+      "norm_label": "approutes.login"
     },
     {
       "label": "build",
@@ -536,9 +466,9 @@
       "source_file": "client/lib/features/splash/splash_page.dart",
       "source_location": null,
       "_origin": "ast",
+      "id": "client_lib_features_splash_splash_page_build",
       "community": 26,
-      "norm_label": "build",
-      "id": "client_lib_features_splash_splash_page_build"
+      "norm_label": "build"
     },
     {
       "label": "package:flutter/material.dart",
@@ -546,9 +476,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "package_flutter_material_dart",
       "community": 21,
-      "norm_label": "package:flutter/material.dart",
-      "id": "package_flutter_material_dart"
+      "norm_label": "package:flutter/material.dart"
     },
     {
       "label": "package:go_router/go_router.dart",
@@ -556,9 +486,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "package_go_router_go_router_dart",
       "community": 26,
-      "norm_label": "package:go_router/go_router.dart",
-      "id": "package_go_router_go_router_dart"
+      "norm_label": "package:go_router/go_router.dart"
     },
     {
       "label": "../../core/routing/app_routes.dart",
@@ -566,9 +496,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "core_routing_app_routes_dart",
       "community": 26,
-      "norm_label": "../../core/routing/app_routes.dart",
-      "id": "core_routing_app_routes_dart"
+      "norm_label": "../../core/routing/app_routes.dart"
     },
     {
       "label": "../../core/theme/app_colors.dart",
@@ -576,9 +506,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "core_theme_app_colors_dart",
       "community": 58,
-      "norm_label": "../../core/theme/app_colors.dart",
-      "id": "core_theme_app_colors_dart"
+      "norm_label": "../../core/theme/app_colors.dart"
     },
     {
       "label": "../../core/theme/app_spacing.dart",
@@ -586,9 +516,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "core_theme_app_spacing_dart",
       "community": 58,
-      "norm_label": "../../core/theme/app_spacing.dart",
-      "id": "core_theme_app_spacing_dart"
+      "norm_label": "../../core/theme/app_spacing.dart"
     },
     {
       "label": "../../core/theme/app_text_styles.dart",
@@ -596,9 +526,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "core_theme_app_text_styles_dart",
       "community": 49,
-      "norm_label": "../../core/theme/app_text_styles.dart",
-      "id": "core_theme_app_text_styles_dart"
+      "norm_label": "../../core/theme/app_text_styles.dart"
     },
     {
       "label": "providers/splash_provider.dart",
@@ -606,9 +536,9 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
+      "id": "providers_splash_provider_dart",
       "community": 26,
-      "norm_label": "providers/splash_provider.dart",
-      "id": "providers_splash_provider_dart"
+      "norm_label": "providers/splash_provider.dart"
     },
     {
       "label": "conversation.py",
@@ -616,9 +546,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "server_app_db_models_conversation",
       "community": 81,
-      "norm_label": "conversation.py",
-      "id": "server_app_db_models_conversation"
+      "norm_label": "conversation.py"
     },
     {
       "label": "Conversation",
@@ -626,9 +556,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L22",
       "_origin": "ast",
+      "id": "server_app_db_models_conversation_conversation",
       "community": 81,
-      "norm_label": "conversation",
-      "id": "server_app_db_models_conversation_conversation"
+      "norm_label": "conversation"
     },
     {
       "label": "Base",
@@ -636,9 +566,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
+      "id": "base",
       "community": 81,
-      "norm_label": "base",
-      "id": "base"
+      "norm_label": "base"
     },
     {
       "label": ".touch()",
@@ -646,9 +576,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L45",
       "_origin": "ast",
+      "id": "server_app_db_models_conversation_conversation_touch",
       "community": 81,
-      "norm_label": ".touch()",
-      "id": "server_app_db_models_conversation_conversation_touch"
+      "norm_label": ".touch()"
     },
     {
       "label": ".__repr__()",
@@ -656,9 +586,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L60",
       "_origin": "ast",
+      "id": "server_app_db_models_conversation_conversation_repr",
       "community": 81,
-      "norm_label": ".__repr__()",
-      "id": "server_app_db_models_conversation_conversation_repr"
+      "norm_label": ".__repr__()"
     },
     {
       "label": "Message",
@@ -666,9 +596,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L64",
       "_origin": "ast",
+      "id": "server_app_db_models_conversation_message",
       "community": 81,
-      "norm_label": "message",
-      "id": "server_app_db_models_conversation_message"
+      "norm_label": "message"
     },
     {
       "label": ".__repr__()",
@@ -676,9 +606,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L93",
       "_origin": "ast",
+      "id": "server_app_db_models_conversation_message_repr",
       "community": 81,
-      "norm_label": ".__repr__()",
-      "id": "server_app_db_models_conversation_message_repr"
+      "norm_label": ".__repr__()"
     },
     {
       "label": "auth_service.py",
@@ -686,9 +616,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "server_app_services_auth_service",
       "community": 29,
-      "norm_label": "auth_service.py",
-      "id": "server_app_services_auth_service"
+      "norm_label": "auth_service.py"
     },
     {
       "label": "_hash_password()",
@@ -696,9 +626,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L23",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_hash_password",
       "community": 29,
-      "norm_label": "_hash_password()",
-      "id": "server_app_services_auth_service_hash_password"
+      "norm_label": "_hash_password()"
     },
     {
       "label": "_verify_password()",
@@ -706,9 +636,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L27",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_verify_password",
       "community": 29,
-      "norm_label": "_verify_password()",
-      "id": "server_app_services_auth_service_verify_password"
+      "norm_label": "_verify_password()"
     },
     {
       "label": "_create_access_token()",
@@ -716,9 +646,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L31",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_create_access_token",
       "community": 29,
-      "norm_label": "_create_access_token()",
-      "id": "server_app_services_auth_service_create_access_token"
+      "norm_label": "_create_access_token()"
     },
     {
       "label": "_create_refresh_token()",
@@ -726,9 +656,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L42",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_create_refresh_token",
       "community": 29,
-      "norm_label": "_create_refresh_token()",
-      "id": "server_app_services_auth_service_create_refresh_token"
+      "norm_label": "_create_refresh_token()"
     },
     {
       "label": "_decode_token()",
@@ -736,9 +666,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L54",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_decode_token",
       "community": 29,
-      "norm_label": "_decode_token()",
-      "id": "server_app_services_auth_service_decode_token"
+      "norm_label": "_decode_token()"
     },
     {
       "label": "register()",
@@ -746,9 +676,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L65",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_register",
       "community": 29,
-      "norm_label": "register()",
-      "id": "server_app_services_auth_service_register"
+      "norm_label": "register()"
     },
     {
       "label": "AsyncSession",
@@ -756,9 +686,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
+      "id": "asyncsession",
       "community": 29,
-      "norm_label": "asyncsession",
-      "id": "asyncsession"
+      "norm_label": "asyncsession"
     },
     {
       "label": "login()",
@@ -766,9 +696,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L106",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_login",
       "community": 29,
-      "norm_label": "login()",
-      "id": "server_app_services_auth_service_login"
+      "norm_label": "login()"
     },
     {
       "label": "refresh()",
@@ -776,9 +706,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L139",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_refresh",
       "community": 29,
-      "norm_label": "refresh()",
-      "id": "server_app_services_auth_service_refresh"
+      "norm_label": "refresh()"
     },
     {
       "label": "logout()",
@@ -786,9 +716,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L194",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_logout",
       "community": 29,
-      "norm_label": "logout()",
-      "id": "server_app_services_auth_service_logout"
+      "norm_label": "logout()"
     },
     {
       "label": "get_current_user()",
@@ -796,9 +726,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L208",
       "_origin": "ast",
+      "id": "server_app_services_auth_service_get_current_user",
       "community": 29,
-      "norm_label": "get_current_user()",
-      "id": "server_app_services_auth_service_get_current_user"
+      "norm_label": "get_current_user()"
     },
     {
       "label": "HTTPAuthorizationCredentials",
@@ -806,9 +736,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
+      "id": "httpauthorizationcredentials",
       "community": 29,
-      "norm_label": "httpauthorizationcredentials",
-      "id": "httpauthorizationcredentials"
+      "norm_label": "httpauthorizationcredentials"
     },
     {
       "label": "User",
@@ -816,9 +746,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
+      "id": "user",
       "community": 29,
-      "norm_label": "user",
-      "id": "user"
+      "norm_label": "user"
     },
     {
       "label": "auth_interceptor.dart",
@@ -3297,7 +3227,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "static const textstyle",
       "community_name": "app_colors.dart",
       "id": "static_const_textstyle"
@@ -3308,7 +3238,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "app_colors.dart",
       "community_name": "app_colors.dart",
       "id": "app_colors_dart"
@@ -3671,7 +3601,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 23,
+      "community": 42,
       "norm_label": "statefulwidget",
       "community_name": "ForgotPasswordPage",
       "id": "statefulwidget"
@@ -3682,7 +3612,7 @@
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "community": 23,
+      "community": 42,
       "norm_label": "state",
       "community_name": "ForgotPasswordPage",
       "id": "state"
@@ -4771,7 +4701,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 32,
+      "community": 24,
       "norm_label": "any",
       "community_name": "predictive_tool",
       "id": "server_app_agent_tools_validation_py_any"
@@ -4797,6 +4727,17 @@
       "norm_label": "user",
       "community_name": "auth.py",
       "id": "server_app_api_auth_py_user"
+    },
+    {
+      "label": "WebSocket",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "websocket",
+      "community_name": "chat_ws.py",
+      "id": "websocket"
     },
     {
       "label": "Exception",
@@ -8930,7 +8871,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "app_text_styles.dart",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles"
@@ -8941,7 +8882,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "apptextstyles",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_apptextstyles"
@@ -8952,7 +8893,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "h1",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_h1"
@@ -8963,7 +8904,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "h2",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_h2"
@@ -8974,7 +8915,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "subtitle",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_subtitle"
@@ -8985,7 +8926,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "label",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_label"
@@ -8996,7 +8937,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "body",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_body"
@@ -9007,7 +8948,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "button",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_button"
@@ -9018,7 +8959,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "link",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_link"
@@ -9029,7 +8970,7 @@
       "source_file": "client/lib/core/theme/app_text_styles.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 6,
+      "community": 21,
       "norm_label": "caption",
       "community_name": "app_colors.dart",
       "id": "client_lib_core_theme_app_text_styles_caption"
@@ -10118,7 +10059,7 @@
       "source_file": "client/lib/features/auth/forgot_password_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 23,
+      "community": 42,
       "norm_label": "forgotpasswordpage",
       "community_name": "ForgotPasswordPage",
       "id": "client_lib_features_auth_forgot_password_page_forgotpasswordpage"
@@ -10129,7 +10070,7 @@
       "source_file": "client/lib/features/auth/forgot_password_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 23,
+      "community": 42,
       "norm_label": "_forgotpasswordpagestate",
       "community_name": "ForgotPasswordPage",
       "id": "client_lib_features_auth_forgot_password_page_forgotpasswordpagestate"
@@ -11570,7 +11511,7 @@
       "source_file": "client/lib/features/chat/widgets/empty_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 49,
+      "community": 58,
       "norm_label": "empty_state.dart",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_chat_widgets_empty_state"
@@ -11581,7 +11522,7 @@
       "source_file": "client/lib/features/chat/widgets/empty_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 49,
+      "community": 58,
       "norm_label": "emptystate",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_chat_widgets_empty_state_emptystate"
@@ -11592,7 +11533,7 @@
       "source_file": "client/lib/features/chat/widgets/empty_state.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 49,
+      "community": 58,
       "norm_label": "build",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_chat_widgets_empty_state_build"
@@ -11757,7 +11698,7 @@
       "source_file": "client/lib/features/chat/widgets/web_search_tile.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 23,
+      "community": 42,
       "norm_label": "websearchtile",
       "community_name": "ForgotPasswordPage",
       "id": "client_lib_features_chat_widgets_web_search_tile_websearchtile"
@@ -11768,7 +11709,7 @@
       "source_file": "client/lib/features/chat/widgets/web_search_tile.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 23,
+      "community": 42,
       "norm_label": "_websearchtilestate",
       "community_name": "ForgotPasswordPage",
       "id": "client_lib_features_chat_widgets_web_search_tile_websearchtilestate"
@@ -11922,7 +11863,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 21,
+      "community": 25,
       "norm_label": "greeting_card.dart",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card"
@@ -11933,7 +11874,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 21,
+      "community": 25,
       "norm_label": "greetingcard",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_greetingcard"
@@ -11944,7 +11885,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 21,
+      "community": 25,
       "norm_label": "username",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_username"
@@ -11955,7 +11896,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 21,
+      "community": 25,
       "norm_label": "_initials",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_initials"
@@ -11966,7 +11907,7 @@
       "source_file": "client/lib/features/home/widgets/greeting_card.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 21,
+      "community": 25,
       "norm_label": "build",
       "community_name": "../../core/theme/app_spacing.dart",
       "id": "client_lib_features_home_widgets_greeting_card_build"
@@ -12340,7 +12281,7 @@
       "source_file": "client/lib/features/profile/knowledge_upload_sheet.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 33,
+      "community": 4,
       "norm_label": "knowledgeuploadsheet",
       "community_name": "knowledge_upload_sheet.dart",
       "id": "client_lib_features_profile_knowledge_upload_sheet_knowledgeuploadsheet"
@@ -12813,7 +12754,7 @@
       "source_file": "client/lib/features/profile/widgets/profile_header.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 58,
+      "community": 49,
       "norm_label": "profile_header.dart",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_profile_widgets_profile_header"
@@ -12824,7 +12765,7 @@
       "source_file": "client/lib/features/profile/widgets/profile_header.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 58,
+      "community": 49,
       "norm_label": "profileheader",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_profile_widgets_profile_header_profileheader"
@@ -12835,7 +12776,7 @@
       "source_file": "client/lib/features/profile/widgets/profile_header.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 58,
+      "community": 49,
       "norm_label": "user",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_profile_widgets_profile_header_user"
@@ -12846,7 +12787,7 @@
       "source_file": "client/lib/features/profile/widgets/profile_header.dart",
       "source_location": null,
       "_origin": "ast",
-      "community": 58,
+      "community": 49,
       "norm_label": "build",
       "community_name": "../../core/theme/app_colors.dart",
       "id": "client_lib_features_profile_widgets_profile_header_build"
@@ -14335,7 +14276,7 @@
       "source_file": "server/app/agent/graph.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 76,
       "norm_label": "graph.py",
       "community_name": "AgentState",
       "id": "server_app_agent_graph"
@@ -14357,7 +14298,7 @@
       "source_file": "server/app/agent/graph.py",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 11,
+      "community": 76,
       "norm_label": "run_agent()",
       "community_name": "AgentState",
       "id": "server_app_agent_graph_run_agent"
@@ -14368,7 +14309,7 @@
       "source_file": "server/app/agent/graph.py",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 11,
+      "community": 76,
       "norm_label": "run the langgraph reasoning loop for a user message and return the execution res",
       "community_name": "AgentState",
       "id": "server_app_agent_graph_rationale_44"
@@ -14621,7 +14562,7 @@
       "source_file": "server/app/agent/tools/_validation.py",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 32,
+      "community": 24,
       "norm_label": "validate_student_signals()",
       "community_name": "predictive_tool",
       "id": "server_app_agent_tools_validation_validate_student_signals"
@@ -14643,7 +14584,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "firecrawl_tool.py",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool"
@@ -14654,7 +14595,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "firecrawl_tool()",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool_firecrawl_tool"
@@ -14665,7 +14606,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L88",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "_sanitize()",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool_sanitize"
@@ -14676,7 +14617,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L96",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "_cache_key()",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool_cache_key"
@@ -14687,7 +14628,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L101",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "_get_cached()",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool_get_cached"
@@ -14698,7 +14639,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L114",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "_set_cached()",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool_set_cached"
@@ -14709,7 +14650,7 @@
       "source_file": "server/app/agent/tools/firecrawl_tool.py",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 25,
+      "community": 32,
       "norm_label": "cari informasi terkini di web via firecrawl api.      args:         query: kata",
       "community_name": "firecrawl_tool",
       "id": "server_app_agent_tools_firecrawl_tool_rationale_22"
@@ -14720,7 +14661,7 @@
       "source_file": "server/app/agent/tools/predictive_tool.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 32,
+      "community": 24,
       "norm_label": "predictive_tool.py",
       "community_name": "predictive_tool",
       "id": "server_app_agent_tools_predictive_tool"
@@ -14731,7 +14672,7 @@
       "source_file": "server/app/agent/tools/predictive_tool.py",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 32,
+      "community": 24,
       "norm_label": "predictive_tool()",
       "community_name": "predictive_tool",
       "id": "server_app_agent_tools_predictive_tool_predictive_tool"
@@ -14742,7 +14683,7 @@
       "source_file": "server/app/agent/tools/predictive_tool.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 32,
+      "community": 24,
       "norm_label": "prediksi kelulusan course (lulus/tidak lulus) berdasarkan data belajar siswa.",
       "community_name": "predictive_tool",
       "id": "server_app_agent_tools_predictive_tool_rationale_14"
@@ -14874,7 +14815,7 @@
       "source_file": "server/app/api/chat.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 18,
+      "community": 35,
       "norm_label": "chat.py",
       "community_name": "logging.py",
       "id": "server_app_api_chat"
@@ -14889,6 +14830,72 @@
       "norm_label": "chat()",
       "community_name": "chat",
       "id": "server_app_api_chat_chat"
+    },
+    {
+      "label": "chat_ws.py",
+      "file_type": "code",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "chat_ws.py",
+      "community_name": "chat_ws.py",
+      "id": "server_app_api_chat_ws"
+    },
+    {
+      "label": "_verify_ws_jwt()",
+      "file_type": "code",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "_verify_ws_jwt()",
+      "community_name": "chat_ws.py",
+      "id": "server_app_api_chat_ws_verify_ws_jwt"
+    },
+    {
+      "label": "_check_rate_limit()",
+      "file_type": "code",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L64",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "_check_rate_limit()",
+      "community_name": "chat_ws.py",
+      "id": "server_app_api_chat_ws_check_rate_limit"
+    },
+    {
+      "label": "_track_connection()",
+      "file_type": "code",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L78",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "_track_connection()",
+      "community_name": "chat_ws.py",
+      "id": "server_app_api_chat_ws_track_connection"
+    },
+    {
+      "label": "chat_websocket()",
+      "file_type": "code",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L90",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "chat_websocket()",
+      "community_name": "chat_ws.py",
+      "id": "server_app_api_chat_ws_chat_websocket"
+    },
+    {
+      "label": "health_websocket()",
+      "file_type": "code",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L199",
+      "_origin": "ast",
+      "community": 76,
+      "norm_label": "health_websocket()",
+      "community_name": "chat_ws.py",
+      "id": "server_app_api_chat_ws_health_websocket"
     },
     {
       "label": "deps.py",
@@ -15699,7 +15706,7 @@
       "source_file": "server/app/rag/ingestion.py",
       "source_location": "L130",
       "_origin": "ast",
-      "community": 8,
+      "community": 56,
       "norm_label": "embed_batch()",
       "community_name": "knowledge.py",
       "id": "server_app_rag_ingestion_embed_batch"
@@ -16271,7 +16278,7 @@
       "source_file": "server/app/schemas/knowledge.py",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 36,
+      "community": 11,
       "norm_label": "citationmeta",
       "community_name": "BaseModel",
       "id": "server_app_schemas_knowledge_citationmeta"
@@ -16392,7 +16399,7 @@
       "source_file": "server/app/schemas/prediction.py",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 32,
+      "community": 18,
       "norm_label": "studentsignals",
       "community_name": "predictive_tool",
       "id": "server_app_schemas_prediction_studentsignals"
@@ -17838,155 +17845,6 @@
     }
   ],
   "links": [
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "datetime",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "fastapi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "server_app_core_logging",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L90",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "server_app_api_chat_ws_chat_websocket",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L64",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "server_app_api_chat_ws_check_rate_limit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L199",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "server_app_api_chat_ws_health_websocket",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L78",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "server_app_api_chat_ws_track_connection",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws",
-      "target": "server_app_api_chat_ws_verify_ws_jwt",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L93",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws_chat_websocket",
-      "target": "server_app_api_chat_ws_verify_ws_jwt",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws_verify_ws_jwt",
-      "target": "websocket",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L90",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws_chat_websocket",
-      "target": "websocket",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L199",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws_health_websocket",
-      "target": "websocket",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L120",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws_chat_websocket",
-      "target": "server_app_api_chat_ws_check_rate_limit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "server/app/api/chat_ws.py",
-      "source_location": "L97",
-      "weight": 1.0,
-      "source": "server_app_api_chat_ws_chat_websocket",
-      "target": "server_app_api_chat_ws_track_connection",
-      "confidence_score": 1.0
-    },
     {
       "relation": "defines",
       "confidence": "EXTRACTED",
@@ -20528,9 +20386,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation",
-      "target": "datetime"
+      "target": "datetime",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20538,9 +20396,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation",
-      "target": "server_app_db_models_conversation_conversation"
+      "target": "server_app_db_models_conversation_conversation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20548,9 +20406,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation",
-      "target": "server_app_db_models_conversation_message"
+      "target": "server_app_db_models_conversation_message",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -20558,9 +20416,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation_conversation",
-      "target": "base"
+      "target": "base",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -20568,9 +20426,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L60",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation_conversation",
-      "target": "server_app_db_models_conversation_conversation_repr"
+      "target": "server_app_db_models_conversation_conversation_repr",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -20578,9 +20436,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L45",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation_conversation",
-      "target": "server_app_db_models_conversation_conversation_touch"
+      "target": "server_app_db_models_conversation_conversation_touch",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -20588,9 +20446,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation_message",
-      "target": "base"
+      "target": "base",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -20598,9 +20456,9 @@
       "source_file": "server/app/db/models/conversation.py",
       "source_location": "L93",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_db_models_conversation_message",
-      "target": "server_app_db_models_conversation_message_repr"
+      "target": "server_app_db_models_conversation_message_repr",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -20609,9 +20467,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "datetime"
+      "target": "datetime",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -20620,9 +20478,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "fastapi"
+      "target": "fastapi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20630,9 +20488,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_create_access_token"
+      "target": "server_app_services_auth_service_create_access_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20640,9 +20498,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_create_refresh_token"
+      "target": "server_app_services_auth_service_create_refresh_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20650,9 +20508,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L54",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_decode_token"
+      "target": "server_app_services_auth_service_decode_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20660,9 +20518,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L208",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_get_current_user"
+      "target": "server_app_services_auth_service_get_current_user",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20670,9 +20528,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L23",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_hash_password"
+      "target": "server_app_services_auth_service_hash_password",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20680,9 +20538,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L106",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_login"
+      "target": "server_app_services_auth_service_login",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20690,9 +20548,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L194",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_logout"
+      "target": "server_app_services_auth_service_logout",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20700,9 +20558,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L139",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_refresh"
+      "target": "server_app_services_auth_service_refresh",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20710,9 +20568,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L65",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_register"
+      "target": "server_app_services_auth_service_register",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20720,9 +20578,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L27",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service",
-      "target": "server_app_services_auth_service_verify_password"
+      "target": "server_app_services_auth_service_verify_password",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20731,9 +20589,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_register",
-      "target": "server_app_services_auth_service_hash_password"
+      "target": "server_app_services_auth_service_hash_password",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20742,9 +20600,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L114",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_login",
-      "target": "server_app_services_auth_service_verify_password"
+      "target": "server_app_services_auth_service_verify_password",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20753,9 +20611,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L120",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_login",
-      "target": "server_app_services_auth_service_create_access_token"
+      "target": "server_app_services_auth_service_create_access_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20764,9 +20622,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L175",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_refresh",
-      "target": "server_app_services_auth_service_create_access_token"
+      "target": "server_app_services_auth_service_create_access_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20775,9 +20633,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L87",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_register",
-      "target": "server_app_services_auth_service_create_access_token"
+      "target": "server_app_services_auth_service_create_access_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20786,9 +20644,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L121",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_login",
-      "target": "server_app_services_auth_service_create_refresh_token"
+      "target": "server_app_services_auth_service_create_refresh_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20797,9 +20655,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L176",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_refresh",
-      "target": "server_app_services_auth_service_create_refresh_token"
+      "target": "server_app_services_auth_service_create_refresh_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20808,9 +20666,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L88",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_register",
-      "target": "server_app_services_auth_service_create_refresh_token"
+      "target": "server_app_services_auth_service_create_refresh_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20819,9 +20677,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L218",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_get_current_user",
-      "target": "server_app_services_auth_service_decode_token"
+      "target": "server_app_services_auth_service_decode_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20830,9 +20688,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L122",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_login",
-      "target": "server_app_services_auth_service_decode_token"
+      "target": "server_app_services_auth_service_decode_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20841,9 +20699,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L143",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_refresh",
-      "target": "server_app_services_auth_service_decode_token"
+      "target": "server_app_services_auth_service_decode_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20852,9 +20710,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L89",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_register",
-      "target": "server_app_services_auth_service_decode_token"
+      "target": "server_app_services_auth_service_decode_token",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20874,9 +20732,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L65",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_register",
-      "target": "asyncsession"
+      "target": "asyncsession",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20885,9 +20743,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L78",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_register",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20896,9 +20754,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L208",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_get_current_user",
-      "target": "asyncsession"
+      "target": "asyncsession",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20907,9 +20765,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L106",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_login",
-      "target": "asyncsession"
+      "target": "asyncsession",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20918,9 +20776,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L194",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_logout",
-      "target": "asyncsession"
+      "target": "asyncsession",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20929,9 +20787,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L139",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_refresh",
-      "target": "asyncsession"
+      "target": "asyncsession",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20973,9 +20831,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L208",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_get_current_user",
-      "target": "httpauthorizationcredentials"
+      "target": "httpauthorizationcredentials",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20984,9 +20842,9 @@
       "source_file": "server/app/services/auth_service.py",
       "source_location": "L208",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "server_app_services_auth_service_get_current_user",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "defines",
@@ -23296,6 +23154,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "server_app_agent_tools_firecrawl_tool",
+      "target": "datetime"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
       "target": "datetime"
     },
     {
@@ -27057,6 +26926,39 @@
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws_chat_websocket",
+      "target": "websocket"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L199",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws_health_websocket",
+      "target": "websocket"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws_verify_ws_jwt",
+      "target": "websocket"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
       "source_file": "server/app/api/knowledge.py",
       "source_location": "L54",
       "weight": 1.0,
@@ -27367,6 +27269,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "server_app_api_chat",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
       "target": "fastapi"
     },
     {
@@ -36676,6 +36589,17 @@
       "target": "server_app_agent_graph_run_agent"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "server_app_api_chat_ws_chat_websocket",
+      "target": "server_app_agent_graph_run_agent"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "server/app/agent/predictive_node.py",
@@ -37519,6 +37443,111 @@
       "confidence_score": 1.0,
       "source": "server_app_api_chat_chat",
       "target": "server_app_schemas_chat_chatresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
+      "target": "server_app_api_chat_ws_chat_websocket"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
+      "target": "server_app_api_chat_ws_check_rate_limit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L199",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
+      "target": "server_app_api_chat_ws_health_websocket"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
+      "target": "server_app_api_chat_ws_track_connection"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
+      "target": "server_app_api_chat_ws_verify_ws_jwt"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws",
+      "target": "server_app_core_logging"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws_chat_websocket",
+      "target": "server_app_api_chat_ws_verify_ws_jwt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws_chat_websocket",
+      "target": "server_app_api_chat_ws_check_rate_limit"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server_app_api_chat_ws_chat_websocket",
+      "target": "server_app_api_chat_ws_track_connection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "server/app/api/chat_ws.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "server_app_api_chat_ws_chat_websocket",
+      "target": "server_app_core_logging_log_agent_event"
     },
     {
       "relation": "contains",
@@ -39802,5 +39831,5 @@
       "source_file": "docs/specification/04-agent-orchestration.md"
     }
   ],
-  "built_at_commit": "b304d3b8543e87b0f1e7312e70aa3aa729bec064"
+  "built_at_commit": "1105db9c8765952750c73460cb58801fcb17dcd5"
 }

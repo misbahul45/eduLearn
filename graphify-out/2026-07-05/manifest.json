@@ -545,9 +545,9 @@
     "semantic_hash": "7bb126f640d520bfee795bc1cf66ebc6"
   },
   "server/app/api/chat_ws.py": {
-    "mtime": 1783179134.8143513,
-    "ast_hash": "6ac6593bfef876090c046e362c3bb428",
-    "semantic_hash": ""
+    "mtime": 1783110753.0446827,
+    "ast_hash": "e539fdf2e847cec41c52ddfbe7929b27",
+    "semantic_hash": "e539fdf2e847cec41c52ddfbe7929b27"
   },
   "server/app/api/knowledge.py": {
     "mtime": 1783103689.1351492,
