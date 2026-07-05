@@ -106,78 +106,78 @@ async def chat_websocket(websocket: WebSocket):
     logger.info("WS client connected: user=%s", user_id)
 
     try:
-        async with websocket:
-            while True:
-                raw = await websocket.receive_text()
-                data = json.loads(raw)
+        # [FIXED] Hapus 'async with websocket:' dan langsung jalankan while True
+        while True:
+            raw = await websocket.receive_text()
+            data = json.loads(raw)
 
-                if data.get("type") == "ping":
-                    await websocket.send_text(json.dumps({"type": "pong"}))
-                    log_agent_event("pong", user_id=user_id, duration_ms=0)
+            if data.get("type") == "ping":
+                await websocket.send_text(json.dumps({"type": "pong"}))
+                log_agent_event("pong", user_id=user_id, duration_ms=0)
+                continue
+
+            if data.get("type") == "user_message":
+                if not await _check_rate_limit(user_id, "msg_per_min", settings.WS_RATE_MSG_PER_MIN):
+                    await websocket.send_json({
+                        "type": "error",
+                        "message": "Batas pesan tercapai, coba lagi sebentar.",
+                        "fatal": False,
+                    })
                     continue
 
-                if data.get("type") == "user_message":
-                    if not await _check_rate_limit(user_id, "msg_per_min", settings.WS_RATE_MSG_PER_MIN):
-                        await websocket.send_json({
-                            "type": "error",
-                            "message": "Batas pesan tercapai, coba lagi sebentar.",
-                            "fatal": False,
-                        })
-                        continue
+                msg = data.get("message", "")
+                conv_id = data.get("conversation_id", "")
 
-                    msg = data.get("message", "")
-                    conv_id = data.get("conversation_id", "")
+                log_agent_event("user_message", user_id=user_id, conversation_id=conv_id)
 
-                    log_agent_event("user_message", user_id=user_id, conversation_id=conv_id)
+                async def send_callback(event: dict) -> None:
+                    if "timestamp" not in event or not event["timestamp"]:
+                        event["timestamp"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+                    sanitized = EventSanitizer.sanitize(event)
+                    await websocket.send_text(json.dumps(sanitized))
 
-                    async def send_callback(event: dict) -> None:
-                        if "timestamp" not in event or not event["timestamp"]:
-                            event["timestamp"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-                        sanitized = EventSanitizer.sanitize(event)
-                        await websocket.send_text(json.dumps(sanitized))
+                try:
+                    agent_res = await run_agent(
+                        message=msg,
+                        user_id=user_id,
+                        conversation_id=conv_id,
+                        state_update_callback=send_callback,
+                    )
 
-                    try:
-                        agent_res = await run_agent(
-                            message=msg,
-                            user_id=user_id,
-                            conversation_id=conv_id,
-                            state_update_callback=send_callback,
-                        )
+                    citations_ids = [
+                        c.source_id if hasattr(c, "source_id") else c.get("source_id", "")
+                        for c in agent_res.get("citations", [])
+                    ]
+                    web_ids = [
+                        w.result_id if hasattr(w, "result_id") else w.get("result_id", "")
+                        for w in agent_res.get("web_search_results", [])
+                    ]
 
-                        citations_ids = [
-                            c.source_id if hasattr(c, "source_id") else c.get("source_id", "")
-                            for c in agent_res.get("citations", [])
-                        ]
-                        web_ids = [
-                            w.result_id if hasattr(w, "result_id") else w.get("result_id", "")
-                            for w in agent_res.get("web_search_results", [])
-                        ]
+                    pred = agent_res.get("prediction")
+                    prediction_present = pred is not None
+                    prediction_label = ""
+                    if prediction_present:
+                        prediction_label = pred.predicted_label if hasattr(pred, "predicted_label") else pred.get("predicted_label", "")
 
-                        pred = agent_res.get("prediction")
-                        prediction_present = pred is not None
-                        prediction_label = ""
-                        if prediction_present:
-                            prediction_label = pred.predicted_label if hasattr(pred, "predicted_label") else pred.get("predicted_label", "")
+                    final_event = {
+                        "type": "final",
+                        "message": agent_res.get("response", ""),
+                        "conversation_id": agent_res.get("conversation_id", ""),
+                        "citations": citations_ids,
+                        "web_results": web_ids,
+                        "prediction_present": prediction_present,
+                        "prediction_label": prediction_label,
+                    }
 
-                        final_event = {
-                            "type": "final",
-                            "message": agent_res.get("response", ""),
-                            "conversation_id": agent_res.get("conversation_id", ""),
-                            "citations": citations_ids,
-                            "web_results": web_ids,
-                            "prediction_present": prediction_present,
-                            "prediction_label": prediction_label,
-                        }
+                    await send_callback(final_event)
 
-                        await send_callback(final_event)
-
-                    except Exception as e:
-                        logger.exception("Agent run failed for user %s", user_id)
-                        await send_callback({
-                            "type": "error",
-                            "message": f"Terjadi kesalahan saat memproses permintaan Anda: {str(e)}",
-                            "fatal": False,
-                        })
+                except Exception as e:
+                    logger.exception("Agent run failed for user %s", user_id)
+                    await send_callback({
+                        "type": "error",
+                        "message": f"Terjadi kesalahan saat memproses permintaan Anda: {str(e)}",
+                        "fatal": False,
+                    })
 
     except WebSocketDisconnect:
         logger.info("WS client disconnected: user=%s", user_id)
@@ -199,11 +199,11 @@ async def chat_websocket(websocket: WebSocket):
 async def health_websocket(websocket: WebSocket):
     await websocket.accept()
     try:
-        async with websocket:
-            while True:
-                raw = await websocket.receive_text()
-                data = json.loads(raw)
-                if data.get("type") == "ping":
-                    await websocket.send_text(json.dumps({"type": "pong"}))
+        # [FIXED] Hapus 'async with websocket:'
+        while True:
+            raw = await websocket.receive_text()
+            data = json.loads(raw)
+            if data.get("type") == "ping":
+                await websocket.send_text(json.dumps({"type": "pong"}))
     except WebSocketDisconnect:
         pass

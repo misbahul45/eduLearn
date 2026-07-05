@@ -115,7 +115,7 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "server/app/core/config.py": {
-    "mtime": 1783102354.9396424,
+    "mtime": 1783177906.5777044,
     "ast_hash": "45222e16adfb92f919ec3db6ce15768d",
     "semantic_hash": "45222e16adfb92f919ec3db6ce15768d"
   },
@@ -255,7 +255,7 @@
     "semantic_hash": "4440672748462857e9bdbbf5fd06fe1a"
   },
   "client/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Package.swift": {
-    "mtime": 1783175867.5149531,
+    "mtime": 1783176460.915828,
     "ast_hash": "63bc00d19466662a75b7492ac07d5a97",
     "semantic_hash": "63bc00d19466662a75b7492ac07d5a97"
   },
@@ -375,9 +375,9 @@
     "semantic_hash": "44366213c4d3e7bf87e7362f83e5e354"
   },
   "client/lib/features/splash/splash_page.dart": {
-    "mtime": 1783104345.0133784,
-    "ast_hash": "3ab84862e527a6eda5a37af5b53ac57a",
-    "semantic_hash": "3ab84862e527a6eda5a37af5b53ac57a"
+    "mtime": 1783177750.2531326,
+    "ast_hash": "15c7ea183f4bd67f6c6de8fd7bf280cf",
+    "semantic_hash": ""
   },
   "client/lib/main.dart": {
     "mtime": 1783107350.5469034,
@@ -415,7 +415,7 @@
     "semantic_hash": "decd75ae48e1a5b7b8a49a26b7248905"
   },
   "client/macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Package.swift": {
-    "mtime": 1783175867.5419524,
+    "mtime": 1783176460.9398277,
     "ast_hash": "61d013e6c93b3d917c4f6178b9f6c9cb",
     "semantic_hash": "61d013e6c93b3d917c4f6178b9f6c9cb"
   },
@@ -1055,9 +1055,9 @@
     "semantic_hash": ""
   },
   "client/lib/features/splash/providers/splash_provider.dart": {
-    "mtime": 1783111047.3909996,
-    "ast_hash": "485265fa17c8f2b65db1791b856da672",
-    "semantic_hash": "485265fa17c8f2b65db1791b856da672"
+    "mtime": 1783177731.003208,
+    "ast_hash": "e2e0260df834518499a5a620825088e1",
+    "semantic_hash": ""
   },
   "server/app/api/deps.py": {
     "mtime": 1783103604.3612838,
@@ -1085,9 +1085,9 @@
     "semantic_hash": "a8590e6b496e88241cea1a59fb7cec13"
   },
   "server/app/db/models/conversation.py": {
-    "mtime": 1783103209.2739656,
-    "ast_hash": "5f2bd2680e151a2564e12fdb4773e1ed",
-    "semantic_hash": "5f2bd2680e151a2564e12fdb4773e1ed"
+    "mtime": 1783178275.3842874,
+    "ast_hash": "9d7bd7d9e858429d7cba9aeb33f09262",
+    "semantic_hash": ""
   },
   "server/app/db/models/knowledge.py": {
     "mtime": 1783103212.1738896,
@@ -1105,9 +1105,9 @@
     "semantic_hash": "d0e5710f23bf692564649fa0b3ebf459"
   },
   "server/app/services/auth_service.py": {
-    "mtime": 1783103600.7123358,
-    "ast_hash": "4645a494e35858155944302a35b042c1",
-    "semantic_hash": "4645a494e35858155944302a35b042c1"
+    "mtime": 1783178847.3651962,
+    "ast_hash": "50c727c9748efc558490f1ea1013471a",
+    "semantic_hash": ""
   },
   "docs/planning/00-index.md": {
     "mtime": 1783103062.9053204,
@@ -1260,8 +1260,8 @@
     "semantic_hash": ""
   },
   "client/lib/core/config/app_config.dart": {
-    "mtime": 1783169794.291108,
-    "ast_hash": "ec466563aba339e2692e50e937d20b0a",
+    "mtime": 1783176457.141868,
+    "ast_hash": "c5392436427451e95ce842873e890415",
     "semantic_hash": ""
   },
   "client/lib/core/network/auth_interceptor.dart": {
@@ -1485,7 +1485,7 @@
     "semantic_hash": ""
   },
   "client/.dart_tool/flutter_build/2b580c3842dae1019c11e893307318e0/outputs.json": {
-    "mtime": 1783175887.9434202,
+    "mtime": 1783176467.9647536,
     "ast_hash": "638169065bafd427bb12f9514eebc15a",
     "semantic_hash": ""
   },
