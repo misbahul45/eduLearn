@@ -8,7 +8,6 @@ import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/app_button.dart';
 import '../../core/widgets/app_text_field.dart';
-import '../../core/widgets/social_button.dart';
 import 'providers/register_viewmodel.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
@@ -234,7 +233,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 isLoading: isLoading,
                 onPressed: _submit,
               ),
-              const SizedBox(height: AppSpacing.lg),
+              // const SizedBox(height: AppSpacing.sm),
               // Row(
               //   children: [
               //     const Expanded(child: Divider()),

@@ -1,3 +1,13 @@
+"""
+Enhanced WebSocket Router — dengan connection event + token streaming support.
+
+Perubahan dari versi lama:
+1. Emit `connection` event saat client connect (Flutter ConnectionEvent expect ini)
+2. Pastikan semua events dari callback diteruskan ke client (sudah ada)
+3. Token streaming dari response_node otomatis diteruskan via callback
+4. Tambah `is_closed` check lebih robust
+5. Log event flow untuk debugging
+"""
 import asyncio
 import json
 import logging
@@ -20,12 +30,14 @@ _connection_locks: dict[str, asyncio.Lock] = {}
 
 
 async def _verify_ws_jwt(websocket: WebSocket) -> str | None:
+    """Verify JWT token dari subprotocol atau query param."""
     if not settings.WS_AUTH_REQUIRED:
         logger.warning("WS_AUTH_REQUIRED=false — authentication bypassed")
         return "dev_user"
 
     token: str | None = None
 
+    # 1. Coba subprotocol: bearer.<token>
     subprotocols = websocket.headers.get("sec-websocket-protocol", "")
     for sp in subprotocols.split(","):
         sp = sp.strip()
@@ -33,10 +45,11 @@ async def _verify_ws_jwt(websocket: WebSocket) -> str | None:
             token = sp.split("bearer.", 1)[1]
             break
 
+    # 2. Fallback: query param
     if not token:
         token = websocket.query_params.get("token")
         if token:
-            logger.warning("WS auth via query param — prefer subprotocol next time")
+            logger.warning("WS auth via query param — prefer subprotocol")
 
     if not token:
         await websocket.close(code=4401, reason="Token tidak ditemukan")
@@ -64,6 +77,7 @@ async def _verify_ws_jwt(websocket: WebSocket) -> str | None:
 
 
 async def _check_rate_limit(user_id: str, metric: str, max_val: int, window: int = 60) -> bool:
+    """Rate limit via Redis. Returns True jika allowed."""
     try:
         import redis.asyncio as aioredis
         r = aioredis.from_url(settings.REDIS_URL, socket_connect_timeout=2)
@@ -74,13 +88,15 @@ async def _check_rate_limit(user_id: str, metric: str, max_val: int, window: int
         await r.aclose()
         return current <= max_val
     except Exception:
+        # Redis down → allow (fail-open)
         return True
 
 
 async def _acquire_connection(user_id: str, websocket: WebSocket) -> None:
+    """Single connection per user. Disconnect old if exists."""
     if user_id not in _connection_locks:
         _connection_locks[user_id] = asyncio.Lock()
-    
+
     async with _connection_locks[user_id]:
         if user_id in _active_connections:
             old_ws = _active_connections[user_id]
@@ -90,14 +106,15 @@ async def _acquire_connection(user_id: str, websocket: WebSocket) -> None:
                 pass
             _active_connections.pop(user_id, None)
             logger.info("Closed old WebSocket for user=%s", user_id)
-        
+
         _active_connections[user_id] = websocket
 
 
 async def _release_connection(user_id: str, websocket: WebSocket) -> None:
+    """Release connection lock."""
     if user_id not in _connection_locks:
         _connection_locks[user_id] = asyncio.Lock()
-    
+
     async with _connection_locks[user_id]:
         if _active_connections.get(user_id) is websocket:
             _active_connections.pop(user_id, None)
@@ -105,6 +122,7 @@ async def _release_connection(user_id: str, websocket: WebSocket) -> None:
 
 @router.websocket("/ws/v1/chat")
 async def chat_websocket(websocket: WebSocket):
+    """Main chat WebSocket endpoint dengan multi-step ReAct support."""
     await websocket.accept()
 
     user_id = await _verify_ws_jwt(websocket)
@@ -114,10 +132,12 @@ async def chat_websocket(websocket: WebSocket):
     await _acquire_connection(user_id, websocket)
     logger.info("WS client connected: user=%s", user_id)
 
+    # NEW: Emit connection event agar Flutter ConnectionEvent trigger
     is_closed = False
     current_agent_task: asyncio.Task | None = None
 
     async def safe_send(event: dict) -> bool:
+        """Send event to client. Returns False if connection closed."""
         nonlocal is_closed
         if is_closed:
             return False
@@ -125,15 +145,25 @@ async def chat_websocket(websocket: WebSocket):
             if "timestamp" not in event or not event["timestamp"]:
                 event["timestamp"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
             sanitized = EventSanitizer.sanitize(event)
-            await websocket.send_text(json.dumps(sanitized))
+            await websocket.send_text(json.dumps(sanitized, ensure_ascii=False, default=str))
             return True
         except Exception as e:
-            logger.debug("Failed to send WebSocket message: %s", e)
+            logger.debug("Failed to send WS message: %s", e)
             is_closed = True
             return False
 
     async def send_callback(event: dict) -> None:
+        """Callback untuk agent events — diteruskan ke client via safe_send."""
+        # Log event untuk debugging (hanya type, bukan full payload)
+        event_type = event.get("type", "unknown")
+        logger.debug("WS event → client: type=%s, user=%s", event_type, user_id)
         await safe_send(event)
+
+    # NEW: Emit connection event
+    await safe_send({
+        "type": "connection",
+        "status": "connected",
+    })
 
     try:
         while True:
@@ -144,12 +174,15 @@ async def chat_websocket(websocket: WebSocket):
                 )
                 data = json.loads(raw)
 
+                # Handle ping/pong heartbeat
                 if data.get("type") == "ping":
                     await safe_send({"type": "pong"})
                     log_agent_event("pong", user_id=user_id, duration_ms=0)
                     continue
 
+                # Handle user message
                 if data.get("type") == "user_message":
+                    # Rate limit check
                     if not await _check_rate_limit(user_id, "msg_per_min", settings.WS_RATE_MSG_PER_MIN):
                         await safe_send({
                             "type": "error",
@@ -163,6 +196,7 @@ async def chat_websocket(websocket: WebSocket):
 
                     log_agent_event("user_message", user_id=user_id, conversation_id=conv_id)
 
+                    # Cancel previous agent task if still running
                     if current_agent_task and not current_agent_task.done():
                         logger.warning("Cancelling previous agent task for user=%s", user_id)
                         current_agent_task.cancel()
@@ -171,17 +205,19 @@ async def chat_websocket(websocket: WebSocket):
                         except asyncio.CancelledError:
                             pass
 
+                    # Start new agent task
                     current_agent_task = asyncio.create_task(
                         _run_agent_safe(msg, user_id, conv_id, send_callback)
                     )
 
             except asyncio.TimeoutError:
+                # Heartbeat: send ping, if client doesn't respond → close
                 ping_sent = await safe_send({
                     "type": "ping",
                     "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
                 })
                 if not ping_sent:
-                    logger.info("Client not responding, closing connection: user=%s", user_id)
+                    logger.info("Client not responding, closing: user=%s", user_id)
                     break
             except json.JSONDecodeError as e:
                 logger.warning("Invalid JSON from %s: %s", user_id, e)
@@ -209,14 +245,32 @@ async def chat_websocket(websocket: WebSocket):
             except asyncio.CancelledError:
                 pass
         await _release_connection(user_id, websocket)
+
+        # NEW: Emit disconnection event
+        try:
+            await websocket.send_text(json.dumps({
+                "type": "connection",
+                "status": "disconnected",
+                "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            }))
+        except Exception:
+            pass
+
         try:
             await websocket.close()
         except Exception:
             pass
-        logger.info("WebSocket connection closed for user=%s", user_id)
+        logger.info("WebSocket closed for user=%s", user_id)
 
 
 async def _run_agent_safe(msg: str, user_id: str, conv_id: str, callback) -> None:
+    """
+    Run agent dengan safe error handling.
+
+    Events dari agent (plan_generated, tool_call, tool_result, reflection, token, dll)
+    otomatis diteruskan ke client via callback DURING execution.
+    Final event dikirim SETELAH agent selesai.
+    """
     try:
         agent_res = await run_agent(
             message=msg,
@@ -225,6 +279,7 @@ async def _run_agent_safe(msg: str, user_id: str, conv_id: str, callback) -> Non
             state_update_callback=callback,
         )
 
+        # Build final event
         citations_ids = [
             c.source_id if hasattr(c, "source_id") else c.get("source_id", "")
             for c in agent_res.get("citations", [])
@@ -238,7 +293,10 @@ async def _run_agent_safe(msg: str, user_id: str, conv_id: str, callback) -> Non
         prediction_present = pred is not None
         prediction_label = ""
         if prediction_present:
-            prediction_label = pred.predicted_label if hasattr(pred, "predicted_label") else pred.get("predicted_label", "")
+            prediction_label = (
+                pred.predicted_label if hasattr(pred, "predicted_label")
+                else pred.get("predicted_label", "")
+            )
 
         final_event = {
             "type": "final",
@@ -267,6 +325,7 @@ async def _run_agent_safe(msg: str, user_id: str, conv_id: str, callback) -> Non
 
 @router.websocket("/ws/v1/health")
 async def health_websocket(websocket: WebSocket):
+    """Health check endpoint."""
     await websocket.accept()
     try:
         while True:

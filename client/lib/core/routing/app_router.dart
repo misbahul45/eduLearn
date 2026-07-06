@@ -1,12 +1,10 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/analysis/analysis_page.dart';
 import '../../features/auth/forgot_password_page.dart';
 import '../../features/auth/login_page.dart';
 import '../../features/auth/register_page.dart';
 import '../../features/chat/chat_page.dart';
 import '../../features/home/home_page.dart';
-import '../../features/home/home_tab.dart';
 import '../../features/profile/profile_page.dart';
 import '../../features/splash/splash_page.dart';
 import 'app_routes.dart';

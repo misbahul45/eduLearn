@@ -1,69 +1,264 @@
+/// Enhanced Agent Event Model — mendukung multi-step ReAct workflow.
+///
+/// Perubahan dari versi lama:
+/// 1. Tambah `PlanGeneratedEvent` untuk plan dari Planner node
+/// 2. Tambah `ReflectionEvent` untuk feedback dari Reflector node
+/// 3. `ToolCallEvent` & `ToolResultEvent` dapat `parallelGroup` field
+/// 4. Setiap event punya `icon` (emoji) dan `phase` (planner/supervisor/tools/reflector/respond)
+/// 5. `StateUpdateEvent` dapat `reasoningPreview` dan `toolCallsCount`
+library;
+
+import 'plan_step.dart';
+import 'reflection_data.dart';
+
+export 'plan_step.dart';
+export 'reflection_data.dart';
+
+// ============================================================
+// Base sealed class
+// ============================================================
+
 sealed class AgentEvent {
   final DateTime timestamp;
+
   const AgentEvent(this.timestamp);
 
   String get summary;
   String get detail;
+
+  /// Emoji icon untuk visual di trace sheet.
+  String get icon;
+
+  /// Phase: planner | supervisor | tools | reflector | respond | system
+  String get phase;
 }
 
+// ============================================================
+// System / Connection events
+// ============================================================
+
+class ConnectionEvent extends AgentEvent {
+  final String status; // connected | disconnected | reconnecting | rest_mode
+
+  const ConnectionEvent(this.status, super.timestamp);
+
+  @override
+  String get summary => 'Connection: $status';
+
+  @override
+  String get detail => '';
+
+  @override
+  String get icon => '🔌';
+
+  @override
+  String get phase => 'system';
+}
+
+// ============================================================
+// State Update (dari semua node)
+// ============================================================
+
 class StateUpdateEvent extends AgentEvent {
-  final String node;
-  final String status;
+  final String node; // planner | supervisor | tools | reflector | respond
+  final String status; // started | completed
   final int iteration;
+  final String? reasoningPreview;
+  final int? toolCallsCount;
 
   const StateUpdateEvent(
     this.node,
     this.status,
-    this.iteration,
+    this.iteration, {
+    this.reasoningPreview,
+    this.toolCallsCount,
+    required DateTime timestamp,
+  }) : super(timestamp);
+
+  @override
+  String get summary => '[$node] $status';
+
+  @override
+  String get detail {
+    final parts = <String>['Iterasi $iteration'];
+    if (toolCallsCount != null && toolCallsCount! > 0) {
+      parts.add('$toolCallsCount tool calls');
+    }
+    if (reasoningPreview != null && reasoningPreview!.isNotEmpty) {
+      parts.add(reasoningPreview!.substring(0, reasoningPreview!.length.clamp(0, 80)));
+    }
+    return parts.join(' · ');
+  }
+
+  @override
+  String get icon => _nodeIcon(node);
+
+  @override
+  String get phase => node;
+
+  static String _nodeIcon(String node) => switch (node) {
+        'planner' => '🗺️',
+        'supervisor' => '🧠',
+        'tools' => '🔧',
+        'reflector' => '🔍',
+        'respond' => '✍️',
+        _ => '•',
+      };
+}
+
+// ============================================================
+// Plan Generated (BARU — dari Planner node)
+// ============================================================
+
+class PlanGeneratedEvent extends AgentEvent {
+  final List<PlanStep> steps;
+  final String reasoning;
+  final bool needsPlanning;
+
+  const PlanGeneratedEvent(
+    this.steps,
+    this.reasoning,
+    this.needsPlanning,
     super.timestamp,
   );
 
   @override
-  String get summary => 'Node: $node → $status';
+  String get summary =>
+      needsPlanning ? 'Plan: ${steps.length} steps' : 'Simple query (skip plan)';
 
   @override
-  String get detail => 'Iterasi ke-$iteration';
+  String get detail {
+    if (!needsPlanning) return 'Single-intent query';
+    final parallel = steps.where((s) => s.dependsOn.isEmpty && s.tool != 'respond').length;
+    return '${steps.length} steps · ${parallel > 1 ? "$parallel parallel" : "sequential"}';
+  }
+
+  @override
+  String get icon => '🗺️';
+
+  @override
+  String get phase => 'planner';
 }
+
+// ============================================================
+// Tool Call (enhanced dengan parallelGroup)
+// ============================================================
 
 class ToolCallEvent extends AgentEvent {
   final String toolName;
   final Map<String, dynamic> input;
   final String callId;
+  final String? parallelGroup; // "iter_2_n3" jika parallel
+  final int iteration;
 
   const ToolCallEvent(
     this.toolName,
     this.input,
-    this.callId,
-    super.timestamp,
-  );
+    this.callId, {
+    this.parallelGroup,
+    this.iteration = 0,
+    required DateTime timestamp,
+  }) : super(timestamp);
+
+  bool get isParallel => parallelGroup != null;
 
   @override
-  String get summary => 'Tool dipanggil: $toolName';
+  String get summary => '→ $toolName${isParallel ? ' (parallel)' : ''}';
 
   @override
-  String get detail => 'Call ID: $callId';
+  String get detail {
+    final inputPreview = input.entries.take(3).map((e) {
+      final val = e.value.toString();
+      return '${e.key}: ${val.substring(0, val.length.clamp(0, 40))}';
+    }).join(', ');
+    return 'Args: $inputPreview';
+  }
+
+  @override
+  String get icon => _toolIcon(toolName);
+
+  @override
+  String get phase => 'tools';
+
+  static String _toolIcon(String tool) => switch (tool) {
+        'rag_tool' => '📚',
+        'predictive_tool' => '🎯',
+        'firecrawl_tool' => '🌐',
+        _ => '🔧',
+      };
 }
+
+// ============================================================
+// Tool Result (enhanced dengan parallelGroup + success)
+// ============================================================
 
 class ToolResultEvent extends AgentEvent {
   final String toolName;
   final String callId;
   final String outputSummary;
   final int durationMs;
+  final String? parallelGroup;
+  final bool success;
+  final int iteration;
 
   const ToolResultEvent(
     this.toolName,
     this.callId,
     this.outputSummary,
-    this.durationMs,
-    super.timestamp,
-  );
+    this.durationMs, {
+    this.parallelGroup,
+    this.success = true,
+    this.iteration = 0,
+    required DateTime timestamp,
+  }) : super(timestamp);
+
+  bool get isParallel => parallelGroup != null;
 
   @override
-  String get summary => 'Tool selesai: $toolName';
+  String get summary => '${success ? "✓" : "✗"} $toolName';
 
   @override
   String get detail => '${durationMs}ms · $outputSummary';
+
+  @override
+  String get icon => success ? '✅' : '❌';
+
+  @override
+  String get phase => 'tools';
 }
+
+// ============================================================
+// Reflection (BARU — dari Reflector node)
+// ============================================================
+
+class ReflectionEvent extends AgentEvent {
+  final ReflectionData data;
+
+  const ReflectionEvent(this.data, super.timestamp);
+
+  @override
+  String get summary =>
+      'Reflection: ${data.nextAction} (quality: ${(data.qualityScore * 100).toInt()}%)';
+
+  @override
+  String get detail {
+    final parts = <String>[data.reason];
+    if (data.missingAspects.isNotEmpty) {
+      parts.add('Missing: ${data.missingAspects.join(", ")}');
+    }
+    return parts.join(' · ');
+  }
+
+  @override
+  String get icon => '🔍';
+
+  @override
+  String get phase => 'reflector';
+}
+
+// ============================================================
+// Streaming Token
+// ============================================================
 
 class TokenEvent extends AgentEvent {
   final String content;
@@ -72,11 +267,21 @@ class TokenEvent extends AgentEvent {
   const TokenEvent(this.content, this.index, super.timestamp);
 
   @override
-  String get summary => 'Token ke-${index + 1}';
+  String get summary => 'Token #${index + 1}';
 
   @override
-  String get detail => '';
+  String get detail => content.substring(0, content.length.clamp(0, 50));
+
+  @override
+  String get icon => '💬';
+
+  @override
+  String get phase => 'respond';
 }
+
+// ============================================================
+// Prediction Result
+// ============================================================
 
 class PredictionResultEvent extends AgentEvent {
   final PredictionResult data;
@@ -89,7 +294,17 @@ class PredictionResultEvent extends AgentEvent {
   @override
   String get detail =>
       'Confidence: ${(data.confidence * 100).toStringAsFixed(1)}%';
+
+  @override
+  String get icon => '🎯';
+
+  @override
+  String get phase => 'tools';
 }
+
+// ============================================================
+// Citation (RAG)
+// ============================================================
 
 class CitationEvent extends AgentEvent {
   final String sourceId;
@@ -106,11 +321,21 @@ class CitationEvent extends AgentEvent {
   );
 
   @override
-  String get summary => 'Sumber ditemukan';
+  String get summary => '📚 Sumber: ${metadata.title ?? "Untitled"}';
 
   @override
-  String get detail => 'Score: ${(score * 100).toStringAsFixed(0)}%';
+  String get detail => 'Score: ${(score * 100).toStringAsFixed(0)}% · ${snippet.substring(0, snippet.length.clamp(0, 60))}...';
+
+  @override
+  String get icon => '📚';
+
+  @override
+  String get phase => 'tools';
 }
+
+// ============================================================
+// Web Search Result (Firecrawl)
+// ============================================================
 
 class WebSearchResultEvent extends AgentEvent {
   final String resultId;
@@ -133,11 +358,21 @@ class WebSearchResultEvent extends AgentEvent {
   );
 
   @override
-  String get summary => 'Web search: $title';
+  String get summary => '🌐 $title';
 
   @override
-  String get detail => source;
+  String get detail => '$source · ${(relevanceScore * 100).toStringAsFixed(0)}% match';
+
+  @override
+  String get icon => '🌐';
+
+  @override
+  String get phase => 'tools';
 }
+
+// ============================================================
+// Final Response
+// ============================================================
 
 class FinalEvent extends AgentEvent {
   final String message;
@@ -161,8 +396,24 @@ class FinalEvent extends AgentEvent {
   String get summary => 'Respon final diterima';
 
   @override
-  String get detail => predictionPresent ? 'Mengandung prediksi' : '';
+  String get detail {
+    final parts = <String>[];
+    if (predictionPresent) parts.add('Mengandung prediksi');
+    if (citations.isNotEmpty) parts.add('${citations.length} citations');
+    if (webResults.isNotEmpty) parts.add('${webResults.length} web results');
+    return parts.join(' · ');
+  }
+
+  @override
+  String get icon => '✅';
+
+  @override
+  String get phase => 'respond';
 }
+
+// ============================================================
+// Error
+// ============================================================
 
 class AgentErrorEvent extends AgentEvent {
   final String? node;
@@ -177,11 +428,21 @@ class AgentErrorEvent extends AgentEvent {
   );
 
   @override
-  String get summary => 'Error: ${fatal ? "Fatal" : "Non-fatal"}';
+  String get summary => '${fatal ? "❌ Fatal" : "⚠️"} Error${node != null ? " [$node]" : ""}';
 
   @override
   String get detail => message;
+
+  @override
+  String get icon => fatal ? '❌' : '⚠️';
+
+  @override
+  String get phase => node ?? 'system';
 }
+
+// ============================================================
+// Data Models (existing, kept for compatibility)
+// ============================================================
 
 class CitationMeta {
   final String? title;
@@ -248,8 +509,7 @@ class WebSearchResult {
       snippet: json['snippet'] as String? ?? '',
       markdownExcerpt: json['markdown_excerpt'] as String? ?? '',
       source: json['source'] as String? ?? '',
-      relevanceScore:
-          (json['relevance_score'] as num?)?.toDouble() ?? 0.0,
+      relevanceScore: (json['relevance_score'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

@@ -145,6 +145,9 @@ class ChatViewModel extends Notifier<ChatState> {
         : newTrace;
 
     switch (event) {
+      case ConnectionEvent _:
+        state = state.copyWith(traceLog: trimmedTrace);
+
       case StateUpdateEvent e:
         final isActive = const {
           'supervisor',
@@ -256,6 +259,12 @@ class ChatViewModel extends Notifier<ChatState> {
             );
           }
         }
+
+      case PlanGeneratedEvent _:
+        state = state.copyWith(traceLog: trimmedTrace);
+
+      case ReflectionEvent _:
+        state = state.copyWith(traceLog: trimmedTrace);
     }
   }
 
@@ -274,6 +283,7 @@ class ChatViewModel extends Notifier<ChatState> {
     final assistantMsg = ChatMessage(
       id: 'stream_${now.millisecondsSinceEpoch}',
       isUser: false,
+      content: '',
       isStreaming: true,
       timestamp: now,
     );
@@ -293,7 +303,7 @@ class ChatViewModel extends Notifier<ChatState> {
           if (msg != null) {
             state = state.copyWith(
               currentStreamingMessage: msg.copyWith(
-                error: 'Timeout: Server tidak merespon dalam ${_messageTimeoutSeconds} detik',
+                error: 'Timeout: Server tidak merespon dalam $_messageTimeoutSeconds detik',
                 isStreaming: false,
               ),
               isSending: false,

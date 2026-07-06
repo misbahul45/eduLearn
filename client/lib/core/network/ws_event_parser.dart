@@ -9,24 +9,76 @@ class WsEventParser {
 
     try {
       return switch (type) {
+        'connection' => ConnectionEvent(
+            json['status'] as String? ?? 'connected',
+            ts,
+          ),
         'state_update' => StateUpdateEvent(
             json['node'] as String? ?? '',
             json['status'] as String? ?? '',
             (json['iteration'] as num?)?.toInt() ?? 0,
+            reasoningPreview: json['reasoning_preview'] as String?,
+            toolCallsCount: (json['tool_calls_count'] as num?)?.toInt(),
+            timestamp: ts,
+          ),
+        'plan_generated' => PlanGeneratedEvent(
+            (json['steps'] as List<dynamic>?)
+                    ?.map((e) =>
+                        PlanStep.fromJson(e as Map<String, dynamic>))
+                    .toList() ??
+                [],
+            json['reasoning'] as String? ?? '',
+            json['needs_planning'] as bool? ?? true,
+            ts,
+          ),
+        'reflection' => ReflectionEvent(
+            json['info_sufficient'] != null ||
+                    json['next_action'] != null ||
+                    json['quality_score'] != null
+                ? ReflectionData(
+                    infoSufficient:
+                        json['info_sufficient'] as bool? ?? false,
+                    planCompleted:
+                        json['plan_completed'] as bool? ?? false,
+                    missingAspects:
+                        (json['missing_aspects'] as List<dynamic>?)
+                                ?.map((e) => e as String)
+                                .toList() ??
+                            [],
+                    nextAction:
+                        json['next_action'] as String? ?? 'respond',
+                    reason: json['reason'] as String? ?? '',
+                    qualityScore:
+                        (json['quality_score'] as num?)?.toDouble() ??
+                            0.0,
+                  )
+                : ReflectionData(
+                    infoSufficient: false,
+                    planCompleted: false,
+                    missingAspects: const [],
+                    nextAction: 'respond',
+                    reason: '',
+                    qualityScore: 0.0,
+                  ),
             ts,
           ),
         'tool_call' => ToolCallEvent(
             json['tool_name'] as String? ?? '',
             json['input'] as Map<String, dynamic>? ?? {},
             json['call_id'] as String? ?? '',
-            ts,
+            parallelGroup: json['parallel_group'] as String?,
+            iteration: (json['iteration'] as num?)?.toInt() ?? 0,
+            timestamp: ts,
           ),
         'tool_result' => ToolResultEvent(
             json['tool_name'] as String? ?? '',
             json['call_id'] as String? ?? '',
             json['output_summary'] as String? ?? '',
             (json['duration_ms'] as num?)?.toInt() ?? 0,
-            ts,
+            parallelGroup: json['parallel_group'] as String?,
+            success: json['success'] as bool? ?? true,
+            iteration: (json['iteration'] as num?)?.toInt() ?? 0,
+            timestamp: ts,
           ),
         'token' => TokenEvent(
             json['content'] as String? ?? '',
