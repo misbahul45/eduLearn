@@ -20,15 +20,26 @@ flowchart LR
 
     subgraph Server ["FastAPI Backend"]
         API["REST + WS APIs"]
-        AGENT["LangGraph Agent"]
-        ML["ML Predictor"]
-        RAG["RAG Pipeline"]
+        subgraph Agent ["LangGraph Agent"]
+            PLAN["Planner"]
+            SUP["Supervisor (LLM)"]
+            TOOLS["tools_node<br/>(asyncio.gather)"]
+            REFL["Reflector"]
+            RESP["response_node<br/>(LLM Stream)"]
+        end
+        ML["ML Predictor<br/>(Singleton)"]
     end
 
     Client -->|HTTP/WS| Nginx
     Nginx --> Server
     Server --> PG
     Server --> Redis
+    PLAN --> SUP --> TOOLS --> SUP
+    SUP --> REFL -->|iterate| SUP
+    REFL -->|respond| RESP
+    TOOLS --> ML
+    TOOLS --- RAG
+    TOOLS --- FC["Firecrawl Web"]
 ```
 
 ## Tech Stack
@@ -109,7 +120,7 @@ flutter run
 
 ## Key Features
 
-- **AI Chat**: LangGraph agent with ML prediction + RAG knowledge retrieval + LLM response
+- **AI Chat**: LangGraph agent with Planner → Supervisor → Tools (parallel) → Reflector → Response reasoning loop
 - **Binary Prediction**: TensorFlow model predicts Lulus/Tidak Lulus (binary classification)
 - **Knowledge Management**: Upload PDF/DOCX/TXT/MD → chunking → embedding → pgvector search
 - **Web Search**: Firecrawl-powered real-time web search during conversations

@@ -17,29 +17,43 @@ flowchart TD
         KNOW["/api/v1/knowledge/*"]
     end
     
-    CHAT --> Supervisor
-    WS --> Supervisor
+    WS -->|"user_message"| Graph
     
-    subgraph Supervisor [LangGraph Supervisor]
-        SEND["Fan-out via Send"]
+    subgraph Graph [LangGraph Reasoning Loop]
+        PLANNER["Planner<br/>Execution Plan"]
+        SUPERVISOR["Supervisor<br/>Reasoning + Tool Selection"]
+        TOOLS["tools_node<br/>asyncio.gather parallel"]
+        REFLECTOR["Reflector<br/>Self-Critique"]
+        RESPOND["response_node<br/>LLM Stream"]
     end
     
-    SEND --> PredictiveNode["Predictive Node<br/>(ML Inference)"]
-    SEND --> RAGNode["RAG Node<br/>(Vector Search)"]
+    PLANNER --> SUPERVISOR
+    SUPERVISOR -->|tool_calls| TOOLS
+    TOOLS --> SUPERVISOR
+    SUPERVISOR -->|"no tool_calls"| REFLECTOR
+    REFLECTOR -->|"iterate"| SUPERVISOR
+    REFLECTOR -->|"respond"| RESPOND
+    RESPOND -->|"Final Answer"| FastAPI
     
-    PredictiveNode --> ResponseNode
-    RAGNode --> ResponseNode
-    
-    subgraph ResponseNode [Response Node]
-        LLM["LLM (OpenAI-compatible)"]
+    subgraph Tools [LangChain Tools]
+        RAG["rag_tool<br/>pgvector RAG"]
+        PREDTOOL["predictive_tool<br/>ML Inference"]
+        FIRECRAWL["firecrawl_tool<br/>Web Search"]
     end
     
-    ResponseNode -->|"Final Response"| FastAPI
+    TOOLS --> RAG
+    TOOLS --> PREDTOOL
+    TOOLS --> FIRECRAWL
 ```
 
-Predictive Agent (ML inference) and RAG Agent (vector search) execute **in parallel**.  
-Supervisor orchestrates both via LangGraph `Send` fan-out.  
-Response Agent merges outputs and generates final answer via LLM.
+The LangGraph orchestrator follows a **reasoning loop** pattern:
+1. **Planner** — converts user message into an execution plan (parallel/sequential steps)
+2. **Supervisor** — reasons with LLM, emits 0..N tool calls per iteration
+3. **tools_node** — executes all tool calls **in parallel** via `asyncio.gather`
+4. **Reflector** — self-critique: evaluates info sufficiency, decides iterate or respond
+5. **response_node** — streams final LLM answer token-by-token via WebSocket
+
+Loop guards: `max_iterations` (default 6) and `max_reflections` (default 2) prevent infinite loops.
 
 ## Tech Stack
 
@@ -74,12 +88,21 @@ server/
 │   │   └── deps.py            # FastAPI Depends (get_db, get_current_user)
 │   ├── agent/
 │   │   ├── graph.py            # LangGraph StateGraph definition + run_agent()
-│   │   ├── state.py            # Agent state dataclasses
-│   │   ├── supervisor.py       # Fan-out router (parallel Send)
-│   │   ├── predictive_node.py  # Calls Predictor.predict()
-│   │   ├── rag_node.py         # Calls Retriever.search()
-│   │   ├── response_node.py    # LLM response generation
-│   │   └── tools/              # Firecrawl web search tool
+│   │   ├── state.py            # Agent state (plan, scratchpad, reflection, iteration)
+│   │   ├── planner.py          # Execution plan generation (tool step decomposition)
+│   │   ├── supervisor.py       # LLM reasoning + tool call selection (bind_tools)
+│   │   ├── tools/
+│   │   │   ├── tools_node.py   # Parallel tool executor (asyncio.gather)
+│   │   │   ├── predictive_tool.py  # ML inference wrapper
+│   │   │   ├── rag_tool.py         # pgvector RAG wrapper
+│   │   │   ├── firecrawl_tool.py   # Web search wrapper
+│   │   │   ├── profile_synthesizer.py  # Student profile inference
+│   │   │   ├── rule_engine.py     # Correlation-based field inference
+│   │   │   ├── validation_layer.py  # Synthesized profile validation
+│   │   │   └── _validation.py    # Input sanitization
+│   │   ├── reflector.py        # Self-critique node (info sufficiency check)
+│   │   ├── response_node.py    # LLM response generation with token streaming
+│   │   └── prompts.py          # System prompt templates
 │   ├── machine_learning/
 │   │   ├── singleton.py        # Thread-safe Singleton metaclass
 │   │   └── predictor.py        # Model loader + inference
@@ -279,15 +302,17 @@ Authentication via `sec-websocket-protocol: bearer.<token>` header or `token` qu
 | Type | Description |
 |------|-------------|
 | `pong` | Heartbeat response |
-| `state_update` | Agent node state change (`node`, `status`, `iteration`) |
-| `tool_call` | Tool invocation started (`tool_name`, `input`, `call_id`) |
-| `tool_result` | Tool result (`tool_name`, `output_summary`, `duration_ms`) |
+| `state_update` | Agent node state change (`node`, `status`, `iteration`, `reasoning_preview?`, `tool_calls_count?`) |
+| `plan_generated` | Execution plan from Planner (`steps[]`, `reasoning`, `needs_planning`) |
+| `tool_call` | Tool invocation started (`tool_name`, `input`, `call_id`, `parallel_group?`, `iteration`) |
+| `tool_result` | Tool result (`tool_name`, `call_id`, `output_summary`, `duration_ms`, `success`, `parallel_group?`, `iteration`) |
 | `token` | Streaming LLM token (`content`, `index`) |
-| `prediction_result` | ML prediction result (`data.label`, `data.probability`) |
-| `citation` | RAG citation (`source_id`, `snippet`, `score`) |
-| `web_search_result` | Firecrawl web result (`title`, `url`, `snippet`) |
-| `final` | Final response (`message`, `conversation_id`, `citations`, `web_results`, `prediction_present`, `prediction_label`) |
-| `error` | Error event (`message`, `fatal`) |
+| `prediction_result` | ML prediction result (`data.predicted_label`, `data.confidence`, `data.class_scores[]`, `data.synthesis_metadata`) |
+| `citation` | RAG citation (`source_id`, `snippet`, `score`, `metadata`) |
+| `web_search_result` | Firecrawl web result (`title`, `url`, `snippet`, `relevance_score`) |
+| `reflection` | Reflector self-critique (`info_sufficient`, `missing_aspects[]`, `next_action`, `quality_score`, `reason`) |
+| `final` | Final response (`message`, `conversation_id`, `citations[]`, `web_results[]`, `prediction_present`, `prediction_label`) |
+| `error` | Error event (`message`, `fatal`, `node?`) |
 
 ### Rate Limiting
 
@@ -298,28 +323,51 @@ Authentication via `sec-websocket-protocol: bearer.<token>` header or `token` qu
 ## LangGraph Agent Flow
 
 ```
-entry point (input)
-    │
-    ▼
-supervisor ──Send──► predictive_node (ML inference)
-    │                      │
-    └──Send──► rag_node (vector search)
-                                  │
-                                  ▼
-                          response_node (LLM)
-                                  │
-                                  ▼
-                                END
+START
+  │
+  ▼
+planner (execution plan)
+  │
+  ▼
+supervisor (LLM reasoning + tool selection)
+  │
+  ├── tool_calls emitted ──► tools_node (asyncio.gather parallel)
+  │                                │
+  │                                ▼
+  │                          supervisor (next iteration)
+  │
+  └── no tool_calls ──► reflector (self-critique)
+                              │
+                    ┌─────────┴─────────┐
+                    ▼                   ▼
+              iterate              respond
+                    │                   │
+                    ▼                   ▼
+              supervisor         response_node (LLM stream)
+                                         │
+                                         ▼
+                                       END
 ```
 
-Both `predictive_node` and `rag_node` run **in parallel** via LangGraph `Send`.  
-The supervisor does not block — both branches fan out simultaneously.
+**Nodes explained:**
+- **Planner** — analyzes user message, produces structured execution plan with parallel/sequential steps (JSON). Handles ambiguity: refuses to call predictive_tool without data.
+- **Supervisor** — LLM with 3 bound tools (rag_tool, predictive_tool, firecrawl_tool). Reasons over plan and reflection feedback, emits 0..N tool_calls per iteration.
+- **tools_node** — executes ALL tool_calls from supervisor **truly in parallel** via `asyncio.gather()`. Results populate citations, web_search_results, and prediction in AgentState.
+- **Reflector** — LLM-based self-critique: evaluates if gathered info is sufficient. Guards: `max_reflections=2`, `max_iterations=6`.
+- **response_node** — generates final answer with **token streaming** via `llm.astream()`. Prepends tagged sections (`<plan>`, `<reasoning>`, `<action>`, `<reflection>`) parsed by Flutter.
+
+All tool layers (ML, RAG, Firecrawl) remain **independent from LangGraph** — they expose simple async functions consumed by wrappers in `app/agent/tools/`.
 
 ## Design Decisions
 
+- **Reasoning loop over fan-out**: Unlike the original fan-out Send pattern, the current graph uses a Planner → Supervisor → Tools → Reflector → Respond loop. The supervisor dynamically decides which tools to call per iteration (0..N), enabling multi-turn reasoning.
+- **True parallel tool execution**: All tool_calls emitted by the supervisor in one turn are executed concurrently via `asyncio.gather()` in `tools_node.py`.
+- **Self-critique loop**: The Reflector node prevents premature responses by evaluating info sufficiency before allowing `respond`. Guarded by `max_reflections=2`.
 - **Singleton Predictor**: ML model loaded once at startup, reused for all requests. Thread-safe via locking.
 - **Fail-fast startup**: If model loading fails, the app crashes immediately rather than serving degraded responses.
 - **Independent layers**: ML layer has no knowledge of LangGraph. RAG layer has no knowledge of LangGraph. LangGraph only orchestrates.
+- **Token streaming**: `response_node.py` uses `llm.astream()` for per-token WebSocket delivery. Falls back to `ainvoke` if streaming is unsupported.
+- **Event-driven visibility**: All agent internals (plan, tool_calls, tool_results, reflections) are streamed as structured events for Flutter's real-time UI.
 - **Environment-driven config**: Zero hardcoded values. pydantic-settings reads from `infra/.env`.
 - **OpenAI-compatible LLM**: Any provider with OpenAI-compatible API works via `base_url` configuration.
 

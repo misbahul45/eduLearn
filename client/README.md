@@ -152,6 +152,35 @@ Riverpod providers for each domain:
 - Fallback to REST chat after 3 failed reconnection attempts
 - Connectivity monitoring via `connectivity_plus` for offline detection
 
+#### Event types handled
+
+| Server Event | Dart Model | UI Effect |
+|---|---|---|
+| `state_update` | `StateUpdateEvent` | Agent status badge (thinking/online) |
+| `plan_generated` | `PlanGeneratedEvent` | Agent trace sheet step list |
+| `tool_call` | `ToolCallEvent` | Trace log + parallel group indicator |
+| `tool_result` | `ToolResultEvent` | Duration + success/failure icon |
+| `token` | `TokenEvent` | Streaming text in chat bubble |
+| `prediction_result` | `PredictionResultEvent` | Prediction chart card |
+| `citation` | `CitationEvent` | Citation tile with metadata |
+| `web_search_result` | `WebSearchResultEvent` | Web result tile |
+| `reflection` | `ReflectionEvent` | Reflection card with quality score |
+| `final` | `FinalEvent` | Finalize message, stop streaming |
+| `error` | `AgentErrorEvent` | Error banner in chat bubble |
+
+#### Tag parser
+
+Final answer from `response_node` may include XML-like tags parsed by `ChatBubble` into specialized cards:
+
+| Tag | UI Component |
+|-----|-------------|
+| `<plan>` | `PlanCard` (execution steps) |
+| `<reasoning>` | `ReasoningCard` (AI thinking process) |
+| `<action>` | `ActionGroupCard` (parallel tool groups) |
+| `<reflection>` | `ReflectionCard` (quality score, missing aspects) |
+
+Unclosed tags during streaming are handled gracefully by the streaming-aware parser.
+
 ## Setup
 
 ```bash

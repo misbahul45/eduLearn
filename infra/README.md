@@ -88,7 +88,7 @@ networks:
 ```bash
 cd infra
 cp .env.example .env
-# Edit .env with real values
+# Edit .env with real values (API keys, JWT secret, DB passwords)
 ```
 
 ### Variable Groups
@@ -99,16 +99,18 @@ cp .env.example .env
 | **Redis** | `REDIS_PASSWORD`, `REDIS_PORT` | Cache credentials |
 | **Server** | `DATABASE_URL`, `REDIS_URL`, `ENVIRONMENT`, `LOG_LEVEL`, `VERSION` | Backend config |
 | **Nginx** | `NGINX_PORT` | Proxy port (default: 80) |
-| **ML Model** | `MODEL_DIR`, `PREDICTION_THRESHOLD` | ML inference config |
+| **ML Model** | `MODEL_DIR` | Model artifact directory (default: `/app/models`) |
 | **LLM** | `FLAZ_BASE_URL`, `FLAZ_API_KEY`, `LLM_MODEL` | OpenAI-compatible API |
 | **JWT Auth** | `JWT_SECRET`, `JWT_ALGORITHM`, `JWT_ACCESS_EXPIRE_MIN`, `JWT_REFRESH_EXPIRE_DAYS` | Token config |
 | **Firecrawl** | `FIRECRAWL_API_KEY`, `FIRECRAWL_CACHE_TTL`, `FIRECRAWL_RATE_PER_CONV` | Web search tool |
-| **WebSocket** | `WS_HEARTBEAT_INTERVAL`, `WS_AUTH_REQUIRED`, `WS_CONNECTION_LIMIT_PER_USER`, `WS_RATE_MSG_PER_MIN` | WS settings |
+| **WebSocket** | `WS_HEARTBEAT_INTERVAL`, `WS_AUTH_REQUIRED`, `WS_CONNECTION_LIMIT_PER_USER`, `WS_RATE_MSG_PER_MIN`, `WS_MAX_ITERATIONS` | WS settings + LangGraph loop guard |
 | **RAG** | `EMBEDDING_MODEL`, `EMBEDDING_DIM`, `RAG_CHUNK_SIZE`, `RAG_CHUNK_OVERLAP`, `RAG_TOP_K` | RAG pipeline |
 | **Upload** | `UPLOAD_MAX_FILE_SIZE_MB`, `UPLOAD_ALLOWED_TYPES`, `UPLOAD_DIR`, `UPLOAD_RATE_PER_DAY` | Knowledge ingestion |
 | **Rate Limit** | `RATE_LIMIT_WINDOW_SECONDS`, `RATE_LIMIT_MAX_REQUESTS` | API rate limiting |
 | **CORS** | `CORS_ORIGINS` | Allowed origins |
 | **Observability** | `METRICS_ENABLED` | Metrics toggle |
+
+> **Note:** `PREDICTION_THRESHOLD` is defined in `.env.example` but not yet consumed by the predictor (hardcoded at 0.5).
 
 ## Deployment
 
